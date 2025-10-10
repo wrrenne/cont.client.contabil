@@ -1,0 +1,34 @@
+@if (datas) {
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>PERFIL</td>
+                <td class="hidden text-center md:table-cell">CLIENTES</td>
+                <td class="hidden text-center md:table-cell">OBRIGAÇÕES</td>
+                <td class="hidden text-center md:table-cell">CONCLUÍDO</td>
+                <td class="hidden text-center md:table-cell">NO PRAZO</td>
+            </tr>
+        </thead>
+        @for (item of datas; track item; let i = $index) {
+        <tr>
+            <td>
+                <avatar-title
+                    class="cursor-pointer"
+                    [title]="item.descricao"
+                    [routerLink]="[link, encryptionService.encrypt(item.perfilItemId)]"
+                    [rounded]="true"
+                >
+                </avatar-title>
+            </td>
+            <td class="hidden text-center md:table-cell">
+                <span>{{item.obrigacoesStat?.clientesCount ?? '-'}}</span>
+            </td>
+            <td class="hidden text-center md:table-cell">
+                <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+}

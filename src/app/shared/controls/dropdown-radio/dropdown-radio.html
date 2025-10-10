@@ -1,0 +1,24 @@
+<button type="button" class="button flex items-center gap-2 !rounded-r-none" [ngClass]="btnClass">
+  @if (icon) {
+    <ng-icon [name]="icon" class="text-lg"></ng-icon>
+  }
+  <span>{{label}}</span>
+</button>
+
+<div hlMenu class="!flex">
+  <button type="button"
+    hlMenuButton
+    class="btn dropdown-toggle h-full border-l-[#4468fd] before:inline-block before:border-[5px] before:border-b-0 before:border-l-transparent before:border-r-transparent before:border-t-inherit before:border-t-white-dark ltr:rounded-l-none before:dark:border-t-white-light" [ngClass]="btnClass">
+    <span class="sr-only">Toggle dropdown</span>
+  </button>
+  <ul *hlMenuItems @toggleAnimation class="top-full whitespace-nowrap ltr:right-0 rtl:left-0">
+    @for (item of items; track item) {
+      <li>
+        <a (click)="itemClick(item)" *hlMenuItem="let menuItem" class="flex items-center gap-2">
+          <ng-icon [name]="item.checked ? 'ionCheckmarkSharp' : 'ionClose'"></ng-icon>
+          {{item.text}}
+        </a>
+      </li>
+    }
+  </ul>
+</div>

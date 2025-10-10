@@ -1,0 +1,35 @@
+<!--<modal-base [title]="'Novo Cliente Pessoa Física'">
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            <form *ngIf="!showMainForm && firstFormGroup" [formGroup]="firstFormGroup" class="flex flex-col gap-4">
+                <input-ex [formControlName]="'cpf'" class="w-full" [form]="firstFormGroup" [label]="'Cpf'"></input-ex>
+
+                <div class="flex gap-4">
+                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-1/2 text-white" (click)="localizarCpfClick()">
+                        <ng-icon [name]="'iconoirSearch'" class="mr-2 text-base"></ng-icon>
+                        Localizar CPF
+                    </button>
+                    <button type="button" class="button btn-transparent w-1/2 rounded-md" (click)="ignorarBuscaClick()">
+                        Ignorar Busca
+                    </button>
+                </div>
+            </form>
+            <form *ngIf="showMainForm && secondFormGroup" [formGroup]="secondFormGroup" class="flex flex-col gap-4">
+                <input-ex [formControlName]="'nome'" class="w-full" [form]="secondFormGroup" [label]="'Nome'"></input-ex>
+
+                <div class="flex w-full gap-4">
+                    <input-ex [formControlName]="'numero'" class="w-1/2" [form]="secondFormGroup" [label]="'Código'"></input-ex>
+                    <input-date-ex [formControlName]="'inicio'" class="w-1/2" [form]="secondFormGroup" [label]="'Inicio'"></input-date-ex>
+                </div>
+
+                <regime-select [formControlName]="'regime'" [form]="secondFormGroup" [label]="'Regime'" [TipoPessoa]="TTipoPessoa.PessoaFisica"></regime-select>
+
+                <input-textarea-ex class="w-full" [form]="secondFormGroup" [placeholderText]="'Comentário opcional'" formControlName="comentario" [label]="'Comentário'"></input-textarea-ex>
+
+                <button type="button" [disabled]="!secondFormGroup.valid" class="button btn-primary mt-3 w-full text-white md:w-36" (click)="submit()">
+                    Salvar
+                </button>
+            </form>
+        </div>
+    </ng-template>
+</modal-base>-->

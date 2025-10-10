@@ -1,0 +1,8 @@
+﻿@if (datas) {
+  @for (post of datas; track post) {
+    <timeline-post [post]="post"></timeline-post>
+  }
+  @if (param.pg < param.pgtotal) {
+    <hyperlink-button [text]="'Mostrar mais'" [icon]="'iconoirRefreshDouble'" (onButtonClick)="onScrollDown()" [isButton]="false"></hyperlink-button>
+  }
+}

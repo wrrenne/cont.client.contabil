@@ -1,0 +1,20 @@
+﻿@if (datas) {
+  <card [transparent]="true" [title]="'Atividade Recente'">
+    <ng-template #content>
+      <!--<ng-container *ngIf="datas">
+      <div *ngFor="let item of datas" class="mb-4">
+        <div [innerHTML]="item.html"></div>
+        <span class="text-black/40 dark:text-white/40">{{item.dataHoraFormat}}</span>
+      </div>
+    </ng-container>-->
+    <nz-timeline>
+      @for (item of datas; track item) {
+        <nz-timeline-item class="mb-4">
+          <div [innerHTML]="item.html"></div>
+          <span class="text-black/40 dark:text-white/40">{{item.dataHoraFormat}}</span>
+        </nz-timeline-item>
+      }
+    </nz-timeline>
+  </ng-template>
+</card>
+}

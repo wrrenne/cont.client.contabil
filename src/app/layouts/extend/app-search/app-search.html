@@ -1,0 +1,7 @@
+<search (onQuery)="query($event)" (onOpenBox)="openBox()" [placeHolderText]="'Pesquisar Clientes, Obrigações e Perfis'">
+    <ng-template #content>
+        @if (clientes) {
+        <clientes-search [datas]="clientes" (onClick)="searchClick($event)"></clientes-search>
+        }
+    </ng-template>
+</search>

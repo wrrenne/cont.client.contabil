@@ -1,0 +1,10 @@
+<div infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 3xl:grid-cols-8">
+
+  @for (item of datas; track item; let i = $index) {
+    <div _routerLink="['/sistema/ged', getEncryptedId(item.id)]">
+      <file-item [pasta]="item" (click)="fileClick(item)"></file-item>
+    </div>
+  }
+</div>

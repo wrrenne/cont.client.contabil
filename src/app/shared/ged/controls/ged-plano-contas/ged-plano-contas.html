@@ -1,0 +1,22 @@
+<div infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+  @for (item of datas; track item) {
+    <div>
+      <div [style.padding-left]="(((item.nivel) - 1) * 15).toString() + 'px'" class="flex items-center gap-2" @toggleAnimation>
+        <div class="mb-2">
+          <label-icon
+            (click)="pastaClick(item.id!, item.nivel)"
+            [label]="item.nome"
+            [label2]="item.arquivosPastasCountFormat"
+            [icon]="item.id == selectedId ? 'ionFolderSharp' : 'bootstrapFolder2'"
+            [iconColorClass]="gedUtilsService.getFileTypeColor(TFileType.Pasta, item.nivel, item?.arquivosCount != 0 || item?.pastasCount != 0)"
+            [iconBgClass]="gedUtilsService.getIconBgColor(item.nivel)"
+            [labelClass]="gedUtilsService.getLabelColor(item.nivel, item?.arquivosCount != 0 || item?.pastasCount != 0)"
+            class="cursor-pointer" [circle]="false">
+          </label-icon>
+        </div>
+      </div>
+    </div>
+  }
+</div>

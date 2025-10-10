@@ -1,0 +1,20 @@
+<div class="panel h-[115px] cursor-pointer" [routerLink]="[link, encryption.encrypt(perfilItemId)]">
+    <div class="flex h-full">
+        <div class="grow">
+            <!--<div class="text-muted text-xs">{{tipo}}</div>-->
+            <div class="font-bold text-[15px]">{{perfilNome}}</div>
+            <div class="mt-2 flex gap-3" *ngIf="obrigacoesStat">
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-white-black-outline">{{obrigacoesStat.total}}</div><ng-icon class="!w-[20px] text-lg" [name]="'ionStarSharp'"></ng-icon>
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-blue-outline">{{obrigacoesStat.concluidoPorcento}}%</div><ng-icon class="!w-[20px] text-lg text-blue-800 dark:text-blue-200" [name]="'iconoirCheckCircle'"></ng-icon>
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-red-outline">{{obrigacoesStat.emAtraso}}</div><ng-icon class="!w-[20px] text-lg text-red-800 dark:text-red-200" [name]="'iconoirWarningCircle'"></ng-icon>
+                </div>
+            </div>
+        </div>
+        <avatar-image [avatarFileName]="avatarFileName" [defaultNoIconName]="perfilNome" [size]="'4.5rem'" [rounded]="true" />
+    </div>
+</div>

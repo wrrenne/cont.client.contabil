@@ -1,0 +1,6 @@
+﻿<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+  <nz-date-picker [nzInline]="false" [formControlName]="formControlName" [nzBorderless]="false" [nzDisabled]="readonly" nzFormat="dd/MM/yyyy" [nzShowToday]="false" [nzPlaceHolder]="' '"></nz-date-picker>
+</div>

@@ -1,0 +1,9 @@
+<div class="inline-flex items-center gap-1">
+    <div class="leading-[40px] font-sans font-semibold">
+        <span class="text-xl md:text-4xl">{{ data | date:'dd' }}</span>
+    </div>
+    <div class="leading-3 relative hidden flex-col items-start text-xs md:flex">
+        <span class="font-semibold uppercase">{{ getDiaSemana() }}</span>
+        <span class="text-black/40 dark:text-white/40">{{ getMes() }}</span>
+    </div>
+</div>

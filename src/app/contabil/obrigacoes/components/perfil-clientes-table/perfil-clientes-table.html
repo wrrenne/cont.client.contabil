@@ -1,0 +1,43 @@
+<div>
+    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        <ng-icon [name]="'tablerDotsVertical'" class="text-xl"></ng-icon>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+            <li nz-menu-item><hyperlink-button [text]="'Incluir Cliente no Perfil'" [icon]="'iconoirFramePlusIn'" (onButtonClick)="perfilAssociarOpen()" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+            <li nz-menu-divider></li>
+            <li nz-menu-item><hyperlink-button [text]="'Exibir em Cards'" [icon]="'ionGridOutline'" (onButtonClick)="displayType = 'grid'" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+            <li nz-menu-item><hyperlink-button [text]="'Exibir em Lista'" [icon]="'iconoirList'" (onButtonClick)="displayType = 'list'" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+        </ul>
+    </nz-dropdown-menu>
+</div>
+
+<!--<button type="button" class="button btn-primary w-full md:w-44" (click)="perfilAssociarOpen()">
+    <ng-icon [name]="'heroPlus'" class="mr-2 text-xl"></ng-icon>
+    {{ 'clienteinsert' | translate }}
+</button>-->
+
+<div infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-200 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-2 py-3">
+                            Cliente
+                        </th>
+                        <th scope="col" class="px-2 py-3">
+                            Inicio
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b dark:border-gray-800" *ngFor="let item of datas;" [routerLink]="['/sistema/funcionarios/funcionario', encryptionService.encrypt(item.id)]">
+                        <td class="px-2 py-3"> {{item.clienteNome}} </td>
+                        <td>{{item.competenciaInicial}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

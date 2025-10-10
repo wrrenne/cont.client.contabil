@@ -1,0 +1,161 @@
+<div class="content-site">
+    <page-title [title]="'Obrigações'">
+        <!--<ng-template #buttonsHeader>
+            <div>
+                <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                    <ng-icon [name]="'tablerDotsVertical'" class="text-xl"></ng-icon>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item><hyperlink-button [text]="'Novo Imposto'" [icon]="'iconoirLotOfCash'" (onButtonClick)="obrigacaoNovoModal(TObrigacaoTipo.Imposto)" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+                        <li nz-menu-item><hyperlink-button [text]="'Nova Obrigação Acessória'" [icon]="'iconoirGridPlus'" (onButtonClick)="obrigacaoNovoModal(TObrigacaoTipo.Acessoria)" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+                        <li nz-menu-item><hyperlink-button [text]="'Novo Relatório'" [icon]="'iconoirPage'" (onButtonClick)="obrigacaoNovoModal(TObrigacaoTipo.Relatorio)" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </ng-template>-->
+
+        <!--<ng-template #buttonsHeader>
+        <div>
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                <ng-icon [name]="'tablerDotsVertical'" class="text-xl"></ng-icon>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                    <li nz-menu-item><hyperlink-button [text]="'Novo Funcionário'" [icon]="'ionAddCircleOutline'" (onButtonClick)="funcionarioNovoOpenModal()" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button></li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item><hyperlink-button [text]="'Exibir em Cards'" [icon]="'ionGridOutline'" (onButtonClick)="displayType = 'grid'" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button></li>
+                    <li nz-menu-item><hyperlink-button [text]="'Exibir em Lista'" [icon]="'iconoirList'" (onButtonClick)="displayType = 'list'" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button></li>
+                </ul>
+            </nz-dropdown-menu>
+        </div>-->
+        <!--<div class="hidden">
+            <div class="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-top sm:gap-3">
+                <div class="flex gap-3">
+                    <div>
+                        <button type="button" class="button btn-primary !p-[9px]" (click)="funcionarioNovoOpenModal()">
+                            <ng-icon [name]="'ionAddCircleOutline'" class="text-lg"></ng-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button"
+                                class="button btn-outline-primary !p-[9px]"
+                                [ngClass]="{ 'bg-primary text-white': displayType === 'grid' }"
+                                (click)="displayType = 'grid'">
+                            <ng-icon [name]="'ionGridOutline'" class="text-lg"></ng-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button"
+                                class="button btn-outline-primary !p-[9px]"
+                                [ngClass]="{ 'bg-primary text-white': displayType === 'list' }"
+                                (click)="displayType = 'list'">
+                            <ng-icon [name]="'iconoirList'" class="text-lg"></ng-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!--</ng-template>-->
+        <!--<ng-template #buttonsHeader>
+            <div class="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-top sm:gap-3">
+                <div class="flex gap-3">
+                    <div>
+                        <button type="button" class="button btn-primary !p-[9px]" (click)="funcionarioNovoOpenModal()">
+                            <ng-icon [name]="'ionAddCircleOutline'" class="text-lg"></ng-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button"
+                                class="button btn-outline-primary !p-[9px]"
+                                [ngClass]="{ 'bg-primary text-white': displayType === 'grid' }"
+                                (click)="displayType = 'grid'">
+                            <ng-icon [name]="'ionGridOutline'" class="text-lg"></ng-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button"
+                                class="button btn-outline-primary !p-[9px]"
+                                [ngClass]="{ 'bg-primary text-white': displayType === 'list' }"
+                                (click)="displayType = 'list'">
+                            <ng-icon [name]="'iconoirList'" class="text-lg"></ng-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>-->
+    </page-title>
+
+    <nz-tabset [nzSelectedIndex]="tabIndex">
+        <nz-tab nzTitle="Impostos">
+            <obrigacoes-table [parameters]="obrigacoesImpostosParameters"></obrigacoes-table>
+        </nz-tab>
+        <nz-tab nzTitle="Obrigações Acessórias">
+            <obrigacoes-table [parameters]="obrigacoesAcessoriasParameters"></obrigacoes-table>
+        </nz-tab>
+        <nz-tab nzTitle="Relatórios">
+            <obrigacoes-table [parameters]="obrigacoesRelatoriosParameters"></obrigacoes-table>
+        </nz-tab>
+    </nz-tabset>
+
+    <!--<obrigacoes-table [parameters]="obrigacoesParameters" (titleOnChange)="titleOnChange($event)" [link]="'/sistema/clientes/cliente'"></obrigacoes-table>-->
+</div>
+
+
+
+
+
+
+
+
+
+<!--<div class="flex h-full w-full">
+    <navigation-app [showSidebar]="true" [sidebarWidth]="300">
+        <ng-template #contabilNavigationContent>
+            <ng-scrollbar style="height: 100%;">
+                <perfis-totalizados-por-cliente-sidebar [parameters]="perfisParameters" [autoLoad]="false" [link]="'/sistema/clientes/'"></perfis-totalizados-por-cliente-sidebar>
+            </ng-scrollbar>
+        </ng-template>
+    </navigation-app>
+
+    <div id="content">
+        <div class="navigation-content">
+            <app-header [title]="'Clientes'" [subTitle]="subTitle">
+            </app-header>
+
+            <clientes-table [parameters]="clientesParameters" [autoLoad]="false"></clientes-table>-->
+<!--            <cliente-cards [parameters]="clientesParameters" [autoLoad]="false" _titleOnChange="titleOnChange($event)"></cliente-cards>-->
+<!--<ng-container *ngIf="prefLista; then lista else cards"></ng-container>
+
+<ng-template #lista>
+    <clientes-table [parameters]="clientesParameters" [autoLoad]="false" (titleOnChange)="titleOnChange($event)"></clientes-table>
+</ng-template>
+
+<ng-template #cards>
+    <clientes-cards [parameters]="clientesParameters" [autoLoad]="false" _titleOnChange="titleOnChange($event)"></clientes-cards>
+</ng-template>-->
+<!--</div>
+    </div>
+</div>-->
+<!--<div class="flex h-full w-full">
+    <navigation-app [showSidebar]="true" [sidebarWidth]="300">
+        <ng-template #contabilNavigationContent>
+            <ng-scrollbar style="height: 100%;">
+                <perfis-totalizados-por-obrigacao-sidebar [parameters]="perfisParameters" [autoLoad]="false" [link]="'/sistema/obrigacoes'"></perfis-totalizados-por-obrigacao-sidebar>
+            </ng-scrollbar>
+        </ng-template>
+    </navigation-app>
+
+    <div id="content">
+        <div class="flex h-full w-full flex-col py-8 pl-8 pr-6">
+
+            <app-header [title]="'Obrigações'">
+            </app-header>
+
+
+            <obrigacoes-table [autoLoad]="false" [parameters]="parameters" [link]="'/sistema/obrigacoes/obrigacao'"></obrigacoes-table>-->
+<!--<obrigacao-cards [autoLoad]="false" [parameters]="parameters"></obrigacao-cards>-->
+<!--</div>
+    </div>
+</div>-->

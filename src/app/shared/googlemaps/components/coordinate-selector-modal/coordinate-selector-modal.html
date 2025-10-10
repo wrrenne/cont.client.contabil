@@ -1,0 +1,56 @@
+<modal-base [title]="'Seleção de local remoto'" [subTitle]="subTitle">
+    <ng-template #modalContent>
+        <div class="space-y-3">
+            <div class="relative">
+                <!-- Search input -->
+                <input
+                    type="text"
+                    class="border rounded p-2 w-full pr-8 form-input"
+                    placeholder="Localizar Endereço..."
+                    [(ngModel)]="query"
+                    (input)="onSearchChange()"
+                />
+
+                <!-- Loading spinner -->
+                <div
+                    *ngIf="loading"
+                    class="absolute top-1/2 right-2 -translate-y-1/2 w-5 h-5 border-2 border-gray-300 border-t-gray-500 rounded-full animate-spin"
+                ></div>
+
+                <!-- Autocomplete suggestions (absolute overlay with fade-in) -->
+                <ul
+                    *ngIf="suggestions.length"
+                    class="absolute z-50 left-0 right-0 border rounded bg-white dark:bg-[#151515] border-input max-h-60 overflow-auto mt-1 transition-opacity duration-300 ease-in-out"
+                    [ngClass]="{ 'opacity-0': !suggestions.length, 'opacity-100': suggestions.length }"
+                >
+                    <li *ngFor="let s of suggestions" (click)="selectSuggestion(s)" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2">
+                        {{ s.description }}
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Map -->
+            <div class="relative rounded-xl border border-gray-300 overflow-hidden shadow-sm">
+                <google-map
+                    *ngIf="apiLoaded"
+                    height="400px"
+                    width="100%"
+                    [center]="center"
+                    [zoom]="zoom"
+                    [options]="mapOptions"
+                    (mapClick)="onMapClick($event)"
+                >
+                    <map-marker *ngFor="let marker of markers" [position]="marker.position" [title]="marker.title"></map-marker>
+                </google-map>
+
+                <!-- Centered Spinner -->
+                <div *ngIf="loadingFull" class="absolute inset-0 flex items-center justify-center bg-black/20 z-40">
+                    <div class="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                </div>
+            </div>
+
+            <!-- Confirm -->
+            <button class="button btn-primary w-full mt-2" [disabled]="!selectedCoords" (click)="confirmSelection()">Selecionar Local</button>
+        </div>
+    </ng-template>
+</modal-base>

@@ -1,0 +1,20 @@
+<card [title]="'Dados Básicos'">
+    <ng-template #content>
+        @if (cliente) {
+        <div class="flex flex-col gap-y-4">
+            <label-text [label]="'Razão Social'" [text]="cliente.nome"></label-text>
+            <div class="flex gap-5">
+                @if (cliente.tipo == TTipoPessoa.PessoaJuridica) {
+                <label-text [text]="cliente.cnpjFormat" [label]="'Cnpj'"></label-text>
+                <label-text [text]="cliente.inscricaoEstadual" [label]="'Inscrição Estadual'"></label-text>
+                } @if (cliente.tipo == TTipoPessoa.PessoaFisica) {
+                <label-text [text]="cliente.cpfFormat" [label]="'Cpf'"></label-text>
+                }
+            </div>
+        </div>
+        }
+    </ng-template>
+    <ng-template #footer>
+        <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
+    </ng-template>
+</card>

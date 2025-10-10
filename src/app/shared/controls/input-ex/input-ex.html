@@ -1,0 +1,6 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+  <input [formControlName]="formControlName" [attr.type]="inputType" class="form-input" placeholder="{{placeholderText}}" (keydown.enter)="enterPressed($event)" [readonly]="readonly" [maxlength]="maxlength" />
+</div>

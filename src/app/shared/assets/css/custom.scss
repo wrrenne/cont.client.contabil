@@ -1,0 +1,560 @@
+body {
+    @apply text-color-body bg-[#fafafa];
+}
+body.dark {
+    @apply text-color-body bg-[#0b0b0b];
+}
+
+.border-color {
+    @apply border-[#e0e6ed] dark:border-[#242424];
+}
+
+.border-color-2 {
+    @apply border-[#d0d0d0] dark:border-[#404040];
+}
+
+.text-color-input {
+    @apply text-black/75 dark:text-white/75;
+}
+
+.input-label {
+    @apply uppercase text-xs text-gray-600 dark:text-gray-400 tracking-wide;
+}
+
+.text-color-body {
+    @apply text-black/70 dark:text-white/70;
+}
+
+.text-color-h {
+    @apply text-black/80 dark:text-white/80;
+}
+
+.text-color-h2 {
+    @apply text-black/40 dark:text-white/40;
+}
+
+.border-input {
+    @apply border border-neutral-200 dark:border-neutral-700 focus:border-blue-500 focus:dark:border-blue-500;
+}
+
+.background-color-hover {
+    @apply bg-neutral-100 dark:bg-neutral-900;
+}
+
+.background-color-hover-input {
+    @apply background-color-hover;
+}
+
+.background-color-input {
+    @apply bg-white dark:bg-[#161616];
+}
+
+.background-panel {
+    @apply bg-panelbackgroundcolorLight dark:bg-panelbackgroundcolorDark;
+}
+
+.color-placeholder {
+    @apply placeholder-black/30 dark:placeholder-white/30;
+}
+
+.form-input {
+    @apply border-input background-color-input text-color-input color-placeholder;
+}
+
+.textarea {
+    @apply form-input resize-none overflow-hidden pb-20;
+}
+
+.textarea-noborder {
+    @apply focus:outline-none textarea border-0 bg-transparent;
+}
+
+.text-input {
+    @apply text-black/90 dark:text-white/90;
+}
+
+.bg-modal-background {
+    @apply bg-white dark:bg-[#151515];
+}
+
+.bg-silver-light {
+    @apply dark:bg-silver-dark-light;
+}
+
+.bg-avatar {
+    @apply bg-neutral-200 dark:bg-neutral-800;
+}
+
+.text-silver {
+    @apply dark:text-silver-dark;
+}
+
+.debug {
+    @apply px-3 text-xs text-blue-500;
+}
+
+address,
+dl,
+ol,
+p,
+pre,
+ul {
+    @apply mb-0 !important;
+}
+
+.main__inner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 935px;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.button-icon {
+    display: grid;
+    height: 2rem;
+    width: 2rem;
+    place-items: center;
+    border-radius: 9999px;
+}
+
+.activity-pessoa {
+    @apply font-medium text-amber-600 dark:text-amber-500;
+}
+
+.activity-destaque {
+    @apply font-medium text-black dark:text-white;
+}
+
+.activity-amber {
+    @apply font-medium text-amber-600 dark:text-amber-500;
+}
+
+.activity-blue {
+    @apply font-medium text-blue-600 dark:text-blue-500;
+}
+
+.activity-red {
+    @apply font-medium text-red-600 dark:text-red-500;
+}
+
+.activity-green {
+    @apply font-medium text-green-600 dark:text-green-500;
+}
+
+.btn {
+    @apply shadow-none py-1.5 rounded-md;
+}
+
+.btn-xs {
+    @apply btn shadow-none py-0.5 rounded-md;
+}
+
+.btn-blue {
+    @apply bg-blue-200 dark:bg-blue-900 border-none text-black dark:text-white;
+}
+
+.btn-border {
+    @apply shadow-none border rounded-md;
+}
+
+.modal-title {
+    @apply font-bold text-black dark:text-white text-[15px];
+}
+
+.modal-subtitle {
+    @apply text-muted text-xs;
+}
+
+.button-select-checked {
+    @apply bg-slate-300 dark:bg-zinc-700 dark:text-white/75;
+}
+
+.button-select-unchecked {
+    @apply bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-200 hover:dark:bg-zinc-600 dark:text-white/75;
+}
+
+.text-muted {
+    @apply text-zinc-400 dark:text-zinc-500;
+}
+
+label {
+    @apply font-normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply text-color-h;
+}
+
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+h4 {
+    @apply text-xl;
+}
+
+h5 {
+    @apply text-[16px];
+}
+
+h6 {
+    @apply text-[14px];
+}
+
+.content-site {
+    @apply p-3 md:p-6;
+}
+
+input {
+    filter: none;
+}
+
+.tabela {
+    @apply bg-[#fcfcfc] dark:bg-[#101010] text-black/70 dark:text-white/70 panel;
+
+    th {
+        @apply bg-[#f3f3f3] dark:bg-[#141414] text-black dark:text-white font-semibold;
+    }
+
+    th:first-child {
+        @apply rounded-tl;
+    }
+
+    th:last-child {
+        @apply rounded-tr;
+    }
+
+    th,
+    td {
+        @apply p-4 border-table border-b border-r;
+    }
+}
+
+.panel {
+    @apply border shadow-none border-color rounded-xl;
+}
+
+.ppanel {
+    @apply p-5 rounded-xl;
+}
+
+/*.card-header {
+    @apply background-card-header rounded-tl rounded-tr min-h-16;
+}
+*/
+
+.card-header {
+    @apply rounded-tl rounded-tr min-h-[4.5rem];
+}
+
+.card-footer {
+    /*@apply border-t border-color;*/
+}
+
+/*.background-card-header {
+    @apply bg-transparent;
+}
+*/
+.button {
+    @apply btn;
+    /*    @apply btn hover:shadow-[0_10px_20px_-10px] hover:shadow-primary;*/
+}
+
+.button-border {
+    @apply btn btn-border;
+    /*@apply btn btn-border hover:shadow-[0_10px_20px_-10px] hover:shadow-primary-light;*/
+}
+
+.btn-gray-color {
+    @apply bg-zinc-200 dark:bg-zinc-800 text-black/60 dark:text-white/60 border-zinc-200 dark:border-zinc-800;
+}
+
+.btn-muted-color {
+    @apply bg-zinc-200 dark:bg-zinc-800 text-black/60 dark:text-white/60 border-zinc-200 dark:border-zinc-800;
+}
+
+.btn-gray-unselected-color {
+    @apply btn-outline-dark;
+}
+
+.btn-gray-outline {
+    @apply border-zinc-200 dark:border-zinc-800;
+}
+
+.btn-gray-outline:hover {
+    @apply border-zinc-400 dark:border-zinc-600;
+}
+
+.btn-gray {
+    @apply btn-gray-color hover:bg-zinc-300 hover:dark:bg-zinc-700;
+}
+
+.btn-muted {
+    @apply btn-muted-color hover:bg-zinc-300 hover:dark:bg-zinc-700;
+}
+
+.btn-gray-unselected {
+    @apply btn-gray-unselected-color hover:bg-zinc-300 hover:dark:bg-zinc-700;
+}
+
+.btn-transparent {
+    @apply border-gray-600 text-gray-500 shadow-none;
+}
+
+.btn-xs {
+    @apply px-2 py-0.5 text-xs;
+}
+
+.button-sm {
+    @apply btn btn-sm;
+}
+
+.button-xs {
+    @apply btn btn-xs;
+}
+
+.button-rounded-blue {
+    @apply text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-xs px-5 py-1 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+}
+
+.debug-id {
+    @apply text-black/20 dark:text-white/20;
+}
+
+.tag-white-black {
+    @apply rounded-full bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900;
+}
+
+.tag-blue {
+    @apply rounded-full bg-blue-200 dark:bg-blue-900 text-blue-800 dark:text-blue-200;
+}
+
+.tag-blue-outline {
+    @apply rounded-full border border-blue-400 dark:border-blue-900 text-blue-800 dark:text-blue-200;
+}
+
+.tag-red {
+    @apply rounded-full bg-red-200 dark:bg-red-900 text-red-800 dark:text-red-200;
+}
+
+.tag-red-outline {
+    @apply rounded-full border border-red-400 dark:border-red-900 text-red-800 dark:text-red-200;
+}
+
+.tag-green {
+    @apply rounded-full bg-green-200 dark:bg-green-900 text-green-800 dark:text-green-200;
+}
+
+.tag-yellow {
+    @apply rounded-full bg-yellow-200 dark:bg-yellow-400 text-black;
+}
+
+.tag-yellow-outline {
+    @apply rounded-full border border-yellow-400 dark:border-yellow-900 text-yellow-800 dark:text-yellow-200;
+}
+
+.tag-amber {
+    @apply rounded-full bg-amber-200 dark:bg-amber-900 text-black dark:text-white;
+}
+
+.tag-violet {
+    @apply rounded-full bg-violet-200 dark:bg-violet-900 text-violet-800 dark:text-violet-200;
+}
+
+.tag-violet-outline {
+    @apply rounded-full border border-violet-400 dark:border-violet-900 text-violet-800 dark:text-violet-200;
+}
+
+.tag-silver {
+    @apply rounded-full bg-zinc-300 dark:bg-zinc-600 text-zinc-800 dark:text-white;
+}
+
+.tag-silver-outline {
+    @apply rounded-full border border-zinc-300 dark:border-zinc-600 text-zinc-800 dark:text-zinc-200;
+}
+
+.tag {
+    @apply px-1.5;
+}
+
+.tag-lg {
+    @apply py-3 px-5;
+}
+
+.text-bg-blue {
+    @apply bg-blue-100 dark:bg-blue-950 text-blue-400 dark:text-blue-400;
+}
+
+.text-bg-red {
+    @apply bg-red-100 dark:bg-red-950 text-red-400 dark:text-red-400;
+}
+
+.text-bg-yellow {
+    @apply bg-yellow-100 dark:bg-yellow-950 text-yellow-600 dark:text-yellow-400;
+}
+
+.text-bg-silver {
+    @apply bg-zinc-200 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400;
+}
+
+.text-bg-yellow-silver {
+    @apply bg-zinc-200 dark:bg-zinc-800 text-yellow-700 dark:text-yellow-600;
+}
+
+.sidebar .nav-item a div:first-child svg:is(.dark *),
+.sidebar .nav-item button div:first-child svg:is(.dark *) {
+    @apply text-yellow-700;
+}
+
+.border-table {
+    @apply border-color;
+}
+
+/*table tbody tr {
+    @apply border-b border-table !important;
+}
+
+table thead tr,
+table tfoot tr {
+    @apply border-b border-table !important;
+}
+*/
+/*table thead tr th {
+    @apply text-black/75 dark:text-white/75;
+}
+*/
+.badge {
+    @apply text-black/90 dark:text-white/90;
+}
+
+.badge-outline-white {
+    @apply border-white/75 text-white/75;
+}
+
+.text-white-dark {
+    @apply text-black/60 dark:text-white/60;
+}
+
+apx-chart {
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .sidebar-group {
+    @apply -mx-4 mb-1 flex items-center px-6 py-3 font-semibold;
+}
+
+.sidebar .nav-item > button,
+.sidebar .nav-item > a {
+    @apply py-0 px-0.5 text-left;
+}
+
+.divide {
+    @apply divide-y divide-solid divide-zinc-300 dark:divide-zinc-800;
+}
+
+.table {
+    @apply border-separate [border-spacing:15px];
+
+    thead td {
+        @apply py-2.5 pr-3.5 text-black/80 dark:text-white/80 text-sm last:pr-0;
+
+        div {
+            @apply bg-gray-200 dark:bg-zinc-800 w-full h-full p-3.5 rounded-lg;
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                @apply px-3.5 py-2;
+            }
+        }
+
+        // tr:nth-child(odd) td {
+        //     @apply bg-white dark:bg-zinc-900;
+        // }
+
+        tr:nth-child(even) td {
+            @apply bg-zinc-100 dark:bg-zinc-900/50;
+        }
+    }
+}
+
+.sidebar .nav-item > button.active:is(.dark *),
+.sidebar .nav-item > a.active:is(.dark *) {
+    @apply bg-zinc-800;
+}
+
+.text-subTitle {
+    @apply text-[12px] text-neutral-500;
+}
+
+.hyphen-between span:not(:last-child)::after {
+    content: '-';
+    margin: 0 5px; /* Optional: Add spacing around the hyphen */
+}
+
+/* Make scrollbar wider */
+/*.os-scrollbar {
+    width: 12px !important;*/ /* vertical scrollbar width */
+/*height: 12px !important;*/ /* horizontal scrollbar height */
+/*border-radius: 8px;
+}*/
+
+/* Track background */
+.os-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+}
+
+/* Scrollbar thumb (handle) */
+.os-scrollbar-handle {
+    @apply bg-gray-600 dark:bg-gray-500;
+    border-radius: 0px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect on thumb */
+.os-scrollbar-handle:hover {
+    background-color: #0056b3; /* darker blue */
+}
+
+/* Vertical scrollbar handle */
+.os-scrollbar-vertical .os-scrollbar-handle {
+    /* e.g. change width */
+    width: 4px;
+}
+
+.ant-drawer-content {
+    @apply bg-zinc-100 dark:bg-zinc-950;
+}
+
+.ant-drawer-body {
+    @apply p-0;
+}
+/* Horizontal scrollbar handle */
+/*.os-scrollbar-horizontal .os-scrollbar-handle {
+    height: 12px;
+}
+*/
+
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+    @apply border-color;
+}

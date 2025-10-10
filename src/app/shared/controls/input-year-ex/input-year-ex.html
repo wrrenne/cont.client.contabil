@@ -1,0 +1,35 @@
+<div [formGroup]="form">
+  <!--<input-ex nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" [label]="label" [formControlName]="formControlName" [form]="form"></input-ex>-->
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+  <input nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" type="text" [formControlName]="formControlName" class="form-input" placeholder="{{placeholderText}}" [readonly]="true" [value]="year" />
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="background-panel border-input flex flex-col items-center rounded-md">
+    <div class="mb-4 flex w-72 items-center justify-between border-b">
+      <button class="px-3 pb-2 pt-4"
+        (click)="changeYear(-5)">
+        <ng-icon [name]="'iconoirFastArrowLeft'"></ng-icon>
+      </button>
+      <span class="font-semibold">{{ year }}</span>
+      <button class="px-3 pb-2 pt-4"
+        (click)="changeYear(5)">
+        <ng-icon [name]="'iconoirFastArrowRight'"></ng-icon>
+      </button>
+    </div>
+
+    <div class="grid-cols-3 mb-3 grid gap-2 p-2">
+      @for (year of years; track year) {
+        <div nz-menu-item
+          class="text-black/25 items-center bg-transparent p-2 dark:text-white/25"
+          (click)="selectYear(year)">
+          {{ year }}
+        </div>
+      }
+    </div>
+
+
+  </div>
+</nz-dropdown-menu>

@@ -1,0 +1,12 @@
+<div class="flex w-full items-center gap-x-2">
+    <label for="dropzone-file" class="button btn-gray mb-0 cursor-pointer">
+        Alterar
+        <input id="dropzone-file" type="file" class="hidden" (change)="fileBrowseHandler($event)" />
+    </label>
+
+    <button type="button" class="button btn-gray-outline" (click)="deleteClick()">
+        <ng-icon [name]="'ionClose'" class="mr-1 text-lg"></ng-icon>
+        Excluir
+    </button>
+</div>
+

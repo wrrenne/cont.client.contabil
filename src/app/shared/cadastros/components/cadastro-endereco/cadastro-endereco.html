@@ -1,0 +1,21 @@
+<div>
+  <div class="mb-4 text-black dark:text-white">
+    Correspondência
+  </div>
+  @if (endereco) {
+    <div class="flex flex-col gap-y-4">
+      <div class="flex gap-3">
+        <label-text [label]="'Logradouro'" [text]="endereco.logradouro"></label-text>
+        <label-text [label]="'N°'" [text]="endereco.numero"></label-text>
+        <label-text [label]="'Complemento'" [text]="endereco.complemento"></label-text>
+      </div>
+      <div class="flex gap-3">
+        <label-text [label]="'CEP'" [text]="endereco.cepFormat"></label-text>
+        <label-text [label]="'Bairro'" [text]="endereco.bairro"></label-text>
+        <label-text [label]="'Município'" [text]="endereco.municipioTexto"></label-text>
+        <label-text [label]="'UF'" [text]="endereco.uf"></label-text>
+      </div>
+      <hyperlink-button [icon]="'bootstrapPencil'" text="Editar" (click)="editModal(endereco.id)" [isButton]="false"></hyperlink-button>
+    </div>
+  }
+</div>

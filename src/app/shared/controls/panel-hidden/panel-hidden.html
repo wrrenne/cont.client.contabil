@@ -1,0 +1,8 @@
+<!-- Animation now applies to a div instead of ng-container -->
+<!-- Wrapping div with animation applied -->
+@if (expanded) {
+  <div @expandCollapse class="content-wrapper mb-4">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </div>
+}
+

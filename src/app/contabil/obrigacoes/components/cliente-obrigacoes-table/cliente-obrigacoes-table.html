@@ -1,0 +1,30 @@
+<!--<button-selection class="mb-4 inline-block" [labels]="['Impostos', 'Obrigações Acessórias', 'Relatórios']" [values]="[TObrigacaoTipo.Imposto, TObrigacaoTipo.Acessoria, TObrigacaoTipo.Relatorio]" [value]="obrigacaoTipo" (buttonClicked)="tipoClicked($event)"></button-selection>
+
+<month-select class="mb-4 block" (monthSelected)="monthSelected($event)"></month-select>-->
+
+<nz-tabset (nzSelectedIndexChange)="onTabChange($event)">
+    <nz-tab nzTitle="Impostos">
+        <ng-template nz-tab>
+            <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+        </ng-template>
+    </nz-tab>
+    <nz-tab nzTitle="Obrigações Acessórias">
+        <ng-template nz-tab>
+            <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+        </ng-template>
+    </nz-tab>
+    <nz-tab nzTitle="Relatórios">
+        <ng-template nz-tab>
+            <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+        </ng-template>
+    </nz-tab>
+</nz-tabset>
+
+<ng-template #resumo>
+    <cliente-obrigacoes-stats-mes [parameters]="clienteObrigacoesStatsMesParameters"></cliente-obrigacoes-stats-mes>
+    <div infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+        <obrigacao-item *ngFor="let item of datas" [obrigacao]="item" [obrigacaoClientePeriodoPor]="TObrigacaoClientePeriodoPor.PorCliente"></obrigacao-item>
+    </div>
+</ng-template>

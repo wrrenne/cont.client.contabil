@@ -1,0 +1,82 @@
+﻿<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="flex flex-col gap-3">
+    @for (item of datas; track item; let i = $index) {
+    <card>
+        <ng-template #title>
+            <avatar-title
+                [funcionarioId]="item.funcionarioId"
+                [circle]="true"
+                [title]="item.funcionarioNome"
+                [subTitle2]="item.dataHoraFormat"
+                [subTitle]="item.cargoDescricao"
+            ></avatar-title>
+        </ng-template>
+        <ng-template #content>
+            <div class="flex flex-col gap-3 pb-4">
+                @if (item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoAbono || item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoBanco || item.tipo ==
+                TSolicitacaoTipo.SolicitacaoFaltaAbono || item.tipo == TSolicitacaoTipo.SolicitacaoFaltaBanco || item.tipo == TSolicitacaoTipo.SolicitacaoExtra
+                || item.tipo == TSolicitacaoTipo.SolicitacaoExtraBanco) {
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="tag-yellow-outline w-14 text-center">{{item.apontamentoData | date: 'dd/MM'}}</span> <span>{{item.tipoDescricao}}</span>
+                    </div>
+                    @if (item.entradaValor) {
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="w-14 text-center"
+                            [ngClass]="{'tag-red-outline': item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoAbono || item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoBanco, 'tag-blue-outline': item.tipo == TSolicitacaoTipo.SolicitacaoExtra || item.tipo == TSolicitacaoTipo.SolicitacaoExtraBanco }"
+                        >
+                            {{item.entradaValor.horas}}
+                        </span>
+                        <span> Entrada </span>
+                    </div>
+                    } @if (item.intervaloValor) {
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="w-14 text-center"
+                            [ngClass]="{'tag-red-outline': item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoAbono || item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoBanco, 'tag-blue-outline': item.tipo == TSolicitacaoTipo.SolicitacaoExtra || item.tipo == TSolicitacaoTipo.SolicitacaoExtraBanco }"
+                        >
+                            {{item.intervaloValor.horas}}
+                        </span>
+                        <span> Intervalo </span>
+                    </div>
+                    } @if (item.saidaValor) {
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="w-14 text-center"
+                            [ngClass]="{'tag-red-outline': item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoAbono || item.tipo == TSolicitacaoTipo.SolicitacaoAtrasoBanco, 'tag-blue-outline': item.tipo == TSolicitacaoTipo.SolicitacaoExtra || item.tipo == TSolicitacaoTipo.SolicitacaoExtraBanco }"
+                        >
+                            {{item.saidaValor.horas}}
+                        </span>
+                        <span> Saída </span>
+                    </div>
+                    }
+                </div>
+                }
+                <span class="block" [innerHTML]="item.comment"></span>
+            </div>
+        </ng-template>
+        <ng-template #footer>
+            @if (item.status == TSolicitacaoStatus.EmAberto) {
+            <div class="flex gap-3">
+                <hyperlink-button
+                    [text]="'Aceitar'"
+                    [icon]="'iconoirSettingsProfiles'"
+                    (onButtonClick)="openCommentsClick(item, TSolicitacaoStatus.Aceito)"
+                    [isButton]="false"
+                    [iconClass]="'text-lg'"
+                    class="text-yellow-700"
+                ></hyperlink-button>
+                <hyperlink-button
+                    [text]="'Rejeitar'"
+                    [icon]="'matBlockOutline'"
+                    (onButtonClick)="openCommentsClick(item, TSolicitacaoStatus.Rejeitado)"
+                    [isButton]="false"
+                    [iconClass]="'text-lg'"
+                    class="text-yellow-700"
+                ></hyperlink-button>
+            </div>
+            }
+        </ng-template>
+    </card>
+    }
+</div>

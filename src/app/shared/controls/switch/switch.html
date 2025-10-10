@@ -1,0 +1,37 @@
+﻿<div [ngClass]="{'pt-5': paddingTop}">
+  @if (!rightAlign) {
+    <div class="flex gap-1">
+      <div class="mr-1">
+        <ng-template [ngTemplateOutlet]="switchTemplate"></ng-template>
+      </div>
+      <ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+    </div>
+  }
+
+  @if (rightAlign) {
+    <div class="mb-3 flex">
+      <div class="flex-none">
+        <ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+      </div>
+      <div class="grow text-end">
+        <ng-template [ngTemplateOutlet]="switchTemplate"></ng-template>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #switchTemplate>
+  <div class="form-control" [formGroup]="form">
+    <nz-switch [formControlName]="formControlName"
+      [nzCheckedChildren]="checkedTemplate"
+    [nzUnCheckedChildren]="unCheckedTemplate"></nz-switch>
+    <ng-template #checkedTemplate><span nz-icon nzType="check" class="top-[-1px] relative text-[10px] text-white dark:text-black"></span></ng-template>
+    <ng-template #unCheckedTemplate><span nz-icon nzType="close" class="top-[-1px] relative text-[10px] text-white dark:text-black"></span></ng-template>
+  </div>
+</ng-template>
+
+<ng-template #labelTemplate>
+  @if (label) {
+    <div class="contents"><span class="relative top-[2px]">{{ label }}</span></div>
+  }
+</ng-template>

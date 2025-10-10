@@ -1,0 +1,32 @@
+<modal-base [title]="title">
+  <ng-template #modalContent>
+    <div class="flex flex-col gap-y-4">
+      @if (endereco && firstFormGroup) {
+        <form [formGroup]="firstFormGroup">
+          <div class="flex flex-col gap-4">
+            <div class="w-1/3">
+              <input-ex [formControlName]="'cep'" [form]="firstFormGroup" [label]="'CEP'"></input-ex>
+            </div>
+            <div class="flex gap-3">
+              <input-ex [formControlName]="'logradouro'" class="w-4/6" [form]="firstFormGroup" [label]="'Logradouro'"></input-ex>
+              <input-ex [formControlName]="'numero'" class="w-2/6" [form]="firstFormGroup" [label]="'Número'"></input-ex>
+            </div>
+            <div class="flex gap-3">
+              <uf-select [formControlName]="'uf'" class="w-1/4" [form]="firstFormGroup" [label]="'UF'"></uf-select>
+              <municipio-select [formControlName]="'municipio'" class="w-3/4" [form]="firstFormGroup" [label]="'Município'" [parameters]="municipioParameter"></municipio-select>
+            </div>
+            <div class="flex gap-3">
+              <input-ex [formControlName]="'bairro'" [form]="firstFormGroup" [label]="'Bairro'"></input-ex>
+              <input-ex [formControlName]="'complemento'" [form]="firstFormGroup" [label]="'Complemento'"></input-ex>
+            </div>
+            <!--<input-ex [formControlName]="'tipo'" [form]="firstFormGroup" [label]="'Tipo'"></input-ex>-->
+            <input-textarea-ex [form]="firstFormGroup" [placeholderText]="'Comentário opcional'" formControlName="comentario" [label]="'Comentário'"></input-textarea-ex>
+            <button type="button" [disabled]="!firstFormGroup.dirty || !firstFormGroup.valid" class="button btn-primary w-full md:w-36" (click)="submitFirstFormGroup()">
+              Salvar
+            </button>
+          </div>
+        </form>
+      }
+    </div>
+  </ng-template>
+</modal-base>

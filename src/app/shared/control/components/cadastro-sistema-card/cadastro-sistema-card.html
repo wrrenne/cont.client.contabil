@@ -1,0 +1,22 @@
+<card [title]="sistema.sistemaDescricao">
+  <ng-template #content>
+    <div class="flex w-full flex-col gap-10 rounded-lg">
+      <div class="flex h-full flex-col gap-3">
+        <div class="flex gap-3">
+          <label-text class="grow" [label]="'Inicio'" text="{{sistema.dataInicial | date:'dd/MM/yyyy'}}"></label-text>
+          <label-text [label]="'Usuários'" text="{{sistema.usersCount}}"></label-text>
+        </div>
+        <label-text [label]="'Último Acesso'" [text]="sistema.userAcessoUserNome"></label-text>
+        <label-text [label]="'Em'" text="{{sistema.ultimoAcesso | date: 'dd/MM/yyyy HH:mm'}}"></label-text>
+        <!--<span>{{sistema.ultimoAcesso | date: 'dd/MM/yyyy HH:mm'}}</span>-->
+        @if (sistema.pacote) {
+          <div class="mt-auto">
+            <div>
+              <div class="text-black dark:text-white"><span class="font-[Impact] text-4xl font-bold">R$ {{sistema.pacote.valor}}</span><span class="text-gray-600 dark:text-gray-400">,00</span></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </ng-template>
+</card>

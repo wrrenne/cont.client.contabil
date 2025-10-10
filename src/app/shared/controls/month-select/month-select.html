@@ -1,0 +1,13 @@
+<nz-select [(ngModel)]="selectedMonth"
+  (ngModelChange)="onMonthChange($event)"
+  nzPlaceHolder="Selecione o mês"
+  style="width: 200px;">
+  @for (yearGroup of groupedMonths; track yearGroup) {
+    <nz-option-group [nzLabel]="yearGroup.year">
+      @for (month of yearGroup.months; track month) {
+        <nz-option [nzLabel]="month.label" [nzValue]="month.value">
+        </nz-option>
+      }
+    </nz-option-group>
+  }
+</nz-select>

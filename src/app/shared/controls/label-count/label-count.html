@@ -1,0 +1,19 @@
+<div class="flex items-center gap-2" [ngxTippy]="tooltip" [ngClass]="{'text-xs': size == 'normal', 'text-sm': size == 'big'}"
+  [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}">
+  @if (icon) {
+    @if (showBackground) {
+      <button type="button" class="button-icon bg-zinc-200/70 dark:bg-zinc-800" [ngClass]="{'!w-10 !h-10': size == 'big'}">
+        <ng-icon [ngClass]="{'text-lg': size == 'normal', 'text-xl': size == 'big'}" [name]="icon"></ng-icon>
+      </button>
+    }
+    @if (!showBackground) {
+      <ng-icon class="text-lg" [name]="icon"></ng-icon>
+    }
+  }
+  @if (!(labelNone && labelSingular && labelPlural)) {
+    <span>{{count}}</span>
+  }
+  @if (labelNone && labelSingular && labelPlural) {
+    <span>{{getLabel()}}</span>
+  }
+</div>

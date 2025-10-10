@@ -1,0 +1,61 @@
+<div class="mb-10 flex gap-3">
+    <button type="button" class="btn btn-gray" (click)="clienteUserAssociarOpenModal()">
+        {{ 'colaborador_novo' | translate }}
+    </button>
+</div>
+
+<div infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>COLABORADOR</td>
+                <td class="hidden text-center md:table-cell">SETOR</td>
+                <td class="hidden text-center md:table-cell">OBRIGAÇÕES</td>
+                <td class="hidden text-center md:table-cell">
+                    CONCLUÍDO
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    NO PRAZO
+                </td>
+                <!--<td>
+                    ÚLTIMO ACESSO
+                </td>-->
+            </tr>
+        </thead>
+        <tr *ngFor="let item of datas; let i = index" [routerLink]="['/sistema/users/user', getEncryptedId(item.id!)]">
+            <td>
+                <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.userId" [rounded]="true">
+                    <ng-template #subTitle>
+                        <div class="text-subTitle block">
+                            <span class="block">{{item.userEmail}}</span>
+                        </div>
+                    </ng-template>
+                </avatar-title>
+            </td>
+            <td class="hidden text-center md:table-cell">
+                <span [class]="obrigacoesUtilsService.getDepartamentoColor(item.departamentoCor)">{{item.departamentoNome}}</span>
+            </td>
+            <td class="hidden text-center md:table-cell">
+                <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
+            </td>
+            <td class="hidden text-center md:table-cell">
+                <div class="flex items-center justify-center gap-3">
+                    <span>{{item.obrigacoesStat?.concluidas ?? '-'}}</span>
+                    <percentage-bar *ngIf="item.obrigacoesStat" [percentage]="item.obrigacoesStat.concluidoPorcento"></percentage-bar>
+                </div>
+            </td>
+            <td class="hidden text-center md:table-cell">
+                <div class="flex items-center justify-center gap-3">
+                    <span>{{item.obrigacoesStat?.concluidasNoPrazo ?? '-'}}</span>
+                    <percentage-bar *ngIf="item.obrigacoesStat" [percentage]="item.obrigacoesStat.concluidoNoPrazoPorcento"></percentage-bar>
+                </div>
+            </td>
+            <!--<td>
+                <span *ngIf="item.ultimoAcesso">{{item.ultimoAcesso! | customDateTime : false : true}}</span>
+            </td>-->
+        </tr>
+    </table>
+</div>

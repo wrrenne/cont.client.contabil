@@ -1,0 +1,52 @@
+import { TSetor } from "../../../../shared/enums";
+import { ArquivoPageItem } from "../../../../shared/ged/models/pagings";
+import { PageItemBase } from "../../../../shared/models";
+import { PostInfo } from "../../../../shared/timeline/models";
+import { CommentPageItem } from "../../../../shared/timeline/models/pagings";
+import { TEsfera, TObrigacaoStatus, TObrigacaoTipo, TPeriodicidade } from "../../enums";
+import { ClientePerfilPageItem, ObrigacaoClientePeriodoUserPageItem } from "../pagings";
+
+export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
+    clienteId: number;
+    clienteNome: string;
+    clienteNomeFormat: string;
+    obrigacaoId: number;
+    obrigacaoDescricao: string;
+    perfilItemId?: number;
+    perfilItemDescricao: string;
+    tipo: TObrigacaoTipo;
+    tipoDescricao: string;
+    setor: TSetor;
+    esfera: TEsfera;
+    uf?: string;
+    municipioCodigo?: number;
+    municipioNome?: string;
+    esferaDescricao: string;
+    departamentoNome: string;
+    competenciaMes?: string;
+    competenciaMesFormat?: string;
+    competenciaAno?: number;
+    vencimento?: string;
+    vencimentoDescricao: string;
+    vencido?: boolean;
+    prazo: string;
+    prazoDescricao: string;
+    prazoVencido: boolean;
+    status: TObrigacaoStatus;
+    statusDescricao: string;
+    concluidoEm?: string;
+    concluidoEmFormat?: string;
+    userConcluidoPor?: number;
+    userConcluidoPorNome?: string;
+    userConcluidoPorNomeFormat?: string;
+    gedPastaCodigo: string;
+    gedPastaNome: string;
+    users: ObrigacaoClientePeriodoUserPageItem[]
+    //users: UserPageItem[];
+    perfis: ClientePerfilPageItem[];
+    comments: CommentPageItem[];
+    arquivos: ArquivoPageItem[];
+    postInfo: PostInfo;
+    periodicidade: TPeriodicidade;
+    periodicidadeDescricao: string;
+}

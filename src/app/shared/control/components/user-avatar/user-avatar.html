@@ -1,0 +1,14 @@
+<card [title]="'Foto'">
+    <ng-template #content>
+        <div class="flex items-center">
+            <div class="mr-5">
+                <avatar-image [userId]="userId" />
+                <!--<avatar-image [userId]="userId" [refreshObservable]="eventsSubject.asObservable()" _imgClass="'object-cover'" />-->
+            </div>
+            <div>
+                <arquivo-selecao-button (onFileSelected)="avatarSelected($event)">
+                </arquivo-selecao-button>
+            </div>
+        </div>
+    </ng-template>
+</card>

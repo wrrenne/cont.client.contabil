@@ -1,0 +1,21 @@
+@if (topFolders) {
+  <div>
+    @for (item of topFolders; track item; let i = $index) {
+      <div _routerLink="['/sistema/ged', getEncryptedId(item.id)]">
+        <file-item [pasta]="item.pasta" (click)="fileClick(item)"></file-item>
+      </div>
+    }
+  </div>
+}
+
+@if (folders) {
+  <div infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 3xl:grid-cols-8">
+    @for (item of folders; track item; let i = $index) {
+      <div _routerLink="['/sistema/ged', getEncryptedId(item.id)]">
+        <file-item [arquivo]="item.arquivo" [pasta]="item.pasta" (click)="fileClick(item)"></file-item>
+      </div>
+    }
+  </div>
+}

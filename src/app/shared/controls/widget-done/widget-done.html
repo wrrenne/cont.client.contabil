@@ -1,0 +1,59 @@
+<div class="panel flex h-[134px] !rounded-xl !px-3 !pb-1.5 !pt-2.5 text-xs" [class]="bgClass + ' ' + blockWidth">
+    <div class="flex w-full flex-col gap-2">
+        <!-- Icone -->
+        @if (icon) {
+        <ng-icon [name]="icon" class="text-2xl" [class]="iconClass"></ng-icon>
+        }
+
+        <!-- Titulo -->
+        @if (title) {
+        <div class="grow">{{title}}</div>
+        }
+
+        <!-- Porcentagem -->
+        @if (showPorcentoBar && porcento) {
+        <percentage-bar [percentage]="porcento" [showPercentage]="false" [backgroundColor]="backgroundColor" [multiColor]="false"></percentage-bar>
+        }
+
+        <div class="flex items-baseline" [class]="contentAlignmentClass">
+            <!-- Container -->
+            @if (content) {
+            <ng-container [ngTemplateOutlet]="content"></ng-container>
+            }
+            <!-- Descricao -->
+            @if (description) {
+            <span>{{description}}</span>
+            }
+
+            <!-- Porcentagem label -->
+            @if (porcento != undefined && showPorcentoLabel) {
+            <span class="grow font-bold" [class]="porcentoClass" [ngClass]="{'text-muted': porcento == 0}">{{porcento}}%</span>
+            }
+
+            <!-- Valor -->
+            @if (value != undefined) {
+            <span class="grow font-bold" [class]="valueClass" [ngClass]="{'text-muted': value == 0}">{{value}}</span>
+            }
+
+            <!-- Valor string -->
+            @if (valueString != undefined) {
+            <span class="grow font-bold" [class]="valueClass">{{valueString}}</span>
+            }
+
+            <!-- Valor string pequeno  -->
+            @if (smallValueString != undefined) {
+            <span class="grow text-base">{{smallValueString}}</span>
+            }
+
+            <!-- Valor done -->
+            @if (done != undefined) {
+            <span [class]="valueClass" class="font-bold" [ngClass]="{'text-muted': done == 0}">{{done}}</span>
+            }
+
+            <!-- Total -->
+            @if (total != undefined) {
+            <span class="ml-1 text-gray-400 dark:text-gray-500">/ {{total}}</span>
+            }
+        </div>
+    </div>
+</div>

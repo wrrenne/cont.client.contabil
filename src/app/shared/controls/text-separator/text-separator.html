@@ -1,0 +1,21 @@
+<div [ngClass]="'pt-1'">
+    <div class="relative flex items-center pb-2.5">
+        @if (center) { @if (showTextBorder) {
+        <div class="border-color relative top-px flex-grow border-t dark:border-borderBlack"></div>
+        }
+        <div class="mx-4"><ng-template [ngTemplateOutlet]="textTemplate"></ng-template></div>
+        @if (showTextBorder) {
+        <div class="border-color relative top-px flex-grow border-t dark:border-borderBlack"></div>
+        } } @else {
+        <div class="mr-4"><ng-template [ngTemplateOutlet]="textTemplate"></ng-template></div>
+        @if (showTextBorder) {
+        <div class="border-color relative top-px flex-grow border-t dark:border-borderBlack"></div>
+        } }
+    </div>
+
+    <ng-template #textTemplate>
+        @if (text) {
+        <span class="flex-shrink font-semibold text-[15px]" [ngClass]="colorClass">{{text}}</span>
+        }
+    </ng-template>
+</div>

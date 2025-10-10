@@ -1,0 +1,9 @@
+@if (status == TSolicitacaoStatus.Aceito) {
+  <avatar-icon [icon]="'ionCheckmarkSharp'" [circle]="true" [bgColor]="'border border-green-500 dark:border-green-500'" [iconColor]="'text-green-500 dark:text-green-500'" [iconCss]="'text-2xl'" [tooltip]="'Aceito'" [size]="'2rem'"></avatar-icon>
+}
+@if (status == TSolicitacaoStatus.Rejeitado) {
+  <avatar-icon [icon]="'ionClose'" [circle]="true" [bgColor]="'border border-red-500 dark:border-red-500'" [iconColor]="'text-red-500 dark:text-red-500'" [iconCss]="'text-2xl'" [tooltip]="'Rejeitado'" [size]="'2rem'"></avatar-icon>
+}
+@if (status == TSolicitacaoStatus.EmAberto) {
+  <avatar-icon [icon]="'iconoirQuestionMark'" [circle]="true" [bgColor]="'border border-amber-500 dark:border-amber-500'" [iconColor]="'text-amber-500 dark:text-amber-500'" [iconCss]="'text-2xl'" [tooltip]="'Em Aberto'" [size]="'2rem'"></avatar-icon>
+}

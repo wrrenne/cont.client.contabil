@@ -1,0 +1,25 @@
+<div class="w-full">
+  @if (title) {
+    <div class="mb-8 flex items-center border-b border-neutral-200 p-5 dark:border-neutral-800">
+      <div class="flex-auto">
+        <div class="modal-title">{{title}}</div>
+        @if (subTitle) {
+          <div class="modal-subtitle">{{subTitle}}</div>
+        }
+      </div>
+      <button-icon [icon]="'ionClose'"
+        (click)="closeModal()">
+      </button-icon>
+    </div>
+  }
+
+  <div class="px-5 pb-4" [ngClass]="{'pt-4' : !title}">
+    <ng-container [ngTemplateOutlet]="modalContent"></ng-container>
+  </div>
+
+  @if (footer) {
+    <div class="border-t border-neutral-200 px-2.5 py-4 dark:border-neutral-800">
+      <ng-container [ngTemplateOutlet]="footer"></ng-container>
+    </div>
+  }
+</div>

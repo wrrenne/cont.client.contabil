@@ -1,0 +1,75 @@
+<div class="ppanel flex h-full flex-col" [ngClass]="getClass()">
+    @if (title || titleTemplate) {
+        <div class="card-header -m-5 mb-5 flex items-center px-3 py-4" [ngClass]="getHeaderClass()">
+            <div class="grow">
+                @if (isString(title)) {
+                    <div class="flex items-center gap-3">
+                        @if (avatarFileName || funcionarioId || userId || clienteId || funcionariosDepartamentoId || contabilDepartamentoId) {
+                            <div [ngClass]="{ 'rounded-full': rounded }">
+                                <avatar-image
+                                    [avatarFileName]="avatarFileName"
+                                    [funcionarioId]="funcionarioId"
+                                    [defaultNoIconName]="title"
+                                    [userId]="userId"
+                                    [clienteId]="clienteId"
+                                    [funcionariosDepartamentoId]="funcionariosDepartamentoId"
+                                    [contabilDepartamentoId]="contabilDepartamentoId"
+                                    [rounded]="rounded"
+                                    [circle]="circle"
+                                    [size]="iconSize"
+                                    [iconClass]="iconClass"
+                                    [bgClass]="iconBgColorClass"
+                                />
+                            </div>
+                        }
+                        @if (avatarText) {
+                            <avatar-text
+                                [text]="avatarText"
+                                [subText]="avatarSubText"
+                                [bgColor]="iconBgColorClass"
+                                [textColorClass]="iconColorClass"
+                            ></avatar-text>
+                        }
+                        @if (icon) {
+                            <avatar-icon
+                                [icon]="icon"
+                                [bgColor]="iconBgColorClass"
+                                [iconColor]="iconColorClass"
+                                [iconCss]="iconClass"
+                                [rounded]="rounded"
+                                [circle]="circle"
+                                [size]="iconSize"
+                            ></avatar-icon>
+                        }
+                        @if (!isString(icon) && iconTemplate) {
+                            <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+                        }
+                        <div class="grid w-full">
+                            <h6 class="truncate text-ellipsis" [ngClass]="{ uppercase: titleUppercase }">{{ title }}</h6>
+                            <span class="text-black/40 dark:text-white/40">{{ subTitle }}</span>
+                        </div>
+                    </div>
+                }
+                @if (!isString(title) && titleTemplate) {
+                    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+                }
+            </div>
+            @if (tools) {
+                <div class="flex-none">
+                    <ng-container [ngTemplateOutlet]="tools"> </ng-container>
+                </div>
+            }
+        </div>
+    }
+    <overlay-scrollbars style="height: 100%" [defer]="true">
+        <div class="text-white-dark grow">
+            <ng-container [ngTemplateOutlet]="content"> </ng-container>
+        </div>
+    </overlay-scrollbars>
+
+    @if (footer) {
+        <div class="card-footer border-color -m-5 mt-0.5 border-t px-4 py-3">
+            <ng-container [ngTemplateOutlet]="footer"> </ng-container>
+        </div>
+    }
+</div>

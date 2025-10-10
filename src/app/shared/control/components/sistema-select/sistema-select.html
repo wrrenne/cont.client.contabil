@@ -1,0 +1,13 @@
+<div [formGroup]="form">
+  <div class="flex">
+    <div class="w-full">
+      <nz-select nzAllowClear nzPlaceHolder="Selecione o produto" class="block" [formControlName]="formControlName" (nzScrollToBottom)="onScrollDown()">
+        @for (data of datas; track data) {
+          <nz-option nzCustomContent [nzLabel]="data.sistemaDescricao" [nzValue]="data.sistema">
+            {{data.sistemaDescricao}}
+          </nz-option>
+        }
+      </nz-select>
+    </div>
+  </div>
+</div>

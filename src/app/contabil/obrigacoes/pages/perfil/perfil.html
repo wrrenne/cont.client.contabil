@@ -1,0 +1,125 @@
+<div class="content-site">
+    <profile2 *ngIf="perfilItem" [title]="perfilItem.descricao">
+        <ng-template #profilecontent>
+            <div>
+                <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
+                    <nz-tabset [nzSelectedIndex]="tabIndex">
+                        <nz-tab nzTitle="Resumo">
+                            <ng-template nz-tab> res_asdfasfasdfasfd </ng-template>
+                        </nz-tab>
+                        <nz-tab nzTitle="Dados básicos">
+                            <ng-template nz-tab>
+                                <ng-container>
+                                    <div class="flex flex-col gap-y-4">
+                                        <perfil-dados [perfilItem]="perfilItem"></perfil-dados>
+                                        <!--<funcionario-avatar-edit [funcionarioId]="funcionario.id!"></funcionario-avatar-edit>
+                                        <funcionario-departamentos *ngIf="funcionarioDepartamentosParameter" [parameters]="funcionarioDepartamentosParameter"></funcionario-departamentos>
+                                        <funcionario-cargos *ngIf="funcionarioCargosParameter" [parameters]="funcionarioCargosParameter"></funcionario-cargos>-->
+                                    </div>
+                                </ng-container>
+                            </ng-template>
+                        </nz-tab>
+                        <nz-tab nzTitle="Obrigações">
+                            <ng-template nz-tab>
+                                <ng-template [ngTemplateOutlet]="obrigacoes"></ng-template>
+                            </ng-template>
+                        </nz-tab>
+
+                        <!--<nz-tab nzTitle="Anteriores">
+                            <ng-template nz-tab>
+                                <totalizador-funcionario-meses [parameters]="totalizadorFuncionarioMesesParameter"></totalizador-funcionario-meses>
+                            </ng-template>
+                        </nz-tab>-->
+                        <nz-tab nzTitle="Clientes">
+                            <ng-template nz-tab>
+                                <perfil-clientes-table [parameters]="clientesParameters"></perfil-clientes-table>
+                                <!--<clientes-table [parameters]="clientesParameters"></clientes-table>-->
+                                <!--<funcionario-ferias-table [parameters]="funcionarioFeriasParameter"></funcionario-ferias-table>-->
+                            </ng-template>
+                        </nz-tab>
+                        <nz-tab nzTitle="Histórico">
+                            <ng-template nz-tab>
+                                <!--<lancamentos-table [parameters]="bancoParameters"></lancamentos-table>-->
+                            </ng-template>
+                        </nz-tab>
+                        <nz-tab nzTitle="Arquivos">
+                            <ng-template nz-tab>
+                                <!--                    <arquivos-table [arquivosParameters]="arquivosParameters" *ngIf="arquivosParameters"></arquivos-table>-->
+                            </ng-template>
+                        </nz-tab>
+                        <!--<nz-tab nzTitle="Histórico">
+                            <ng-template nz-tab>
+                                <ponto-timeline-funcionario-posts [parameters]="postParameter"></ponto-timeline-funcionario-posts>
+                            </ng-template>
+                        </nz-tab>-->
+                    </nz-tabset>
+                </div>
+            </div>
+        </ng-template>
+    </profile2>
+</div>
+
+<ng-template #obrigacoes>
+    <nz-tabset [nzSelectedIndex]="tabIndex">
+        <nz-tab nzTitle="Impostos">
+            <obrigacoes-table [parameters]="obrigacoesImpostosParameters"></obrigacoes-table>
+        </nz-tab>
+        <nz-tab nzTitle="Obrigações Acessórias">
+            <obrigacoes-table [parameters]="obrigacoesAcessoriasParameters"></obrigacoes-table>
+        </nz-tab>
+        <nz-tab nzTitle="Relatórios">
+            <obrigacoes-table [parameters]="obrigacoesRelatoriosParameters"></obrigacoes-table>
+        </nz-tab>
+    </nz-tabset>
+</ng-template>
+
+<!--<div class="flex h-full w-full">
+    <navigation-app [showSidebar]="true" [sidebarWidth]="300">
+        <ng-template #contabilNavigationContent>
+            <ng-scrollbar style="height: 100%;">
+                <obrigacoes-sidebar [parameters]="obrigacoesSidebarParameters" [autoLoad]="false" [link]="'/sistema/obrigacoes/obrigacao'"></obrigacoes-sidebar>
+            </ng-scrollbar>
+        </ng-template>
+    </navigation-app>
+
+    <div id="content">
+        <div class="navigation-content" *ngIf="obrigacao">
+            <app-header [title]="obrigacao.descricao">
+            </app-header>
+
+            <nz-tabset [nzSelectedIndex]="tabIndex">
+                <nz-tab nzTitle="Dados básicos">
+                    <ng-template [ngTemplateOutlet]="dados"></ng-template>
+                </nz-tab>
+                <nz-tab nzTitle="Colaboradores"><ng-template [ngTemplateOutlet]="colaboradores"></ng-template></nz-tab>
+                <nz-tab nzTitle="Perfis"><ng-template [ngTemplateOutlet]="perfis"></ng-template></nz-tab>
+                <nz-tab nzTitle="Clientes"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab>
+                <nz-tab nzTitle="Histórico"><ng-template [ngTemplateOutlet]="historico"></ng-template></nz-tab>
+                <nz-tab nzTitle="Ged"><ng-template [ngTemplateOutlet]="ged"></ng-template></nz-tab>
+            </nz-tabset>
+
+            <ng-template #dados>
+                <obrigacao-dados *ngIf="obrigacao" [obrigacao]="obrigacao"></obrigacao-dados>
+            </ng-template>
+
+            <ng-template #perfis>-->
+<!--                <cliente-perfis-table [parameters]="clientePerfisParameters" [autoLoad]="false"></cliente-perfis-table>-->
+<!--</ng-template>
+
+<ng-template #obrigacoes>
+    <obrigacao-obrigacoes-table [parameters]="obrigacoesParameters"></obrigacao-obrigacoes-table>
+</ng-template>
+
+<ng-template #colaboradores>-->
+<!--                <cliente-sistema-users [parameters]="clienteSistemaUsersParameter" [autoLoad]="false"></cliente-sistema-users>-->
+<!--</ng-template>
+
+            <ng-template #historico>
+            </ng-template>
+
+            <ng-template #ged>
+                <obrigacao-ged-configuracao *ngIf="obrigacao" [id]="obrigacao.id"></obrigacao-ged-configuracao>
+            </ng-template>
+        </div>
+    </div>
+</div>-->

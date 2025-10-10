@@ -1,0 +1,18 @@
+<div class="justify-items flex items-center gap-x-2">
+    @if (!iconAlignRight) {
+    <ng-icon [name]="icon" [ngClass]="iconCss" [class]="iconColorClass"></ng-icon>
+    }
+    <div
+        [ngClass]="labelCss"
+        class="relative truncate"
+        [ngxTippy]="tooltip"
+        [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
+    >
+        {{label}}
+    </div>
+    @if (iconAlignRight) {
+    <ng-icon [name]="icon" [ngClass]="iconCss" [class]="iconColorClass"></ng-icon>
+    } @if (showArrow) {
+    <ng-icon [name]="'ionChevronForwardSharp'" [ngClass]="iconCss" class="relative top-[1px]"></ng-icon>
+    }
+</div>

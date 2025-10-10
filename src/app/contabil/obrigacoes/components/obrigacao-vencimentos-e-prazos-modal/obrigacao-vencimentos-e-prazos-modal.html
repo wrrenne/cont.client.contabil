@@ -1,0 +1,236 @@
+<modal-base [title]="title" [subTitle]="subTitle">
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            @if (impostoOuAcessoriaMensalFormGroup) {
+            <form [formGroup]="impostoOuAcessoriaMensalFormGroup!">
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-2">
+                        <input-select-number-ex
+                            class="w-full md:w-48"
+                            [end]="31"
+                            [formControlName]="'vencimentoDia'"
+                            [form]="impostoOuAcessoriaMensalFormGroup"
+                            [label]="'Dia do Vencimento'"
+                        ></input-select-number-ex>
+                    </div>
+                    <div class="flex gap-2">
+                        <periodo-mensal-select
+                            class="w-full md:w-72"
+                            [formControlName]="'periodoMensal'"
+                            [form]="impostoOuAcessoriaMensalFormGroup"
+                            [label]="'Mês do Vencimento'"
+                        ></periodo-mensal-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <dia-tipo-select
+                            class="w-48"
+                            [formControlName]="'diaTipo'"
+                            [form]="impostoOuAcessoriaMensalFormGroup"
+                            [label]="'Tipo do dia'"
+                        ></dia-tipo-select>
+                        <input-select-number-ex
+                            class="grow md:flex-none md:w-72"
+                            [end]="6"
+                            [formControlName]="'prazoAntesVencimento'"
+                            [form]="impostoOuAcessoriaMensalFormGroup"
+                            [label]="'Prazo conclusão'"
+                        ></input-select-number-ex>
+                    </div>
+                    <div class="flex gap-2">
+                        <feriado-tipo-select
+                            class="w-48"
+                            [formControlName]="'feriadoTipo'"
+                            [form]="impostoOuAcessoriaMensalFormGroup"
+                            [label]="'Feriado'"
+                        ></feriado-tipo-select>
+                        <input-month-year-ex
+                            class="grow md:flex-none md:w-72"
+                            [formControlName]="'competenciaInicial'"
+                            [form]="impostoOuAcessoriaMensalFormGroup"
+                            [label]="'Competência inicial'"
+                        ></input-month-year-ex>
+                    </div>
+                </div>
+            </form>
+            } @if (impostoOuAcessoriaAnualFormGroup) {
+            <form [formGroup]="impostoOuAcessoriaAnualFormGroup!">
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-2">
+                        <input-select-number-ex
+                            class="w-full md:w-48"
+                            [end]="31"
+                            [formControlName]="'vencimentoDia'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                            [label]="'Dia do Vencimento'"
+                        ></input-select-number-ex>
+                    </div>
+                    <div class="flex gap-2">
+                        <periodo-anual-select
+                            class="w-full md:w-48"
+                            [formControlName]="'periodoAnual'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                            [label]="'Ano do Vencimento'"
+                        ></periodo-anual-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <mes-select
+                            class="w-full md:w-72"
+                            [formControlName]="'vencimentoMes'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                            [label]="'Mês do Vencimento'"
+                        ></mes-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <dia-tipo-select
+                            class="w-48"
+                            [formControlName]="'diaTipo'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                            [label]="'Tipo do dia'"
+                        ></dia-tipo-select>
+                        <input-select-number-ex
+                            class="grow md:flex-none md:w-72"
+                            [end]="6"
+                            [formControlName]="'prazoAntesVencimento'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                            [label]="'Prazo'"
+                        ></input-select-number-ex>
+                    </div>
+                    <div class="flex gap-2">
+                        <feriado-tipo-select
+                            class="w-40"
+                            [formControlName]="'feriadoTipo'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                            [label]="'Vencimento em feriado'"
+                        ></feriado-tipo-select>
+                        <input-year-ex
+                            class="grow md:flex-none md:w-72"
+                            [formControlName]="'competenciaInicial'"
+                            [label]="'Competência inicial'"
+                            [form]="impostoOuAcessoriaAnualFormGroup"
+                        ></input-year-ex>
+                    </div>
+                </div>
+            </form>
+            } @if (relatorioMensalFormGroup) {
+            <form [formGroup]="relatorioMensalFormGroup!">
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-2">
+                        <input-select-number-ex
+                            class="w-full md:w-48"
+                            [end]="31"
+                            [formControlName]="'prazoDia'"
+                            [form]="relatorioMensalFormGroup"
+                            [label]="'Dia do Prazo'"
+                        ></input-select-number-ex>
+                    </div>
+                    <div class="flex gap-2">
+                        <periodo-mensal-select
+                            class="w-full md:w-72"
+                            [formControlName]="'periodoMensal'"
+                            [form]="relatorioMensalFormGroup"
+                            [label]="'Mês do Vencimento'"
+                        ></periodo-mensal-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <dia-tipo-select
+                            class="w-full md:w-36"
+                            [formControlName]="'diaTipo'"
+                            [form]="relatorioMensalFormGroup"
+                            [label]="'Tipo do dia'"
+                        ></dia-tipo-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <feriado-tipo-select
+                            class="w-40"
+                            [formControlName]="'feriadoTipo'"
+                            [form]="relatorioMensalFormGroup"
+                            [label]="'Feriado'"
+                        ></feriado-tipo-select>
+                        <input-month-year-ex
+                            class="grow md:flex-none md:w-72"
+                            [formControlName]="'competenciaInicial'"
+                            [form]="relatorioMensalFormGroup"
+                            [label]="'Competência inicial'"
+                        ></input-month-year-ex>
+                    </div>
+                </div>
+            </form>
+            } @if (relatorioAnualFormGroup) {
+            <form [formGroup]="relatorioAnualFormGroup!">
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-2">
+                        <input-select-number-ex
+                            class="w-full md:w-48"
+                            [end]="31"
+                            [formControlName]="'prazoDia'"
+                            [form]="relatorioAnualFormGroup"
+                            [label]="'Dia do Prazo'"
+                        ></input-select-number-ex>
+                    </div>
+                    <div class="flex gap-2">
+                        <periodo-anual-select
+                            class="w-full md:w-72"
+                            [formControlName]="'periodoAnual'"
+                            [form]="relatorioAnualFormGroup"
+                            [label]="'Ano do Prazo'"
+                        ></periodo-anual-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <dia-tipo-select class="w-36" [formControlName]="'diaTipo'" [form]="relatorioAnualFormGroup" [label]="'Tipo do dia'"></dia-tipo-select>
+                        <mes-select
+                            class="grow md:flex-none md:w-72"
+                            [formControlName]="'prazoMes'"
+                            [form]="relatorioAnualFormGroup"
+                            [label]="'Mês'"
+                        ></mes-select>
+                    </div>
+                    <div class="flex gap-2">
+                        <feriado-tipo-select
+                            class="w-36"
+                            [formControlName]="'feriadoTipo'"
+                            [form]="relatorioAnualFormGroup"
+                            [label]="'Feriado'"
+                        ></feriado-tipo-select>
+                        <input-year-ex
+                            class="grow md:flex-none md:w-72"
+                            [formControlName]="'competenciaInicial'"
+                            [form]="relatorioAnualFormGroup"
+                            [label]="'Competência inicial'"
+                        ></input-year-ex>
+                    </div>
+                </div>
+            </form>
+            }
+        </div>
+    </ng-template>
+    <ng-template #footer>
+        @if (impostoOuAcessoriaMensalFormGroup) {
+        <button-default
+            [disabled]="!impostoOuAcessoriaMensalFormGroup!.dirty || !impostoOuAcessoriaMensalFormGroup!.valid"
+            bgClass="btn-blue"
+            (click)="submit()"
+            [text]="'Salvar'"
+        >
+        </button-default>
+        } @if (impostoOuAcessoriaAnualFormGroup) {
+        <button-default
+            [disabled]="!impostoOuAcessoriaAnualFormGroup!.dirty || !impostoOuAcessoriaAnualFormGroup!.valid"
+            bgClass="btn-blue"
+            (click)="submit()"
+            [text]="'Salvar'"
+        >
+        </button-default>
+        } @if (relatorioMensalFormGroup) {
+        <button-default
+            [disabled]="!relatorioMensalFormGroup!.dirty || !relatorioMensalFormGroup!.valid"
+            bgClass="btn-blue"
+            (click)="submit()"
+            [text]="'Salvar'"
+        >
+        </button-default>
+        } @if (relatorioAnualFormGroup) {
+        <button-default [disabled]="!relatorioAnualFormGroup.dirty || !relatorioAnualFormGroup.valid" bgClass="btn-blue" (click)="submit()" [text]="'Salvar'">
+        </button-default>
+        }
+    </ng-template>
+</modal-base>

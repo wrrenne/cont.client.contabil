@@ -1,0 +1,14 @@
+<card [title]="'Dados Básicos'">
+    <ng-template #content>
+        @if (obrigacao) {
+        <div class="flex flex-col gap-y-4">
+            <label-text [label]="'Nome'" [text]="obrigacao.descricao"></label-text>
+            <div class="flex gap-5">
+                <label-text [label]="'Departamento'" [text]="obrigacao.departamentoNome"></label-text>
+            </div>
+
+            <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
+        </div>
+        }
+    </ng-template>
+</card>

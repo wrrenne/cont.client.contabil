@@ -1,0 +1,52 @@
+<div class="content-site">
+    <page-title [title]="'Departamentos'">
+        <ng-template #buttonsHeader>
+            <div>
+                <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                    <ng-icon [name]="'tablerDotsVertical'" class="text-xl"></ng-icon>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item>
+                            <hyperlink-button
+                                [text]="'Novo Departamento'"
+                                [icon]="'matEngineering'"
+                                (onButtonClick)="departamentoNovoModal()"
+                                [isButton]="false"
+                                [iconClass]="'text-lg'"
+                                [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"
+                            ></hyperlink-button>
+                        </li>
+                        <li nz-menu-divider></li>
+                        <li nz-menu-item>
+                            <hyperlink-button
+                                [text]="'Exibir em Cards'"
+                                [icon]="'ionGridOutline'"
+                                (onButtonClick)="displayType = 'grid'"
+                                [isButton]="false"
+                                [iconClass]="'text-lg'"
+                                [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"
+                            ></hyperlink-button>
+                        </li>
+                        <li nz-menu-item>
+                            <hyperlink-button
+                                [text]="'Exibir em Lista'"
+                                [icon]="'iconoirList'"
+                                (onButtonClick)="displayType = 'list'"
+                                [isButton]="false"
+                                [iconClass]="'text-lg'"
+                                [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"
+                            ></hyperlink-button>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </ng-template>
+    </page-title>
+
+    <departamentos-table
+        [parameters]="departamentosParameters"
+        (titleOnChange)="titleOnChange($event)"
+        [link]="'/sistema/clientes/cliente'"
+    ></departamentos-table>
+</div>

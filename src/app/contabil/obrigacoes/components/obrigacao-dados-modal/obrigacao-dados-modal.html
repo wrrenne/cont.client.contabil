@@ -1,0 +1,21 @@
+<modal-base [title]="title">
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            <form *ngIf="obrigacao && firstFormGroup" [formGroup]="firstFormGroup">
+                <div class="flex flex-col gap-y-4">
+                    <input-ex class="w-full" [formControlName]="'descricao'" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
+                    <input-textarea-ex
+                        [form]="firstFormGroup"
+                        [placeholderText]="'Comentário opcional'"
+                        formControlName="comentario"
+                        [label]="'Comentário'"
+                    ></input-textarea-ex>
+
+                    <button-default [disabled]="!firstFormGroup.dirty || !firstFormGroup.valid" bgClass="btn-blue" (click)="submitFirstFormGroup()">
+                        Salvar
+                    </button-default>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</modal-base>

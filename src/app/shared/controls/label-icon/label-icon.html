@@ -1,0 +1,54 @@
+<div class="flex items-center gap-x-2" [ngxTippy]="tooltip" _ngClass="{'items-center': verticalCenter, 'items-top': verticalCenter}"
+  [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}">
+
+  @if (!reverse) {
+    <ng-container [ngTemplateOutlet]="iconTemplate"></ng-container>
+    <ng-container [ngTemplateOutlet]="labelTemplate"></ng-container>
+  }
+  @if (reverse) {
+    <ng-container [ngTemplateOutlet]="labelTemplate"></ng-container>
+    <ng-container [ngTemplateOutlet]="iconTemplate"></ng-container>
+  }
+</div>
+
+<ng-template #iconTemplate>
+  @if (icon) {
+    <div class="flex items-center justify-center" [class]="iconBgClass ?? ''" [ngClass]="{'rounded-full': circle, 'rounded-md': rounded}" [ngStyle]="{ width: size, height: size }">
+      <ng-icon [name]="icon" [ngClass]="iconColorClass + ' ' + iconTextClass"></ng-icon>
+    </div>
+  }
+</ng-template>
+
+<ng-template #labelTemplate>
+  <div class="flex flex-col gap-1">
+    <div [ngClass]="labelClass + ' text-sm'">{{label}}</div>
+    @if (label2) {
+      <div [ngClass]="label2Class + ' text-xs'">{{label2}}</div>
+    }
+    @if (descriptions) {
+      @if (!descriptionsHorizontal) {
+        @for (description of descriptions; track description) {
+          @if (description) {
+            <div [ngClass]="descriptionsClass">
+              {{description}}
+            </div>
+          }
+        }
+      }
+      @if (descriptionsHorizontal) {
+        <div class="flex gap-2">
+          @for (description of descriptions; track description; let i = $index) {
+            <div class="flex items-center gap-2">
+              @if (description) {
+                <div [ngClass]="descriptionsClass">
+                  {{description}}
+                </div>
+              }
+              <!--<span *ngIf="i < descriptions.length - 1">-</span>-->
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</ng-template>

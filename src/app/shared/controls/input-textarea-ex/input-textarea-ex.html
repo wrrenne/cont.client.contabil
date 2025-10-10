@@ -1,0 +1,6 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block pb-3">{{ label }}</label>
+  }
+  <textarea [formControlName]="formControlName" placeholder="{{placeholderText}}" [ngClass]="{'textarea': !noBorder, 'textarea-noborder': noBorder}" [readonly]="readonly" cdkTextareaAutosize cdkAutosizeMinRows="3"></textarea>
+</div>

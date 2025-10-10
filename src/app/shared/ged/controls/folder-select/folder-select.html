@@ -1,0 +1,19 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+
+  <nz-select [compareWith]="compareFn" nzShowSearch [nzCustomTemplate]="defaultTemplate" nzAllowClear class="h-full w-full" [formControlName]="formControlName" (nzScrollToBottom)="onScrollDown()" _ngModelChange="changed($event)" [nzServerSearch]="true">
+    @for (data of datas; track data) {
+      <nz-option [nzCustomContent]="true" [nzLabel]="data.nome" [nzValue]="codigoAsId ? data.pastaCodigo : data.id">
+        <div [style.padding-left]="(((data.nivel) - 1) * 20).toString() + 'px'" class="flex items-center gap-2">
+          <div class="badge rounded-full bg-gray-200 dark:bg-gray-800" [ngClass]="getColor(data.nivel)">{{data.pastaCodigo}}</div>
+          <div [ngClass]="getColor(data.nivel)">{{data.nome}}</div>
+        </div>
+      </nz-option>
+    }
+  </nz-select>
+  <ng-template #defaultTemplate let-selected>
+    {{ selected.nzLabel }}
+  </ng-template>
+</div>

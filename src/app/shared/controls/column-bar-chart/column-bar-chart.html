@@ -1,0 +1,9 @@
+﻿<div class="flex items-end gap-3 h-[77px] mt-0.5">
+    <div *ngFor="let v of values; let i = index" [class]="barClass" class="relative w-9 rounded-t-lg flex flex-col justify-end" [style.height]="getHeight(v)">
+        <span class="text-xs text-center relative top-[38px]" [class]="barTextClass">{{ getValue(v) }}</span>
+
+        @if (labels && labels.length > 0) {
+        <span class="text-xs text-center relative top-[38px]" [class]="labelTextClass">{{ getLabel(i) }}</span>
+        }
+    </div>
+</div>

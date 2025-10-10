@@ -1,0 +1,43 @@
+﻿<card [title]="'Dados Básicos'">
+    <ng-template #content>
+        <form *ngIf="user && firstFormGroup" [formGroup]="firstFormGroup">
+            <div class="flex flex-col gap-x-2 gap-y-4">
+                <div class="flex flex-col gap-x-2 gap-y-4 md:flex-row">
+                    <input-ex class="w-full md:w-144" [formControlName]="'nome'" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
+                </div>
+                <div class="flex flex-col gap-x-2 gap-y-4 md:flex-row">
+                    <input-ex class="w-full md:w-72 md:flex-none" [formControlName]="'email'" [form]="firstFormGroup" [label]="'E-mail'"></input-ex>
+                </div>
+                @if (firstFormGroup.dirty) {
+                <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full md:w-36" (click)="submitFirstFormGroup()">
+                    <ng-icon [name]="'iconoirFloppyDisk'" class="mr-2 text-xl"></ng-icon>
+                    Salvar
+                </button>
+                }
+            </div>
+        </form>
+    </ng-template>
+</card>
+
+<!--<text-separator [text]="'Dados Básicos'" [center]="false" [colorClass]="'red-300'"></text-separator>
+<form *ngIf="user" [formGroup]="firstFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+    <div nz-row [nzGutter]="8">
+        <div nz-col nzXs="24" nzMd="18" nzXl="14">
+            <nz-form-item>
+                <nz-form-label>Nome</nz-form-label>
+                <nz-form-control nzHasFeedback>
+                    <input-ex [formControlName]="'nome'" [form]="firstFormGroup"></input-ex>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzXs="24" nzMd="18" nzXl="14">
+            <nz-form-item>
+                <nz-form-label>E-mail</nz-form-label>
+                <nz-form-control nzHasFeedback>
+                    <input-ex [formControlName]="'email'" [form]="firstFormGroup"></input-ex>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <button nz-button nzType="primary" [disabled]="!firstFormGroup.valid" *ngIf="firstFormGroup.dirty" (click)="submitFirstFormGroup()">Atualizar Dados</button>
+</form>-->

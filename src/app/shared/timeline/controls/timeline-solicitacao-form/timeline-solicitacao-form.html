@@ -1,0 +1,69 @@
+<div class="flex space-x-4">
+  @if (dataHora) {
+    <div class="pr-2">
+      {{dataHora}}
+    </div>
+  }
+
+  <!--<ng-container *ngIf="!solicitacaoTipo || isFuncionario">
+  <hyperlink-button [text]="'Comentar'" [icon]="'ionChatboxOutline'" (onButtonClick)="openCloseCommentClick()" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button>-->
+  <!--<ng-icon [name]="'ionChatboxOutline'" class="relative top-[3px] text-base"></ng-icon>
+  <a (click)="openCloseCommentClick()" class="ml-0.5 pr-4 text-gray-800 hover:underline dark:text-gray-400">
+    Comentar
+  </a>-->
+<!--</ng-container>-->
+@if (solicitacao.status == TSolicitacaoStatus.EmAberto) {
+  <hyperlink-button [text]="'Aceitar'" [icon]="'iconoirSettingsProfiles'" (onButtonClick)="openCloseSolicitacaoRespostaClick(TSolicitacaoStatus.Aceito)" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button>
+  <!--<ng-icon [name]="'iconoirSettingsProfiles'" class="relative top-[2px] text-[18px]"></ng-icon>
+  <a (click)="openCloseSolicitacaoRespostaClick(TSolicitacaoStatus.Aceito)" class="ml-0.5 pr-4 text-gray-800 hover:underline dark:text-gray-400">
+    Aceitar
+  </a>-->
+  <hyperlink-button [text]="'Rejeitar'" [icon]="'matBlockOutline'" (onButtonClick)="openCloseSolicitacaoRespostaClick(TSolicitacaoStatus.Rejeitado)" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button>
+  <!--<ng-icon [name]="'matBlockOutline'" class="relative top-[3px] text-base"></ng-icon>
+  <a (click)="openCloseSolicitacaoRespostaClick(TSolicitacaoStatus.Rejeitado)" class="ml-0.5 pr-4 text-gray-800 hover:underline dark:text-gray-400">
+    Rejeitar
+  </a>-->
+}
+
+<!--<ng-container *ngIf="solicitacaoGrupos">
+<div *ngFor="let solicitacaoGrupo of solicitacaoGrupos; trackBy: trackById">
+  <hyperlink-button [text]="solicitacaoGrupo.label" [icon]="'ionChatboxEllipsesOutline'" (onButtonClick)="openCloseSolicitacaoClick(solicitacaoGrupo)" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button>-->
+  <!--<ng-icon [name]="'ionChatboxEllipsesOutline'" class="relative top-[3px] text-base"></ng-icon>
+  <a (click)="openCloseSolicitacaoClick(solicitacaoGrupo)" class="ml-0.5 text-gray-800 hover:underline dark:text-gray-400">
+    {{solicitacaoGrupo.label}}
+  </a>-->
+<!--</div>
+</ng-container>-->
+</div>
+@if (openComment) {
+  <div class="mb-2 mt-2 w-full">
+    <form [formGroup]="formComment" (ngSubmit)="submit()">
+      <div class="comentario">
+        <!--<div class="mb-2 border-b border-zinc-700 pb-3" *ngIf="solicitacaoGrupoSelected">
+        <div class="mb-1">Estou solicitando <span class="font-bold" *ngIf="solicitacaoGrupoSelected.solicitacaoTipos.length == 1">{{solicitacaoTipoLabelGet(solicitacaoGrupoSelected.solicitacaoTipos[0])}}</span></div>
+        <ng-container *ngIf="solicitacaoGrupoSelected.solicitacaoTipos.length == 1">
+          <div class="flex space-x-2" *ngIf="solicitacaoGrupoSelected.solicitacaoTipos">
+            <input type="text" class="x-input-sm" />
+            <input type="text" class="x-input-sm" />
+            <input type="text" class="x-input-sm" />
+            <input type="text" class="x-input-sm" />
+          </div>
+        </ng-container>
+        <nz-radio-group nzButtonStyle="solid" formControlName="solicitacaoTipo" *ngIf="solicitacaoGrupoSelected.solicitacaoTipos.length > 1">
+          <label *ngFor="let solicitacaoTipo of solicitacaoGrupoSelected.solicitacaoTipos" nz-radio [nzValue]="solicitacaoTipo">{{solicitacaoTipoLabelGet(solicitacaoTipo)}}</label>
+        </nz-radio-group>
+      </div>-->
+      <div class="flex">
+        <div class="grow">
+          <input-textarea-ex [form]="formComment" [placeholderText]="'Comentário opcional'" formControlName="comentario" [label]="'Comentário'"></input-textarea-ex>
+          <!--<textarea cdkTextareaAutosize cdkAutosizeMinRows="2" placeholder="{{placeholderLabel ?? 'Comentário'}}" formControlName="comentario" #comentario class="comentario-noborder"></textarea>-->
+        </div>
+        <!--<div class="flex-none">
+        <j-button [icon]="'ionClose'" (click)="openCloseCommentClick()"></j-button>
+      </div>-->
+    </div>
+    <!--<button nz-button class="comentario-submit" [disabled]="!formComment.valid">{{postarLabel ?? 'Postar'}}</button>-->
+  </div>
+</form>
+</div>
+}

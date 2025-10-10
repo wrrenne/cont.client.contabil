@@ -1,0 +1,16 @@
+<modal-base [title]="'Perfil do Cliente'">
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                <cliente-select class="w-full" [form]="firstFormGroup" [parameters]="parameters" [formControlName]="'clienteId'" [label]="'Cliente'"></cliente-select>
+                <input-month-year-ex class="w-full md:w-5/12" [formControlName]="'competenciaInicial'" [form]="firstFormGroup" [label]="'Competência Inicial'"></input-month-year-ex>
+                <input-textarea-ex class="w-full" [form]="firstFormGroup" [placeholderText]="'Comentário opcional'" formControlName="comentario" [label]="'Comentário'"></input-textarea-ex>
+
+                <button type="button" [disabled]="!firstFormGroup.valid" class="button w-full bg-primary text-white md:w-36" (click)="submit()">
+                    <ng-icon [name]="'iconoirFloppyDisk'" class="mr-2 text-base"></ng-icon>
+                    Salvar
+                </button>
+            </form>
+        </div>
+    </ng-template>
+</modal-base>

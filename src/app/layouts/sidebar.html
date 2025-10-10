@@ -1,0 +1,163 @@
+﻿<div [ngClass]="{ 'dark text-white-dark': store.semidark }">
+    <nav class="sidebar fixed top-0 bottom-0 z-50 h-full min-h-screen w-[260px] transition-all duration-300">
+        <div class="h-full bg-white dark:bg-[#1a1a1a]">
+            <div class="flex items-center justify-between px-4 py-3">
+                <a routerLink="/" class="main-logo flex shrink-0 items-center" (click)="toggleMobileMenu()">
+                    <div class="ml-1.5 align-middle lg:inline">
+                        <file-server-site-logotipo src="deskspace-contabil.png" class="block w-[150px]" [isDark]="true"></file-server-site-logotipo>
+                    </div>
+                </a>
+                <a href="javascript:;"
+                   class="collapse-icon flex h-8 w-8 items-center rounded-full transition duration-300 hover:text-primary hover:bg-gray-500/10 dark:text-white-light dark:hover:bg-dark-light/10"
+                   (click)="storeData.dispatch({ type: 'toggleSidebar'})">
+                    <ng-icon [name]="'ionChevronDownSharp'" class="m-auto rotate-90"></ng-icon>
+                </a>
+            </div>
+            <overlay-scrollbars class="relative !h-[calc(100vh-80px)]" [defer]="true" [options]="{ scrollbars: { autoHide: 'scroll' } }">
+                <ul class="relative space-y-0.5 p-4 py-0">
+
+                    <li class="accordion menu nav-item">
+                        <button type="button"
+                                class="nav-link group flex w-full items-center"
+                                (click)="toggleAccordion('pessoal')">
+                            <div class="flex items-center">
+                                <h6 class="flex items-center px-1 py-2.5 font-semibold">
+                                    Pessoal
+                                </h6>
+                            </div>
+                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('pessoal') }">
+                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            </div>
+                        </button>
+                        <div [@slideDownUp]="!activeDropdown.includes('pessoal')" class="accordion-content">
+                            <ul>
+                                <li class="nav-item">
+                                    <a routerLink="/sistema/clientes/home/" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex items-center p-1">
+                                            <avatar-icon [icon]="'ionAccessibilitySharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Clientes</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/sistema/obrigacoes/home" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex items-center p-1">
+                                            <!--<ng-icon name="iconoirNetworkRight" class="text-lg"></ng-icon>-->
+                                            <avatar-icon [icon]="'iconoirNetworkRight'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Obrigações</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a routerLink="/sistema/obrigacoes/perfis" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex items-center p-1">
+                                            <!--<ng-icon name="iconoirNetworkRight" class="text-lg"></ng-icon>-->
+                                            <avatar-icon [icon]="'iconoirNetworkRight'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Perfis</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="accordion menu nav-item">
+                        <button type="button"
+                                class="nav-link group flex w-full items-center"
+                                (click)="toggleAccordion('tabelas')">
+                            <div class="flex items-center">
+                                <h6 class="flex items-center px-1 py-2.5 font-semibold">
+                                    Tabelas
+                                </h6>
+                            </div>
+                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('tabelas') }">
+                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            </div>
+                        </button>
+                        <div [@slideDownUp]="!activeDropdown.includes('tabelas')" class="accordion-content">
+                            <ul>
+                                <li class="menu nav-item">
+                                    <a routerLink="/sistema/departamentos" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex w-full items-center p-1">
+                                            <avatar-icon [icon]="'ionTimeSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Departamentos</span>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="menu nav-item">
+                                    <a routerLink="/sistema/users/" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex w-full items-center p-1">
+                                            <avatar-icon [icon]="'ionPeopleSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Usuários</span>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="menu nav-item">
+                                    <a routerLink="/sistema/calendario" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex w-full items-center p-1">
+                                            <avatar-icon [icon]="'ionCalendarOutline'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Calendário {{ getYear() }}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="accordion menu nav-item">
+                        <button type="button"
+                                class="nav-link group flex w-full items-center"
+                                (click)="toggleAccordion('documents')">
+                            <div class="flex items-center">
+                                <h6 class="flex items-center px-1 py-2.5 font-semibold">
+                                    Documentos
+                                </h6>
+                            </div>
+                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('documents') }">
+                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            </div>
+                        </button>
+                        <div [@slideDownUp]="!activeDropdown.includes('documents')" class="accordion-content">
+                            <ul>
+                                <li class="menu nav-item">
+                                    <a routerLink="/sistema/reports/home" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex w-full items-center p-1">
+                                            <avatar-icon [icon]="'ionFolderSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Relatórios</span>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="menu nav-item">
+                                    <a routerLink="/sistema/ged" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                        <div class="flex w-full items-center p-1">
+                                            <avatar-icon [icon]="'ionFolderSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
+                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Arquivos</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="accordion menu nav-item">
+                        <button type="button"
+                                class="nav-link group flex w-full items-center"
+                                (click)="toggleAccordion('configuracoes_e_utilitarios')">
+                            <div class="flex items-center">
+                                <h6 class="flex items-center px-1 py-2.5 font-semibold">
+                                    Configurações e Utilitários
+                                </h6>
+                            </div>
+                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('configuracoes_e_utilitarios') }">
+                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </overlay-scrollbars>
+        </div>
+    </nav>
+</div>

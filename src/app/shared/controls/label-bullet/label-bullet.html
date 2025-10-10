@@ -1,0 +1,8 @@
+<div class="flex items-center gap-2">
+    <div [ngClass]="[
+      sizeClasses,
+      bulletShape === 'dot' ? 'rounded-full' : '',
+      bulletClass
+    ]"></div>
+    <div class="text-sm">{{ label }}</div>
+</div>

@@ -1,0 +1,13 @@
+<div [formGroup]="form">
+  <div class="flex">
+    <div class="w-full">
+      <nz-select nzAllowClear nzPlaceHolder="Selecione o plano" class="block" [formControlName]="formControlName">
+        @for (data of pacotes; track data) {
+          <nz-option nzCustomContent [nzLabel]="data.descricao" [nzValue]="data.id">
+            {{data.descricao}}
+          </nz-option>
+        }
+      </nz-select>
+    </div>
+  </div>
+</div>

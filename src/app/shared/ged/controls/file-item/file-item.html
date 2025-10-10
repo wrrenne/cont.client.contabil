@@ -1,0 +1,13 @@
+@if (arquivo) {
+<label-icon
+    (click)="fileClick(arquivo)"
+    [label]="arquivo.descricao"
+    [descriptions]="[arquivo.funcionarioNome, arquivo.fileType != TFileType.Atestado && arquivo.fileType! != TFileType.Apontamento ? arquivo.competenciaMesFormat : null, arquivo.apontamentoDataFormat]"
+    [icon]="gedUtilsService.getFileTypeIcon(arquivo.fileType!)"
+    [iconColorClass]="gedUtilsService.getFileTypeColor(arquivo.fileType!)"
+    [iconBgClass]="gedUtilsService.getIconBgColor(arquivo.id!)"
+    [rounded]="true"
+    class="cursor-pointer"
+    [size]="'4rem'"
+></label-icon>
+}

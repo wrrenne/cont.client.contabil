@@ -1,0 +1,28 @@
+﻿<div class="calendar">
+  <!-- Weekday Header -->
+  <div class="mb-2 grid grid-cols-7 gap-2">
+    @for (day of weekDayNames; track day) {
+      <div class="weekday">
+        {{ day }}
+      </div>
+    }
+  </div>
+
+  <!-- Calendar Weeks -->
+  @for (week of weeks; track week) {
+    <div class="week">
+      @for (day of week; track day) {
+        <div class="day relative"
+          [ngClass]="{ 'today': isToday(day), 'outside': !isWithinRange(day), 'disabled': false }">
+          <div class="flex cursor-pointer flex-col" (click)="dayClick(day)">
+            <div>{{ day.getDate() }}</div>
+            <!-- Horizontal line for special days -->
+            @if (isSpecialDay(day)) {
+              <div class="mt-1 h-0.5 w-full bg-red-500"></div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

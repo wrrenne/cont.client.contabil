@@ -1,0 +1,22 @@
+<div class="inline-flex items-center gap-6 py-2">
+  <!-- Value preview -->
+  <span class="font-mono text-sm" [title]="value" [ngClass]="textColor">
+    {{ displayValue }}
+  </span>
+
+  <!-- Copy button -->
+  <a href="#"
+    (click)="copy($event)"
+    [ngClass]="iconColor"
+    class="inline-flex items-center gap-2 px-2 py-1 transition active:scale-[0.98]"
+    [attr.aria-label]="copied ? 'Copied' : 'Copiar'"
+    [attr.title]="copied ? 'Copiado!' : 'Copiar'">
+    <ng-icon [name]="copied ? 'ionCheckmarkSharp' : 'iconoirCopy'"
+      class="h-5 w-5" />
+    @if (showCopyLabel) {
+      <span class="text-xs">
+        {{ copied ? 'Copiado' : 'Copiar' }}
+      </span>
+    }
+  </a>
+</div>

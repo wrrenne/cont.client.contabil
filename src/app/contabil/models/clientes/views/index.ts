@@ -1,0 +1,6 @@
+export * from './clientePerfilView'
+export * from './contabilClienteView'
+export * from './contabilClienteDatasView'
+export * from './contabilClienteCnpjCpfView'
+export * from './contabilClienteRegimeView'
+export * from './clienteObrigacoesMesView'

@@ -1,0 +1,5 @@
+export * from './cadastroView'
+export * from './contatoView'
+export * from './enderecoView'
+export * from './telefoneView'
+export * from './clienteView'

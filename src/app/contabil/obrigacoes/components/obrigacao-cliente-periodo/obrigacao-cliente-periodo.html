@@ -1,0 +1,290 @@
+<!--<ng-container *ngIf="obrigacaoClientePeriodo">
+    <div nz-row [nzGutter]="8" class="mb-4">
+        <div nz-col nzMd="12">
+            <div class="text-base font-bold">
+                <ng-icon [name]="'bootstrapArrowLeftCircle'" class="top-[7px] mr-3 text-black relative cursor-pointer text-2xl dark:text-white" (click)="backClick()"></ng-icon>
+                <ng-container *ngIf="obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorCliente">
+                    <span class="text-black dark:text-white">{{obrigacaoClientePeriodo.obrigacaoDescricao}}</span>-->
+                    <!--<ng-icon [name]="'iconoirDotArrowRight'" class="top-1.5 mx-2 relative text-xl"></ng-icon>
+                    <span>{{obrigacaoClientePeriodo.tipoDescricao}}</span>
+                    <ng-icon [name]="'iconoirDotArrowRight'" class="top-1.5 mx-2 relative text-xl"></ng-icon>
+                    <span>{{obrigacaoClientePeriodo.esferaDescricao}}</span>-->
+                <!--</ng-container>
+                <span *ngIf="obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorObrigacao">
+                    {{obrigacaoClientePeriodo.clienteNome}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div nz-row [nzGutter]="8" class="mb-3">
+        <div nz-col nzMd="24">-->
+            <!--<div>{{obrigacaoClientePeriodo.perfilItemDescricao}}</div>
+            <div>{{obrigacaoClientePeriodo.setorDescricao}}</div>
+            <div>{{obrigacaoClientePeriodo.competenciaMes}}</div>
+            <div>{{obrigacaoClientePeriodo.vencimento}}</div>
+            <div>{{obrigacaoClientePeriodo.prazo}}</div>
+            <div>{{obrigacaoClientePeriodo.statusDescricao}}</div>-->
+            <!--<calendar-week [parameters]="calendarParameters" [hover]="false"></calendar-week>-->
+        <!--</div>
+    </div>
+
+    <text-separator [text]="'Responsáveis'" [center]="false" [colorClass]="'red-300'"></text-separator>
+
+    <div nz-row [nzGutter]="8" class="mb-3">
+        <div nz-col nzMd="12">
+            <avatar-group-image [parameters]="obrigacaoClientePeriodo.avatares" [width]="30" [rounded]="false" [tooltipPlacement]="'top'" [showDescriptions]="true"></avatar-group-image>
+        </div>
+    </div>
+</ng-container>-->
+
+<!--<ng-container *ngIf="firstFormGroup">
+    <form [formGroup]="firstFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="12">
+                <nz-form-item>
+                    <nz-form-label>Nome da obrigação</nz-form-label>
+                    <nz-form-control>
+                        <input-ex [formControlName]="'descricao'" [form]="firstFormGroup"></input-ex>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</ng-container>
+
+<ng-container *ngIf="impostoOuAcessoriaMensalFormGroup">
+    <form [formGroup]="impostoOuAcessoriaMensalFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="4">
+                <nz-form-item>
+                    <nz-form-label>Dia do vencimento</nz-form-label>
+                    <nz-form-control>
+                        <select-number [end]="31" [formControlName]="'vencimentoDia'" [form]="impostoOuAcessoriaMensalFormGroup"></select-number>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzMd="8">
+                <nz-form-item>
+                    <nz-form-label>Mês</nz-form-label>
+                    <nz-form-control>
+                        <periodo-mensal-select [formControlName]="'periodoMensal'" [form]="impostoOuAcessoriaMensalFormGroup"></periodo-mensal-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzFlex="2">
+                <nz-form-item>
+                    <nz-form-label>Tipo do dia</nz-form-label>
+                    <nz-form-control>
+                        <dia-tipo-select [formControlName]="'diaTipo'" [form]="impostoOuAcessoriaMensalFormGroup"></dia-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="8">
+                <nz-form-item>
+                    <nz-form-label>Prazo de conclusão antes do vencimento</nz-form-label>
+                    <nz-form-control>
+                        <select-number [end]="6" [formControlName]="'prazoAntesVencimento'" [form]="impostoOuAcessoriaMensalFormGroup"></select-number>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzFlex="auto">
+                <nz-form-item>
+                    <nz-form-label>Vencimento em feriado</nz-form-label>
+                    <nz-form-control>
+                        <feriado-tipo-select [formControlName]="'feriadoTipo'" [form]="impostoOuAcessoriaMensalFormGroup"></feriado-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="24">
+                <nz-form-item>
+                    <nz-form-label>Competência inicial</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker [formControlName]="'competenciaInicial'" class="mb-3 block" nzMode="month"></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</ng-container>
+
+<ng-container *ngIf="impostoOuAcessoriaAnualFormGroup">
+    <form [formGroup]="impostoOuAcessoriaAnualFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="4">
+                <nz-form-item>
+                    <nz-form-label>Dia do vencimento</nz-form-label>
+                    <nz-form-control>
+                        <select-number [end]="31" [formControlName]="'vencimentoDia'" [form]="impostoOuAcessoriaAnualFormGroup"></select-number>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzMd="7">
+                <nz-form-item>
+                    <nz-form-label>Ano</nz-form-label>
+                    <nz-form-control>
+                        <periodo-anual-select [formControlName]="'periodoAnual'" [form]="impostoOuAcessoriaAnualFormGroup"></periodo-anual-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzMd="5">
+                <nz-form-item>
+                    <nz-form-label>Mês</nz-form-label>
+                    <nz-form-control>
+                        <mes-select [formControlName]="'vencimentoMes'" [form]="impostoOuAcessoriaAnualFormGroup"></mes-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzFlex="2">
+                <nz-form-item>
+                    <nz-form-label>Tipo do dia</nz-form-label>
+                    <nz-form-control>
+                        <dia-tipo-select [formControlName]="'diaTipo'" [form]="impostoOuAcessoriaAnualFormGroup"></dia-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="8">
+                <nz-form-item>
+                    <nz-form-label>Prazo de conclusão antes do vencimento</nz-form-label>
+                    <nz-form-control>
+                        <select-number [end]="6" [formControlName]="'prazoAntesVencimento'" [form]="impostoOuAcessoriaAnualFormGroup"></select-number>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzFlex="auto">
+                <nz-form-item>
+                    <nz-form-label>Vencimento em feriado</nz-form-label>
+                    <nz-form-control>
+                        <feriado-tipo-select [formControlName]="'feriadoTipo'" [form]="impostoOuAcessoriaAnualFormGroup"></feriado-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="24">
+                <nz-form-item>
+                    <nz-form-label>Competência inicial</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker [formControlName]="'competenciaInicial'" class="mb-3 block" nzMode="year"></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</ng-container>
+
+<ng-container *ngIf="relatorioMensalFormGroup">
+    <form [formGroup]="relatorioMensalFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="4">
+                <nz-form-item>
+                    <nz-form-label>Dia do prazo</nz-form-label>
+                    <nz-form-control>
+                        <select-number [end]="31" [formControlName]="'prazoDia'" [form]="relatorioMensalFormGroup"></select-number>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzMd="8">
+                <nz-form-item>
+                    <nz-form-label>Mês</nz-form-label>
+                    <nz-form-control>
+                        <periodo-mensal-select [formControlName]="'periodoMensal'" [form]="relatorioMensalFormGroup"></periodo-mensal-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzFlex="2">
+                <nz-form-item>
+                    <nz-form-label>Tipo do dia</nz-form-label>
+                    <nz-form-control>
+                        <dia-tipo-select [formControlName]="'diaTipo'" [form]="relatorioMensalFormGroup"></dia-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzFlex="auto">
+                <nz-form-item>
+                    <nz-form-label>Prazo em feriado</nz-form-label>
+                    <nz-form-control>
+                        <feriado-tipo-select [formControlName]="'feriadoTipo'" [form]="relatorioMensalFormGroup"></feriado-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="24">
+                <nz-form-item>
+                    <nz-form-label>Competência inicial</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker [formControlName]="'competenciaInicial'" class="mb-3 block" nzMode="month"></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</ng-container>
+
+<ng-container *ngIf="relatorioAnualFormGroup">
+    <form [formGroup]="relatorioAnualFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="4">
+                <nz-form-item>
+                    <nz-form-label>Dia do prazo</nz-form-label>
+                    <nz-form-control>
+                        <select-number [end]="31" [formControlName]="'prazoDia'" [form]="relatorioAnualFormGroup"></select-number>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzMd="7">
+                <nz-form-item>
+                    <nz-form-label>Ano</nz-form-label>
+                    <nz-form-control>
+                        <periodo-anual-select [formControlName]="'periodoAnual'" [form]="relatorioAnualFormGroup"></periodo-anual-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzMd="5">
+                <nz-form-item>
+                    <nz-form-label>Mês</nz-form-label>
+                    <nz-form-control>
+                        <mes-select [formControlName]="'prazoMes'" [form]="relatorioAnualFormGroup"></mes-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzFlex="2">
+                <nz-form-item>
+                    <nz-form-label>Tipo do dia</nz-form-label>
+                    <nz-form-control>
+                        <dia-tipo-select [formControlName]="'diaTipo'" [form]="relatorioAnualFormGroup"></dia-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzFlex="auto">
+                <nz-form-item>
+                    <nz-form-label>Prazo em feriado</nz-form-label>
+                    <nz-form-control>
+                        <feriado-tipo-select [formControlName]="'feriadoTipo'" [form]="relatorioAnualFormGroup"></feriado-tipo-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzMd="24">
+                <nz-form-item>
+                    <nz-form-label>Competência inicial</nz-form-label>
+                    <nz-form-control>
+                        <nz-date-picker [formControlName]="'competenciaInicial'" class="mb-3 block" nzMode="year"></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</ng-container>-->

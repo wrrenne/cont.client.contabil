@@ -1,0 +1,7 @@
+﻿<div class="flex flex-wrap gap-1">
+  @for (month of months; track month) {
+    <button class="button" [ngClass]="{'btn-primary': isGivenMonth(month.date), 'btn-gray': !isGivenMonth(month.date)}" (click)="onMonthClick(month.date)">
+      {{ month.label }}
+    </button>
+  }
+</div>

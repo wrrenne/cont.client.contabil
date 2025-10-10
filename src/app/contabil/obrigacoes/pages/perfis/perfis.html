@@ -1,0 +1,22 @@
+<div class="content-site">
+    <page-title [title]="'Perfis'">
+        <!--<ng-template #buttonsHeader>
+            <div>
+                <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+                    <ng-icon [name]="'tablerDotsVertical'" class="text-xl"></ng-icon>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item><hyperlink-button [text]="'Novo Perfil'" [icon]="'ionAddCircleOutline'" (onButtonClick)="perfilNovoModal()" [isButton]="false" [iconClass]="'text-lg'" [backgroundIconCss]="'bg-zinc-200 dark:bg-zinc-800'"></hyperlink-button></li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </ng-template>-->
+    </page-title>
+
+    <div class="mb-10 flex gap-3">
+        <button type="button" class="btn btn-gray" (click)="perfilNovoModal()">Novo Perfil</button>
+    </div>
+
+    <perfis-table [parameters]="perfisParameters" (titleOnChange)="titleOnChange($event)"></perfis-table>
+</div>

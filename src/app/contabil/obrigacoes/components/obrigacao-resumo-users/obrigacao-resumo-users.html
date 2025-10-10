@@ -1,0 +1,18 @@
+﻿<div class="mt-3 flex grow flex-col gap-4">
+    <avatar-title *ngFor="let user of users" [userId]="user.userId" [avatarSize]="'3.5rem'">
+        <ng-template #title>
+            <h6 class="mb-0">{{user.userNomeFormat}} - <span class="text-black/50 dark:text-white/50">{{user.departamentoNome}}</span></h6>
+        </ng-template>
+        <ng-template #subTitle>
+            <div class="mt-1">
+                <span class="mr-1">{{getPlural(user.obrigacoesStat.concluidas)}}</span>
+                <span [class]="getPercentagemColor(user.obrigacoesStat.concluidoPorcento)">({{user.obrigacoesStat.concluidoPorcento}}%)</span>
+                <span class="text-black/25 dark:text-white/25"> de </span>
+                <span class="text-black/50 dark:text-white/50">{{user.obrigacoesStat.total}}</span>
+                <br />
+                <span class="mr-1">{{user.obrigacoesStat.concluidasNoPrazo}} no prazo</span>
+                <span [class]="getPercentagemColor(user.obrigacoesStat.concluidoNoPrazoPorcento)">({{user.obrigacoesStat.concluidoNoPrazoPorcento}}%)</span>
+            </div>
+        </ng-template>
+    </avatar-title>
+</div>

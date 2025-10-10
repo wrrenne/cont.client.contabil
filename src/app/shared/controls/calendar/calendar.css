@@ -1,0 +1,32 @@
+/* calendar.component.css */
+.calendar {
+    @apply grid gap-4 p-4;
+}
+
+.week {
+    @apply grid-cols-7 grid gap-2;
+}
+
+.day {
+    @apply flex h-8 w-8 items-center justify-center rounded-lg border-gray-300 bg-zinc-100 text-sm font-medium text-zinc-700 dark:text-zinc-400 dark:bg-zinc-800 md:h-10 md:w-10;
+}
+
+    .day:hover {
+        @apply cursor-pointer bg-gray-100;
+    }
+
+    .day.today {
+        @apply bg-blue-200 font-bold text-black dark:bg-blue-700 dark:text-white !important;
+    }
+
+    .day.disabled {
+        @apply cursor-not-allowed bg-gray-50 text-gray-400;
+    }
+
+    .day.outside {
+        @apply bg-zinc-100/50 text-gray-300 dark:text-gray-700 dark:bg-zinc-800/30;
+    }
+
+.weekday {
+    @apply text-center text-xs font-semibold text-gray-400;
+}

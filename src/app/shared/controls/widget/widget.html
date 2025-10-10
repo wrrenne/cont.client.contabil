@@ -1,0 +1,68 @@
+<div class="panel flex h-full flex-col justify-center" [class]="bgClass">
+    @if (title) {
+    <div class="border-color h-[66px] border-b">
+        <div class="flex items-center">
+            @if (avatarFileName || funcionarioId || userId || clienteId || funcionariosDepartamentoId || contabilDepartamentoId) {
+            <div [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
+                <avatar-image
+                    class="mr-3"
+                    [avatarFileName]="avatarFileName"
+                    [funcionarioId]="funcionarioId"
+                    [defaultNoIconName]="title"
+                    [userId]="userId"
+                    [clienteId]="clienteId"
+                    [funcionariosDepartamentoId]="funcionariosDepartamentoId"
+                    [contabilDepartamentoId]="contabilDepartamentoId"
+                    [rounded]="rounded"
+                    [circle]="circle"
+                    [size]="iconSize"
+                    [iconClass]="iconClass"
+                />
+            </div>
+            } @if (icon) {
+            <avatar-icon
+                [icon]="icon"
+                class="mr-3"
+                [bgColor]="iconBgColorClass"
+                [iconColor]="iconColorClass"
+                [iconCss]="iconClass"
+                [rounded]="rounded"
+                [circle]="circle"
+                [size]="iconSize"
+            ></avatar-icon>
+            }
+            <div class="grow">
+                @if (isString(title)) {
+                <span class="text-black/70 text-[16px] dark:text-white/80">{{title}}</span>
+                @if (subTitle) {
+                <h6 class="text-xs text-black/40 dark:text-white/40">{{subTitle}}</h6>
+                } } @if (!isString(title) && titleTemplate) {
+                <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+                }
+            </div>
+            @if (showMoreLink) {
+            <div>
+                <button-circle-icon
+                    [icon]="'matGreaterThanOutline'"
+                    [iconOffsetX]="1"
+                    [showBorder]="false"
+                    [tooltip]="'Ver todos'"
+                    [tooltipPlacement]="'left'"
+                    [routerLink]="routerLinkValue"
+                ></button-circle-icon>
+            </div>
+            }
+        </div>
+    </div>
+    }
+
+    <div [ngClass]="{'grow': !alignVertical}" class="mt-5">
+        <ng-container [ngTemplateOutlet]="content"> </ng-container>
+    </div>
+
+    @if (footer) {
+    <div>
+        <ng-container [ngTemplateOutlet]="footer"> </ng-container>
+    </div>
+    }
+</div>

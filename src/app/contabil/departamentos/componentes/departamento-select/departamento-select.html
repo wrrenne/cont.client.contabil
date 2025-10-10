@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+    <input-select-ex [datas]="datas" [form]="form" [formControlName]="formControlName" [placeholderText]="'Selecione o departamento'" [label]="label"></input-select-ex>
+</div>
+
+<!--<div [formGroup]="form">
+    <label *ngIf="label" class="input-label mb-1.5 block">{{ label }}</label>
+    <nz-select nzShowSearch nzAllowClear class="w-full" [formControlName]="formControlName" (nzScrollToBottom)="onScrollDown()">
+        <nz-option nzCustomContent [nzLabel]="data.nome" [nzValue]="data.id" *ngFor="let data of datas">
+            {{data.nome}}
+        </nz-option>
+    </nz-select>
+</div>-->

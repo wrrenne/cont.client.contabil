@@ -1,0 +1,14 @@
+﻿<!--<label-icon *ngIf="pasta" [label]="pasta.nome!" [icon]="'iconoirFolder'" [iconCss]="'text-3xl text-yellow-500/90'" [iconBgCss]="'bg-yellow-500/20 p-3'" [labelCss]="'text-xl text-black/90 dark:text-white/90'"></label-icon>-->
+
+@if (firstFormGroup) {
+  <form [formGroup]="firstFormGroup">
+    <folder-select [parameters]="parameters" [codigoAsId]="false" [label]="'Selecione a pasta'" [form]="firstFormGroup" [formControlName]="'pastaId'"></folder-select>
+  </form>
+}
+
+<files-table [parameters]="filesParameters" [showTitle]="false"></files-table>
+
+<!--<div class="flex gap-3">
+<ged-plano-contas class="hidden w-[290px] md:block" [parameters]="parameters" (onClick)="pastaClick($event)" [showFoldersIcon]="true"></ged-plano-contas>
+<files-table [parameters]="filesParameters"></files-table>
+</div>-->

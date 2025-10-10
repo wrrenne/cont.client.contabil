@@ -1,0 +1,87 @@
+@if (avatarFileName || funcionarioId || userId || clienteId || funcionariosDepartamentoId || contabilDepartamentoId) {
+<div [ngClass]="{'rounded-full' : rounded}">
+    <avatar-image
+        [avatarFileName]="avatarFileName"
+        [funcionarioId]="funcionarioId"
+        [defaultNoIconName]="title"
+        [userId]="userId"
+        [clienteId]="clienteId"
+        [funcionariosDepartamentoId]="funcionariosDepartamentoId"
+        [contabilDepartamentoId]="contabilDepartamentoId"
+        [rounded]="rounded"
+        [circle]="circle"
+        [size]="avatarSize"
+        [iconClass]="iconClass"
+        [badge]="badge"
+    />
+</div>
+} @if (showInitials) {
+<div [ngClass]="{'rounded-full' : rounded}">
+    <avatar-image [defaultNoIconName]="title" [rounded]="rounded" [circle]="circle" [size]="avatarSize" [iconClass]="iconClass" />
+</div>
+} @if (iconFilename) {
+<avatar-server-icon [iconFilename]="iconFilename" [rounded]="rounded" [circle]="circle" [border]="true" [size]="avatarSize" />
+} @if (logotipoFilename) {
+<avatar-image [logotipoFilename]="logotipoFilename" [rounded]="rounded" [circle]="circle" [border]="true" [size]="avatarSize" />
+} @if (avatarText) {
+<avatar-text
+    [text]="avatarText"
+    [rounded]="rounded"
+    [circle]="circle"
+    [fontSize]="avatarTextFontSize"
+    [size]="avatarSize"
+    [badge]="badge"
+    [textColorClass]="iconClass"
+    [bgColor]="iconbgcolor"
+></avatar-text>
+} @if (icon) {
+<avatar-icon
+    [icon]="icon!"
+    [rounded]="rounded"
+    [circle]="circle"
+    [iconCss]="'text-xl'"
+    [iconColor]="iconClass"
+    [bgColor]="iconbgcolor"
+    [size]="avatarSize"
+    [badge]="badge"
+></avatar-icon>
+}
+
+<div class="flex w-full items-center">
+    <div class="grow" (click)="titleClick()">
+        @if (title || titleTemplate) {
+        <div>
+            @if (isString(title)) {
+            <h6 class="mb-0">
+                {{title}} @if (titleDescription) {
+                <span class="text-xs text-black/50 dark:text-white/50"> - {{titleDescription}}</span>
+                } @if (debug) {
+                <span class="debug">#{{debug}}</span>
+                }
+            </h6>
+            } @if (!isString(title) && titleTemplate) {
+            <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+            }
+        </div>
+        } @if (subTitle || subTitleTemplate) {
+        <div>
+            @if (isString(subTitle)) {
+            <div class="flex gap-4">
+                @if (isString(subTitle)) {
+                <span class="mt-1 block text-xs text-black/50 dark:text-white/50">{{subTitle}}</span>
+                } @if (subTitle2) {
+                <span class="mt-1 block text-xs text-black/50 dark:text-white/50">{{subTitle2}}</span>
+                }
+            </div>
+            } @if (!isString(subTitle) && subTitleTemplate) {
+            <ng-container *ngTemplateOutlet="subTitleTemplate"></ng-container>
+            }
+        </div>
+        }
+    </div>
+    @if (tagValue) {
+    <div class="flex-none">
+        <span class="tag" [ngClass]="tagClass"> {{tagValue}} </span>
+    </div>
+    }
+</div>

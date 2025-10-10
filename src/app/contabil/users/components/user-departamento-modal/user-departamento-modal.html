@@ -1,0 +1,12 @@
+<modal-base [title]="'Departamento'">
+    <ng-template #modalContent>
+        <form [formGroup]="firstFormGroup" class="flex flex-col gap-y-6">
+            <departamento-select [form]="firstFormGroup" [parameters]="departamentosParameter" [formControlName]="'departamentoId'" [label]="'Departamento'"></departamento-select>
+            <!--<input-date-ex [formControlName]="'inicio'" [form]="firstFormGroup" [label]="'Inicio'"></input-date-ex>-->
+            <input-textarea-ex [formControlName]="'comentario'" [form]="firstFormGroup" [label]="'Comentário'" [placeholderText]="'Comentário opcional'"></input-textarea-ex>
+            <div class="flex-none">
+                <button class="button btn-primary" (click)="submitClick()" [disabled]="!firstFormGroup.valid || !firstFormGroup.dirty">Salvar</button>
+            </div>
+        </form>
+    </ng-template>
+</modal-base>

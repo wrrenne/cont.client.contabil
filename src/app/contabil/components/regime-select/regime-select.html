@@ -1,0 +1,13 @@
+<div [formGroup]="form">
+    <label *ngIf="label" class="input-label mb-1.5 block">{{ label }}</label>
+
+    <nz-radio-group [formControlName]="formControlName">
+        <label nz-radio [nzValue]="TRegime.LucroPresumido" *ngIf="!TipoPessoa || TipoPessoa == TTipoPessoa.PessoaJuridica">Lucro Presumido</label>
+        <label nz-radio [nzValue]="TRegime.LucroReal" *ngIf="!TipoPessoa || TipoPessoa == TTipoPessoa.PessoaJuridica">Lucro Real</label>
+        <label nz-radio [nzValue]="TRegime.Simples" *ngIf="!TipoPessoa || TipoPessoa == TTipoPessoa.PessoaJuridica">Simples</label>
+        <label nz-radio [nzValue]="TRegime.MEI" *ngIf="!TipoPessoa || TipoPessoa == TTipoPessoa.PessoaFisica">MEI</label>
+        <label nz-radio [nzValue]="TRegime.Autonomo" *ngIf="!TipoPessoa || TipoPessoa == TTipoPessoa.PessoaFisica">Autônomo</label>
+        <label nz-radio [nzValue]="TRegime.ProfissionalLiberal" *ngIf="!TipoPessoa || TipoPessoa == TTipoPessoa.PessoaFisica">Profissional Liberal</label>
+        <label nz-radio [nzValue]="TRegime.Nenhum">Nenhum</label>
+    </nz-radio-group>
+</div>

@@ -1,0 +1,7 @@
+::ng-deep apx-chart > div {
+    min-height: revert !important;
+}
+
+::ng-deep apx-chart > div > div {
+    height: 0 !important;
+}

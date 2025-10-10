@@ -1,0 +1,25 @@
+﻿<div [formGroup]="form">
+    <label *ngIf="label" class="input-label mb-1.5 block">{{ label }}</label>
+
+    <nz-radio-group [formControlName]="formControlName">
+        <label nz-radio [nzValue]="TSetor.Fiscal">Fiscal</label>
+        <label nz-radio [nzValue]="TSetor.Contabil">Contábil</label>
+        <label nz-radio [nzValue]="TSetor.Pessoal">Pessoal</label>
+    </nz-radio-group>
+</div>
+
+<!--<div [formGroup]="form" __class="grupo grid-cols-3 grid">
+    <nz-radio-group [formControlName]="formControlName">
+        <label nz-radio [nzValue]="TSetor.Fiscal">Fiscal</label>
+        <label nz-radio [nzValue]="TSetor.Contabil">Contábil</label>
+        <label nz-radio [nzValue]="TSetor.Pessoal">Pessoal</label>
+    </nz-radio-group>-->
+<!--<nz-select nzShowSearch nzAllowClear [formControlName]="formControlName" [nzPlaceHolder]="placeholderText">
+    <nz-option [nzValue]="TSetor.Fiscal" [nzLabel]="'Fiscal'"></nz-option>
+    <nz-option [nzValue]="TSetor.Contabil" [nzLabel]="'Contábil'"></nz-option>
+    <nz-option [nzValue]="TSetor.Pessoal" [nzLabel]="'Pessoal'"></nz-option>
+</nz-select>-->
+<!--     <button nz-button [ngClass]="{'bg-green-500': value == TSetor.Fiscal, 'bg-green-100': value != TSetor.Fiscal}" (click)="dataClick(TSetor.Fiscal)">Fiscal</button>
+    <button nz-button [ngClass]="{'bg-red-500': value == TSetor.Contabil, 'bg-red-100': value != TSetor.Contabil}" (click)="dataClick(TSetor.Contabil)">Contábil</button>
+    <button nz-button [ngClass]="{'bg-blue-500': value == TSetor.Pessoal, 'bg-blue-100': value != TSetor.Pessoal}" (click)="dataClick(TSetor.Pessoal)">Pessoal</button> -->
+<!--</div>-->

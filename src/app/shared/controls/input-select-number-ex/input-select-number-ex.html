@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+
+  <nz-select [nzShowSearch]="showSearch" [formControlName]="formControlName" [nzPlaceHolder]="placeholderText" style="display: block !important">
+    @for (n of numbers; track n) {
+      <nz-option [nzValue]="n" [nzLabel]="n"></nz-option>
+    }
+  </nz-select>
+
+  <!--<nz-radio-group [formControlName]="formControlName" nzButtonStyle="solid" class="w-full">
+  <label nz-radio-button [nzValue]="n" *ngFor="let n of numbers">{{n}}</label>
+</nz-radio-group>-->
+</div>

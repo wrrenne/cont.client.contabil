@@ -1,0 +1,20 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+  <input nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" type="text" [formControlName]="formControlName" class="form-input" placeholder="{{placeholderText}}" [readonly]="true" [value]="day" />
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="background-panel border-input flex flex-col items-center rounded-md">
+    <div class="grid-cols-7 mb-3 grid gap-1 p-2">
+      @for (day of days; track day) {
+        <div nz-menu-item
+          class="text-black/25 items-center bg-transparent p-2 dark:text-white/25"
+          (click)="selectDay(day)">
+          {{ day }}
+        </div>
+      }
+    </div>
+  </div>
+</nz-dropdown-menu>

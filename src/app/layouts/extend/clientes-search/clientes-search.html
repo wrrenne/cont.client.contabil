@@ -1,0 +1,8 @@
+<div class="flex flex-wrap gap-5">
+  @for (item of datas; track item) {
+    <div class="flex cursor-pointer items-center gap-2" [routerLink]="[link, encryptionService.encrypt(item.id)]" (click)="funcionarioClick(item.id!)">
+      <avatar-image size="2rem" [clienteId]="item.id" [iconClass]="'text-base'" [defaultNoIconName]="item.text" />
+      <span>{{item.text}}</span>
+    </div>
+  }
+</div>

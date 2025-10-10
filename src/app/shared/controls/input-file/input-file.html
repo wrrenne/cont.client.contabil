@@ -1,0 +1,73 @@
+@if (!isButton) {
+  <div class="input-file-component">
+    @if (fileNames.length > 0) {
+      <div class="selected-files mb-4">
+        <div class="file-list mt-2">
+          <ul class="list-none space-y-2">
+            @for (fileName of fileNames; track fileName; let i = $index) {
+              <li class="flex items-center gap-2">
+                <ng-icon [name]="i <= 10 ? 'bootstrap' + (i+1).toString() + 'CircleFill' : 'bootstrap9CircleFill'" class="text-lg text-black dark:text-white"></ng-icon>
+                <span class="truncate" title="{{ fileName }}">
+                  {{ fileName }}
+                </span>
+                <ng-icon (click)="deleteClick(fileName)" [name]="'bootstrapTrash'" class="cursor-pointer text-lg"></ng-icon>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+    <label for="dropzone-file" class="flex cursor-pointer items-center gap-1">
+      <ng-icon [name]="'bootstrapPaperclip'" class="text-lg"></ng-icon>
+      <span class="text-[13px]">{{fileNames.length == 0 ? 'Selecionar Arquivo' : 'Incluir outro Arquivo'}}</span>
+      <input id="dropzone-file"
+        type="file"
+        class="hidden"
+        (change)="fileBrowseHandler($event)"
+        multiple
+        aria-label="Selecionar Arquivos" />
+    </label>
+  </div>
+}
+
+
+@if (isButton) {
+  <div class="input-file-component">
+    @if (label) {
+      <label class="input-label mb-2 block font-medium text-gray-700">
+        {{ label }}
+      </label>
+    }
+    @if (fileNames.length > 0) {
+      <div class="selected-files mb-4">
+        <div class="file-list rounded-lg">
+          <div class="file-list mt-2">
+            <ul class="list-none space-y-2">
+              @for (fileName of fileNames; track fileName; let i = $index) {
+                <li class="form-input flex items-center justify-between gap-2 rounded-md transition-shadow duration-200 hover:shadow-sm">
+                  <ng-icon [name]="i <= 10 ? 'bootstrap' + (i+1).toString() + 'CircleFill' : 'bootstrap9CircleFill'" class="text-lg"></ng-icon>
+                  <span class="truncate text-sm font-medium" title="{{ fileName }}">
+                    {{ fileName }}
+                  </span>
+                  <ng-icon (click)="deleteClick(fileName)" [name]="'ionCloseCircleOutline'" class="cursor-pointer text-lg"></ng-icon>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    }
+    <div class="flex w-full gap-4">
+      <label for="dropzone-file" class="button btn-gray flex w-full cursor-pointer gap-2">
+        <ng-icon [name]="'ionFolderOpenOutline'" class="text-lg"></ng-icon>
+        <span>{{fileNames.length == 0 ? 'Selecionar Arquivo' : 'Incluir outro Arquivo'}}</span>
+        <input id="dropzone-file"
+          type="file"
+          class="hidden"
+          (change)="fileBrowseHandler($event)"
+          multiple
+          aria-label="Selecionar Arquivos" />
+      </label>
+    </div>
+  </div>
+}

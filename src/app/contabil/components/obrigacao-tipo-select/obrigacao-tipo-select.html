@@ -1,0 +1,9 @@
+<div [formGroup]="form">
+    <label *ngIf="label" class="input-label mb-1.5 block">{{ label }}</label>
+
+    <nz-radio-group [formControlName]="formControlName">
+        <label nz-radio [nzValue]="TObrigacaoTipo.Imposto">Imposto</label>
+        <label nz-radio [nzValue]="TObrigacaoTipo.Acessoria">Obrigação Acessória</label>
+        <label nz-radio [nzValue]="TObrigacaoTipo.Relatorio">Relatório</label>
+    </nz-radio-group>
+</div>

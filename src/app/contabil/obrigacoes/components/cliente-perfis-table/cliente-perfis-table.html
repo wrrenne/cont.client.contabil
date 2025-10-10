@@ -1,0 +1,45 @@
+<div class="mb-4">
+    <button-default (click)="perfilAssociarOpen()" [showArrow]="true" [text]="'addprofile' | translate">
+    </button-default>
+</div>
+
+<table class="table">
+    <tr *ngFor="let item of datas; let i = index">
+        <td>
+            <avatar-title class="cursor-pointer" [title]="item.descricao"[avatarFileName]="item.avatarFileName" [rounded]="true">
+            </avatar-title>
+        </td>
+        <td class="hidden text-center md:table-cell">
+            <div class="flex items-center gap-1" *ngIf="item.obrigacoesStat">
+                <div class="tag-lg tag-silver inline-block min-w-10">
+                    <div class="flex items-center gap-2">
+                        <ng-icon [name]="'ionStarSharp'" class="text-lg"></ng-icon>
+                        <span>{{item.obrigacoesStat.total}}</span>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td class="hidden text-center md:table-cell">
+            <div class="flex w-full items-center gap-1" *ngIf="item.obrigacoesStat">
+                <div class="tag-lg mr-2 inline-block min-w-10" [class]="obrigacoesUtilsService.getPercentagemClass(item.obrigacoesStat.concluidoPorcento)">
+                    <div class="flex items-center gap-2">
+                        <ng-icon [name]="'ionCheckmarkDone'" class="text-lg"></ng-icon>
+                        <span>{{item.obrigacoesStat.concluidas}}</span>
+                    </div>
+                </div>
+                <percentage-bar [percentage]="item.obrigacoesStat.concluidoPorcento"></percentage-bar>
+            </div>
+        </td>
+        <td class="hidden text-center md:table-cell">
+            <div class="flex items-center gap-1" *ngIf="item.obrigacoesStat">
+                <div class="tag-lg mr-2 inline-block min-w-10" [class]="obrigacoesUtilsService.getPercentagemClass(item.obrigacoesStat.concluidoNoPrazoPorcento)">
+                    <div class="flex items-center gap-2">
+                        <ng-icon [name]="'bootstrapHourglass'" class="text-lg"></ng-icon>
+                        <span>{{item.obrigacoesStat.concluidasNoPrazo}}</span>
+                    </div>
+                </div>
+                <percentage-bar [percentage]="item.obrigacoesStat.concluidoNoPrazoPorcento"></percentage-bar>
+            </div>
+        </td>
+    </tr>
+</table>

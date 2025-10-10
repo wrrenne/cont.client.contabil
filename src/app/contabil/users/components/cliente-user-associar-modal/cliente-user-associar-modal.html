@@ -1,0 +1,71 @@
+<modal-base [title]="title" [subTitle]="'Associar Colaborador à Empresa'">
+    <ng-template #modalContent>
+        <form [formGroup]="firstFormGroup" class="flex flex-col gap-y-6">
+            <user-select [form]="firstFormGroup" [formControlName]="'userId'" [label]="'Colaborador'" [autoLoad]="true"></user-select>
+            <input-textarea-ex [formControlName]="'comentario'" [form]="firstFormGroup" [label]="'Comentário'" [placeholderText]="'Comentário opcional'"></input-textarea-ex>
+            <div class="flex-none">
+                <button class="button btn-primary" (click)="submitClick()" [disabled]="!firstFormGroup.valid || !firstFormGroup.dirty">Salvar</button>
+            </div>
+        </form>
+    </ng-template>
+</modal-base>
+
+
+<!--<div class="h-[500px] w-full p-4" *ngIf="firstFormGroup">
+    <div class="mb-8 flex items-center">
+        <div class="modal-title flex-auto">Associar Responsável</div>
+        <j-button [icon]="'ionClose'" (click)="closeModal()"></j-button>
+    </div>
+
+    <form [formGroup]="firstFormGroup" nz-form [nzNoColon]="true" nzLayout="vertical">
+        <nz-form-item>
+            <nz-form-label>Usuário</nz-form-label>
+            <nz-form-control>
+                <user-select [formGroup]="firstFormGroup" [parameters]="parameters" [formControlName]="'sistemaUserId'" [autoLoad]="false"></user-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label>Mês Inicial</nz-form-label>
+            <nz-form-control>
+                <nz-date-picker formControlName="competenciaInicial" class="mb-3 block" nzMode="month"></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-label>Setores</nz-form-label>
+
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzXs="24" nzMd="6" nzXl="5">
+                <nz-form-item>
+                    <nz-form-label>Fiscal</nz-form-label>
+                    <nz-form-control>
+                        <nz-switch [formControlName]="'setorFiscal'"></nz-switch>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzXs="24" nzMd="6" nzXl="5">
+                <nz-form-item>
+                    <nz-form-label>Contábil</nz-form-label>
+                    <nz-form-control>
+                        <nz-switch [formControlName]="'setorContabil'"></nz-switch>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzXs="24" nzMd="6" nzXl="5">
+                <nz-form-item>
+                    <nz-form-label>Pessoal</nz-form-label>
+                    <nz-form-control>
+                        <nz-switch [formControlName]="'setorPessoal'"></nz-switch>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+
+        <nz-form-item class="mb-0">
+            <nz-form-control>
+                <button nz-button nzType="primary" (click)="submitClick()" [disabled]="!firstFormGroup.valid || !firstFormGroup.dirty">Salvar</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>-->

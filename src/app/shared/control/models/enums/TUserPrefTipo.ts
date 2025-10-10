@@ -1,0 +1,15 @@
+export enum TUserPrefTipo {
+    Funcionarios = 1,
+    Clientes = 2,
+    Obrigacoes = 3,
+    //EspelhoDisplayType = 4,
+    ClassificacoesExtra = 5,
+    ClassificacoesAtraso = 6,
+    ClassificacoesFalta = 7,
+    EspelhoExibirTotalizadores = 8,
+    SemAutomacao = 9,
+    ContasCorrentes = 30,
+    ContasPagar = 31,
+    ContasReceber = 32,
+    DashboardWidgets = 50,
+}

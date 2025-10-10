@@ -1,0 +1,10 @@
+@if (comments) {
+  <modal-base [title]="title" [subTitle]="subTitle">
+    <ng-template #modalContent>
+      <timeline-comments [comments]="comments" (onNewCommentClick)="newCommentClick($event)" [showResponder]="true"></timeline-comments>
+    </ng-template>
+    <ng-template #footer>
+      <timeline-comment-form class="flex items-center gap-1 px-2" (onCommented)="commented($event)" _onEvaluated="evaluated($event)" [parameter]="parameter" _onSolicitacaoOpened="solicitacaoOpened($event)" [newComment]="newComment"></timeline-comment-form>
+    </ng-template>
+  </modal-base>
+}

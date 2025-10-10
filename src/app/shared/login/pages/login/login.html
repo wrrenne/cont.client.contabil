@@ -1,0 +1,79 @@
+<div class="flex min-h-screen flex-col items-center justify-center gap-3 bg-gradient-to-r from-blue-400 to-purple-600 p-4">
+  <file-server-site-logotipo [src]="logoImage" class="block w-[150px]" [isBlack]="false"></file-server-site-logotipo>
+
+  <div class="w-full max-w-sm rounded-xl bg-white p-6 shadow-lg sm:max-w-md sm:p-8">
+
+    <!--<ng-container *ngIf="showLoader">-->
+    <!-- screen loader -->
+    <!--<div class="screen_loader animate__animated z-[60] fixed inset-0 grid place-content-center bg-[#fafafa] dark:bg-[#060818]">
+    <svg width="64" height="64" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#4361ee">
+      <path d="M67.447 58c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10zm9.448 9.447c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10s-4.478-10-10-10c-5.523 0-10 4.477-10 10zm-9.448 9.448c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zM58 67.447c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10z">
+        <animateTransform attributeName="transform" type="rotate" from="0 67 67" to="-360 67 67" dur="2.5s" repeatCount="indefinite" />
+      </path>
+      <path d="M28.19 40.31c6.627 0 12-5.374 12-12 0-6.628-5.373-12-12-12-6.628 0-12 5.372-12 12 0 6.626 5.372 12 12 12zm30.72-19.825c4.686 4.687 12.284 4.687 16.97 0 4.686-4.686 4.686-12.284 0-16.97-4.686-4.687-12.284-4.687-16.97 0-4.687 4.686-4.687 12.284 0 16.97zm35.74 7.705c0 6.627 5.37 12 12 12 6.626 0 12-5.373 12-12 0-6.628-5.374-12-12-12-6.63 0-12 5.372-12 12zm19.822 30.72c-4.686 4.686-4.686 12.284 0 16.97 4.687 4.686 12.285 4.686 16.97 0 4.687-4.686 4.687-12.284 0-16.97-4.685-4.687-12.283-4.687-16.97 0zm-7.704 35.74c-6.627 0-12 5.37-12 12 0 6.626 5.373 12 12 12s12-5.374 12-12c0-6.63-5.373-12-12-12zm-30.72 19.822c-4.686-4.686-12.284-4.686-16.97 0-4.686 4.687-4.686 12.285 0 16.97 4.686 4.687 12.284 4.687 16.97 0 4.687-4.685 4.687-12.283 0-16.97zm-35.74-7.704c0-6.627-5.372-12-12-12-6.626 0-12 5.373-12 12s5.374 12 12 12c6.628 0 12-5.373 12-12zm-19.823-30.72c4.687-4.686 4.687-12.284 0-16.97-4.686-4.686-12.284-4.686-16.97 0-4.687 4.686-4.687 12.284 0 16.97 4.686 4.687 12.284 4.687 16.97 0z">
+        <animateTransform attributeName="transform" type="rotate" from="0 67 67" to="360 67 67" dur="8s" repeatCount="indefinite" />
+      </path>
+    </svg>
+  </div>
+</ng-container>-->
+
+<ng-container _ngIf="!showLoader">
+  @if (!isReset) {
+    <div class="text-center text-3xl font-semibold text-gray-800">Bem-vindo</div>
+    <p class="mt-2 text-center text-gray-500">Faça login na sua conta</p>
+    <form class="mt-6" [formGroup]="firstFormGroup" (ngSubmit)="submit()">
+      @if (loginError) {
+        <div class="mb-4 rounded-lg bg-red-100 p-2 text-center text-sm text-red-600">
+          Usuário ou senha inválidos. Por favor, tente novamente.
+        </div>
+      }
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" placeholder="Digite seu email" class="mt-1 min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required [formControlName]="'u'" autocomplete="off" style="background-color: transparent;">
+      </div>
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-gray-700">Senha</label>
+        <input type="password" placeholder="Digite sua senha" class="mt-1 min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required [formControlName]="'p'" autocomplete="off" style="background-color: transparent;">
+      </div>
+      <div class="mt-4 flex items-center justify-between">
+        <label class="flex items-center text-gray-700">
+          <input type="checkbox" class="rounded border-gray-300 text-blue-500">
+          <span class="ml-2 text-sm">Lembrar-me</span>
+        </label>
+        <a class="text-sm text-blue-600 hover:underline" (click)="reset()">Esqueceu a senha?</a>
+      </div>
+      <button type="submit" [disabled]="!firstFormGroup.valid" class="mt-6 min-h-[44px] w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700">Entrar</button>
+    </form>
+    <p class="mt-6 text-center text-sm text-gray-600">Não tem uma conta? <a href="#" class="text-blue-600 hover:underline">Crie uma agora</a></p>
+  }
+
+  @if (isReset) {
+    <div class="text-center text-3xl font-semibold text-gray-800">Redefinição de Senha</div>
+    @if (!emailSent) {
+      <p class="mt-2 text-center text-gray-500">Digite seu email para redefinir a senha</p>
+      <form class="mt-6" [formGroup]="resetPasswordForm">
+        @if (resetError) {
+          <div class="mb-4 rounded-lg bg-red-100 p-2 text-center text-sm text-red-600">
+            Ocorreu um erro. Tente novamente.
+          </div>
+        }
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" placeholder="Digite seu email" class="mt-1 min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required [formControlName]="'email'" autocomplete="off" style="background-color: transparent;">
+        </div>
+        <button type="submit" [disabled]="!resetPasswordForm.valid" class="mt-6 min-h-[44px] w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700" (click)="resetPasswordSubmit()">Enviar Link de Redefinição</button>
+      </form>
+      <p class="mt-6 text-center text-sm text-gray-600">Lembrou sua senha? <a (click)="reset()" class="text-blue-600 hover:underline">Faça login</a></p>
+    }
+    @if (emailSent) {
+      <div class="mt-5 flex flex-col justify-center gap-4 text-center">
+        <div>Email enviado para</div>
+        <div class="text-amber-500">{{emailEnviadoPara}}</div>
+        <div class="mb-7">Verifique sua caixa de mensagens</div>
+        <div class="mb-4"><a (click)="retornar()" class="text-blue-500">Retornar para Login</a></div>
+      </div>
+    }
+  }
+</ng-container>
+</div>
+</div>

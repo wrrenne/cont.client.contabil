@@ -1,0 +1,8 @@
+@for (data of datas; track data) {
+  <div>
+    <div [style.padding-left]="(((data.nivel) - 1) * 20).toString() + 'px'" class="flex items-center gap-2">
+      <div class="badge rounded-full bg-gray-200 dark:bg-gray-800" [ngClass]="getColor(data.nivel)">{{data.pastaCodigo}}</div>
+      <div [ngClass]="getColor(data.nivel)">{{data.nome}}</div>
+    </div>
+  </div>
+}

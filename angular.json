@@ -1,0 +1,158 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "contabil": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:application": {
+                    "strict": true
+                }
+            },
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:application",
+                    "options": {
+                        "baseHref": "/contabil/",
+                        "outputPath": {
+                          "base": "dist"
+                        },
+                        "index": "src/index.html",
+                        "polyfills": [
+                          "src/polyfills.ts"
+                        ],
+                        "tsConfig": "tsconfig.app.json",
+                        "assets": [ "src/app/shared/assets", "src/demo-prepare.html" ],
+                        "styles": [
+                            "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+                            "./node_modules/tippy.js/dist/tippy.css",
+                            //"./node_modules/tippy.js/themes/light-border.css",
+                            "./node_modules/tippy.js/themes/light.css",
+                            //"./node_modules/tippy.js/themes/material.css",
+                            //"./node_modules/tippy.js/themes/translucent.css",
+                            //"./node_modules/tippy.js/animations/perspective.css",
+                            //"./node_modules/tippy.js/animations/perspective-extreme.css",
+                            //"./node_modules/tippy.js/animations/perspective-subtle.css",
+                            //"./node_modules/tippy.js/animations/scale.css",
+                            //"./node_modules/tippy.js/animations/scale-extreme.css",
+                            //"./node_modules/tippy.js/animations/scale-subtle.css",
+                            //"./node_modules/tippy.js/animations/shift-away.css",
+                            //"./node_modules/tippy.js/animations/shift-away-extreme.css",
+                            "./node_modules/tippy.js/animations/shift-away-subtle.css",
+                            //"./node_modules/tippy.js/animations/shift-toward.css",
+                            //"./node_modules/tippy.js/animations/shift-toward-extreme.css",
+                            //"./node_modules/tippy.js/animations/shift-toward-subtle.css",
+                            //"src/custom-theme.scss",
+                            "src/app/shared/assets/css/app.css"
+                        ],
+                        "scripts": [
+                            "node_modules/crypto-js/crypto-js.js",
+                            "node_modules/apexcharts/dist/apexcharts.min.js"
+                        ],
+                        "allowedCommonJsDependencies": [
+                            "crypto-js",
+                            "lodash",
+                            "moment",
+                            "apexcharts",
+                            "file-saver",
+                            "pdfjs-dist",
+                            "pdfjs-dist/web/pdf_viewer"
+                        ],
+                        "browser": "src/main.ts"
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "5mb",
+                                    "maximumError": "10mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "4kb",
+                                    "maximumError": "6kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                          "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular/build:dev-server",
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "contabil:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "contabil:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular/build:extract-i18n",
+                    "options": {
+                        "buildTarget": "contabil:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular/build:karma",
+                    "options": {
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "assets": [ "src/favicon.ico", "src/assets" ],
+                        "styles": [ "src/styles.css" ],
+                        "scripts": []
+                    }
+                }
+            }
+        }
+    },
+    "schematics": {
+      "@schematics/angular:component": {
+        "type": "component"
+      },
+      "@schematics/angular:directive": {
+        "type": "directive"
+      },
+      "@schematics/angular:service": {
+        "type": "service"
+      },
+      "@schematics/angular:guard": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:interceptor": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:module": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:pipe": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:resolver": {
+        "typeSeparator": "."
+      }
+    },
+    "cli": {
+      "analytics": false
+    }
+}

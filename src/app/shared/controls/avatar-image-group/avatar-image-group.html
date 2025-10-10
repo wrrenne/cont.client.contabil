@@ -1,0 +1,27 @@
+<div class="flex items-center justify-start space-x-2">
+    @if (funcionariosId) { @for (funcionarioId of funcionariosId; track funcionarioId) {
+    <avatar-image
+        [size]="size"
+        [funcionarioId]="funcionarioId"
+        [tooltip]="nomes && nomes[$index]"
+        [rounded]="rounded"
+        [circle]="circle"
+        [iconClass]="'text-base'"
+        [defaultNoIconName]="nomes && nomes[$index]"
+    />
+    } } @if (usersId) { @for (userId of usersId; track userId) {
+    <avatar-image
+        [size]="size"
+        [userId]="userId"
+        [tooltip]="nomes && nomes[$index]"
+        [rounded]="rounded"
+        [circle]="circle"
+        [iconClass]="'text-base'"
+        [defaultNoIconName]="nomes && nomes[$index]"
+    />
+    } } @if (showEmptyIcon && (!funcionariosId || funcionariosId.length == 0) && (!usersId || usersId.length == 0)) {
+    <avatar-icon [size]="size" [rounded]="rounded" [circle]="circle" [icon]="'matBlockOutline'" [tooltip]="emptyIconTooltip"></avatar-icon>
+    } @if (seeMoreCount) {
+    <avatar-count [count]="seeMoreCount" [bgColor]="'text-bg-yellow-silver'" [size]="size" [rounded]="rounded" [circle]="circle"></avatar-count>
+    }
+</div>

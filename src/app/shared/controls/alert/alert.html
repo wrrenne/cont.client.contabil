@@ -1,0 +1,10 @@
+﻿<div class="border-color flex items-center gap-3 rounded-xl border pl-4 pr-10" [class]="big ? 'py-10' : 'py-2'" [ngClass]="getClass()">
+  <ng-icon [name]="getIcon()" class="flex-none" [class]="iconBig ? 'text-5xl' : 'text-2xl'"></ng-icon>
+  <div>
+    <div [ngClass]="{'text-xs': textSmall, 'text-base': !textSmall}">{{title}}</div>
+    <div [ngClass]="{'text-xs': textSmall}" class="opacity-70">{{description}}</div>
+    @if (description2) {
+      <div class="opacity-70">{{description2}}</div>
+    }
+  </div>
+</div>

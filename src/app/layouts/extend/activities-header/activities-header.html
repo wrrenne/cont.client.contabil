@@ -1,0 +1,54 @@
+﻿<!--<div hlMenu>
+    <button type="button" hlMenuButton
+            class="bg-white-light/40 block rounded-full p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60"
+            (click)="getData()">
+        <ng-icon [name]="'iconoirBell'" class="!block text-xl"></ng-icon>
+
+        <span class="absolute top-0 flex h-3 w-3 ltr:right-0 rtl:left-0" *ngIf="hasUnread">
+            <span class="bg-success/50 absolute -top-[3px] inline-flex h-full w-full animate-ping rounded-full opacity-75 ltr:-left-[3px] rtl:-right-[3px]"></span>
+            <span class="bg-success relative inline-flex h-[6px] w-[6px] rounded-full"></span>
+        </span>
+    </button>
+    <ul *hlMenuItems
+        @toggleAnimation
+        class="text-dark -right-16 top-11 w-[300px] !py-0 dark:text-white-dark sm:-right-2 sm:w-[375px]">
+        <li class="mb-1">
+            <div class="border-color relative overflow-hidden rounded-t-md border-b !p-5 text-white">
+                <h4 class="relative z-10 text-base font-semibold">Atividade</h4>
+            </div>
+        </li>
+        <li class="!b4order-0 mb-1 h-[420px] px-5 py-3" *ngIf="!activities">-->
+            <!--<nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 1, width: 240 }" [nzTitle]="false" [nzAvatar]="{size: 'large', shape: 'square'}">
+                <nz-skeleton-element *nzSpaceItem
+                                     nzType="input"
+                                     [nzSize]="'large'"
+                                     style="width:200px"></nz-skeleton-element>
+            </nz-skeleton>-->
+        <!--</li>
+        <ng-container *ngIf="activities">
+            <li *ngFor="let item of activities" class="flex items-center px-5 py-3">
+                <avatar-image [funcionarioId]="item.funcionarioId" [userId]="item.postUserId ?? item.userId" class="mr-2.5 flex-none" />
+
+                <div class="grow">
+                    <div [innerHTML]="item.html"></div>
+                    <div class="text-white-dark">{{item.dataHoraFormat}}</div>
+                </div>
+            </li>
+            <li *ngIf="activities.length" class="border-white-light mt-5 border-t text-center dark:border-white/10">
+                <div class="text-primary group flex cursor-pointer items-center justify-center px-5 py-4 font-semibold dark:text-gray-400" *hlMenuItem="let menuItem" [routerLink]="['/sistema/timeline/activities/']">
+                    <span class="mr-1 group-hover:underline">Ver toda atividade</span>
+
+                    <icon-arrow-left class="transition duration-300 group-hover:translate-x-1 ltr:ml-1 rtl:mr-1" />
+                </div>
+            </li>
+            <li *ngIf="!activities.length" class="mb-5">
+                <div class="!grid min-h-[200px] place-content-center text-sm hover:!bg-transparent">
+                    <div class="ring-primary/30 text-primary mx-auto mb-4 rounded-full ring-4">
+                        <icon-info-circle [fill]="true" class="h-10 w-10" />
+                    </div>
+                    Nenhuma atividade recente
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</div>-->

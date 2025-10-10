@@ -1,0 +1,13 @@
+﻿<div class="inline-flex gap-2">
+  @for (number of [].constructor(count); track number; let i = $index) {
+    <button type="button" class="border-color-2 block border p-1.5"
+      [ngClass]="{'rounded-full' : rounded, 'rounded-md' : !rounded}" [class]="values[i] === value ? bgClassSelected : ''" (click)="onButtonClick(i)">
+      @if (icons) {
+        <ng-icon [name]="icons[i]" class="!block text-xl"></ng-icon>
+      }
+      @if (labels) {
+        <span>{{labels[i]}}</span>
+      }
+    </button>
+  }
+</div>

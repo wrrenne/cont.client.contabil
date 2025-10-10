@@ -1,0 +1,9 @@
+<!--<month-select class="mb-4 block" (monthSelected)="monthSelected($event)"></month-select>-->
+
+<div infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <div>
+        <obrigacao-item *ngFor="let item of datas" [obrigacao]="item" [obrigacaoClientePeriodoPor]="TObrigacaoClientePeriodoPor.PorObrigacao"></obrigacao-item>
+    </div>
+</div>

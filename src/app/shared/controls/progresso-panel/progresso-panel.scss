@@ -1,0 +1,28 @@
+.progresso {
+    /*padding: 48px 32px;*/
+    @apply py-8;
+
+    .progresso-icon {
+        margin-bottom: 24px;
+        /*text-align: center;*/
+    }
+
+    .progresso-title {
+        /*@apply text-textWhite dark:text-textBlack;*/
+        @apply font-[24px] leading-7;
+        /*line-height: 1.8;*/
+        /*text-align: center;*/
+    }
+
+    .progresso-subtitle {
+        @apply text-zinc-600 dark:text-zinc-500 font-[14px] leading-7;
+/*        font-size: 14px;
+        line-height: 1.6;*/
+        /*text-align: center;*/
+    }
+
+    .progresso-extra {
+        margin: 24px 0 0 0;
+        /*text-align: center;*/
+    }
+}

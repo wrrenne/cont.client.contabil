@@ -1,0 +1,70 @@
+<div
+    [ngxTippy]="tooltip"
+    class="relative h-full w-full"
+    [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
+>
+    @if (iconFilename || logotipoFilename || avatarFileName) {
+    <div>
+        @if (iconFilename) {
+        <img [src]="getImageIconFullPath()" alt="" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" />
+        } @if (logotipoFilename) {
+        <img [src]="getImageLogotipoFullPath()" alt="" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" />
+        } @if (avatarFileName) {
+        <img [src]="getImageAvatarFullPath()" alt="" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" />
+        }
+    </div>
+    } @else { @if (imageUrl) {
+    <div>
+        <img [src]="imageUrl" alt="Avatar" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" (error)="onImageError()" />
+    </div>
+    } @else { @if (icon) {
+    <div class="flex h-full w-full items-center justify-center" [class]="bgClass" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
+        <ng-icon [name]="icon" class="text-black/70 dark:text-white/70" [ngClass]="iconClass"></ng-icon>
+    </div>
+    } @else {
+    <div class="flex h-full w-full items-center justify-center" [class]="bgClass" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
+        @if (defaultNoIconName) {
+        <span [class]="iconClass + ' ' + (iconColor ?? '')">{{getDefaultIconNameInitials()}}</span>
+        } @if (!defaultNoIconName) {
+        <ng-icon [name]="getDefaultIcon()" [ngClass]="iconClass"></ng-icon>
+        }
+    </div>
+    } }
+    <!--<div *ngIf="isImageAvailable; else showIcon">
+    <img [src]="imageSrc" alt="" class="rounded-full" _class="imgClass" (error)="onImageError()" />
+  </div>-->
+    }
+
+    <!-- Badge -->
+    @if (badge !== 'none') { @switch (badge) { @case ('check') {
+    <div
+        class="absolute flex items-center justify-center rounded-full text-white border-2 border-white shadow dark:border-zinc-900 bg-green-600"
+        [style.width.px]="badgeSize"
+        [style.height.px]="badgeSize"
+        style="right: -5px; bottom: 0px"
+    >
+        <svg viewBox="0 0 24 24" class="w-3/5 h-3/5" aria-hidden="true" focusable="false">
+            <path d="M20.285 6.708a1 1 0 0 0-1.57-1.236l-8.04 9.01-3.2-3.2a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l8.81-9.0z" fill="currentColor" />
+        </svg>
+    </div>
+    } @case ('warning') {
+    <div
+        class="absolute flex items-center justify-center rounded-full text-white border-2 border-white dark:border-zinc-900 shadow bg-yellow-500"
+        [style.width.px]="badgeSize"
+        [style.height.px]="badgeSize"
+        style="right: -5px; bottom: 0px"
+    >
+        <span class="text-xs font-bold">!</span>
+    </div>
+    } @case ('custom') {
+    <div
+        class="absolute flex items-center justify-center rounded-full text-white border-2 border-white dark:border-zinc-900 shadow"
+        [ngClass]="badgeCustomClass || 'text-green-500'"
+        [style.width.px]="badgeSize"
+        [style.height.px]="badgeSize"
+        style="right: -5px; bottom: 0px"
+    >
+        <span class="text-xs font-bold">{{ badgeCustom || '!' }}</span>
+    </div>
+    } } }
+</div>

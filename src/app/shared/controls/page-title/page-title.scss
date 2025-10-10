@@ -1,0 +1,47 @@
+.content-title, .content-title-no-border {
+    margin: 30px 0;
+    position: relative;
+}
+
+.content-title {
+    @apply border-b border-[#d0d0d0] dark:border-[#303030] pb-4;
+    /*    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 30px;*/
+}
+
+.content-title:before {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 2px;
+    background-color: #0062ff;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+}
+
+/*body.dark .content-title {
+    @apply border-b dark:border-[#303030] pb-8;*/
+    /*border-bottom-color: #313237;*/
+/*}*/
+
+.content-title h1, .content-title-no-border h1
+.content-title h2, .content-title-no-border h2,
+.content-title h3, .content-title-no-border h3,
+.content-title h4, .content-title-no-border h4,
+.content-title h5, .content-title-no-border h5,
+.content-title h6, .content-title-no-border h6 {
+    margin-bottom: 0;
+}
+
+/*h3 {
+    @apply text-lg font-semibold leading-5;*/
+/*    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;*/
+/*}
+
+h2 {
+    @apply text-base text-black/50 dark:text-white/50;
+
+}*/

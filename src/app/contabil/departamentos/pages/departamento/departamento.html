@@ -1,0 +1,72 @@
+<div class="content-site">
+    <profile2 *ngIf="departamento" [title]="departamento.nome">
+        <ng-template #profilecontent>
+            <div>
+                <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
+                    <nz-tabset [nzSelectedIndex]="tabIndex">
+                        <nz-tab nzTitle="Resumo">
+                            <ng-template nz-tab>
+                                <!--<ng-template [ngTemplateOutlet]="resumo"></ng-template>-->
+                            </ng-template>
+                        </nz-tab>
+                        <nz-tab nzTitle="Dados básicos">
+                            <ng-template nz-tab>
+                                <!--<div class="flex flex-col gap-y-4">
+                                    <ng-template [ngTemplateOutlet]="dados"></ng-template>
+                                    <ng-template [ngTemplateOutlet]="enderecos"></ng-template>
+                                </div>-->
+                            </ng-template>
+                        </nz-tab>
+                        <nz-tab nzTitle="Colaboradores">
+                            <!--<ng-template [ngTemplateOutlet]="colaboradores"></ng-template>-->
+                        </nz-tab>
+                        <!--                        <nz-tab nzTitle="Perfis"><ng-template [ngTemplateOutlet]="perfis"></ng-template></nz-tab>-->
+                        <nz-tab nzTitle="Obrigações">
+                            <!--    <ng-template [ngTemplateOutlet]="obrigacoes"></ng-template>-->
+                        </nz-tab>
+                        <!--<nz-tab nzTitle="Ged"><ng-template [ngTemplateOutlet]="ged"></ng-template></nz-tab>
+                        <nz-tab nzTitle="Senhas"><ng-template [ngTemplateOutlet]="senhas"></ng-template></nz-tab>-->
+                    </nz-tabset>
+                </div>
+            </div>
+        </ng-template>
+    </profile2>
+</div>
+
+<!--<ng-template #resumo>
+    <cliente-resumo *ngIf="cliente" [cliente]="cliente"></cliente-resumo>
+</ng-template>
+
+<ng-template #dados>
+    <cliente-dados *ngIf="cliente" [id]="cliente.id"></cliente-dados>
+    <cliente-avatar-edit [clienteId]="cliente.id!"></cliente-avatar-edit>
+</ng-template>
+
+<ng-template #enderecos>
+    <cliente-enderecos [enderecos]="cliente.enderecos"></cliente-enderecos>
+</ng-template>
+
+<ng-template #perfis>
+    <cliente-perfis-table [parameters]="clientePerfisParameters"></cliente-perfis-table>
+</ng-template>
+
+<ng-template #obrigacoes>
+    <cliente-obrigacoes-table [parameters]="obrigacoesParameters"></cliente-obrigacoes-table>
+</ng-template>
+
+<ng-template #colaboradores>
+    <cliente-users [parameters]="clienteSistemaUsersParameter" [autoLoad]="false"></cliente-users>
+</ng-template>
+
+<ng-template #ged>-->
+<!--<ged-folders [parameters]="pastasParameters"></ged-folders>-->
+<!--<ged-explorer [parameters]="pastasParameters"></ged-explorer>-->
+<!--<pastas-ou-arquivos-table _arquivosParameters="arquivosParameters" [pastasParameters]="pastasParameters" *ngIf="pastasParameters"></pastas-ou-arquivos-table>-->
+<!--</ng-template>
+
+<ng-template #ocorrencias>
+</ng-template>
+
+<ng-template #senhas>
+    <cliente-senhas [parameters]="clienteSenhasParameter" [autoLoad]="false"></cliente-senhas>
+</ng-template>-->

@@ -1,0 +1,12 @@
+﻿<div class="progresso">
+  @if (showIcon) {
+    <div class="progresso-icon" [ngStyle]="{'text-align': centerAlignment ? 'center' : 'left', 'padding-left': centerAlignment ? '48px' : '0', 'padding-right': centerAlignment ? '48px' : '0'}">
+      <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+    </div>
+  }
+  <div class="progresso-title" [ngStyle]="{'text-align': centerAlignment ? 'center' : 'left'}">{{title}}</div>
+  @if (subTitle) {
+    <div class="progresso-subtitle" [ngStyle]="{'text-align': centerAlignment ? 'center' : 'left'}">{{subTitle}}</div>
+  }
+  <div class="progresso-extra" [ngStyle]="{'text-align': centerAlignment ? 'center' : 'left'}"><nz-progress [nzPercent]="porcento"></nz-progress></div>
+</div>

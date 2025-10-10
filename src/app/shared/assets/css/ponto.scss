@@ -1,0 +1,153 @@
+.ponto-naotratado {
+    @apply text-amber-500 dark:text-amber-500;
+}
+
+.ponto-extra-naotratado,
+.ponto-atraso-naotratado,
+.ponto-falta-naotratado {
+    @apply ponto-naotratado;
+}
+
+/*extra*/
+.ponto-box {
+    /*@apply py-1 rounded-md;*/
+    @apply py-0.5 px-2 rounded-md;
+}
+
+.ponto-bg-normal {
+    @apply bg-gray-200 dark:bg-zinc-700 text-black dark:text-white;
+}
+
+.ponto-box-tratado {
+    @apply border border-neutral-100 dark:border-neutral-800 bg-neutral-200 dark:bg-neutral-800;
+}
+
+.ponto-box-naotratado {
+    @apply border border-dashed border-amber-700 dark:border-yellow-400;
+}
+
+.ponto-box-tratamento {
+    @apply w-28 py-1.5 px-2 rounded-md text-black/80 dark:text-white/80 bg-neutral-200 dark:bg-neutral-800;
+}
+
+.ponto-extra-naotratado-box,
+.ponto-atraso-naotratado-box,
+.ponto-falta-naotratado-box {
+    @apply ponto-box w-20 ponto-naotratado ponto-box-naotratado;
+}
+
+.ponto-extra-pago-box,
+.ponto-extra-banco-box {
+    @apply ponto-box w-20 ponto-extra ponto-box-tratado;
+}
+
+.ponto-default-box,
+.ponto-extra-ignorado-box,
+.ponto-atraso-ignorado-box,
+.ponto-falta-ignorado-box {
+    @apply ponto-box w-20 ponto-default ponto-box-tratado;
+}
+
+.ponto-atraso-descontado-box,
+.ponto-falta-descontado-box,
+.ponto-atraso-banco-box,
+.ponto-falta-banco-box {
+    @apply ponto-box w-20 ponto-atraso ponto-box-tratado;
+}
+
+.ponto-atraso-abonado-box,
+.ponto-falta-abonado-box {
+    @apply ponto-box w-20 ponto-abono ponto-box-tratado;
+}
+
+.ponto-abono {
+    @apply text-fuchsia-600 dark:text-fuchsia-500;
+}
+
+.ponto-bg-abono {
+    @apply bg-fuchsia-200 dark:bg-fuchsia-900 text-black dark:text-white;
+}
+
+.ponto-default {
+    @apply text-black/80 dark:text-white/80;
+}
+
+.ponto-extra {
+    @apply text-blue-600 dark:text-blue-500;
+}
+
+.ponto-bg-extra {
+    @apply bg-blue-200 dark:bg-blue-900 text-black dark:text-white;
+}
+
+.ponto-extra-2 {
+    @apply text-blue-500 dark:text-blue-700;
+}
+
+.ponto-extra-pago,
+.ponto-extra-banco {
+    @apply ponto-extra;
+}
+
+.ponto-trab {
+    @apply ponto-default;
+}
+
+.ponto-noturno {
+    @apply text-fuchsia-600 dark:text-fuchsia-500;
+}
+
+.ponto-noturno-box {
+    @apply ponto-box w-20 ponto-noturno ponto-box-tratado;
+}
+
+.ponto-extra-ignorado,
+.ponto-atraso-ignorado,
+.ponto-falta-ignorado {
+    @apply text-black/40 dark:text-white/30;
+}
+
+/*atrasos/faltas*/
+.ponto-atraso {
+    @apply text-red-700 dark:text-red-500;
+}
+
+.ponto-bg-atraso {
+    @apply bg-red-200 dark:bg-red-900 text-black dark:text-white;
+}
+
+.ponto-atraso-2 {
+    @apply text-red-500 dark:text-red-700;
+}
+
+.ponto-atraso-descontado,
+.ponto-falta-descontado,
+.ponto-atraso-banco,
+.ponto-falta-banco {
+    @apply ponto-atraso;
+}
+
+.ponto-atraso-abonado,
+.ponto-falta-abonado {
+    @apply text-fuchsia-700 dark:text-fuchsia-500;
+}
+
+.ponto-desconsiderado {
+    @apply ponto-box border border-solid border-red-300 dark:border-red-900 text-red-400 dark:text-red-600;
+}
+
+.ponto-desconsiderado-text {
+    @apply text-red-400 dark:text-red-600;
+}
+
+.ponto-ferias {
+    @apply ponto-box border border-solid border-blue-500 dark:border-blue-900;
+}
+
+.ponto-dia {
+    @apply text-amber-600 dark:text-amber-300;
+}
+
+.ponto-dia-2 {
+    @apply text-amber-400 dark:text-amber-500;
+}

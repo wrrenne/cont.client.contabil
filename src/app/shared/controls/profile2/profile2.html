@@ -1,0 +1,32 @@
+<div class="w-full">
+    <!-- Banner -->
+    <div class="h-32 w-full bg-cover bg-center shadow relative" [style.background-image]="'url(' + background + ')'">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50"></div>
+    </div>
+
+    <!-- Profile Info Card -->
+    <div class="relative -mt-12 px-6">
+        <div class="bg-[#fafafa] dark:bg-[#0b0b0b] rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <!-- Left Section: Photo + Details -->
+            <div class="flex items-center gap-4">
+                @if (url) {
+                <img [src]="url" class="w-20 h-20 rounded-full border-2 border-white shadow -mt-10 sm:mt-0" />
+                }
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>
+                    <p class="text-gray-500 text-xs">{{ subTitle }}</p>
+                </div>
+            </div>
+
+            <!-- Right Section: Buttons -->
+            <!-- <div class="flex gap-2 mt-3 sm:mt-0">
+                <button class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition">Follow</button>
+                <button class="px-3 py-1.5 rounded-lg bg-gray-100 text-gray-700 text-sm font-medium hover:bg-gray-200 transition">Message</button>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="mt-6 px-6">
+        <ng-container [ngTemplateOutlet]="content"></ng-container>
+    </div>
+</div>

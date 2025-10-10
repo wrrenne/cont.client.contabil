@@ -1,0 +1,19 @@
+﻿@if (data) {
+  @for (grupo of data.grupos; track grupo) {
+    <div class="mb-4">
+      <span class="text-white-dark text-base font-semibold">{{grupo.nome}}</span>
+      <div>
+        @for (permissao of grupo.permissoes; track permissao) {
+          <div class="flex py-1">
+            <div class="mr-2">
+              <div nz-checkbox [(ngModel)]="permissao.valor" (ngModelChange)="valorChange($event, permissao)"></div>
+            </div>
+            <div>
+              {{permissao.permissaoNome}}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+}

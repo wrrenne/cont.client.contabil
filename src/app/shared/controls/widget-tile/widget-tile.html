@@ -1,0 +1,15 @@
+<div class="panel flex items-center pl-4" [style.height]="height">
+  <div class="mr-8 flex items-center gap-2">
+    <ng-icon [name]="icon" class="text-2xl text-yellow-700 dark:text-yellow-600"></ng-icon>
+    @if (count != undefined) {
+      <span class="text-2xl">{{count}}</span>
+      <span class="text-muted">{{count == 0 ? labelNone : count > 1 || count < -1 ? labelPlural : labelSingular}}</span>
+    }
+    @if (value) {
+      <span class="text-2xl">{{value}}</span>
+    }
+    @if (description) {
+      <span>{{description}}</span>
+    }
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="panel h-[115px] cursor-pointer" [routerLink]="[link, encryption.encrypt(obrigacaoId)]">
+    <div class="flex h-full">
+        <div class="grow">
+            <div class="text-muted text-xs">{{tipo}}</div>
+            <div class="font-bold text-[15px]">{{obrigacaoNome}}</div>
+            <div class="mt-2 flex gap-3" *ngIf="obrigacoesStat">
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-white-black-outline">{{obrigacoesStat.total}}</div><ng-icon class="!w-[20px] text-lg" [name]="'ionStarSharp'"></ng-icon>
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-blue-outline">{{obrigacoesStat.concluidoPorcento}}%</div><ng-icon class="!w-[20px] text-lg text-blue-800 dark:text-blue-200" [name]="'iconoirCheckCircle'"></ng-icon>
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-red-outline">{{obrigacoesStat.emAtraso}}</div><ng-icon class="!w-[20px] text-lg text-red-800 dark:text-red-200" [name]="'iconoirWarningCircle'"></ng-icon>
+                </div>
+            </div>
+        </div>
+        <avatar-image-esfera [parameter]="{esfera: esfera!, uf: uf, municipioCodigo: municipioCodigo}" class="flex items-center justify-center" [size]="'4.5rem'"></avatar-image-esfera>
+    </div>
+</div>
+
+<!--<div class="panel h-full cursor-pointer" [routerLink]="[link, encryption.encrypt(obrigacaoId)]">
+    <div class="flex h-full">
+        <div class="grow">
+            <div class="flex-grow">
+                <div class="text-muted text-xs">{{tipo}}</div>
+                <div class="font-bold text-[15px]">{{obrigacaoNome}}</div>
+            </div>
+            <div class="flex gap-3" *ngIf="obrigacoesStat">
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-white-black-outline">{{obrigacoesStat.total}}</div><ng-icon class="!w-[20px] text-lg" [name]="'ionStarSharp'"></ng-icon>
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-blue-outline">{{obrigacoesStat.concluidoPorcento}}%</div><ng-icon class="!w-[20px] text-lg text-blue-800 dark:text-blue-200" [name]="'iconoirCheckCircle'"></ng-icon>
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="tag tag-red-outline">{{obrigacoesStat.emAtraso}}</div><ng-icon class="!w-[20px] text-lg text-red-800 dark:text-red-200" [name]="'iconoirWarningCircle'"></ng-icon>
+                </div>
+            </div>
+        </div>
+        <avatar-image-esfera [parameter]="{esfera: esfera, uf: uf, municipioCodigo: municipioCodigo}" class="flex items-center justify-center" [size]="'4.5rem'"></avatar-image-esfera>
+    </div>
+</div>-->
+<!--<card class="cursor-pointer" [routerLink]="[link, getEncryptedId(item.id!)]">
+    <ng-template #title>
+        <div class="flex items-center space-x-3">
+            <avatar-image-esfera [parameter]="{esfera: item.esfera, uf: item.uf, municipioCodigo: item.municipioCodigo}" class="flex items-center justify-center"></avatar-image-esfera>
+            <div class="font-semibold">
+                <h6 class="mb-0">{{item.descricao}}</h6>
+                <div class="hyphen-between flex">
+                    <span *ngIf="item.tipoDescricao" class="text-xs">{{item.tipoDescricao}} {{item.periodicidadeDescricao}}</span>
+                    <span *ngIf="item.esferaDescricao" class="text-xs">{{item.esferaDescricao}}</span>
+                    <span *ngIf="item.departamentoNome" class="text-xs">{{item.departamentoNome}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #content>
+        <div class="flex grow items-center gap-3" *ngIf="item.vencimentoPrazoDia.vencimentoDia">
+            <div class="border-color flex flex-col items-center gap-0.5 border-r pr-3">
+                <span class="font-[Impact] text-5xl font-bold">{{item.vencimentoPrazoDia.vencimentoDia}}</span>
+                <span>{{item.anualMesDescricao}}</span>
+            </div>
+            <div class="flex flex-col items-center gap-0.5">
+                <span class="text-xs">Próximo Vencimento</span>
+                <span>{{item.vencimentoPrazo.vencimentoFormat}}</span>
+            </div>
+        </div>
+        <div class="flex grow items-center gap-3" *ngIf="item.vencimentoPrazoDia.prazoDia">
+            <div class="border-color flex flex-col items-center gap-0.5 border-r pr-3">
+                <span class="font-[Impact] text-5xl font-bold">{{item.vencimentoPrazoDia.prazoDia}}</span>
+                <span>{{item.anualMesDescricao}}</span>
+            </div>
+            <div class="flex flex-col items-center gap-0.5">
+                <span class="text-xs">Próximo Prazo</span><br />
+                <span>{{item.vencimentoPrazo.prazoFormat}}</span>
+            </div>
+        </div>
+
+        <div class="mt-4 flex">
+            <div class="grow">
+                <div class="flex flex-col gap-2">
+                    <avatar-title *ngFor="let user of item.users" [userId]="user.userId" [title]="user.userNomeFormat" [avatarSize]="'2rem'">
+                        <ng-template #subTitle>
+                            <div class="mt-1 text-xs">
+                                <span class="text-black/50 dark:text-white/50">{{user.departamentoNome}}</span> ·
+                                <span [class]="getPercentagemColor(user.obrigacoesStat.concluidoPorcento)">{{user.obrigacoesStat.concluidoPorcento}}%</span>
+                                <span class="text-black/25 dark:text-white/25"> de </span>
+                                <span class="text-black/50 dark:text-white/50">{{user.obrigacoesStat.total}}</span>
+                            </div>
+                        </ng-template>
+                    </avatar-title>
+                </div>
+            </div>
+            <apx-chart *ngIf="chartOptions" [series]="chartOptions.series"
+                       [chart]="chartOptions.chart"
+                       [labels]="chartOptions.labels"
+                       [plotOptions]="chartOptions.plotOptions"
+                       [colors]="chartOptions.colors"
+                       [responsive]="chartOptions.responsive">
+            </apx-chart>
+        </div>
+    </ng-template>
+</card>-->

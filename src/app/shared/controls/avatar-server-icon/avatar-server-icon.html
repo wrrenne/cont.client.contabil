@@ -1,0 +1,7 @@
+<div [ngxTippy]="tooltip"
+     [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}">
+
+    <div [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded}">
+        <img [src]="getImageIconFullPath()" alt="" [ngClass]="{'rounded-full': circle, 'rounded-md': rounded && !circle}" [class]="bgcolor"/>
+    </div>
+</div>

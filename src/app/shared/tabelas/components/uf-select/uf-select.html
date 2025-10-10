@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+
+  <nz-select nzShowSearch nzAllowClear class="w-full" [formControlName]="formControlName" (nzScrollToBottom)="onScrollDown()">
+    @for (data of datas; track data) {
+      <nz-option [nzLabel]="data.sigla" [nzValue]="data.sigla">
+      </nz-option>
+    }
+  </nz-select>
+</div>

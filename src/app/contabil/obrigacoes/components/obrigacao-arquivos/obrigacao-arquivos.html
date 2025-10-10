@@ -1,0 +1,16 @@
+<div class="flex flex-col gap-y-4">
+    <card [title]="'Configuração'">
+        <ng-template #content>
+            <form *ngIf="obrigacao && firstFormGroup" [formGroup]="firstFormGroup">
+                <div class="flex flex-col gap-y-4">
+                    <folder-select class="w-full md:w-144" [formControlName]="'gedPastaCodigo'" [form]="firstFormGroup" [label]="'Pasta no Ged'" [parameters]="pastasParameters"></folder-select>
+
+                    <button type="button" *ngIf="firstFormGroup.dirty" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full md:w-36" (click)="submitFirstFormGroup()">
+                        <ng-icon [name]="'iconoirFloppyDisk'" class="mr-2 text-xl"></ng-icon>
+                        {{ 'update' | translate }}
+                    </button>
+                </div>
+            </form>
+        </ng-template>
+    </card>
+</div>

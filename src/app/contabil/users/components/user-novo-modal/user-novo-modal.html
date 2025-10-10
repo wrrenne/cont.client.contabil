@@ -1,0 +1,16 @@
+<modal-base [title]="'Novo Usuário'">
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                <div class="flex w-full flex-col gap-4">
+                    <input-ex [formControlName]="'nome'" class="w-full" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
+                    <input-ex [formControlName]="'email'" class="w-full" [form]="firstFormGroup" [label]="'E-mail'"></input-ex>
+
+                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary text-white md:w-36" (click)="submit()">
+                        Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</modal-base>

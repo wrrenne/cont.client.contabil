@@ -1,0 +1,22 @@
+<div [formGroup]="form">
+  @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+  }
+  <input nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" type="text" class="form-input" placeholder="{{placeholderText}}" [readonly]="true" [value]="data" />
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="background-panel border-input flex flex-col items-center rounded-md">
+    <div class="grid-cols-3 mb-3 grid gap-2 p-2">
+      @for (month of months; track month; let i = $index) {
+        <div nz-menu-item
+          class="text-black/25 items-center bg-transparent p-2 dark:text-white/25"
+          (click)="selectMonth(i)">
+          {{ month }}
+        </div>
+      }
+    </div>
+
+
+  </div>
+</nz-dropdown-menu>

@@ -1,0 +1,15 @@
+<button
+    type="button"
+    class="button flex gap-2 text-center"
+    [class]="bgClass ?? 'btn-gray'"
+    [ngClass]="{'!py-0.5 !px-2.5': size == 'xs', '!py-4': size == 'lg' }"
+    [disabled]="disabled"
+>
+    @if (icon) {
+    <ng-icon [name]="icon" class="text-lg text-black dark:text-white"></ng-icon>
+    } @if (text) {
+    <span>{{text}}</span>
+    } @if (showArrow) {
+    <ng-icon [name]="'iconoirFastArrowRight'" class="text-lg text-black dark:text-white"></ng-icon>
+    }
+</button>

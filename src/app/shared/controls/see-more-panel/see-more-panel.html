@@ -1,0 +1,10 @@
+@if (expanded || alwaysExpanded) {
+  <div @expandCollapse class="content-wrapper pb-4">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </div>
+}
+@if (!alwaysExpanded) {
+  @if (!expanded || !hideOnExpand) {
+    <hyperlink-button [isButton]="false" [text]="expanded ? textCollapse : text" (onButtonClick)="buttonClick()" [icon]="expanded ? iconCollapsed : icon"></hyperlink-button>
+  }
+}

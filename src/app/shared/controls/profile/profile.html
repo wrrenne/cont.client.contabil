@@ -1,0 +1,42 @@
+<div class="relative flex gap-4">
+    @if (showAvatar && (!profileavatar && (funcionarioId || userId || clienteId || funcionariosDepartamentoId || contabilDepartamentoId || avatarFileName))) {
+    <div>
+        <div class="flex items-center justify-center">
+            <div class="relative">
+                <!-- <div class="h-56 w-52 bg-blue-700"></div> -->
+                <avatar-image
+                    size="8rem"
+                    class="-translate-y-1/4 absolute left-[50px] top-[100px] translate-x-2/4"
+                    [defaultNoIconName]="title"
+                    [funcionarioId]="funcionarioId"
+                    [userId]="userId"
+                    [clienteId]="clienteId"
+                    [funcionariosDepartamentoId]="funcionariosDepartamentoId"
+                    [contabilDepartamentoId]="contabilDepartamentoId"
+                    [avatarFileName]="avatarFileName"
+                    [rounded]="false"
+                ></avatar-image>
+            </div>
+        </div>
+    </div>
+    }
+
+    <ng-container [ngTemplateOutlet]="profileavatar"></ng-container>
+
+    <div class="relative z-10 flex-1 px-12 py-24">
+        <h1 class="font-sans text-xl font-semibold text-gray-800 dark:text-white md:text-3xl lg:text-2xl">{{title}}</h1>
+        @if (subTitle || profilesubtitle) {
+        <div>
+            @if (isString(subTitle)) {
+            <div class="text-black/60 dark:text-white/60">{{subTitle}}</div>
+            } @if (!isString(subTitle) && profilesubtitle) {
+            <div>
+                <ng-container [ngTemplateOutlet]="profilesubtitle"></ng-container>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>
+
+<ng-container [ngTemplateOutlet]="profilecontent"></ng-container>

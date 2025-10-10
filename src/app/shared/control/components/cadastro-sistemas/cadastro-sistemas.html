@@ -1,0 +1,30 @@
+<div class="mb-10 flex gap-3">
+    <button type="button" class="btn btn-primary" (click)="sistemaNovoModal()">Adicionar Produto</button>
+</div>
+
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="table">
+        <thead>
+            <tr>
+                <td scope="col">Produto</td>
+                <td scope="col">Plano</td>
+                <td scope="col">Usuários</td>
+                <td scope="col">Ultimo Acesso</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item) {
+            <tr class="cursor-pointer">
+                <td>{{item.sistemaDescricao}}</td>
+                <td>{{item.pacote?.descricao}}</td>
+                <td>{{item.usersCount}}</td>
+                <td>
+                    {{item.userAcessoUserNome}} @if (item.ultimoAcesso) {
+                    <span>em {{item.ultimoAcesso | date: 'dd/MM/yyyy HH:mm'}}</span>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

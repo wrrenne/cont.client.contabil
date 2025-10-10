@@ -1,0 +1,14 @@
+import { ViewBase } from "../../../../shared/models";
+import { ObrigacoesStat } from "../../obrigacoes";
+import { ObrigacaoClientePeriodoUserPageItem } from "../../obrigacoes/pagings";
+
+export interface DepartamentoView extends ViewBase {
+    cadastroId: number;
+    nome: string;
+    cor: string;
+    avatarFileName: string;
+    //users: UserDepartamentoPageItem[];
+    users: ObrigacaoClientePeriodoUserPageItem[]
+    obrigacoesCount: number
+    obrigacoesStat: ObrigacoesStat;
+}

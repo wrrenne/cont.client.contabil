@@ -1,0 +1,29 @@
+<ul class="flex flex-wrap text-center text-sm font-medium text-gray-700 dark:text-gray-400">
+  @for (tab of tabs; track tab; let i = $index) {
+    <li class="mb-2 me-2">
+      <div (click)="selectTab(i)"
+        [class.bg-blue-600]="selectedTab === i"
+        [class.text-white]="selectedTab === i"
+        [class.bg-zinc-200]="selectedTab !== i"
+        [class.dark:bg-zinc-800]="selectedTab !== i"
+        class="inline-block cursor-pointer rounded-full px-4 py-1 transition-colors duration-300">
+        {{ tab }}
+      </div>
+    </li>
+  }
+</ul>
+<div class="pt-7">
+  @if (tabContents && tabContents.length > selectedTab) {
+    <div [@fadeInAnimation]>
+      <ng-container *ngTemplateOutlet="tabContents[selectedTab]"></ng-container>
+    </div>
+  } @else {
+    <p class="text-gray-500">No content available</p>
+  }
+
+  <!--<ng-container *ngIf="tabContents && tabContents.length > selectedTab">
+  <div @fadeIn>
+    <ng-container *ngTemplateOutlet="tabContents[selectedTab]"></ng-container>
+  </div>
+</ng-container>-->
+</div>

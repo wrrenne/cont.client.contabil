@@ -1,0 +1,9 @@
+<div [formGroup]="form">
+    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Selecione o usuário" class="block" [formControlName]="formControlName">
+        <nz-option nzCustomContent [nzLabel]="data.userNome" [nzValue]="data.id" *ngFor="let data of datas">
+            <div class="flex">
+                <span class="grow">{{data.userNome}}</span> <span class="tag" [class]="obrigacoesUtilsService.getDepartamentoColor(departamento.cor)" *ngFor="let departamento of data.departamentos">{{departamento.departamentoNome.substring(0, 1)}}</span>
+            </div>
+        </nz-option>
+    </nz-select>
+</div>
