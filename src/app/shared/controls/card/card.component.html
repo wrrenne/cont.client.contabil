@@ -44,7 +44,7 @@
                         @if (!isString(icon) && iconTemplate) {
                             <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
                         }
-                        <div class="grid w-full">
+                        <div class="grid w-full ml-2">
                             <h6 class="truncate text-ellipsis" [ngClass]="{ uppercase: titleUppercase }">{{ title }}</h6>
                             <span class="text-black/40 dark:text-white/40">{{ subTitle }}</span>
                         </div>

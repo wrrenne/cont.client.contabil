@@ -1,5 +1,8 @@
 import { Component, Injector, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PagingBase } from '../../../../shared/models';
 import { Vars } from '../../../../shared/variables';
 import { ClienteUserPageItem } from '../../../models/users/pageItems';
@@ -16,6 +19,7 @@ export interface ClienteUsersParameter {
     selector: 'cliente-users-table',
     standalone: true,
     templateUrl: './cliente-users-table.html',
+    imports: [RouterLink, InfiniteScrollDirective, AvatarTitleComponent],
 })
 export class ClienteUsersTableComponent extends PagingBase<ClienteUserPageItem> {
     descriptionBase = { none: '', plural: '{0} usuários', singular: '1 usuário' };

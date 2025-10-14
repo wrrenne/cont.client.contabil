@@ -1,5 +1,6 @@
 import { Component, forwardRef, Injector, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { InputBasePagingComponent } from '../../../../shared/controls/input-base-paging/input-base-paging';
 import { ContabilUserPageItem } from '../../../models/users/pageItems';
 import { SistemaUsersParameter } from '../../../models/users/parameters';
@@ -10,6 +11,7 @@ import { CadastroUsersService } from '../../services/pagings/cadastroUsersGet.se
     selector: 'user-select',
     templateUrl: './user-select.html',
     standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NzSelectModule],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

@@ -1,31 +1,23 @@
 <div class="mb-10 flex gap-3">
-    <button type="button" class="btn btn-gray" (click)="clienteUserAssociarOpenModal()">
-        {{ 'colaborador_novo' | translate }}
-    </button>
+    <button type="button" class="btn btn-gray" (click)="clienteUserAssociarOpenModal()">Novo Colaborador</button>
 </div>
 
-<div infiniteScroll
-     [infiniteScrollDistance]="2"
-     [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
     <table class="table">
         <thead>
             <tr>
                 <td>COLABORADOR</td>
                 <td class="hidden text-center md:table-cell">SETOR</td>
                 <td class="hidden text-center md:table-cell">OBRIGAÇÕES</td>
-                <td class="hidden text-center md:table-cell">
-                    CONCLUÍDO
-                </td>
-                <td class="hidden text-center md:table-cell">
-                    NO PRAZO
-                </td>
+                <td class="hidden text-center md:table-cell">CONCLUÍDO</td>
+                <td class="hidden text-center md:table-cell">NO PRAZO</td>
                 <!--<td>
                     ÚLTIMO ACESSO
                 </td>-->
             </tr>
         </thead>
-        <tr *ngFor="let item of datas; let i = index" [routerLink]="['/sistema/users/user', getEncryptedId(item.id!)]">
+        @for (item of datas; track item; let i = $index) {
+        <tr [routerLink]="['/sistema/users/user', getEncryptedId(item.id!)]">
             <td>
                 <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.userId" [rounded]="true">
                     <ng-template #subTitle>
@@ -38,7 +30,7 @@
             <td class="hidden text-center md:table-cell">
                 <span [class]="obrigacoesUtilsService.getDepartamentoColor(item.departamentoCor)">{{item.departamentoNome}}</span>
             </td>
-            <td class="hidden text-center md:table-cell">
+            <!-- <td class="hidden text-center md:table-cell">
                 <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
             </td>
             <td class="hidden text-center md:table-cell">
@@ -52,10 +44,11 @@
                     <span>{{item.obrigacoesStat?.concluidasNoPrazo ?? '-'}}</span>
                     <percentage-bar *ngIf="item.obrigacoesStat" [percentage]="item.obrigacoesStat.concluidoNoPrazoPorcento"></percentage-bar>
                 </div>
-            </td>
+            </td> -->
             <!--<td>
                 <span *ngIf="item.ultimoAcesso">{{item.ultimoAcesso! | customDateTime : false : true}}</span>
             </td>-->
         </tr>
+        }
     </table>
 </div>

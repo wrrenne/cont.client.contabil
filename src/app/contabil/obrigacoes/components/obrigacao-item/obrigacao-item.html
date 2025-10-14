@@ -1,5 +1,6 @@
 <!--  post image with slider-->
-<div class="panel mb-3 !p-0 text-sm font-medium xl:mb-4" *ngIf="obrigacao">
+@if (obrigacao) {
+<div class="panel mb-3 !p-0 text-sm font-medium xl:mb-4">
     <!-- post heading -->
     <div class="card-header flex gap-3 p-2.5 text-sm font-medium sm:p-4">
         <div class="flex w-full items-center space-x-3">
@@ -15,9 +16,13 @@
                     <h5 class="grow">{{obrigacao.obrigacaoDescricao}}</h5>
                 </div>
                 <div class="flex gap-3">
-                    <span *ngIf="obrigacao.tipoDescricao" class="text-xs">{{obrigacao.tipoDescricao}} {{obrigacao.periodicidadeDescricao}}</span>
-                    <span *ngIf="obrigacao.esferaDescricao" class="text-xs">{{obrigacao.esferaDescricao}}</span>
-                    <span *ngIf="obrigacao.departamentoNome" class="text-xs">{{obrigacao.departamentoNome}}</span>
+                    @if (obrigacao.tipoDescricao) {
+                    <span class="text-xs">{{obrigacao.tipoDescricao}} {{obrigacao.periodicidadeDescricao}}</span>
+                    } @if (obrigacao.esferaDescricao) {
+                    <span class="text-xs">{{obrigacao.esferaDescricao}}</span>
+                    } @if (obrigacao.departamentoNome) {
+                    <span class="text-xs">{{obrigacao.departamentoNome}}</span>
+                    }
                 </div>
             </div>
             }
@@ -39,9 +44,13 @@
                 <div class="flex gap-4">
                     <div class="flex gap-3">
                         <span>{{obrigacao.tipoDescricao}}</span>
-                        <span *ngIf="obrigacao.esfera == TEsfera.Federal">Federal</span>
-                        <span *ngIf="obrigacao.esfera == TEsfera.Estadual">{{obrigacao.uf}}</span>
-                        <span *ngIf="obrigacao.esfera == TEsfera.Municipal">{{obrigacao.municipioNome}}</span>
+                        @if (obrigacao.esfera == TEsfera.Federal) {
+                        <span>Federal</span>
+                        } @if (obrigacao.esfera == TEsfera.Estadual) {
+                        <span>{{obrigacao.uf}}</span>
+                        } @if (obrigacao.esfera == TEsfera.Municipal) {
+                        <span>{{obrigacao.municipioNome}}</span>
+                        }
                     </div>
                 </div>
             </div>
@@ -132,3 +141,4 @@
     </div>
     <button (click)="triggerBlink()">Trigger Operation</button>-->
 </div>
+}

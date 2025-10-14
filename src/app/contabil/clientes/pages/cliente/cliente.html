@@ -1,39 +1,33 @@
-<div class="content-site">
-    <profile [clienteId]="cliente.id" *ngIf="cliente" [title]="cliente.nome">
-        <ng-template #profilesubtitle>
-            <div class="mt-1 flex items-center gap-1">
-                <span class="tag tag-blue rounded-full">48.022.623/0001-91</span>
-                <span class="tag tag-blue-outline rounded-full">{{cliente.regime}}</span>
+@if (cliente) {
+<profile2 [title]="cliente.nome" [subTitle]="cliente.regime">
+    <ng-template #content>
+        <div _class="relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
+            <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
+                <nz-tabset [nzSelectedIndex]="tabIndex">
+                    <nz-tab nzTitle="Resumo">
+                        <ng-template nz-tab>
+                            <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Dados básicos">
+                        <ng-template nz-tab>
+                            <div class="flex flex-col gap-y-4">
+                                <ng-template [ngTemplateOutlet]="dados"></ng-template>
+                                <ng-template [ngTemplateOutlet]="enderecos"></ng-template>
+                            </div>
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Colaboradores"><ng-template [ngTemplateOutlet]="colaboradores"></ng-template></nz-tab>
+                    <nz-tab nzTitle="Perfis"><ng-template [ngTemplateOutlet]="perfis"></ng-template></nz-tab>
+                    <!-- <nz-tab nzTitle="Obrigações"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab> -->
+                    <nz-tab nzTitle="Ged"><ng-template [ngTemplateOutlet]="ged"></ng-template></nz-tab>
+                    <nz-tab nzTitle="Senhas"><ng-template [ngTemplateOutlet]="senhas"></ng-template></nz-tab>
+                </nz-tabset>
             </div>
-        </ng-template>
-        <ng-template #profilecontent>
-            <div _class="_mx-auto relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
-                <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
-                    <nz-tabset [nzSelectedIndex]="tabIndex">
-                        <nz-tab nzTitle="Resumo">
-                            <ng-template nz-tab>
-                                <ng-template [ngTemplateOutlet]="resumo"></ng-template>
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Dados básicos">
-                            <ng-template nz-tab>
-                                <div class="flex flex-col gap-y-4">
-                                    <ng-template [ngTemplateOutlet]="dados"></ng-template>
-                                    <ng-template [ngTemplateOutlet]="enderecos"></ng-template>
-                                </div>
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Colaboradores"><ng-template [ngTemplateOutlet]="colaboradores"></ng-template></nz-tab>
-                        <nz-tab nzTitle="Perfis"><ng-template [ngTemplateOutlet]="perfis"></ng-template></nz-tab>
-                        <nz-tab nzTitle="Obrigações"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab>
-                        <nz-tab nzTitle="Ged"><ng-template [ngTemplateOutlet]="ged"></ng-template></nz-tab>
-                        <nz-tab nzTitle="Senhas"><ng-template [ngTemplateOutlet]="senhas"></ng-template></nz-tab>
-                    </nz-tabset>
-                </div>
-            </div>
-        </ng-template>
-    </profile>
-</div>
+        </div>
+    </ng-template>
+</profile2>
+}
 
 <ng-template #resumo>
     <div class="flex gap-3">
@@ -45,7 +39,9 @@
 </ng-template>
 
 <ng-template #dados>
-    <cliente-dados *ngIf="cliente" [id]="cliente.id"></cliente-dados>
+    @if (cliente) {
+    <cliente-dados [id]="cliente.id"></cliente-dados>
+    }
     <cliente-avatar-edit [clienteId]="cliente.id!"></cliente-avatar-edit>
 </ng-template>
 
@@ -54,16 +50,16 @@
 </ng-template>
 
 <ng-template #perfis>
-    <!-- <cliente-perfis-table [parameters]="clientePerfisParameters"></cliente-perfis-table> -->
+    <cliente-perfis-table [parameters]="clientePerfisParameters"></cliente-perfis-table>
 </ng-template>
 
-<ng-template #obrigacoes>
-    <!-- <cliente-obrigacoes-table [parameters]="obrigacoesParameters"></cliente-obrigacoes-table> -->
-</ng-template>
+<!-- <ng-template #obrigacoes>
+    <cliente-obrigacoes-table [parameters]="obrigacoesParameters"></cliente-obrigacoes-table>
+</ng-template> -->
 
 <ng-template #colaboradores>
     <!--<cliente-resumo-users [users]="cliente.users"></cliente-resumo-users>-->
-    <!--<cliente-users-table [parameters]="usersParameter" [autoLoad]="false"></cliente-users-table>-->
+    <cliente-users-table [parameters]="usersParameter" [autoLoad]="false"></cliente-users-table>
 </ng-template>
 
 <ng-template #ged>

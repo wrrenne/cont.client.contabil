@@ -3,34 +3,30 @@
     <table class="table">
         <thead>
             <tr>
-                <td>NOME</td>
-                <td class="hidden text-center md:table-cell">Obrigações</td>
-                <td class="hidden text-center md:table-cell">Concluído</td>
-                <td class="hidden text-center md:table-cell">Atraso</td>
+                <td><div>NOME</div></td>
+                <td class="hidden text-center md:table-cell"><div>Obrigações</div></td>
+                <td class="hidden text-center md:table-cell"><div>Concluído</div></td>
+                <td class="hidden text-center md:table-cell"><div>Atraso</div></td>
             </tr>
         </thead>
-        @for (item of datas; track item; let i = $index) {
-        <tr class="cursor-pointer" [routerLink]="['/sistema/clientes/cliente', encryptionService.encrypt(item.id)]" [queryParams]="{tab: 0}">
-            <td>
-                <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'" [circle]="true"></avatar-title>
-            </td>
-            <td class="ponto-extra hidden text-center md:table-cell">
-                <span class="ponto-extra tag tag-blue-outline inline-block w-20">{{ item.obrigacoesStat?.total }}</span>
-            </td>
-            <td class="ponto-atraso hidden text-center md:table-cell">
-                <span class="ponto-atraso tag tag-green-outline inline-block w-20">{{ item.obrigacoesStat?.concluidoPorcento }}</span>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span class="ponto-atraso tag tag-red-outline inline-block w-20">{{ item.obrigacoesStat?.emAtraso }}</span>
-            </td>
-        </tr>
-        }
+        <tbody>
+            @for (item of datas; track item; let i = $index) {
+            <tr class="cursor-pointer" [routerLink]="['/sistema/clientes/cliente', encryptionService.encrypt(item.id)]" [queryParams]="{tab: 0}">
+                <td>
+                    <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'" [circle]="true"></avatar-title>
+                </td>
+                <td class="ponto-extra hidden text-center md:table-cell">
+                    <span class="ponto-extra tag tag-blue-outline inline-block w-20">{{ item.obrigacoesStat?.total }}</span>
+                </td>
+                <td class="ponto-atraso hidden text-center md:table-cell">
+                    <span class="ponto-atraso tag tag-green-outline inline-block w-20">{{ item.obrigacoesStat?.concluidoPorcento }}</span>
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    <span class="ponto-atraso tag tag-red-outline inline-block w-20">{{ item.obrigacoesStat?.emAtraso }}</span>
+                </td>
+            </tr>
+            }
+        </tbody>
     </table>
 </div>
 }
-
-<!--<div *ngIf="datas" infiniteScroll
-[infiniteScrollDistance]="2"
-[infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="flex flex-wrap">
-<cliente-card *ngFor="let item of datas" class="w-[400px] pb-4 pr-4" [clienteId]="item.id!" [clienteNome]="item.nome" [regime]="item.regime" [obrigacoesStat]="item.obrigacoesStat"></cliente-card>
-</div>-->

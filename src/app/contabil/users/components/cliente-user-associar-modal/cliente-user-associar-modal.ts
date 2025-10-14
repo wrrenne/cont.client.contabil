@@ -1,11 +1,13 @@
 import { Component, Inject, Injector } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
+import { InputTextAreaExComponent } from 'src/app/shared/controls/input-textarea-ex/input-textarea-ex';
 import { ModalBaseComponent } from '../../../../shared/controls/modal-base/modal-base';
 import { DateUtilsService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { UserClienteInput } from '../../../models/users/inputs';
 import { ContabilUsersService } from '../../services/contabilUsers.service';
+import { UserSelectComponent } from '../user-select/user-select';
 
 export interface ClienteUserAssociarModalData {
     clienteId: number;
@@ -16,6 +18,7 @@ export interface ClienteUserAssociarModalData {
     selector: 'cliente-user-associar-modal',
     standalone: true,
     templateUrl: './cliente-user-associar-modal.html',
+    imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, UserSelectComponent, InputTextAreaExComponent],
 })
 export class ClienteUserAssociarModalComponent extends ModalBaseComponent {
     firstFormGroup: FormGroup;
