@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
 import { EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
@@ -13,7 +14,7 @@ import { PerfisTableComponent } from '../../components/perfis-table/perfis-table
     templateUrl: './perfis.html',
     standalone: true,
     providers: [NzModalService],
-    imports: [PageTitleComponent, PerfisTableComponent],
+    imports: [PageTitleComponent, PerfisTableComponent, ButtonDefaultComponent],
 })
 export class PerfisPage {
     perfisParameters: PerfisParameter;

@@ -318,7 +318,13 @@ input {
 }
 
 .btn-xs {
-    @apply px-2 py-0.5 text-xs;
+    @apply px-2 !important;
+    @apply py-[3px] !important;
+}
+
+.btn-lg {
+    @apply px-3 !important;
+    @apply py-3 !important;
 }
 
 .button-sm {
@@ -476,7 +482,7 @@ apx-chart {
         @apply py-2.5 pr-3.5 text-black/80 dark:text-white/80 text-sm last:pr-0;
 
         div {
-            @apply bg-gray-200 dark:bg-zinc-800 w-full h-full p-3.5 rounded-lg;
+            @apply bg-gray-200 dark:bg-zinc-800 w-full h-full p-2.5 rounded-lg;
         }
     }
 

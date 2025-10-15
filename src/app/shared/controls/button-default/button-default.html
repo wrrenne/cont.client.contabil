@@ -1,8 +1,9 @@
+<!-- [ngClass]="{'!py-0.5 !px-2.5': size == 'xs', '!py-4': size == 'lg' }" -->
 <button
     type="button"
     class="button flex gap-2 text-center"
     [class]="bgClass ?? 'btn-gray'"
-    [ngClass]="{'!py-0.5 !px-2.5': size == 'xs', '!py-4': size == 'lg' }"
+    [ngClass]="{'btn-xs': size == 'xs', 'btn-lg': size == 'lg' }"
     [disabled]="disabled"
 >
     @if (icon) {

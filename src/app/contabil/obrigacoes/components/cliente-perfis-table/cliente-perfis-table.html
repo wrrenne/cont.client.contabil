@@ -1,24 +1,32 @@
 <div class="mb-4">
-    <button-default (click)="perfilAssociarOpen()" [showArrow]="true" [text]="'Associar Perfil'"> </button-default>
+    <button-default (click)="perfilAssociarOpen()" [bgClass]="'btn-primary'" [text]="'Associar Perfil'"> </button-default>
 </div>
 
 <table class="table">
-    @for (item of datas; track item; let i = $index) {
-    <tr>
-        <td>
-            <avatar-title class="cursor-pointer" [title]="item.descricao" [avatarFileName]="item.avatarFileName" [rounded]="true"> </avatar-title>
-        </td>
-        <td class="hidden text-center md:table-cell">
-            <!-- <div class="flex items-center gap-1" *ngIf="item.obrigacoesStat">
-                <div class="tag-lg tag-silver inline-block min-w-10">
-                    <div class="flex items-center gap-2">
-                        <ng-icon [name]="'ionStarSharp'" class="text-lg"></ng-icon>
-                        <span>{{item.obrigacoesStat.total}}</span>
+    <thead>
+        <tr>
+            <td><div>Perfil</div></td>
+            <td class="hidden md:table-cell"><div>Obrigações</div></td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of datas; track item; let i = $index) {
+        <tr>
+            <td>
+                <avatar-title class="cursor-pointer" [title]="item.descricao" [avatarFileName]="item.avatarFileName" [circle]="true"> </avatar-title>
+            </td>
+            <td class="hidden md:table-cell">
+                @if (item.obrigacoesStat) {
+                <div class="flex items-center gap-1">
+                    <div class="tag-lg tag-silver inline-block min-w-10">
+                        <div class="flex items-center gap-2">
+                            <span>{{item.obrigacoesStat.total}}</span>
+                        </div>
                     </div>
                 </div>
-            </div> -->
-        </td>
-        <!-- <td class="hidden text-center md:table-cell">
+                }
+            </td>
+            <!-- <td class="hidden text-center md:table-cell">
             <div class="flex w-full items-center gap-1" *ngIf="item.obrigacoesStat">
                 <div class="tag-lg mr-2 inline-block min-w-10" [class]="obrigacoesUtilsService.getPercentagemClass(item.obrigacoesStat.concluidoPorcento)">
                     <div class="flex items-center gap-2">
@@ -40,6 +48,7 @@
                 <percentage-bar [percentage]="item.obrigacoesStat.concluidoNoPrazoPorcento"></percentage-bar>
             </div>
         </td> -->
-    </tr>
-    }
+        </tr>
+        }
+    </tbody>
 </table>

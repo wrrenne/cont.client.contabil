@@ -3,32 +3,32 @@
     <table class="table">
         <thead>
             <tr>
-                <td>PERFIL</td>
-                <td class="hidden text-center md:table-cell">CLIENTES</td>
-                <td class="hidden text-center md:table-cell">OBRIGAÇÕES</td>
-                <td class="hidden text-center md:table-cell">CONCLUÍDO</td>
-                <td class="hidden text-center md:table-cell">NO PRAZO</td>
+                <td><div>Perfil</div></td>
+                <td class="hidden md:table-cell"><div>Clientes</div></td>
+                <td class="hidden md:table-cell"><div>Obrigações</div></td>
             </tr>
         </thead>
-        @for (item of datas; track item; let i = $index) {
-        <tr>
-            <td>
-                <avatar-title
-                    class="cursor-pointer"
-                    [title]="item.descricao"
-                    [routerLink]="[link, encryptionService.encrypt(item.perfilItemId)]"
-                    [rounded]="true"
-                >
-                </avatar-title>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span>{{item.obrigacoesStat?.clientesCount ?? '-'}}</span>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
-            </td>
-        </tr>
-        }
+        <tbody>
+            @for (item of datas; track item; let i = $index) {
+            <tr>
+                <td>
+                    <avatar-title
+                        class="cursor-pointer"
+                        [title]="item.descricao"
+                        [routerLink]="[link, encryptionService.encrypt(item.perfilItemId)]"
+                        [rounded]="true"
+                    >
+                    </avatar-title>
+                </td>
+                <td class="hidden md:table-cell">
+                    <span>{{item.obrigacoesStat?.clientesCount ?? '-'}}</span>
+                </td>
+                <td class="hidden md:table-cell">
+                    <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
+                </td>
+            </tr>
+            }
+        </tbody>
     </table>
 </div>
 }

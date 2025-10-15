@@ -9,7 +9,7 @@ import { Vars } from '../../../../shared/variables';
 import { ClientesParameter } from '../../../models/clientes/parameters';
 import { PerfisParameter } from '../../../models/obrigacoes/parameters';
 import { ClientePessoaFisicaNovoModalComponent } from '../../components/cliente-pessoa-fisica-novo-modal/cliente-pessoa-fisica-novo-modal';
-import { ClientePessoaJuridicaNovoModalComponent } from '../../components/cliente-pessoa-juridica-novo-modal/cliente-pessoa-juridica-novo';
+import { ClientePessoaJuridicaNovoModalComponent } from '../../components/cliente-pessoa-juridica-novo-modal/cliente-pessoa-juridica-novo-modal';
 import { ClientesTableComponent } from '../../components/clientes-table/clientes-table';
 
 @Component({

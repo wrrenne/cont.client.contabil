@@ -1,5 +1,6 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { InputBaseComponent } from '../../../shared/controls/input-base/input-base';
 import { TTipoPessoa } from '../../../shared/enums';
 import { TRegime } from '../../models/enums';
@@ -15,6 +16,7 @@ import { TRegime } from '../../models/enums';
         },
     ],
     standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NzRadioModule],
 })
 export class RegimeSelectComponent extends InputBaseComponent {
     @Input() TipoPessoa: TTipoPessoa | undefined;

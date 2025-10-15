@@ -3,7 +3,7 @@
     [class]="bgColor"
     [ngClass]="{'rounded-full': circle, 'rounded-md': rounded && !circle}"
     [ngStyle]="{'width': this.size || 'auto', 'height': this.size || 'auto'}"
-    [tippyProps]="{placement: 'top'}"
+    [tippyProps]="tippyProps"
     [ngxTippy]="tooltip"
 >
     <ng-icon [name]="icon" [class]="iconCss + ' ' + (iconColor ?? '')"></ng-icon>

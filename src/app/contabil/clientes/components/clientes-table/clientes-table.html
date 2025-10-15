@@ -3,10 +3,8 @@
     <table class="table">
         <thead>
             <tr>
-                <td><div>NOME</div></td>
-                <td class="hidden text-center md:table-cell"><div>Obrigações</div></td>
-                <td class="hidden text-center md:table-cell"><div>Concluído</div></td>
-                <td class="hidden text-center md:table-cell"><div>Atraso</div></td>
+                <td><div>Razão Social</div></td>
+                <td class="hidden md:table-cell"><div>Cnpj</div></td>
             </tr>
         </thead>
         <tbody>
@@ -15,15 +13,7 @@
                 <td>
                     <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'" [circle]="true"></avatar-title>
                 </td>
-                <td class="ponto-extra hidden text-center md:table-cell">
-                    <span class="ponto-extra tag tag-blue-outline inline-block w-20">{{ item.obrigacoesStat?.total }}</span>
-                </td>
-                <td class="ponto-atraso hidden text-center md:table-cell">
-                    <span class="ponto-atraso tag tag-green-outline inline-block w-20">{{ item.obrigacoesStat?.concluidoPorcento }}</span>
-                </td>
-                <td class="hidden text-center md:table-cell">
-                    <span class="ponto-atraso tag tag-red-outline inline-block w-20">{{ item.obrigacoesStat?.emAtraso }}</span>
-                </td>
+                <td class="hidden md:table-cell">{{item.cnpjFormat}}</td>
             </tr>
             }
         </tbody>

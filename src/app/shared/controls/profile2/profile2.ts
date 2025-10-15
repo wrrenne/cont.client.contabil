@@ -30,7 +30,7 @@ export class Profile2Component {
         return this._userId;
     }
     set userId(value: number) {
-        this.userId = value;
+        this._userId = value;
         this.url = `${this.apisUtilsService.getApiUrl(TMicroService.ApiAvatar)}/Avatar/AvatarUserDownload/${value}`;
     }
 

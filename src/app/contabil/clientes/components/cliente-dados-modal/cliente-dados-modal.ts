@@ -1,7 +1,10 @@
 import { Component, Inject, Injector, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { InputExComponent } from 'src/app/shared/controls/input-ex/input-ex';
+import { InputTextAreaExComponent } from 'src/app/shared/controls/input-textarea-ex/input-textarea-ex';
 import { ModalBaseComponent } from '../../../../shared/controls/modal-base/modal-base';
 import { TTipoPessoa } from '../../../../shared/enums';
 import { EncryptionService } from '../../../../shared/services';
@@ -13,24 +16,24 @@ import { ClientesService } from '../../services/clientes.service';
 @Component({
     selector: 'cliente-dados-modal',
     templateUrl: './cliente-dados-modal.html',
-    standalone: true
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, InputExComponent, InputTextAreaExComponent, ButtonDefaultComponent],
 })
 export class ClienteDadosModalComponent extends ModalBaseComponent {
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
 
-    firstFormGroup: FormGroup
-    secondFormGroup: FormGroup
+    cliente: ContabilClienteView;
 
-    cliente: ContabilClienteView
-
-    private _clienteId: number | undefined
+    private _clienteId: number | undefined;
     @Input() get clienteId() {
-        return this._clienteId
+        return this._clienteId;
     }
     set clienteId(value: number | undefined) {
-        if (!value) return
+        if (!value) return;
 
-        this._clienteId = value
-        this.getData(<number>value)
+        this._clienteId = value;
+        this.getData(<number>value);
     }
 
     constructor(
@@ -40,10 +43,10 @@ export class ClienteDadosModalComponent extends ModalBaseComponent {
         private clientesService: ClientesService,
         private encryptionService: EncryptionService,
         private vars: Vars,
-        @Inject(NZ_MODAL_DATA) data: any
+        @Inject(NZ_MODAL_DATA) data: any,
     ) {
-        super(injector)
-        this.clienteId = data.id
+        super(injector);
+        this.clienteId = data.id;
     }
 
     createFormJuridica(cliente: ContabilClienteView) {
@@ -51,7 +54,7 @@ export class ClienteDadosModalComponent extends ModalBaseComponent {
             nome: [cliente.nome, Validators.required],
             cnpj: [cliente.cnpj, Validators.required],
             inscricaoEstadual: [cliente.inscricaoEstadual],
-            comentario: []
+            comentario: [],
         });
     }
 
@@ -59,72 +62,68 @@ export class ClienteDadosModalComponent extends ModalBaseComponent {
         this.secondFormGroup = this.formBuilder.group({
             nome: [cliente.nome, Validators.required],
             cpf: [cliente.cpf, Validators.required],
-            comentario: []
+            comentario: [],
         });
     }
 
     submitFirstFormGroup() {
-        var input: ClienteInput =
-        {
+        var input: ClienteInput = {
             id: this.cliente?.id,
             cadastroId: this.vars.cadastro?.id,
             nome: this.firstFormGroup.get('nome')?.value,
             cnpj: this.firstFormGroup.get('cnpj')?.value,
             inscricaoEstadual: this.firstFormGroup.get('inscricaoEstadual')?.value,
             comentario: this.firstFormGroup.get('comentario')?.value,
-            userId: this.vars.user?.id!
-        }
+            userId: this.vars.user?.id!,
+        };
 
-        this.clientesService.clienteCreateOrUpdate(input).subscribe(x => {
+        this.clientesService.clienteCreateOrUpdate(input).subscribe((x) => {
             if (x.errorMessage == null) {
                 this.firstFormGroup.markAsPristine();
                 this.firstFormGroup.markAsUntouched();
                 this.firstFormGroup.updateValueAndValidity();
 
-                this.createNotificationSucesso()
-                this.closeModal(x.obj[0])
+                this.createNotificationSucesso();
+                this.closeModal(x.obj[0]);
             }
-        })
+        });
     }
 
     submitSecondFormGroup() {
-        var input: ClienteInput =
-        {
+        var input: ClienteInput = {
             id: this.cliente?.id,
             cadastroId: this.vars.cadastro?.id,
             nome: this.secondFormGroup.get('nome')?.value,
             cpf: this.secondFormGroup.get('cnpj')?.value,
             comentario: this.secondFormGroup.get('comentario')?.value,
-            userId: this.vars.user?.id!
-        }
+            userId: this.vars.user?.id!,
+        };
 
-        this.clientesService.clienteCreateOrUpdate(input).subscribe(x => {
+        this.clientesService.clienteCreateOrUpdate(input).subscribe((x) => {
             if (x.errorMessage == null) {
                 this.secondFormGroup.markAsPristine();
                 this.secondFormGroup.markAsUntouched();
                 this.secondFormGroup.updateValueAndValidity();
 
-                this.createNotificationSucesso()
-                this.closeModal(x.obj[0])
+                this.createNotificationSucesso();
+                this.closeModal(x.obj[0]);
             }
-        })
+        });
     }
 
     getData(id: number) {
-        this.clientesService.clienteGet(id).subscribe(x => {
-            this.cliente = x.obj
-            this.title = this.cliente.nome
-            this.subTitle = this.cliente.cnpjFormat ?? this.cliente.cpfFormat
+        this.clientesService.clienteGet(id).subscribe((x) => {
+            this.cliente = x.obj;
+            this.title = this.cliente.nome;
+            this.subTitle = this.cliente.cnpjFormat ?? this.cliente.cpfFormat;
 
-            if (this.cliente.tipo == TTipoPessoa.PessoaJuridica)
-                this.createFormJuridica(this.cliente)
-            else
-                this.createFormFisica(this.cliente)
-        })
+            if (this.cliente.tipo == TTipoPessoa.PessoaJuridica) this.createFormJuridica(this.cliente);
+            else this.createFormFisica(this.cliente);
+        });
     }
 
     getEncryptedId(id: number): string {
-        return this.encryptionService.encrypt(id)
+        return this.encryptionService.encrypt(id);
         //    return this.encryptionService.set(id)
     }
 }

@@ -11,10 +11,8 @@
                 <label-text [text]="cliente.cpfFormat" [label]="'Cpf'"></label-text>
                 }
             </div>
+            <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
         </div>
         }
-    </ng-template>
-    <ng-template #footer>
-        <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
     </ng-template>
 </card>
