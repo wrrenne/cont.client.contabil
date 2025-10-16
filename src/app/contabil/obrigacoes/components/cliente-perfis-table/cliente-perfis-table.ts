@@ -2,6 +2,7 @@ import { Component, Injector, Input } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { NoDataPanelComponent } from 'src/app/shared/controls/no-data-panel/no-data-panel';
 import { PagingBase } from '../../../../shared/models';
 import { ClientePerfilPageItem } from '../../../models/obrigacoes/pagings';
 import { ClientePerfisParameter } from '../../../models/obrigacoes/parameters';
@@ -12,7 +13,7 @@ import { ClientePerfilAssociarModalComponent } from '../cliente-perfil-associar-
 @Component({
     selector: 'cliente-perfis-table',
     templateUrl: './cliente-perfis-table.html',
-    imports: [ButtonDefaultComponent, AvatarTitleComponent],
+    imports: [ButtonDefaultComponent, AvatarTitleComponent, NoDataPanelComponent],
 })
 export class ClientePerfisTableComponent extends PagingBase<ClientePerfilPageItem> {
     //descriptionBase = { none: "", plural: "{0} perfis", singular: "1 perfil" }

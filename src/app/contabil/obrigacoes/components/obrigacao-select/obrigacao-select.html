@@ -1,16 +1,23 @@
 <div [formGroup]="form">
-    <label *ngIf="label" class="input-label mb-1.5 block">{{ label }}</label>
-    <nz-select nzShowSearch nzAllowClear class="w-full" [formControlName]="formControlName" (nzScrollToBottom)="onScrollDown()" (ngModelChange)="obrigacaoChanged($event)" [nzServerSearch]="true">
-        <nz-option [nzLabel]="data.text!" nzCustomContent [nzValue]="data.id" *ngFor="let data of datas">
-            <div>{{data.text}}</div>
-
-            <div class="flex items-center gap-1">
-                <span [ngClass]="getObrigacaoTipoCor(data.tipo)">{{data.tipoDescricao}}</span>
-                <span class="text-gray-800 dark:text-gray-400">{{data.periodicidadeDescricao}}</span>
-                <span class="text-gray-800 dark:text-gray-400">{{data.departamentoNome}}</span>
-            </div>
+    @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+    }
+    <nz-select
+        nzShowSearch
+        nzAllowClear
+        class="w-full"
+        [formControlName]="formControlName"
+        (nzScrollToBottom)="onScrollDown()"
+        [nzServerSearch]="true"
+        (ngModelChange)="onUserSelect($event)"
+    >
+        @for(data of datas; track data) {
+        <nz-option [nzLabel]="data.descricao!" nzCustomContent [nzValue]="data.id">
+            <avatar-title
+                [title]="data.descricao"
+                [subTitle]="data.tipoDescricao + (data.esfera == TEsfera.Estadual || data.esfera == TEsfera.Municipal ? ' - ' : '') + (data.municipioNome ?? '') + (data.uf ?? '')"
+            ></avatar-title>
         </nz-option>
+        }
     </nz-select>
-
-    <!--<input-select-ex [datas]="datas" [form]="form" [formControlName]="formControlName" [label]="label" (onChanged)="obrigacaoChanged($event)" (nzScrollToBottom)="onScrollDown()"></input-select-ex>-->
 </div>

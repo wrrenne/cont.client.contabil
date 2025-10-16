@@ -12,6 +12,7 @@ import { UsersTableComponent } from '../../components/users-table/users-table';
     selector: 'users-home',
     standalone: true,
     templateUrl: './home.html',
+    providers: [NzModalService],
     imports: [UsersTableComponent, PageTitleComponent],
 })
 export class UsersHomePage {
@@ -19,7 +20,6 @@ export class UsersHomePage {
 
     subTitle: string;
     searchUser = '';
-    displayType = 'list';
 
     constructor(
         private route: ActivatedRoute,

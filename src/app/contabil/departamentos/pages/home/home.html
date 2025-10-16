@@ -44,9 +44,5 @@
         </ng-template>
     </page-title>
 
-    <departamentos-table
-        [parameters]="departamentosParameters"
-        (titleOnChange)="titleOnChange($event)"
-        [link]="'/sistema/clientes/cliente'"
-    ></departamentos-table>
+    <departamentos-table [parameters]="departamentosParameters" (titleOnChange)="titleOnChange($event)"></departamentos-table>
 </div>

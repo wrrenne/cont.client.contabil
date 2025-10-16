@@ -28,7 +28,7 @@ export class AvatarTitleComponent {
     @Input() avatarFileName?: string;
 
     @Input() clienteId?: number;
-    @Input() rounded = true;
+    @Input() rounded = false;
     @Input() circle = false;
     @Input() avatarText?: string | number;
     @Input() avatarTextFontSize?: string;

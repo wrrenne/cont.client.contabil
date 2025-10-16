@@ -1,56 +1,33 @@
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <table class="table">
+    <table class="tabela">
         <thead>
             <tr>
-                <td>DEPARTAMENTO</td>
-                <td class="hidden text-center md:table-cell">CLIENTES</td>
-                <td class="hidden text-center md:table-cell">OBRIGAÇÕES</td>
-                <td class="hidden text-center md:table-cell">CONCLUÍDO</td>
-                <td class="hidden text-center md:table-cell">NO PRAZO</td>
+                <td>Departamento</td>
+                <td class="hidden text-center md:table-cell">Clientes</td>
+                <td class="hidden text-center md:table-cell">Obrigações</td>
             </tr>
         </thead>
-        @for (item of datas; track item; let i = $index) {
-        <tr>
-            <td>
-                <avatar-title
-                    class="cursor-pointer"
-                    [title]="item.nome"
-                    [avatarFileName]="item.avatarFileName"
-                    subTitle="{{item.users.length | singularPlural : '1 usuário' : 'usuários': 'Nenhuma obrigação'}}"
-                    [routerLink]="[link, encryptionService.encrypt(item.id)]"
-                    [rounded]="true"
-                >
-                </avatar-title>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span>{{item.obrigacoesStat.clientesCount}}</span>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span>{{item.obrigacoesStat.total}}</span>
-            </td>
-        </tr>
-        }
+        <tbody>
+            @for (item of datas; track item; let i = $index) {
+            <tr>
+                <td>
+                    <avatar-title
+                        class="cursor-pointer"
+                        [title]="item.nome"
+                        _avatarFileName="item.avatarFileName"
+                        subTitle="{{item.users.length | singularPlural : '1 usuário' : 'usuários': 'Nenhuma obrigação'}}"
+                        [routerLink]="['/sistema/departamentos/departamento', encryptionService.encrypt(item.id)]"
+                    >
+                    </avatar-title>
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    <span>{{item.obrigacoesStat?.clientesCount}}</span>
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    <span>{{item.obrigacoesStat?.total}}</span>
+                </td>
+            </tr>
+            }
+        </tbody>
     </table>
-
-    <!--<ng-container *ngIf="displayType == 'list'">
-        <div class="table-responsive w-full">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Departamento</th>
-                        <th></th>
-                        <th>Nota</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of datas;" class="cursor-pointer" [routerLink]="['/sistema/funcionarios/funcionario', encryptionService.set(item.id)]">
-                        <td class="whitespace-nowrap"> {{item.nome}} </td>
-                        <td></td>
-                        <td><rating [nota]="3"></rating></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </ng-container>-->
 </div>

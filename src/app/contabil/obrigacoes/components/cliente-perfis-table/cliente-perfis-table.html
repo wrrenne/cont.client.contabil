@@ -1,19 +1,23 @@
 <div class="mb-4">
-    <button-default (click)="perfilAssociarOpen()" [bgClass]="'btn-primary'" [text]="'Associar Perfil'"> </button-default>
+    <button-default (click)="perfilAssociarOpen()" [bgClass]="'btn-primary'" [text]="'Novo Perfil'"> </button-default>
 </div>
 
-<table class="table">
+@if (datas) { @if (datas.length == 0) {
+<no-data-panel [title]="'Nenhum perfil'"></no-data-panel>
+} @else {
+
+<table class="tabela">
     <thead>
         <tr>
-            <td><div>Perfil</div></td>
-            <td class="hidden md:table-cell"><div>Obrigações</div></td>
+            <td>Perfil</td>
+            <td class="hidden md:table-cell">Obrigações</td>
         </tr>
     </thead>
     <tbody>
         @for (item of datas; track item; let i = $index) {
         <tr>
             <td>
-                <avatar-title class="cursor-pointer" [title]="item.descricao" [avatarFileName]="item.avatarFileName" [circle]="true"> </avatar-title>
+                <avatar-title class="cursor-pointer" [title]="item.descricao" [avatarFileName]="item.avatarFileName"></avatar-title>
             </td>
             <td class="hidden md:table-cell">
                 @if (item.obrigacoesStat) {
@@ -52,3 +56,4 @@
         }
     </tbody>
 </table>
+} }

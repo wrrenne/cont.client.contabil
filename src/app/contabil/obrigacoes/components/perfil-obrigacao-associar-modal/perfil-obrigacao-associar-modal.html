@@ -1,18 +1,44 @@
 <modal-base [title]="'Associar Obrigação no Perfil'">
     <ng-template #modalContent>
         <div class="flex flex-col gap-y-4">
-            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
-                <obrigacao-select class="w-full" [form]="firstFormGroup" [parameters]="parameters" [formControlName]="'obrigacaoId'" (onChanged)="obrigacaoChanged($event)" [label]="'Obrigação'"></obrigacao-select>
+            @if (firstFormGroup) {
+            <form [formGroup]="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                <obrigacao-select
+                    class="w-full"
+                    [form]="firstFormGroup"
+                    [parameters]="parameters"
+                    [formControlName]="'obrigacaoId'"
+                    (onChanged)="obrigacaoChanged($event)"
+                    [label]="'Obrigação'"
+                ></obrigacao-select>
 
-                <input-month-year-ex *ngIf="periodicidade != TPeriodicidade.Anual" class="w-full md:w-5/12" [formControlName]="'competenciaMesInicial'" [form]="firstFormGroup" [label]="'Competência Inicial'"></input-month-year-ex>
-                <input-year-ex *ngIf="periodicidade == TPeriodicidade.Anual" class="w-full md:w-5/12" [formControlName]="'competenciaAnoInicial'" [form]="firstFormGroup" [label]="'Competência Inicial'"></input-year-ex>
+                @if (periodicidade != TPeriodicidade.Anual) {
+                <input-month-year-ex
+                    class="w-full md:w-5/12"
+                    [formControlName]="'competenciaMesInicial'"
+                    [form]="firstFormGroup"
+                    [label]="'Competência Inicial'"
+                ></input-month-year-ex>
+                } @if (periodicidade == TPeriodicidade.Anual) {
+                <input-year-ex
+                    class="w-full md:w-5/12"
+                    [formControlName]="'competenciaAnoInicial'"
+                    [form]="firstFormGroup"
+                    [label]="'Competência Inicial'"
+                ></input-year-ex>
+                }
 
-                <input-textarea-ex class="w-full" [form]="firstFormGroup" [placeholderText]="'Comentário opcional'" formControlName="comentario" [label]="'Comentário'"></input-textarea-ex>
+                <input-textarea-ex
+                    class="w-full"
+                    [form]="firstFormGroup"
+                    [placeholderText]="'Comentário opcional'"
+                    formControlName="comentario"
+                    [label]="'Comentário'"
+                ></input-textarea-ex>
 
-                <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full text-white md:w-36" (click)="submit()">
-                    Salvar
-                </button>
+                <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full text-white md:w-36" (click)="submit()">Salvar</button>
             </form>
+            }
         </div>
     </ng-template>
 </modal-base>

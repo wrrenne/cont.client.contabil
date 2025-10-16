@@ -3,6 +3,9 @@ import { Router, RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
+import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { NoDataPanelComponent } from 'src/app/shared/controls/no-data-panel/no-data-panel';
 import { DropDownRadioComponent, RadioItem } from '../../../../shared/controls/dropdown-radio/dropdown-radio';
 import { SetorDescription, TSetor } from '../../../../shared/enums';
 import { PagingBase } from '../../../../shared/models';
@@ -19,7 +22,7 @@ import { PerfilObrigacaoAssociarModalComponent } from '../perfil-obrigacao-assoc
 @Component({
     selector: 'obrigacoes-table',
     templateUrl: './obrigacoes-table.html',
-    imports: [RouterLink, InfiniteScrollDirective, DropDownRadioComponent],
+    imports: [RouterLink, InfiniteScrollDirective, DropDownRadioComponent, ButtonDefaultComponent, AvatarTitleComponent, NoDataPanelComponent],
 })
 export class ObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
     @Input() link: string;
@@ -31,6 +34,7 @@ export class ObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> impl
     @Output() onClick = new EventEmitter<number>();
 
     TObrigacaoTipo = TObrigacaoTipo;
+    TEsfera = TEsfera;
 
     //obrigacaoTipos: RadioItem[] = [
     //    {

@@ -1,5 +1,6 @@
 <div class="content-site">
-    <profile2 *ngIf="departamento" [title]="departamento.nome">
+    @if (departamento) {
+    <profile2 [title]="departamento.nome">
         <ng-template #profilecontent>
             <div>
                 <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
@@ -31,6 +32,7 @@
             </div>
         </ng-template>
     </profile2>
+    }
 </div>
 
 <!--<ng-template #resumo>

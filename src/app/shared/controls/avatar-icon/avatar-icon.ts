@@ -10,7 +10,7 @@ import { NgxTippyModule } from 'ngx-tippy-wrapper';
     templateUrl: './avatar-icon.html',
 })
 export class AvatarIconComponent implements OnInit {
-    @Input() rounded = true;
+    @Input() rounded = false;
     @Input() circle = false;
     @Input() icon!: string;
     @Input() iconCss = 'text-lg';

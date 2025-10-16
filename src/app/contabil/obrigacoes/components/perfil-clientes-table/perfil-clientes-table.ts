@@ -5,6 +5,7 @@ import { NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdow
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { HyperlinkButtonComponent } from 'src/app/shared/controls/hyperlink-button/hyperlink-button';
+import { NoDataPanelComponent } from 'src/app/shared/controls/no-data-panel/no-data-panel';
 import { PagingBase } from '../../../../shared/models';
 import { ClientePerfilPageItem } from '../../../models/obrigacoes/pagings';
 import { PerfilClientesParameter } from '../../../models/obrigacoes/parameters';
@@ -14,7 +15,7 @@ import { PerfilClienteAssociarModalComponent } from '../perfil-cliente-associar-
 @Component({
     selector: 'perfil-clientes-table',
     templateUrl: './perfil-clientes-table.html',
-    imports: [RouterLink, NgIcon, InfiniteScrollDirective, NzDropdownMenuComponent, NzDropDownModule, HyperlinkButtonComponent],
+    imports: [RouterLink, NgIcon, InfiniteScrollDirective, NzDropdownMenuComponent, NzDropDownModule, HyperlinkButtonComponent, NoDataPanelComponent],
 })
 export class PerfilClientesTableComponent extends PagingBase<ClientePerfilPageItem> {
     @Input() displayType = 'grid'; // 'grid' | 'list'

@@ -1,0 +1,7 @@
+<modal-base [title]="title" [subTitle]="'Obrigações'">
+    <ng-template #modalContent>
+        @if (obrigacoesParameter) {
+        <obrigacoes-table [parameters]="obrigacoesParameter"></obrigacoes-table>
+        }
+    </ng-template>
+</modal-base>

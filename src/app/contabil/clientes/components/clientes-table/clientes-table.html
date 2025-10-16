@@ -1,19 +1,37 @@
 @if (datas) {
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <table class="table">
+    <table class="tabela">
         <thead>
             <tr>
-                <td><div>Razão Social</div></td>
-                <td class="hidden md:table-cell"><div>Cnpj</div></td>
+                <td>Razão Social</td>
+                @if (!showStats) {
+                <td class="hidden md:table-cell">Cnpj</td>
+                } @else {
+                <td class="hidden md:table-cell">Concluído</td>
+                <td class="hidden md:table-cell">No Prazo</td>
+                }
             </tr>
         </thead>
         <tbody>
             @for (item of datas; track item; let i = $index) {
             <tr class="cursor-pointer" [routerLink]="['/sistema/clientes/cliente', encryptionService.encrypt(item.id)]" [queryParams]="{tab: 0}">
                 <td>
-                    <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'" [circle]="true"></avatar-title>
+                    <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
                 </td>
+                @if (!showStats) {
                 <td class="hidden md:table-cell">{{item.cnpjFormat}}</td>
+                } @else {
+                <td class="hidden md:table-cell">
+                    @if (item.obrigacoesStat) {
+                    <percentage-bar [done]="item.obrigacoesStat.concluidas" [total]="item.obrigacoesStat.total"></percentage-bar>
+                    }
+                </td>
+
+                <td class="hidden md:table-cell">
+                    @if (item.obrigacoesStat) { {{item.obrigacoesStat.concluidasNoPrazo > 0 ? item.obrigacoesStat.concluidasNoPrazo : '-'}}
+                    {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}} }
+                </td>
+                }
             </tr>
             }
         </tbody>

@@ -1,23 +1,18 @@
 @if (datas) {
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <table class="table">
+    <table class="tabela">
         <thead>
             <tr>
-                <td><div>Perfil</div></td>
-                <td class="hidden md:table-cell"><div>Clientes</div></td>
-                <td class="hidden md:table-cell"><div>Obrigações</div></td>
+                <td>Perfil</td>
+                <td class="hidden md:table-cell">Clientes</td>
+                <td class="hidden md:table-cell">Obrigações</td>
             </tr>
         </thead>
         <tbody>
             @for (item of datas; track item; let i = $index) {
             <tr>
                 <td>
-                    <avatar-title
-                        class="cursor-pointer"
-                        [title]="item.descricao"
-                        [routerLink]="[link, encryptionService.encrypt(item.perfilItemId)]"
-                        [rounded]="true"
-                    >
+                    <avatar-title class="cursor-pointer" [title]="item.descricao" (click)="perfilObrigacoesModal(item.perfilItemId!)" [rounded]="true">
                     </avatar-title>
                 </td>
                 <td class="hidden md:table-cell">

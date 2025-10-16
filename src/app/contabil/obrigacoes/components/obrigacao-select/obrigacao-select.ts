@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, forwardRef, Injector, Input, Output } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ObrigacaoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
+import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { InputBasePagingComponent } from '../../../../shared/controls/input-base-paging/input-base-paging';
-import { TObrigacaoTipo } from '../../../models/enums';
-import { ObrigacaoListItem } from '../../../models/obrigacoes';
+import { TEsfera } from '../../../models/enums';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
-import { ObrigacoesListItemService } from '../../services/pagings/obrigacoesListItem.service';
+import { ObrigacoesPagingService } from '../../services/pagings/obrigacoes.service';
 
 @Component({
     selector: 'obrigacao-select',
@@ -19,12 +20,12 @@ import { ObrigacoesListItemService } from '../../services/pagings/obrigacoesList
         },
     ],
     standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, CommonModule, NzSelectModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, NzSelectModule, AvatarTitleComponent],
 })
-export class ObrigacaoSelectComponent extends InputBasePagingComponent<ObrigacaoListItem> implements ControlValueAccessor {
-    //override descriptionBase = { none: "", plural: "{0} obrigações", singular: "1 obrigação" }
+export class ObrigacaoSelectComponent extends InputBasePagingComponent<ObrigacaoPageItem> implements ControlValueAccessor {
+    @Output() onChanged = new EventEmitter<ObrigacaoPageItem>();
 
-    @Output() onChanged = new EventEmitter<ObrigacaoListItem>();
+    TEsfera = TEsfera;
 
     private _parameters?: ObrigacoesParameter;
     @Input() get parameters() {
@@ -46,37 +47,22 @@ export class ObrigacaoSelectComponent extends InputBasePagingComponent<Obrigacao
         this.refresh();
     }
 
-    constructor(injector: Injector, obrigacoesListItemService: ObrigacoesListItemService) {
-        super(injector, obrigacoesListItemService);
+    constructor(injector: Injector, obrigacoesPagingService: ObrigacoesPagingService) {
+        super(injector, obrigacoesPagingService);
     }
 
-    obrigacaoChanged(e: any) {
-        var obrigacao: ObrigacaoListItem | undefined = this.datas.find((x) => x.id == e);
-
-        if (obrigacao) {
-            var result: ObrigacaoListItem = {
-                id: e,
-                periodicidade: obrigacao.periodicidade!,
-                text: obrigacao?.text,
-                tipo: obrigacao?.tipo,
-                departamentoId: obrigacao?.departamentoId,
-                departamentoNome: obrigacao?.departamentoNome,
-            };
-
-            this.onChanged.emit(result);
-        }
+    onUserSelect(e: any) {
+        var obrigacao: ObrigacaoPageItem | undefined = this.datas.find((x) => x.id == e);
+        this.onChanged.emit(obrigacao);
     }
 
-    getObrigacaoTipoCor(tipo: TObrigacaoTipo): string {
-        switch (tipo) {
-            case TObrigacaoTipo.Imposto:
-                return 'text-red-600';
-            case TObrigacaoTipo.Acessoria:
-                return 'text-blue-600';
-            case TObrigacaoTipo.Relatorio:
-                return 'text-green-600';
-        }
+    override writeValue(value: any): void {
+        super.writeValue(value);
 
-        return '';
+        if (value) {
+            var obrigacao: ObrigacaoPageItem | undefined = this.datas.find((x) => x.id == value);
+
+            console.log('Municipio value changed internally:', obrigacao);
+        }
     }
 }

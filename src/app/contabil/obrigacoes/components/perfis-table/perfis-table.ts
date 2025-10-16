@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PagingBase } from '../../../../shared/models';
@@ -7,16 +7,15 @@ import { PerfilPageItem } from '../../../models/clientes/pageItems';
 import { PerfisParameter } from '../../../models/obrigacoes/parameters';
 import { ObrigacoesUtilsService } from '../../services/obrigacoesUtils.service';
 import { PerfisPagingService } from '../../services/pagings/perfis.service';
+import { PerfilObrigacoesModalComponent } from '../perfil-obrigacoes-modal/perfil-obrigacoes-modal';
 
 @Component({
     selector: 'perfis-table',
     standalone: true,
-    imports: [RouterLink, InfiniteScrollDirective, AvatarTitleComponent],
+    imports: [InfiniteScrollDirective, AvatarTitleComponent],
     templateUrl: './perfis-table.html',
 })
 export class PerfisTableComponent extends PagingBase<PerfilPageItem> implements OnInit {
-    link = '/sistema/obrigacoes/perfil';
-
     @Output() onClick = new EventEmitter<number>();
 
     public _parameters?: PerfisParameter;
@@ -41,6 +40,7 @@ export class PerfisTableComponent extends PagingBase<PerfilPageItem> implements 
         injector: Injector,
         perfisPagingService: PerfisPagingService,
         public obrigacoesUtilsService: ObrigacoesUtilsService,
+        private modalService: NzModalService,
     ) {
         super(injector, perfisPagingService);
     }
@@ -72,6 +72,22 @@ export class PerfisTableComponent extends PagingBase<PerfilPageItem> implements 
         //    modal.afterClose.subscribe(r => {
         //        if (r) this.modalClosed(r)
         //    })
+    }
+
+    perfilObrigacoesModal(perfilItemId: number) {
+        const modal = this.modalService.create({
+            nzContent: PerfilObrigacoesModalComponent,
+            nzWidth: 770,
+            nzClosable: false,
+            nzFooter: null,
+
+            nzData: {
+                perfilItemId: perfilItemId,
+            },
+        });
+        modal.afterClose.subscribe((r) => {
+            if (r) this.modalClosed(r);
+        });
     }
 
     getEnc(id: number) {

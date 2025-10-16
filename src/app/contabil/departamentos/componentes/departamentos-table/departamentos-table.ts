@@ -19,8 +19,6 @@ import { DepartamentosPagingService } from '../../services/pagings';
     templateUrl: './departamentos-table.html',
 })
 export class DepartamentosTableComponent extends PagingBase<DepartamentoPageItem> implements OnInit {
-    @Input() link: string;
-
     searchSubscription: Subscription;
 
     @Output() onClick = new EventEmitter<number>();

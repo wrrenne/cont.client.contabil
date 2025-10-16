@@ -1,12 +1,12 @@
 <div class="mb-7 flex gap-4">
     @if (perfilItemId) {
-    <button type="button" class="button btn-gray" (click)="perfilObrigacaoAssociarModal()">Associar Obrigação</button>
+    <button-default [bgClass]="'btn-primary'" (click)="perfilObrigacaoAssociarModal()" [text]="'Associar Obrigação'"></button-default>
     } @if (!perfilItemId) { @if (parameters?.tipo == undefined || parameters?.tipo! == TObrigacaoTipo.Imposto) {
-    <button type="button" class="button btn-gray" (click)="obrigacaoNovoModal(TObrigacaoTipo.Imposto)">Novo Imposto</button>
+    <button-default [bgClass]="'btn-primary'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Imposto)" [text]="'Novo Imposto'"></button-default>
     } @if (parameters?.tipo == undefined || parameters?.tipo! == TObrigacaoTipo.Acessoria) {
-    <button type="button" class="button btn-gray" (click)="obrigacaoNovoModal(TObrigacaoTipo.Acessoria)">Nova Obrigação Acessória</button>
+    <button-default [bgClass]="'btn-primary'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Acessoria)" [text]="'Nova Obrigação Acessória'"></button-default>
     } @if (parameters?.tipo == undefined || parameters?.tipo! == TObrigacaoTipo.Relatorio) {
-    <button type="button" class="button btn-gray" (click)="obrigacaoNovoModal(TObrigacaoTipo.Relatorio)">Novo Relatório</button>
+    <button-default [bgClass]="'btn-primary'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Relatorio)" [text]="'Novo Relatório'"></button-default>
     } }
 
     <!--<dropdown-radio [items]="obrigacaoTipos" (valueChanged)="obrigacaoTipoChanged($event)" [label]="'Filtro por Tipo'" [btnClass]="'btn-primary'"></dropdown-radio>-->
@@ -14,29 +14,36 @@
 </div>
 
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <div class="table-responsive w-full">
-        <table>
-            <thead>
-                <tr>
-                    <th>Obrigação</th>
-                    <th>Tipo</th>
-                    <th>Esfera</th>
-                    <th>Setor</th>
-                    <th>Próx Vencto</th>
-                    <th>Próx Prazo</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (item of datas; track item) {
-                <tr class="cursor-pointer" [routerLink]="['/sistema/funcionarios/funcionario', encryptionService.encrypt(item.id)]">
-                    <td class="whitespace-nowrap">{{item.descricao}}</td>
-                    <td>{{item.tipoDescricao}}</td>
-                    <td>{{item.esferaDescricao}}</td>
-                    <td>{{item.departamentoNome}}</td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>Obrigação</th>
+                <th>Departamento</th>
+                <th>Vencimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item) {
+            <tr class="cursor-pointer" [routerLink]="['/sistema/funcionarios/funcionario', encryptionService.encrypt(item.id)]">
+                <td class="whitespace-nowrap">
+                    <avatar-title
+                        [title]="item.descricao"
+                        [subTitle]="item.tipoDescricao + (item.esfera == TEsfera.Estadual || item.esfera == TEsfera.Municipal ? ' - ' : '') + (item.municipioNome ?? '') + (item.uf ?? '')"
+                    ></avatar-title>
+                </td>
+                <td>{{item.departamentoNome}}</td>
+                <td>
+                    <div class="flex gap-3 items-center">
+                        <span class="tag tag-red w-10 flex justify-center">{{item.vencimentoPrazoDia.vencimentoDia ?? item.vencimentoPrazoDia.prazoDia}}</span
+                        ><span>{{item.periodicidadeDescricao}} {{item.anualMesDescricao}}</span>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
+@if (datas && datas.length == 0) {
+<no-data-panel [title]="'Nenhuma obrigação'"></no-data-panel>
+}

@@ -1,27 +1,24 @@
 <modal-base [title]="title">
     <ng-template #modalContent>
         <div class="flex flex-col gap-y-4">
-            <form *ngIf="firstFormGroup" [formGroup]="firstFormGroup" class="flex flex-col gap-4">
+            @if (firstFormGroup) {
+            <form [formGroup]="firstFormGroup" class="flex flex-col gap-4">
                 <!--<setor-select [formControlName]="'setor'" class="w-full" [form]="firstFormGroup" [label]="'Setor'"></setor-select>-->
                 <input-ex class="flex-auto" [formControlName]="'descricao'" [form]="firstFormGroup" [label]="'Nome da Obrigação'"></input-ex>
                 <departamento-select [formControlName]="'departamentoId'" [form]="firstFormGroup" [label]="'Departamento'"></departamento-select>
                 <esfera-select class="w-2/4" [formControlName]="'esfera'" [form]="firstFormGroup" [label]="'Esfera'"></esfera-select>
                 <div class="flex w-full gap-4">
-                    <uf-select
-                        class="w-1/4"
-                        *ngIf="isEsferaEstadual || isEsferaMunicipal"
-                        [formControlName]="'uf'"
-                        [form]="firstFormGroup"
-                        [label]="'Estado'"
-                    ></uf-select>
+                    @if (isEsferaEstadual || isEsferaMunicipal) {
+                    <uf-select class="w-1/4" [formControlName]="'uf'" [form]="firstFormGroup" [label]="'Estado'"></uf-select>
+                    } @if (isEsferaMunicipal) {
                     <municipio-select
                         class="w-3/4"
-                        *ngIf="isEsferaMunicipal"
                         [formControlName]="'municipioCodigo'"
                         [form]="firstFormGroup"
                         [label]="'Município'"
                         [parameters]="municipioParameter"
                     ></municipio-select>
+                    }
                 </div>
                 <periodicidade-select
                     class="w-full"
@@ -30,8 +27,7 @@
                     [label]="'Periodicidade'"
                 ></periodicidade-select>
             </form>
-
-            @if (periodicidade) { @if (tipo == TObrigacaoTipo.Imposto || tipo == TObrigacaoTipo.Acessoria) { @if (periodicidade != TPeriodicidade.Anual) {
+            } @if (periodicidade) { @if (tipo == TObrigacaoTipo.Imposto || tipo == TObrigacaoTipo.Acessoria) { @if (periodicidade != TPeriodicidade.Anual) {
             <form [formGroup]="impostoOuAcessoriaMensalFormGroup" class="flex flex-wrap gap-4">
                 <div class="flex w-full gap-4">
                     <input-day-ex

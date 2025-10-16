@@ -6,11 +6,11 @@
 
     <!-- Profile Info Card -->
     <div class="relative -mt-12 px-6">
-        <div class="bg-[#fafafa] dark:bg-[#0b0b0b] rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div class="bg-[#fafafa] dark:bg-[#0b0b0b] rounded-none p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <!-- Left Section: Photo + Details -->
             <div class="flex items-center gap-4">
                 @if (url) {
-                <img [src]="url" class="w-20 h-20 rounded-full border-2 border-white shadow -mt-10 sm:mt-0" />
+                <img [src]="url" class="w-20 h-20 rounded-none border-2 border-white shadow -mt-10 sm:mt-0" />
                 }
                 <div>
                     <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>

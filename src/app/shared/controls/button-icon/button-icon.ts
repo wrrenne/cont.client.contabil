@@ -9,7 +9,7 @@ import { AvatarIconComponent } from '../avatar-icon/avatar-icon';
 })
 export class ButtonIconComponent {
     @Input() icon: string;
-    @Input() rounded = true;
+    @Input() rounded = false;
     @Input() circle = false;
     @Input() tooltip?: string;
     @Input() size?: string = '2rem';

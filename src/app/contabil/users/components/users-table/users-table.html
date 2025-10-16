@@ -1,39 +1,38 @@
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <table class="table">
+    <table class="tabela">
         <thead>
             <tr>
-                <td>COLABORADOR</td>
-                <td class="hidden text-center md:table-cell">CLIENTES</td>
-                <td class="hidden text-center md:table-cell">OBRIGAÇÕES</td>
+                <td>Colaborador</td>
+                <td class="hidden text-center md:table-cell">Clientes</td>
                 <td>Último acesso</td>
             </tr>
         </thead>
-        @for(item of datas; track item; let i = $index) {
-        <tr [routerLink]="['/sistema/users/user', getEncryptedId(item.id)]">
-            <td>
-                <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.id" [rounded]="true">
-                    <ng-template #subTitle>
-                        <div class="flex items-center gap-1">
-                            <span
-                                class="mr-2 inline-block"
-                                *ngFor="let departamento of item.departamentos"
-                                [ngClass]="obrigacoesUtilsService.getDepartamentoColor(departamento.cor)"
-                                >{{departamento.departamentoNome}}</span
-                            >
-                        </div>
-                    </ng-template>
-                </avatar-title>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span>{{item.obrigacoesStat?.clientesCount ?? '-'}}</span>
-            </td>
-            <td class="hidden text-center md:table-cell">
-                <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
-            </td>
-            <td>
-                <span *ngIf="item.ultimoAcesso">{{item.ultimoAcesso! | customDateTime : false : true}}</span>
-            </td>
-        </tr>
-        }
+        <tbody>
+            @for(item of datas; track item; let i = $index) {
+            <tr [routerLink]="['/sistema/users/user', getEncryptedId(item.id)]">
+                <td>
+                    <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.id">
+                        <ng-template #subTitle>
+                            <div class="flex items-center gap-1">
+                                @for (departamento of item.departamentos; track departamento) {
+                                <span class="mr-2 inline-block" [ngClass]="obrigacoesUtilsService.getDepartamentoColor(departamento.cor)"
+                                    >{{departamento.departamentoNome}}</span
+                                >
+                                }
+                            </div>
+                        </ng-template>
+                    </avatar-title>
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    <span>{{item.obrigacoesStat?.clientesCount ?? '-'}}</span>
+                </td>
+                <td>
+                    @if (item.ultimoAcesso) {
+                    <span>{{item.ultimoAcesso! | customDateTime : false : true}}</span>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
     </table>
 </div>

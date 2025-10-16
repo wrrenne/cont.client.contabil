@@ -58,7 +58,7 @@ body.dark {
 }
 
 .form-input {
-    @apply border-input background-color-input text-color-input color-placeholder;
+    @apply rounded-none border-input background-color-input text-color-input color-placeholder;
 }
 
 .textarea {
@@ -145,11 +145,11 @@ ul {
 }
 
 .btn {
-    @apply shadow-none py-1.5 rounded-md;
+    @apply shadow-none py-1.5 rounded-none;
 }
 
 .btn-xs {
-    @apply btn shadow-none py-0.5 rounded-md;
+    @apply btn shadow-none py-0.5 rounded-none;
 }
 
 .btn-blue {
@@ -157,11 +157,11 @@ ul {
 }
 
 .btn-border {
-    @apply shadow-none border rounded-md;
+    @apply shadow-none border rounded-none;
 }
 
 .modal-title {
-    @apply font-bold text-black dark:text-white text-[15px];
+    @apply font-bold text-black dark:text-white text-[16px];
 }
 
 .modal-subtitle {
@@ -228,30 +228,37 @@ input {
 .tabela {
     @apply bg-[#fcfcfc] dark:bg-[#101010] text-black/70 dark:text-white/70 panel;
 
+    thead td,
     th {
-        @apply bg-[#f3f3f3] dark:bg-[#141414] text-black dark:text-white font-semibold;
+        @apply px-3 py-6 text-black/90 dark:text-white/90 text-sm last:pr-0 border border-table border-b border-r bg-[#e0e0e0] dark:bg-[#505050];
     }
 
-    th:first-child {
-        @apply rounded-tl;
-    }
+    tbody {
+        td.group {
+            @apply bg-[#e9e9e9] !important;
+            @apply dark:bg-[#303030] !important;
+        }
 
-    th:last-child {
-        @apply rounded-tr;
-    }
+        td {
+            @apply p-3 border-table border-b border-r;
+        }
 
-    th,
-    td {
-        @apply p-4 border-table border-b border-r;
+        tr:not(.group):nth-child(odd) td {
+            @apply bg-white dark:bg-zinc-950;
+        }
+
+        tr:not(.group):nth-child(even) td {
+            @apply bg-[#f7f7f7] dark:bg-[#101010];
+        }
     }
 }
 
 .panel {
-    @apply border shadow-none border-color rounded-xl;
+    @apply border shadow-none border-color;
 }
 
 .ppanel {
-    @apply p-5 rounded-xl;
+    @apply p-5 border border-color;
 }
 
 /*.card-header {

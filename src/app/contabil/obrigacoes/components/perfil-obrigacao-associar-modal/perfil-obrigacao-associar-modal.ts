@@ -8,7 +8,6 @@ import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-bas
 import { DateUtilsService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { TObrigacaoTipo, TPeriodicidade } from '../../../models/enums';
-import { ObrigacaoListItem } from '../../../models/obrigacoes';
 import { PerfilObrigacaoInput } from '../../../models/obrigacoes/inputs';
 import { ObrigacaoPageItem } from '../../../models/obrigacoes/pagings';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
@@ -72,7 +71,7 @@ export class PerfilObrigacaoAssociarModalComponent {
             competenciaAnoInicial: [null],
             comentario: [null],
         });
-        //this.firstFormGroup.valueChanges.subscribe((val) => console.log(this.firstFormGroup.value));
+        this.firstFormGroup.valueChanges.subscribe((val) => console.log(this.firstFormGroup.value));
     }
 
     submit() {
@@ -103,7 +102,7 @@ export class PerfilObrigacaoAssociarModalComponent {
         else this.modal.close();
     }
 
-    obrigacaoChanged(e: ObrigacaoListItem) {
+    obrigacaoChanged(e: ObrigacaoPageItem) {
         this.periodicidade = e.periodicidade;
     }
 }
