@@ -1,6 +1,6 @@
 export enum TDiaTipo {
     DiasUteis = 1,
-    DiasFixos = 2
+    DiasFixos = 2,
 }
 
 export enum TObrigacaoTipo {
@@ -14,37 +14,37 @@ export enum TObrigacaoTipo {
 export const ObrigacaoTipoDescription = new Map<number, string>([
     [TObrigacaoTipo.Imposto, 'Imposto'],
     [TObrigacaoTipo.Acessoria, 'Obrigação Acessória'],
-    [TObrigacaoTipo.Relatorio, 'Relatório']
+    [TObrigacaoTipo.Relatorio, 'Relatório'],
 ]);
 
 export const ObrigacaoTipoNovoDescription = new Map<number, string>([
     [TObrigacaoTipo.Imposto, 'Novo Imposto'],
     [TObrigacaoTipo.Acessoria, 'Nova Obrigação Acessória'],
-    [TObrigacaoTipo.Relatorio, 'Nova Relatório']
+    [TObrigacaoTipo.Relatorio, 'Nova Relatório'],
 ]);
 
 export enum TPeriodicidade {
     Mensal = 1,
     Anual = 2,
-    Nenhum = 100
+    Nenhum = 100,
 }
 
 export enum TFeriadoTipo {
     MesmoDia = 0,
     Antecipar = -1,
-    Postergar = 1
+    Postergar = 1,
 }
 
 export enum TEsfera {
     Federal = 1,
     Estadual = 2,
-    Municipal = 3
+    Municipal = 3,
 }
 
 export enum TPeriodoAnual {
     MesmoAno = 0,
     AnoSeguinte = 1,
-    Nenhum = 100
+    Nenhum = 100,
 }
 
 export enum TMes {
@@ -60,7 +60,7 @@ export enum TMes {
     Outubro = 10,
     Novembro = 11,
     Dezembro = 12,
-    Nenhum = 100
+    Nenhum = 100,
 }
 
 export enum TPeriodoMensal {
@@ -76,7 +76,7 @@ export enum TPeriodoMensal {
     Mes9 = 9,
     Mes10 = 10,
     Mes11 = 11,
-    Nenhum = 100
+    Nenhum = 100,
 }
 
 //export enum TTipoPessoa {
@@ -99,7 +99,7 @@ export enum TObrigacaoStatus {
     EmAberto = 0,
     ConcluidoNoPrazo = 1,
     ConcluidoForadoPrazo = 2,
-    SemMovimento = 3
+    SemMovimento = 3,
 }
 
 export enum TMessageText {
@@ -108,13 +108,13 @@ export enum TMessageText {
     MesInicialNaoInformado = -101,
     RegistroNaoLocalizado = -107,
     ParametroPontoUserNecessario = -108,
-    Erro = -999
+    Erro = -999,
 }
 
 export enum TObrigacaoClientePeriodoPor {
     PorCliente = 0,
     PorObrigacao = 1,
-    PorUser = 2
+    PorUser = 2,
 }
 
 export enum TRegime {
@@ -124,5 +124,5 @@ export enum TRegime {
     Simples = 3,
     MEI = 4,
     Autonomo = 5,
-    ProfissionalLiberal = 6
+    ProfissionalLiberal = 6,
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIcon } from '@ng-icons/core';
-import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { environment } from '../../../../../environments/environment';
 import { Vars } from '../../../../shared/variables';
 import { fadeInAnimation } from '../../../animations';
@@ -18,14 +18,13 @@ import { SolicitacaoGrupo } from '../../models';
 import { CommentInput, SolicitacaoRespostaInput } from '../../models/inputs';
 import { NewCommentParameter, TimelineCommentFormParameter } from '../../models/parameters';
 import { TimelinesService } from '../../services/timelines.service';
-import { TimelineCommentsModalComponent } from '../timeline-comments-modal/timeline-comments-modal';
 
 @Component({
     selector: 'timeline-comment-form',
     templateUrl: './timeline-comment-form.html',
     standalone: true,
     imports: [CommonModule, FormsModule, ReactiveFormsModule, NzModalModule, NgIcon, HyperlinkButtonComponent, InputTextAreaExComponent, InputFileComponent],
-    providers: [FirstWordPipe, NzModalService],
+    providers: [FirstWordPipe],
     animations: [fadeInAnimation],
 })
 export class TimelineCommentFormComponent implements OnInit {
@@ -80,7 +79,6 @@ export class TimelineCommentFormComponent implements OnInit {
         private stringsService: StringsService,
         private vars: Vars,
         private gedService: GedService,
-        private modalService: NzModalService,
         private firstWordPipe: FirstWordPipe,
         private dateUtilsService: DateUtilsService,
     ) {}
@@ -276,23 +274,23 @@ export class TimelineCommentFormComponent implements OnInit {
     //    }
     //}
 
-    showComments(openComentar: boolean) {
-        const modal = this.modalService.create({
-            nzContent: TimelineCommentsModalComponent,
-            nzWidth: 570,
-            nzClosable: false,
-            nzFooter: null,
-            nzData: {
-                parameter: this.parameter,
-                focusNewComment: true,
-                newComment: openComentar ? { commentUserNome: this.vars.user?.nome } : undefined,
-            },
-        });
+    // showComments(openComentar: boolean) {
+    //     const modal = this.modalService.create({
+    //         nzContent: TimelineCommentsModalComponent,
+    //         nzWidth: 570,
+    //         nzClosable: false,
+    //         nzFooter: null,
+    //         nzData: {
+    //             parameter: this.parameter,
+    //             focusNewComment: true,
+    //             newComment: openComentar ? { commentUserNome: this.vars.user?.nome } : undefined,
+    //         },
+    //     });
 
-        //    this.timelinesService.commentsByOrigemId(this.parameter.postInfo?.origemId!, this.parameter.tipo!).subscribe(x => {
-        //        this.comments = x.obj
-        //    })
-    }
+    //     //    this.timelinesService.commentsByOrigemId(this.parameter.postInfo?.origemId!, this.parameter.tipo!).subscribe(x => {
+    //     //        this.comments = x.obj
+    //     //    })
+    // }
 }
 
 export class TimelineCommentButton {

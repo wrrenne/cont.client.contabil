@@ -3,21 +3,22 @@ import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angul
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
+import { ClientesPagingService } from 'src/app/contabil/clientes/services/pagings';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
+import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ContabilClientePageItem } from '../../../models/clientes/pageItems';
 import { ClientesParameter } from '../../../models/clientes/parameters';
-import { ClientesPagingService } from '../../services/pagings/clientes.service';
 
 @Component({
-    selector: 'clientes-table',
-    templateUrl: './clientes-table.html',
+    selector: 'obr-clientes-table',
+    templateUrl: './obr-clientes-table.html',
     standalone: true,
-    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink],
+    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, PercentageBarComponent],
 })
-export class ClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
+export class ObrClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
     searchSubscription: Subscription;
 
     @Output() onClick = new EventEmitter<number>();

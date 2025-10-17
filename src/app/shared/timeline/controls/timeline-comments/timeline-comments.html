@@ -1,12 +1,9 @@
 @if (comments && comments.length > 0) {
-  <div class="flex flex-col gap-6">
+<div class="flex flex-col gap-6">
     @for (comment of comments; track comment) {
-      <timeline-comment [comment]="comment" (onNewCommentClick)="newCommentClick($event)" [showResponder]="showResponder"></timeline-comment>
+    <timeline-comment [comment]="comment" (onNewCommentClick)="newCommentClick($event)" [showResponder]="showResponder"></timeline-comment>
     }
-  </div>
-}
-@if (!comments || comments.length == 0) {
-  <div class="text-muted">
-    Sem comentários
-  </div>
+</div>
+} @if (!comments || comments.length == 0) {
+<div class="text-muted">Sem comentários</div>
 }

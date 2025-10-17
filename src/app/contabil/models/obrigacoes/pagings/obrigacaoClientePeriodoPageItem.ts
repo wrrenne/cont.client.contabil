@@ -1,10 +1,10 @@
-import { TSetor } from "../../../../shared/enums";
-import { ArquivoPageItem } from "../../../../shared/ged/models/pagings";
-import { PageItemBase } from "../../../../shared/models";
-import { PostInfo } from "../../../../shared/timeline/models";
-import { CommentPageItem } from "../../../../shared/timeline/models/pagings";
-import { TEsfera, TObrigacaoStatus, TObrigacaoTipo, TPeriodicidade } from "../../enums";
-import { ClientePerfilPageItem, ObrigacaoClientePeriodoUserPageItem } from "../pagings";
+import { TSetor } from '../../../../shared/enums';
+import { ArquivoPageItem } from '../../../../shared/ged/models/pagings';
+import { PageItemBase } from '../../../../shared/models';
+import { PostInfo } from '../../../../shared/timeline/models';
+import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
+import { TEsfera, TObrigacaoStatus, TObrigacaoTipo, TPeriodicidade } from '../../enums';
+import { ClientePerfilPageItem, ObrigacaoClientePeriodoUserPageItem } from '../pagings';
 
 export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     clienteId: number;
@@ -12,6 +12,7 @@ export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     clienteNomeFormat: string;
     obrigacaoId: number;
     obrigacaoDescricao: string;
+    obrigacaoDescricaoFormat: string;
     perfilItemId?: number;
     perfilItemDescricao: string;
     tipo: TObrigacaoTipo;
@@ -41,12 +42,12 @@ export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     userConcluidoPorNomeFormat?: string;
     gedPastaCodigo: string;
     gedPastaNome: string;
-    users: ObrigacaoClientePeriodoUserPageItem[]
+    users: ObrigacaoClientePeriodoUserPageItem[];
     //users: UserPageItem[];
     perfis: ClientePerfilPageItem[];
     comments: CommentPageItem[];
     arquivos: ArquivoPageItem[];
-    postInfo: PostInfo;
+    postInfo?: PostInfo;
     periodicidade: TPeriodicidade;
     periodicidadeDescricao: string;
 }

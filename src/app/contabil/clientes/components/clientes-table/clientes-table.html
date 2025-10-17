@@ -4,12 +4,7 @@
         <thead>
             <tr>
                 <td>Razão Social</td>
-                @if (!showStats) {
                 <td class="hidden md:table-cell">Cnpj</td>
-                } @else {
-                <td class="hidden md:table-cell">Concluído</td>
-                <td class="hidden md:table-cell">No Prazo</td>
-                }
             </tr>
         </thead>
         <tbody>
@@ -18,20 +13,7 @@
                 <td>
                     <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
                 </td>
-                @if (!showStats) {
                 <td class="hidden md:table-cell">{{item.cnpjFormat}}</td>
-                } @else {
-                <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat) {
-                    <percentage-bar [done]="item.obrigacoesStat.concluidas" [total]="item.obrigacoesStat.total" [showPercentage]="false"></percentage-bar>
-                    }
-                </td>
-
-                <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat) { {{item.obrigacoesStat.concluidasNoPrazo > 0 ? item.obrigacoesStat.concluidasNoPrazo : '-'}}
-                    {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}} }
-                </td>
-                }
             </tr>
             }
         </tbody>

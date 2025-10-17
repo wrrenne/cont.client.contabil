@@ -1,0 +1,32 @@
+@if (datas) {
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <td>Razão Social</td>
+                <td class="hidden md:table-cell">Concluído</td>
+                <td class="hidden md:table-cell">No Prazo</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item; let i = $index) {
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/clienteobrigacoes', encryptionService.encrypt(item.id)]" _queryParams="{tab: 0}">
+                <td>
+                    <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
+                </td>
+                <td class="hidden md:table-cell">
+                    @if (item.obrigacoesStat) {
+                    <percentage-bar [done]="item.obrigacoesStat.concluidas" [total]="item.obrigacoesStat.total" [showPercentage]="false"></percentage-bar>
+                    }
+                </td>
+
+                <td class="hidden md:table-cell">
+                    @if (item.obrigacoesStat) { {{item.obrigacoesStat.concluidasNoPrazo > 0 ? item.obrigacoesStat.concluidasNoPrazo : '-'}}
+                    {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}} }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

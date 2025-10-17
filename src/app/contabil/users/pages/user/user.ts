@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
-import { UserObrigacoesTableComponent } from 'src/app/contabil/obrigacoes/components/user-obrigacoes-table/user-obrigacoes-table';
 import { UserAvatarComponent } from 'src/app/shared/control/components/user-avatar/user-avatar';
 import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
@@ -20,7 +19,7 @@ import { ContabilUsersService } from '../../services/contabilUsers.service';
     selector: 'user-page',
     standalone: true,
     templateUrl: './user.html',
-    imports: [Profile2Component, NzTabsModule, UserObrigacoesTableComponent, UserDadosComponent, UserAvatarComponent, UserDepartamentosComponent],
+    imports: [Profile2Component, NzTabsModule, UserDadosComponent, UserAvatarComponent, UserDepartamentosComponent],
 })
 export class UserPage implements OnInit {
     id?: number;

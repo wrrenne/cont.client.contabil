@@ -1,31 +1,23 @@
-import { Component, Injector, Input } from '@angular/core';
-import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
-import { ButtonSelectionComponent } from 'src/app/shared/controls/button-selection/button-selection';
-import { MonthSelectComponent } from 'src/app/shared/controls/month-select/month-select';
+import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
 import { TSetor } from '../../../../shared/enums';
-import { PagingBase } from '../../../../shared/models';
+import { PagingBase, ServicePagingBase } from '../../../../shared/models';
 import { TEsfera, TObrigacaoClientePeriodoPor, TObrigacaoTipo } from '../../../models/enums';
 import { ObrigacaoClientePeriodoPageItem } from '../../../models/obrigacoes/pagings/obrigacaoClientePeriodoPageItem';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
-import { UserObrigacoesMesPagingService } from '../../services/pagings/userObrigacoesMes.service';
-import { ObrigacaoItem } from '../obrigacao-item/obrigacao-item';
+import { ClienteObrigacoesStatsMesParam } from '../cliente-obrigacoes-stats-mes/cliente-obrigacoes-stats-mes';
 
 @Component({
-    selector: 'user-obrigacoes-table',
-    templateUrl: './user-obrigacoes-table.html',
-    imports: [InfiniteScrollDirective, ButtonSelectionComponent, MonthSelectComponent, ObrigacaoItem],
+    template: '',
 })
-export class UserObrigacoesTableComponent extends PagingBase<ObrigacaoClientePeriodoPageItem> {
-    tab_obrigacoes = 0;
-    tab_obrigacaoClientePeriodo = 1;
-    tabIndex = 0;
+export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> {
+    @Output() onObrigacaoUpdate = new EventEmitter<ObrigacaoClientePeriodoPageItem[]>();
+
     TObrigacaoClientePeriodoPor = TObrigacaoClientePeriodoPor;
 
-    TObrigacaoTipo = TObrigacaoTipo;
-    //selectedIndex = 0
-    obrigacaoTipo: TObrigacaoTipo = TObrigacaoTipo.Imposto;
+    clienteObrigacoesStatsMesParameters: ClienteObrigacoesStatsMesParam;
 
-    current = this.tab_obrigacoes;
+    TObrigacaoTipo = TObrigacaoTipo;
+    obrigacaoTipo: TObrigacaoTipo;
 
     obrigacaoClientePeriodoId?: number;
 
@@ -41,7 +33,7 @@ export class UserObrigacoesTableComponent extends PagingBase<ObrigacaoClientePer
         this._parameters = value;
 
         this.param.routeStrings = [];
-        this.param.routeStrings.push((<number>value.userId).toString());
+        this.param.routeStrings.push((<number>value.clienteId).toString());
         this.param.routeStrings.push(this.dateUtilsService.GetDateIsoString(value.mes!));
         this.param.routeStrings.push(value.tipo!.toString());
 
@@ -53,12 +45,38 @@ export class UserObrigacoesTableComponent extends PagingBase<ObrigacaoClientePer
 
         this.param.q = value?.searchText;
 
+        this.clienteObrigacoesStatsMesParameters = {
+            clienteId: value.clienteId!,
+            mes: value.mes!,
+            tipo: value.tipo,
+        };
+
         this.refresh();
     }
 
-    constructor(injector: Injector, userObrigacoesMesPagingService: UserObrigacoesMesPagingService) {
-        super(injector, userObrigacoesMesPagingService);
+    constructor(injector: Injector, service: ServicePagingBase<ObrigacaoClientePeriodoPageItem>) {
+        super(injector, service);
     }
+
+    //getData() {
+    //    this.obrigacoesService.clienteObrigacoesMesPagingGet(this.parameters?.clienteId!, this.parameters?.mes!).subscribe(x => {
+    //        //this.obrigacoesService.fillAvatares(x.obj.obrigacoesImpostos)
+    //        //this.obrigacoesService.fillAvatares(x.obj.obrigacoesAcessorias)
+    //        //this.obrigacoesService.fillAvatares(x.obj.obrigacoesRelatorios)
+
+    //        this.clienteObrigacoes = x.obj
+    //    })
+    //}
+
+    //fillAvatares(obrigacoes: ObrigacaoClientePeriodoView[]) {
+    //    obrigacoes
+    //        .forEach(y => {
+    //            y.avatares = []
+    //            y.responsaveis.forEach(z => y.avatares
+    //                .push({ refId: z.userId, nome: z.userNome })
+    //            )
+    //        })
+    //}
 
     getObrigacaoTipoCor(tipo: TObrigacaoTipo): string {
         switch (tipo) {
@@ -120,25 +138,33 @@ export class UserObrigacoesTableComponent extends PagingBase<ObrigacaoClientePer
     }
 
     tipoClicked(e: any) {
-        //this.selectedIndex = e
+        this.obrigacaoTipo = e;
         this.tipoApply(e);
     }
 
-    tipoApply(t: TObrigacaoTipo) {
+    tipoApply(tipo: TObrigacaoTipo) {
         var c = this.parameters;
 
-        c!.tipo = t;
-        //var c = this.parameters
-
-        //switch (i) {
-        //    case 0: c!.tipo = TObrigacaoTipo.Imposto
-        //        break;
-        //    case 1: c!.tipo = TObrigacaoTipo.Acessoria
-        //        break;
-        //    case 2: c!.tipo = TObrigacaoTipo.Relatorio
-        //        break;
-        //}
+        c!.tipo = tipo;
 
         this.parameters = c;
+    }
+
+    onTabChange(e: any) {
+        var tipo: TObrigacaoTipo = TObrigacaoTipo.Imposto;
+
+        switch (e) {
+            case 0:
+                tipo = TObrigacaoTipo.Imposto;
+                break;
+            case 1:
+                tipo = TObrigacaoTipo.Acessoria;
+                break;
+            case 2:
+                tipo = TObrigacaoTipo.Relatorio;
+                break;
+        }
+
+        this.parameters = { clienteId: this.parameters?.clienteId, mes: this.parameters?.mes, tipo: tipo };
     }
 }

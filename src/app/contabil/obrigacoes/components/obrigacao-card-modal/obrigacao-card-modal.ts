@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, Inject, Injector, Input, Output, ViewChild } from '@angular/core';
+import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
+import { AvatarImageEsferaComponent } from 'src/app/contabil/components/avatar-image-esfera/avatar-image-esfera';
+import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
+import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
+import { LabelIconComponent } from 'src/app/shared/controls/label-icon/label-icon';
+import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
+import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
 import { EncryptionService } from '../../../../shared/services';
@@ -10,25 +17,38 @@ import { TimelinesService } from '../../../../shared/timeline/services/timelines
 import { Vars } from '../../../../shared/variables';
 import { TEsfera, TObrigacaoClientePeriodoPor, TObrigacaoStatus } from '../../../models/enums';
 import { ObrigacaoClientePeriodoPageItem, ObrigacaoClientePeriodoUserPageItem } from '../../../models/obrigacoes/pagings';
-import { ObrigacaoView } from '../../../models/obrigacoes/views';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
 import { ObrigacaoConclusaoModalComponent } from '../obrigacao-conclusao-modal/obrigacao-conclusao-modal';
+import { ObrigacaoItemArquivosComponent } from '../obrigacao-item-arquivos/obrigacao-item-arquivos';
+
+export class ObrigacaoCardModalData {
+    obrigacaoClientePeriodoId: number;
+}
 
 @Component({
-    selector: '[obrigacao-item]',
-    templateUrl: './obrigacao-item.html',
+    selector: 'obrigacao-card-modal',
+    templateUrl: './obrigacao-card-modal.html',
+    imports: [
+        AvatarTitleComponent,
+        AvatarImageEsferaComponent,
+        LabelTextComponent,
+        LabelIconComponent,
+        AvatarImageGroupComponent,
+        ObrigacaoItemArquivosComponent,
+        DatePipe,
+        ModalBaseComponent,
+    ],
 })
-export class ObrigacaoItem {
+export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     TEsfera = TEsfera;
     TPostTipo = TPostTipo;
     TObrigacaoStatus = TObrigacaoStatus;
     TObrigacaoClientePeriodoPor = TObrigacaoClientePeriodoPor;
 
     @Input() obrigacao: ObrigacaoClientePeriodoPageItem;
-    @Input() focused: boolean;
-    @Input() tipo: TObrigacaoClientePeriodoPor = TObrigacaoClientePeriodoPor.PorCliente;
+    @Input() obrigacaoClientePeriodoPor: TObrigacaoClientePeriodoPor = TObrigacaoClientePeriodoPor.PorCliente;
 
-    @Output() onObrigacaoUpdate = new EventEmitter<ObrigacaoView[]>();
+    @Output() onObrigacaoUpdate = new EventEmitter<ObrigacaoClientePeriodoPageItem>();
 
     @ViewChild(BlinkBorderDirective) blinkDirective: BlinkBorderDirective;
 
@@ -44,7 +64,12 @@ export class ObrigacaoItem {
         private vars: Vars,
         private timelinesService: TimelinesService,
         private obrigacoesService: ObrigacoesService,
-    ) {}
+        injector: Injector,
+        @Inject(NZ_MODAL_DATA) data: ObrigacaoCardModalData,
+    ) {
+        super(injector);
+        this.getData(data.obrigacaoClientePeriodoId);
+    }
 
     openObrigacaoConclusaoModal() {
         let modal = this.modalService.create({
@@ -58,7 +83,7 @@ export class ObrigacaoItem {
         });
 
         modal.afterClose.subscribe((result: number[] | null) => {
-            if (result) this.getData();
+            if (result) this.getData(this.obrigacao.id!);
         });
     }
 
@@ -222,9 +247,10 @@ export class ObrigacaoItem {
     //        }
     //    }
 
-    getData() {
-        this.obrigacoesService.obrigacaoClientePeriodoPageItemGet(this.obrigacao.id!).subscribe((x) => {
-            console.log(['x.obj', x.obj]);
+    getData(obrigacaoClientePeriodoId: number) {
+        this.obrigacoesService.obrigacaoClientePeriodoPageItemGet(obrigacaoClientePeriodoId).subscribe((x) => {
+            this.title = x.obj.clienteNomeFormat;
+            this.subTitle = x.obj.obrigacaoDescricaoFormat;
             this.obrigacao = x.obj;
         });
     }

@@ -1,40 +1,39 @@
 @if (comment) {
-  <div class="flex flex-col gap-1">
+<div class="flex flex-col gap-1">
     <div class="flex items-center gap-2">
-      <avatar-image [userId]="comment.userId" size="2rem" [iconClass]="'text-base'" [defaultNoIconName]="comment.userNome" [circle]="true" />
-      <span class="font-semibold text-black dark:text-white">{{comment.userNomeFirstName}}</span>
-      <span class="text-muted">·</span>
-      <span class="text-muted relative top-[1px] text-xs">
-        {{comment.publicacaoDataHoraFormat}}
-      </span>
+        <avatar-image [userId]="comment.userId" size="2rem" [iconClass]="'text-base'" [defaultNoIconName]="comment.userNome" [circle]="true" />
+        <span class="font-semibold text-black dark:text-white">{{comment.userNomeFirstName}}</span>
+        <span class="text-muted">·</span>
+        <span class="text-muted relative top-[1px] text-xs"> {{comment.publicacaoDataHoraFormat}} </span>
     </div>
     <div class="ml-[40px]">
-      <div class="flex flex-col gap-2">
-        @if (comment.acao) {
-          <span [innerHTML]="comment.acao"></span>
-        }
-        @if (comment.solicitacao?.tipo && !comment.commentId && comment.imagemUrl) {
-          <file-server-image [src]="comment.imagemUrl" class="mb-2 block"></file-server-image>
-        }
-        <span class="block" [innerHTML]="comment.texto"></span>
-        @if (comment.temArquivo) {
-          @for (arquivo of comment.arquivos; track arquivo) {
+        <div class="flex flex-col gap-2">
+            @if (comment.acao) {
+            <span [innerHTML]="comment.acao"></span>
+            } @if (comment.solicitacao?.tipo && !comment.commentId && comment.imagemUrl) {
+            <file-server-image [src]="comment.imagemUrl" class="mb-2 block"></file-server-image>
+            }
+            <span class="block" [innerHTML]="comment.texto"></span>
+            @if (comment.temArquivo) { @for (arquivo of comment.arquivos; track arquivo) {
             <div class="flex items-center gap-1">
-              <ng-icon [name]="'bootstrapPaperclip'" class="text-lg text-black dark:text-white"></ng-icon> <span>{{arquivo.nome}}</span>
+                <ng-icon [name]="'bootstrapPaperclip'" class="text-lg text-black dark:text-white"></ng-icon> <span>{{arquivo.nome}}</span>
             </div>
-          }
-        }
-        @if (showResponder) {
-          <timeline-comment-form [parameter]="{commentId: comment.id, solicitacao: comment.solicitacao, userNome: comment.userNome}" (onCommented)="commented($event)" (onEvaluated)="evaluated()" (onNewCommentClick)="newCommentClick($event)"></timeline-comment-form>
-        }
-      </div>
-      @if (comment.comments) {
-        <div class="mt-3.5 flex flex-col gap-3.5">
-          @for (comment of comment.comments; track comment) {
-            <timeline-comment [comment]="comment"></timeline-comment>
-          }
+            } } @if (showResponder) {
+            <timeline-comment-form
+                [parameter]="{commentId: comment.id, solicitacao: comment.solicitacao, userNome: comment.userNome}"
+                (onCommented)="commented($event)"
+                (onEvaluated)="evaluated()"
+                (onNewCommentClick)="newCommentClick($event)"
+            ></timeline-comment-form>
+            }
         </div>
-      }
+        @if (comment.comments) {
+        <div class="mt-3.5 flex flex-col gap-3.5">
+            @for (comment of comment.comments; track comment) {
+            <timeline-comment [comment]="comment"></timeline-comment>
+            }
+        </div>
+        }
     </div>
-  </div>
+</div>
 }

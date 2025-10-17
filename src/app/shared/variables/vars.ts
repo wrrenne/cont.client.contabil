@@ -76,7 +76,6 @@ export class Vars {
             this.dataInicial = value.dataInicial;
             this.dataFinal = value.dataFinal;
 
-            console.log('b');
             this.periodoEmit(value);
         }
     }

@@ -1,0 +1,47 @@
+@if (!loading) { @if (obrigacoes && obrigacoes.length == 0) {
+<no-data-panel [title]="getNoDataTitle()"></no-data-panel>
+}
+
+<table class="tabela">
+    <thead>
+        <tr>
+            <!-- Cliente -->
+            @if (tipo != TObrigacaoClientePeriodoPor.PorCliente) {
+            <td>Cliente</td>
+            }
+
+            <!-- Obrigação -->
+            @if (tipo != TObrigacaoClientePeriodoPor.PorObrigacao) {
+            <td>Obrigação</td>
+            }
+
+            <!-- Expediente -->
+            <td>Vencimento</td>
+
+            <!-- Competência -->
+            <td>Competência</td>
+
+            <!-- Prazo -->
+            <td>Prazo</td>
+
+            <td class="hidden md:table-cell">
+                <ng-icon [name]="'ionChatbubblesOutline'" class="text-[20px]"></ng-icon>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (obrigacao of obrigacoes; track trackById($index, obrigacao)) {
+        <tr
+            class="cursor-pointer"
+            (click)="obrigacaoCardModalOpen(obrigacao.id!)"
+            obrigacao-item
+            [obrigacao]="obrigacao"
+            _onEspelhoUpdate="espelhoUpdate($event)"
+            [tipo]="tipo"
+            _status="status"
+            _focused="focused?.data == espelho.data"
+        ></tr>
+        }
+    </tbody>
+</table>
+}

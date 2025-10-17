@@ -1,144 +1,33 @@
-<!--  post image with slider-->
-@if (obrigacao) {
-<div class="panel mb-3 !p-0 text-sm font-medium xl:mb-4">
-    <!-- post heading -->
-    <div class="card-header flex gap-3 p-2.5 text-sm font-medium sm:p-4">
-        <div class="flex w-full items-center space-x-3">
-            @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorObrigacao || obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorUser) {
-            <avatar-title [clienteId]="obrigacao.clienteId" [title]="obrigacao.clienteNomeFormat" [subTitle]="'Lucro Presumido'"></avatar-title>
-            } @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorCliente) {
-            <avatar-image-esfera
-                [parameter]="{esfera: obrigacao.esfera, uf: obrigacao.uf, municipioCodigo: obrigacao.municipioCodigo}"
-                class="flex items-center justify-center"
-            ></avatar-image-esfera>
-            <div class="grow">
-                <div class="mb-0 flex w-full">
-                    <h5 class="grow">{{obrigacao.obrigacaoDescricao}}</h5>
-                </div>
-                <div class="flex gap-3">
-                    @if (obrigacao.tipoDescricao) {
-                    <span class="text-xs">{{obrigacao.tipoDescricao}} {{obrigacao.periodicidadeDescricao}}</span>
-                    } @if (obrigacao.esferaDescricao) {
-                    <span class="text-xs">{{obrigacao.esferaDescricao}}</span>
-                    } @if (obrigacao.departamentoNome) {
-                    <span class="text-xs">{{obrigacao.departamentoNome}}</span>
-                    }
-                </div>
-            </div>
-            }
-        </div>
-        @if (isDebug) {
-        <span class="debug">#{{obrigacao.id}}</span>
-        }
-    </div>
-
-    <div class="flex flex-col gap-3 px-2.5 pb-4 pt-4 sm:px-4">
-        @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorUser) {
-        <div class="flex gap-10">
-            <div>
-                <div class="mb-0.5 font-semibold text-black/80 dark:text-white/80">Obrigação</div>
-                <div>{{obrigacao.obrigacaoDescricao}}</div>
-            </div>
-            <div>
-                <div>&nbsp;</div>
-                <div class="flex gap-4">
-                    <div class="flex gap-3">
-                        <span>{{obrigacao.tipoDescricao}}</span>
-                        @if (obrigacao.esfera == TEsfera.Federal) {
-                        <span>Federal</span>
-                        } @if (obrigacao.esfera == TEsfera.Estadual) {
-                        <span>{{obrigacao.uf}}</span>
-                        } @if (obrigacao.esfera == TEsfera.Municipal) {
-                        <span>{{obrigacao.municipioNome}}</span>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-        }
-
-        <div class="flex gap-10">
-            <div>
-                <label-text [text]="obrigacao.competenciaMesFormat" [label]="'Competência'"></label-text>
-            </div>
-            @if (obrigacao.vencimento) {
-            <div class="flex gap-4">
-                <label-text [text]="obrigacao.vencimento! | date: 'dd/MM/yyyy'" [label]="'Vencimento'">
-                    <ng-template #textComplement>
-                        <label-icon
-                            [icon]="obrigacao.vencido ? 'iconoirWarningCircle' : undefined"
-                            [label]="obrigacao.vencimentoDescricao"
-                            [iconColorClass]="'text-danger'"
-                            [iconTextClass]="'text-lg'"
-                            [labelClass]="'text-sm' + (obrigacao.vencido ? ' text-danger': '')"
-                            [iconBgClass]="''"
-                        ></label-icon>
-                    </ng-template>
-                </label-text>
-            </div>
-            }
-            <div>
-                <div class="flex gap-4">
-                    <label-text [text]="obrigacao.prazo | date: 'dd/MM/yyyy'" [label]="'Prazo de Entrega'">
-                        <ng-template #textComplement>
-                            <label-icon
-                                [icon]="obrigacao.prazoVencido ? 'iconoirWarningCircle' : undefined"
-                                [label]="obrigacao.prazoDescricao"
-                                [iconColorClass]="'text-danger'"
-                                [iconTextClass]="'text-lg'"
-                                [labelClass]="'text-sm' + (obrigacao.prazoVencido ? ' text-danger': '')"
-                                [iconBgClass]="''"
-                            ></label-icon>
-                        </ng-template>
-                    </label-text>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <label-text [text]="obrigacao.perfilItemDescricao" [label]="'Perfil'"></label-text>
-
-            <!--<div class="mb-0.5 font-semibold text-black/80 dark:text-white/80">Perfil</div>
-            <div class="flex gap-4">
-                <div>
-                    {{obrigacao.perfilItemDescricao}}
-                </div>
-            </div>-->
-        </div>
-    </div>
-
-    <div class="mb-5 flex items-center gap-3">
-        <avatar-image-group
-            [usersId]="getUserIds(obrigacao.users)"
-            [nomes]="getUserNomes(obrigacao.users)"
-            [size]="'2.5rem'"
-            class="flex px-2.5 sm:px-4"
-        ></avatar-image-group>
-        <label-icon
-            *ngIf="obrigacao.status != TObrigacaoStatus.EmAberto"
-            [iconBgClass]="getStatusDescricaoClass()"
-            [iconTextClass]="'text-lg'"
-            [icon]="getStatusIcon()"
-            [label]="obrigacao.statusDescricao"
-            [label2]="obrigacao.concluidoEmFormat"
-            [rounded]="true"
-        ></label-icon>
-    </div>
-
-    <obrigacao-item-arquivos
-        *ngIf="obrigacao.arquivos.length > 0"
-        class="flex gap-4 border-t border-gray-100 p-2.5 font-normal dark:border-slate-700/40 sm:p-4"
-        [arquivos]="obrigacao.arquivos"
-    ></obrigacao-item-arquivos>
-
-    <!--#region Comments-->
-    <!-- <timeline-comments [comments]="obrigacao.comments" (onEvaluated)="evaluated()" [parameter]="{origemId: obrigacao.id, contabil_ObrigacaoNome: obrigacao.obrigacaoDescricao, contabil_Vencimento: obrigacao.vencimento, contabil_Prazo: obrigacao.prazo, contabil_CompetenciaMes: obrigacao.competenciaMes, contabil_CompetenciaAno: obrigacao.competenciaAno, clienteId: obrigacao.clienteId, obrigacaoId: obrigacao.obrigacaoId, tipo: TPostTipo.ContabilObrigacao, buttons: timelinebuttons}"></timeline-comments> -->
-    <!--#endregion-->
-    <!-- add comment -->
-    <!--    <timeline-comment-form class="flex items-center gap-1 border-t border-gray-100 p-2.5 dark:border-slate-700/40 sm:px-4 sm:py-3" _solicitacaoGrupos="getGrupos()" [origemId]="obrigacao.id" [contabil_ObrigacaoNome]="obrigacao.obrigacaoDescricao" [contabil_Vencimento]="obrigacao.vencimento" [contabil_Prazo]="obrigacao.prazo" [clienteId]="obrigacao.clienteId" [obrigacaoId]="obrigacao.obrigacaoId" [tipo]="TPostTipo.ContabilObrigacao" (onCommented)="commented($event)" _postInfo="post.postInfo" _onComments="postCommentsClick()" _onSolicitacaoOpened="solicitacaoOpened($event)" [buttons]="timelinebuttons"></timeline-comment-form>-->
-    <!--<div appBlinkBorder [blinkDuration]="4000" class="h-100 w-100">
-        This is a div with a blinking border.
-    </div>
-    <button (click)="triggerBlink()">Trigger Operation</button>-->
-</div>
+<!-- Cliente -->
+@if (tipo != TObrigacaoClientePeriodoPor.PorCliente) {
+<td>
+    <div class="flex items-center gap-3">{{obrigacao.clienteNomeFormat}}</div>
+</td>
 }
+
+<!-- Obrigação -->
+@if (tipo != TObrigacaoClientePeriodoPor.PorObrigacao) {
+<td>
+    <div class="flex items-center gap-3">{{obrigacao.obrigacaoDescricao}}</div>
+</td>
+}
+
+<!-- Vencimento -->
+<td class="hidden md:table-cell">
+    <div class="flex gap-2 items-center">{{obrigacao.vencimento}}</div>
+</td>
+
+<!-- Competência -->
+<td class="hidden md:table-cell">
+    <div class="flex gap-2 items-center">{{obrigacao.competenciaMes ?? obrigacao.competenciaAno}}</div>
+</td>
+
+<!-- Prazo -->
+<td class="hidden md:table-cell">
+    <div class="flex gap-2 items-center">{{obrigacao.prazo}}</div>
+</td>
+
+<!-- Comments -->
+<td class="hidden md:table-cell">
+    <span>{{ obrigacao.postInfo?.count }}</span>
+</td>
