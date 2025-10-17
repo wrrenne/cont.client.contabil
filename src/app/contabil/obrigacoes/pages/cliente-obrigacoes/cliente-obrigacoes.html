@@ -1,0 +1,21 @@
+<div class="content-site">
+    <page-title [title]="title"> </page-title>
+
+    <nz-tabset>
+        <nz-tab nzTitle="Impostos">
+            <ng-template nz-tab>
+                <cliente-obrigacoes-table [parameters]="obrigacoesParameters"></cliente-obrigacoes-table>
+            </ng-template>
+        </nz-tab>
+        <nz-tab nzTitle="Obrigações Acessórias">
+            <ng-template nz-tab>
+                <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+            </ng-template>
+        </nz-tab>
+        <nz-tab nzTitle="Relatórios">
+            <ng-template nz-tab>
+                <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+            </ng-template>
+        </nz-tab>
+    </nz-tabset>
+</div>

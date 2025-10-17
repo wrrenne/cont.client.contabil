@@ -21,10 +21,8 @@
 </nz-tabset>
 
 <ng-template #resumo>
-    <cliente-obrigacoes-stats-mes [parameters]="clienteObrigacoesStatsMesParameters"></cliente-obrigacoes-stats-mes>
-    <div infiniteScroll
-         [infiniteScrollDistance]="2"
-         [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <!-- <cliente-obrigacoes-stats-mes [parameters]="clienteObrigacoesStatsMesParameters"></cliente-obrigacoes-stats-mes> -->
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
         <obrigacao-item *ngFor="let item of datas" [obrigacao]="item" [obrigacaoClientePeriodoPor]="TObrigacaoClientePeriodoPor.PorCliente"></obrigacao-item>
     </div>
 </ng-template>

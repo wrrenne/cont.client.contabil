@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ObrigacoesComponent } from './obrigacoes.component';
+import { ClienteObrigacoesPage } from './pages/cliente-obrigacoes/cliente-obrigacoes';
 import { ObrigacoesHomePage } from './pages/home/home';
 import { ObrigacaoPage } from './pages/obrigacao/obrigacao';
 import { ObrigacoesPorClientePage } from './pages/obrigacoes-por-cliente/obrigacoes-por-cliente';
@@ -19,6 +20,10 @@ export const obrigacoesRoutes: Routes = [
             //    path: 'calendario',
             //    component: CalendarioPage
             //},
+            {
+                path: 'clienteobrigacoes/:id',
+                component: ClienteObrigacoesPage,
+            },
             {
                 path: 'obrigacao/:id',
                 component: ObrigacaoPage,
