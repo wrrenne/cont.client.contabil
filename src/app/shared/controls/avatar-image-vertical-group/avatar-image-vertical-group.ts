@@ -18,6 +18,7 @@ export class AvatarImageVerticalGroupComponent {
     @Input() usersId: number[];
     @Input() imageFilename: string[];
     @Input() nomes: string[];
+    @Input() subTitles: string[];
     @Input() size?: string = '2.2rem';
     @Input() circle: boolean = true;
     @Input() rounded: boolean = false;

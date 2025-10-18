@@ -33,10 +33,11 @@
             </div> -->
 
         <div class="flex flex-col gap-3">
-            <!-- Competencia -->
+            <!--#region Competencia-->
             <label-text [text]="obrigacao.competenciaMesFormat ?? obrigacao.competenciaAno" [label]="'Competência'"></label-text>
+            <!--#endregion-->
 
-            <!-- Vencimento -->
+            <!--#region Vencimento-->
             @if (obrigacao.vencimento) {
             <label-text [text]="obrigacao.vencimento! | date: 'dd/MM/yyyy'" [label]="'Vencimento'">
                 <ng-template #textComplement>
@@ -52,8 +53,9 @@
                 </ng-template>
             </label-text>
             }
+            <!--#endregion-->
 
-            <!-- Prazo -->
+            <!--#region Prazo-->
             <label-text [text]="obrigacao.prazo | date: 'dd/MM/yyyy'" [label]="'Prazo de Entrega'">
                 <ng-template #textComplement>
                     <label-icon
@@ -67,18 +69,26 @@
                     <!-- <span class="text-danger" [class]="'text-sm' + (obrigacao.prazoVencido ? ' text-danger': '')">{{obrigacao.prazoDescricao}}</span> -->
                 </ng-template>
             </label-text>
+            <!--#endregion-->
 
-            <!-- Perfil -->
+            <!--#region Perfil-->
             <label-text [text]="obrigacao.perfilItemDescricao" [label]="'Perfil'"></label-text>
+            <!--#endregion-->
 
+            <!--#region Responsaveis-->
             <avatar-image-vertical-group
                 [label]="'Responsáveis'"
                 [circle]="false"
+                [size]="'2.8rem'"
                 [usersId]="getUserIds(obrigacao.users)"
                 [nomes]="getUserNomes(obrigacao.users)"
+                [subTitles]="getUserDepartamentos(obrigacao.users)"
             ></avatar-image-vertical-group>
+            <!--#endregion-->
+
+            <!--#region Status-->
+            @if (obrigacao.status != TObrigacaoStatus.EmAberto) {
             <label-icon
-                *ngIf="obrigacao.status != TObrigacaoStatus.EmAberto"
                 [iconBgClass]="getStatusDescricaoClass()"
                 [iconTextClass]="'text-lg'"
                 [icon]="getStatusIcon()"
@@ -86,12 +96,32 @@
                 [label2]="obrigacao.concluidoEmFormat"
                 [rounded]="true"
             ></label-icon>
+            }
+            <!--#endregion-->
 
+            <!--#region Arquivos-->
+            @if (obrigacao.arquivos.length > 0) {
             <obrigacao-item-arquivos
-                *ngIf="obrigacao.arquivos.length > 0"
                 class="flex gap-4 border-t border-gray-100 p-2.5 font-normal dark:border-slate-700/40 sm:p-4"
                 [arquivos]="obrigacao.arquivos"
             ></obrigacao-item-arquivos>
+            }
+            <!--#endregion-->
+
+            <!--#region Comments-->
+            <div class="mt-4">
+                <text-separator [text]="'Comentários'"></text-separator>
+                <timeline-comments [comments]="obrigacao.comments" [showResponder]="true" (onNewCommentClick)="commentsNewComment($event)"></timeline-comments>
+
+                <timeline-comment-form
+                    class="flex items-center gap-1 py-4"
+                    (onCommented)="commented($event)"
+                    _onEvaluated="evaluated($event)"
+                    [parameter]="{origemId: obrigacao.id, tipo: TPostTipo.ContabilObrigacaoClientePeriodo, clienteId: obrigacao.clienteId, contabil_ObrigacaoNome: obrigacao.obrigacaoDescricaoFormat, contabil_Vencimento: obrigacao.vencimento, contabil_Prazo: obrigacao.prazo, contabil_CompetenciaMes: obrigacao.competenciaMes, contabil_CompetenciaAno: obrigacao.competenciaAno}"
+                    [newComment]="newComment"
+                ></timeline-comment-form>
+            </div>
+            <!--#endregion-->
         </div>
         }
     </ng-template>

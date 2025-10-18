@@ -103,6 +103,7 @@ export class TimelineCommentFormComponent implements OnInit {
         const input: CommentInput = {
             cadastroId: this.vars.cadastro?.id!,
             funcionarioId: this.parameter.funcionarioId,
+            postClienteId: this.parameter.clienteId,
             sistemaId: environment.sistema,
             texto: this.formComment.get('comentario')?.value,
             userId: <number>this.vars.user?.id,

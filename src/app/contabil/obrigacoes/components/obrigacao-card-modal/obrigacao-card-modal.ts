@@ -5,10 +5,13 @@ import { AvatarImageVerticalGroupComponent } from 'src/app/shared/controls/avata
 import { LabelIconComponent } from 'src/app/shared/controls/label-icon/label-icon';
 import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
+import { TextSeparatorComponent } from 'src/app/shared/controls/text-separator/text-separator';
+import { TimelineCommentsComponent } from 'src/app/shared/timeline/controls/timeline-comments/timeline-comments';
+import { NewCommentParameter } from 'src/app/shared/timeline/models/parameters';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
 import { EncryptionService } from '../../../../shared/services';
-import { TimelineCommentButton } from '../../../../shared/timeline/controls/timeline-comment-form/timeline-comment-form';
+import { TimelineCommentButton, TimelineCommentFormComponent } from '../../../../shared/timeline/controls/timeline-comment-form/timeline-comment-form';
 import { TPostTipo } from '../../../../shared/timeline/enums';
 import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
 import { TimelinesService } from '../../../../shared/timeline/services/timelines.service';
@@ -26,7 +29,17 @@ export class ObrigacaoCardModalData {
 @Component({
     selector: 'obrigacao-card-modal',
     templateUrl: './obrigacao-card-modal.html',
-    imports: [LabelTextComponent, LabelIconComponent, ObrigacaoItemArquivosComponent, DatePipe, ModalBaseComponent, AvatarImageVerticalGroupComponent],
+    imports: [
+        LabelTextComponent,
+        LabelIconComponent,
+        ObrigacaoItemArquivosComponent,
+        DatePipe,
+        ModalBaseComponent,
+        AvatarImageVerticalGroupComponent,
+        TextSeparatorComponent,
+        TimelineCommentsComponent,
+        TimelineCommentFormComponent,
+    ],
 })
 export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     TEsfera = TEsfera;
@@ -41,11 +54,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
 
     @ViewChild(BlinkBorderDirective) blinkDirective: BlinkBorderDirective;
 
-    verMaisExpandido = true;
-
-    get isFuncionario() {
-        return this.vars.funcionario != undefined;
-    }
+    newComment: NewCommentParameter;
 
     constructor(
         private modalService: NzModalService,
@@ -239,7 +248,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     getData(obrigacaoClientePeriodoId: number) {
         this.obrigacoesService.obrigacaoClientePeriodoPageItemGet(obrigacaoClientePeriodoId).subscribe((x) => {
             this.title = x.obj.clienteNomeFormat;
-            this.subTitle = x.obj.obrigacaoDescricaoFormat;
+            this.subTitle = x.obj.obrigacaoDescricaoFormat + (this.isDebug ? ' - #' + x.obj.id?.toString() : '');
             this.obrigacao = x.obj;
         });
     }
@@ -254,6 +263,10 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
 
     getUserNomes(users: ObrigacaoClientePeriodoUserPageItem[]): string[] {
         return users.map((x) => x.userNomeFormat);
+    }
+
+    getUserDepartamentos(users: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+        return users.map((x) => x.departamentoNome);
     }
 
     getStatusIcon(): string | undefined {
@@ -283,5 +296,9 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
         }
 
         return result;
+    }
+
+    commentsNewComment(e: any) {
+        this.newComment = e;
     }
 }

@@ -13,7 +13,14 @@
         [defaultNoIconName]="nomes && nomes[$index]"
     />
     } } @if (usersId) { @for (userId of usersId; track userId) {
-    <avatar-title [avatarSize]="size" [userId]="userId" [rounded]="rounded" [circle]="circle" [title]="nomes[$index]"></avatar-title>
+    <avatar-title
+        [avatarSize]="size"
+        [userId]="userId"
+        [rounded]="rounded"
+        [circle]="circle"
+        [title]="nomes[$index]"
+        [subTitle]="subTitles[$index]"
+    ></avatar-title>
     } } @if (showEmptyIcon && (!funcionariosId || funcionariosId.length == 0) && (!usersId || usersId.length == 0)) {
     <avatar-icon [size]="size" [rounded]="rounded" [circle]="circle" [icon]="'matBlockOutline'" [tooltip]="emptyIconTooltip"></avatar-icon>
     } @if (seeMoreCount) {

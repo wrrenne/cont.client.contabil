@@ -2,7 +2,7 @@ export enum TSolicitacaoStatus {
     EmAberto = 0,
     Aceito = 1,
     Rejeitado = 2,
-    Tudo = 10
+    Tudo = 10,
 }
 
 export enum TSolicitacaoTipo {
@@ -14,7 +14,7 @@ export enum TSolicitacaoTipo {
     SolicitacaoFaltaBanco = 5,
     SolicitacaoExtraBanco = 6,
     SolicitacaoExtra = 7,
-    SolicitacaoFerias = 10
+    SolicitacaoFerias = 10,
 }
 
 export const SolicitacaoTipoLabel = new Map<TSolicitacaoTipo, string>([
@@ -38,7 +38,7 @@ export enum TSolicitacaoGrupoTipo {
     SaidaAtraso = 12,
     EntradaExtra = 20,
     IntervaloExtra = 21,
-    SaidaExtra = 22
+    SaidaExtra = 22,
 }
 
 export const TSolicitacaoGrupoTipoLabel = new Map<number, string>([
@@ -92,8 +92,9 @@ export enum TPostTipo {
     ContabilCliente = 100,
     ContabilConfiguracaoObrigacao = 101,
     ContabilPerfil = 102,
-    ContabilObrigacao = 103
+    ContabilObrigacao = 103,
+    ContabilObrigacaoClientePeriodo = 104,
 }
 export enum TPostIcone {
-    Editar = 1
+    Editar = 1,
 }

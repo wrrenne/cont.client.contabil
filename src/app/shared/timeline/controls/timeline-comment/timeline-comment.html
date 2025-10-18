@@ -1,7 +1,7 @@
 @if (comment) {
 <div class="flex flex-col gap-1">
     <div class="flex items-center gap-2">
-        <avatar-image [userId]="comment.userId" size="2rem" [iconClass]="'text-base'" [defaultNoIconName]="comment.userNome" [circle]="true" />
+        <avatar-image [userId]="comment.userId" size="2rem" [iconClass]="'text-base'" [defaultNoIconName]="comment.userNome" />
         <span class="font-semibold text-black dark:text-white">{{comment.userNomeFirstName}}</span>
         <span class="text-muted">·</span>
         <span class="text-muted relative top-[1px] text-xs"> {{comment.publicacaoDataHoraFormat}} </span>
