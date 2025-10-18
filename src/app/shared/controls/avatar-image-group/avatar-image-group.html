@@ -1,4 +1,4 @@
-<div class="flex items-center justify-start space-x-2">
+<div class="flex items-center justify-start space-x-2" [ngClass]="{'flex-col': showNames}">
     @if (funcionariosId) { @for (funcionarioId of funcionariosId; track funcionarioId) {
     <avatar-image
         [size]="size"

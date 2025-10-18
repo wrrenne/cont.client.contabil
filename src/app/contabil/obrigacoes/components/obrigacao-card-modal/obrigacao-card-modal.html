@@ -34,7 +34,7 @@
             </div> -->
 
             <div class="flex flex-col gap-3">
-                @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorUser) {
+                <!-- @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorUser) {
                 <div class="flex gap-10">
                     <div>
                         <div class="mb-0.5 font-semibold text-black/80 dark:text-white/80">Obrigação</div>
@@ -56,9 +56,9 @@
                         </div>
                     </div>
                 </div>
-                }
+                } -->
 
-                <div class="flex gap-10">
+                <div class="flex flex-col gap-6">
                     <div>
                         <label-text [text]="obrigacao.competenciaMesFormat ?? obrigacao.competenciaAno" [label]="'Competência'"></label-text>
                     </div>
@@ -79,20 +79,18 @@
                     </div>
                     }
                     <div>
-                        <div class="flex gap-4">
-                            <label-text [text]="obrigacao.prazo | date: 'dd/MM/yyyy'" [label]="'Prazo de Entrega'">
-                                <ng-template #textComplement>
-                                    <label-icon
-                                        [icon]="obrigacao.prazoVencido ? 'iconoirWarningCircle' : undefined"
-                                        [label]="obrigacao.prazoDescricao"
-                                        [iconColorClass]="'text-danger'"
-                                        [iconTextClass]="'text-lg'"
-                                        [labelClass]="'text-sm' + (obrigacao.prazoVencido ? ' text-danger': '')"
-                                        [iconBgClass]="''"
-                                    ></label-icon>
-                                </ng-template>
-                            </label-text>
-                        </div>
+                        <label-text [text]="obrigacao.prazo | date: 'dd/MM/yyyy'" [label]="'Prazo de Entrega'">
+                            <ng-template #textComplement>
+                                <label-icon
+                                    [icon]="obrigacao.prazoVencido ? 'iconoirWarningCircle' : undefined"
+                                    [label]="obrigacao.prazoDescricao"
+                                    [iconColorClass]="'text-danger'"
+                                    [iconTextClass]="'text-lg'"
+                                    [labelClass]="'text-sm' + (obrigacao.prazoVencido ? ' text-danger': '')"
+                                    [iconBgClass]="''"
+                                ></label-icon>
+                            </ng-template>
+                        </label-text>
                     </div>
                 </div>
 
