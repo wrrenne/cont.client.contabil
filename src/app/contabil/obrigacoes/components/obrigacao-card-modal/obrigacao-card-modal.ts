@@ -1,9 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Inject, Injector, Input, Output, ViewChild } from '@angular/core';
 import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
-import { AvatarImageEsferaComponent } from 'src/app/contabil/components/avatar-image-esfera/avatar-image-esfera';
-import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
-import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
+import { AvatarImageVerticalGroupComponent } from 'src/app/shared/controls/avatar-image-vertical-group/avatar-image-vertical-group';
 import { LabelIconComponent } from 'src/app/shared/controls/label-icon/label-icon';
 import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
@@ -28,16 +26,7 @@ export class ObrigacaoCardModalData {
 @Component({
     selector: 'obrigacao-card-modal',
     templateUrl: './obrigacao-card-modal.html',
-    imports: [
-        AvatarTitleComponent,
-        AvatarImageEsferaComponent,
-        LabelTextComponent,
-        LabelIconComponent,
-        AvatarImageGroupComponent,
-        ObrigacaoItemArquivosComponent,
-        DatePipe,
-        ModalBaseComponent,
-    ],
+    imports: [LabelTextComponent, LabelIconComponent, ObrigacaoItemArquivosComponent, DatePipe, ModalBaseComponent, AvatarImageVerticalGroupComponent],
 })
 export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     TEsfera = TEsfera;

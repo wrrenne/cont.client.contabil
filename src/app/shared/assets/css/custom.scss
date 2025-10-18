@@ -18,7 +18,7 @@ body.dark {
 }
 
 .input-label {
-    @apply uppercase text-xs text-gray-600 dark:text-gray-400 tracking-wide;
+    @apply text-gray-600 dark:text-gray-400 tracking-wide font-semibold;
 }
 
 .text-color-body {

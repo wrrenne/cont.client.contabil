@@ -1,24 +1,19 @@
-<div class="flex items-center justify-start space-x-2">
+@if (label) {
+<label class="input-label block">{{ label }}</label>
+}
+<div class="flex flex-col gap-2">
     @if (funcionariosId) { @for (funcionarioId of funcionariosId; track funcionarioId) {
+    <div class="flex flex-col"></div>
     <avatar-image
         [size]="size"
         [funcionarioId]="funcionarioId"
-        [tooltip]="nomes && nomes[$index]"
         [rounded]="rounded"
         [circle]="circle"
         [iconClass]="'text-base'"
         [defaultNoIconName]="nomes && nomes[$index]"
     />
     } } @if (usersId) { @for (userId of usersId; track userId) {
-    <avatar-image
-        [size]="size"
-        [userId]="userId"
-        [tooltip]="nomes && nomes[$index]"
-        [rounded]="rounded"
-        [circle]="circle"
-        [iconClass]="'text-base'"
-        [defaultNoIconName]="nomes && nomes[$index]"
-    />
+    <avatar-title [avatarSize]="size" [userId]="userId" [rounded]="rounded" [circle]="circle" [title]="nomes[$index]"></avatar-title>
     } } @if (showEmptyIcon && (!funcionariosId || funcionariosId.length == 0) && (!usersId || usersId.length == 0)) {
     <avatar-icon [size]="size" [rounded]="rounded" [circle]="circle" [icon]="'matBlockOutline'" [tooltip]="emptyIconTooltip"></avatar-icon>
     } @if (seeMoreCount) {
