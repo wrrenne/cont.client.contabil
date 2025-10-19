@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Inject, Injector, Input, Output, ViewChild } from '@angular/core';
 import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
 import { AvatarImageVerticalGroupComponent } from 'src/app/shared/controls/avatar-image-vertical-group/avatar-image-vertical-group';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { LabelIconComponent } from 'src/app/shared/controls/label-icon/label-icon';
 import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
@@ -39,6 +40,7 @@ export class ObrigacaoCardModalData {
         TextSeparatorComponent,
         TimelineCommentsComponent,
         TimelineCommentFormComponent,
+        ButtonDefaultComponent,
     ],
 })
 export class ObrigacaoCardModalComponent extends ModalBaseComponent {

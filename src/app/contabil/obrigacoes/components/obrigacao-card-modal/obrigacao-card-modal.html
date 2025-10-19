@@ -75,17 +75,6 @@
             <label-text [text]="obrigacao.perfilItemDescricao" [label]="'Perfil'"></label-text>
             <!--#endregion-->
 
-            <!--#region Responsaveis-->
-            <avatar-image-vertical-group
-                [label]="'Responsáveis'"
-                [circle]="false"
-                [size]="'2.8rem'"
-                [usersId]="getUserIds(obrigacao.users)"
-                [nomes]="getUserNomes(obrigacao.users)"
-                [subTitles]="getUserDepartamentos(obrigacao.users)"
-            ></avatar-image-vertical-group>
-            <!--#endregion-->
-
             <!--#region Status-->
             @if (obrigacao.status != TObrigacaoStatus.EmAberto) {
             <label-icon
@@ -99,17 +88,32 @@
             }
             <!--#endregion-->
 
+            <!--#region Conclusao -->
+            <button-default [bgClass]="'btn-primary'" [text]="'Concluir Obrigação'" (click)="openObrigacaoConclusaoModal()"></button-default>
+            <!-- #endregion -->
+
+            <!--#region Responsaveis-->
+            <div>
+                <text-separator [text]="'Responsáveis'"></text-separator>
+                <avatar-image-vertical-group
+                    [circle]="false"
+                    [size]="'2.8rem'"
+                    [usersId]="getUserIds(obrigacao.users)"
+                    [nomes]="getUserNomes(obrigacao.users)"
+                    [subTitles]="getUserDepartamentos(obrigacao.users)"
+                ></avatar-image-vertical-group>
+            </div>
+            <!--#endregion-->
+
             <!--#region Arquivos-->
-            @if (obrigacao.arquivos.length > 0) {
-            <obrigacao-item-arquivos
-                class="flex gap-4 border-t border-gray-100 p-2.5 font-normal dark:border-slate-700/40 sm:p-4"
-                [arquivos]="obrigacao.arquivos"
-            ></obrigacao-item-arquivos>
-            }
+            <div>
+                <text-separator [text]="'Arquivos'"></text-separator>
+                <obrigacao-item-arquivos [arquivos]="obrigacao.arquivos"></obrigacao-item-arquivos>
+            </div>
             <!--#endregion-->
 
             <!--#region Comments-->
-            <div class="mt-4">
+            <div>
                 <text-separator [text]="'Comentários'"></text-separator>
                 <timeline-comments [comments]="obrigacao.comments" [showResponder]="true" (onNewCommentClick)="commentsNewComment($event)"></timeline-comments>
 

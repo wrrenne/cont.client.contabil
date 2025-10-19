@@ -3,7 +3,6 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
 import { EncryptionService } from '../../../../shared/services';
-import { TimelineCommentButton } from '../../../../shared/timeline/controls/timeline-comment-form/timeline-comment-form';
 import { TPostTipo } from '../../../../shared/timeline/enums';
 import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
 import { TimelinesService } from '../../../../shared/timeline/services/timelines.service';
@@ -12,7 +11,6 @@ import { TEsfera, TObrigacaoClientePeriodoPor, TObrigacaoStatus } from '../../..
 import { ObrigacaoClientePeriodoPageItem, ObrigacaoClientePeriodoUserPageItem } from '../../../models/obrigacoes/pagings';
 import { ObrigacaoView } from '../../../models/obrigacoes/views';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
-import { ObrigacaoConclusaoModalComponent } from '../obrigacao-conclusao-modal/obrigacao-conclusao-modal';
 
 @Component({
     selector: '[obrigacao-item]',
@@ -46,29 +44,29 @@ export class ObrigacaoItem {
         private obrigacoesService: ObrigacoesService,
     ) {}
 
-    openObrigacaoConclusaoModal() {
-        let modal = this.modalService.create({
-            nzContent: ObrigacaoConclusaoModalComponent,
-            nzWidth: 460,
-            nzClosable: false,
-            nzFooter: null,
-            nzData: {
-                obrigacaoClientePeriodoId: <number>this.obrigacao.id,
-            },
-        });
+    // openObrigacaoConclusaoModal() {
+    //     let modal = this.modalService.create({
+    //         nzContent: ObrigacaoConclusaoModalComponent,
+    //         nzWidth: 460,
+    //         nzClosable: false,
+    //         nzFooter: null,
+    //         nzData: {
+    //             obrigacaoClientePeriodoId: <number>this.obrigacao.id,
+    //         },
+    //     });
 
-        modal.afterClose.subscribe((result: number[] | null) => {
-            if (result) this.getData();
-        });
-    }
+    //     modal.afterClose.subscribe((result: number[] | null) => {
+    //         if (result) this.getData();
+    //     });
+    // }
 
-    timelinebuttons: TimelineCommentButton[] = [
-        {
-            label: 'Concluir',
-            icon: 'iconoirSettingsProfiles',
-            handler: this.openObrigacaoConclusaoModal.bind(this),
-        },
-    ];
+    // timelinebuttons: TimelineCommentButton[] = [
+    //     {
+    //         label: 'Concluir',
+    //         icon: 'iconoirSettingsProfiles',
+    //         handler: this.openObrigacaoConclusaoModal.bind(this),
+    //     },
+    // ];
 
     //tratamentoOpen(tratamentoTipo: TTratamentoTipo) {
     //    let modal: any

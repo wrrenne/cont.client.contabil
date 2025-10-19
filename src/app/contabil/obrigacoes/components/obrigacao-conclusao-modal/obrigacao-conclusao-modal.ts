@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIcon } from '@ng-icons/core';
 import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
 import { AlertComponent } from 'src/app/shared/controls/alert/alert';
 import { InputFileComponent } from 'src/app/shared/controls/input-file/input-file';
 import { InputTextAreaExComponent } from 'src/app/shared/controls/input-textarea-ex/input-textarea-ex';
-import { LabelExComponent } from 'src/app/shared/controls/label-ex/label-ex';
+import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
 import { ObrigacaoClientePeriodoView } from '../../../models/obrigacoes/views';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
@@ -23,11 +22,10 @@ export interface ObrigacaoConclusaoModalData {
         FormsModule,
         ReactiveFormsModule,
         ModalBaseComponent,
-        LabelExComponent,
-        NgIcon,
         InputFileComponent,
         InputTextAreaExComponent,
         AlertComponent,
+        LabelTextComponent,
     ],
 })
 export class ObrigacaoConclusaoModalComponent {

@@ -2,8 +2,9 @@
     <ng-template #modalContent>
         <div class="flex flex-col gap-y-4">
             <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
-                <label-ex class="w-full" [label]="'Empresa'" [text]="obrigacaoClientePeriodo.clienteNome"></label-ex>
-                <label-ex *ngIf="obrigacaoClientePeriodo.vencimento" [label]="'Vencimento'" text="{{obrigacaoClientePeriodo.vencimento | date: 'dd/MM/yyyy'}}">
+                <label-text class="w-full" [label]="'Empresa'" [text]="obrigacaoClientePeriodo.clienteNome"></label-text>
+                <label-text class="w-full" [label]="'Obrigação'" [text]="obrigacaoClientePeriodo.obrigacaoDescricao"></label-text>
+                <!-- <label-ex *ngIf="obrigacaoClientePeriodo.vencimento" [label]="'Vencimento'" text="{{obrigacaoClientePeriodo.vencimento | date: 'dd/MM/yyyy'}}">
                     <ng-template #infoContent>
                         <div class="flex gap-1" [ngClass]="{'text-danger' : obrigacaoClientePeriodo.vencido}">
                             <ng-icon [name]="'iconoirWarningCircle'" class="text-lg"></ng-icon> {{obrigacaoClientePeriodo.vencimentoDescricao}}
@@ -16,7 +17,7 @@
                             <ng-icon [name]="'iconoirWarningCircle'" class="text-lg"></ng-icon> {{obrigacaoClientePeriodo.prazoDescricao}}
                         </div>
                     </ng-template>
-                </label-ex>
+                </label-ex> -->
 
                 <input-file [label]="'Envio de Arquivos'" class="w-full" (onFileSelected)="fileSelected($event)"></input-file>
                 <input-textarea-ex class="w-full" [form]="firstFormGroup" formControlName="comentario" [label]="'Comentário opcional'"></input-textarea-ex>

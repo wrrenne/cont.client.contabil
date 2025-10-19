@@ -1,9 +1,8 @@
 @if (label) {
 <label class="input-label block">{{ label }}</label>
 }
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-3">
     @if (funcionariosId) { @for (funcionarioId of funcionariosId; track funcionarioId) {
-    <div class="flex flex-col"></div>
     <avatar-image
         [size]="size"
         [funcionarioId]="funcionarioId"
