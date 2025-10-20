@@ -9,6 +9,6 @@ import { ObrigacaoUserPageItem } from '../../../models/users/pageItems';
 })
 export class ObrigacaoUsersGetPagingService extends ServicePagingBase<ObrigacaoUserPageItem> {
     constructor(injector: Injector, vars: Vars, apisUtilsService: ApisUtilsService) {
-        super(`${apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/Obrigacoes/ObrigacaoUsersPagingGet/${vars.cadastro?.id}`, injector);
+        super(`${apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/Users/ObrigacaoUsersPagingGet/${vars.cadastro?.id}`, injector);
     }
 }
