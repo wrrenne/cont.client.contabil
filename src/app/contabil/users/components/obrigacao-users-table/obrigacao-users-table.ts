@@ -63,7 +63,7 @@ export class ObrigacaoUsersTableComponent extends PagingBase<ClienteUserPageItem
     //    this.datas.push(...clienteUserInterno)
     //}
 
-    clienteUserAssociarOpenModal() {
+    obrigacaoUserAssociarOpenModal() {
         const modal = this.modalService.create({
             nzContent: ObrigacaoUserAssociarModalComponent,
             nzWidth: 460,
@@ -71,8 +71,7 @@ export class ObrigacaoUsersTableComponent extends PagingBase<ClienteUserPageItem
             nzFooter: null,
 
             nzData: {
-                clienteId: <number>this.obrigacaoId,
-                clienteNome: 'Novo Colaborador',
+                obrigacaoId: <number>this.obrigacaoId,
             },
         });
 

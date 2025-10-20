@@ -2,6 +2,7 @@ import { Component, Inject, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 import { UserObrigacaoInput } from 'src/app/contabil/models/users/inputs';
+import { ObrigacoesService } from 'src/app/contabil/obrigacoes/services/obrigacoes.service';
 import { InputTextAreaExComponent } from 'src/app/shared/controls/input-textarea-ex/input-textarea-ex';
 import { ModalBaseComponent } from '../../../../shared/controls/modal-base/modal-base';
 import { DateUtilsService } from '../../../../shared/services';
@@ -31,12 +32,16 @@ export class ObrigacaoUserAssociarModalComponent extends ModalBaseComponent {
         private dateUtilsService: DateUtilsService,
         @Inject(NZ_MODAL_DATA) data: ObrigacaoUserAssociarModalData,
         private contabilUsersService: ContabilUsersService,
+        private obrigacoesService: ObrigacoesService,
         private vars: Vars,
     ) {
         super(injector);
 
+        this.obrigacoesService.obrigacaoGet(data.obrigacaoId).subscribe((x) => {
+            this.title = x.obj.descricao;
+        });
+
         this.obrigacaoId = data.obrigacaoId;
-        this.title = data.obrigacaoNome;
     }
 
     ngOnInit(): void {
