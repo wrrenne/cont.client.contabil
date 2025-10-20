@@ -43,7 +43,7 @@
                     </nz-tab>
                     <nz-tab nzTitle="Colaboradores">
                         <ng-template nz-tab>
-                            Col_asdfasdf
+                            <obrigacao-users-table [parameters]="usersParameter"></obrigacao-users-table>
                             <!--<funcionario-expedientes *ngIf="funcionario" [parameters]="funcionarioExpedientesParameter" (onUpdate)="funcionarioExpedientesUpdate()"></funcionario-expedientes>-->
                         </ng-template>
                     </nz-tab>
@@ -51,9 +51,9 @@
                         <ng-template nz-tab> Per_asdfasdfasd </ng-template>
                     </nz-tab>
 
-                    <nz-tab nzTitle="Obrigações">
+                    <!-- <nz-tab nzTitle="Obrigações">
                         <ng-template [ngTemplateOutlet]="obrigacoes"></ng-template>
-                    </nz-tab>
+                    </nz-tab> -->
 
                     <nz-tab nzTitle="Clientes">
                         <ng-template nz-tab>
@@ -87,6 +87,6 @@
     <!-- <obrigacao-resumo *ngIf="obrigacao" [obrigacao]="obrigacao"></obrigacao-resumo> -->
 </ng-template>
 
-<ng-template #obrigacoes>
-    <!-- <obrigacao-obrigacoes-table [parameters]="obrigacoesParameters"></obrigacao-obrigacoes-table> -->
-</ng-template>
+<!-- <ng-template #obrigacoes>
+    <obrigacao-obrigacoes-table [parameters]="obrigacoesParameters"></obrigacao-obrigacoes-table>
+</ng-template> -->

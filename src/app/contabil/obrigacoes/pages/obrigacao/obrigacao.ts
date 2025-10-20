@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
+import { ObrigacaoUsersParameter, ObrigacaoUsersTableComponent } from 'src/app/contabil/users/components/obrigacao-users-table/obrigacao-users-table';
 import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
 import { UserPreferencesService } from '../../../../shared/control/userPreferences/services/userPreferences.service';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { TEsfera } from '../../../models/enums';
-import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
 import { ObrigacaoView } from '../../../models/obrigacoes/views';
 import { ObrigacaoDadosComponent } from '../../components/obrigacao-dados/obrigacao-dados';
 import { ObrigacaoGedConfiguracaoComponent } from '../../components/obrigacao-ged-configuracao/obrigacao-ged-configuracao';
@@ -28,11 +28,12 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
         ObrigacaoVencimentosEPrazosComponent,
         ObrigacaoGedConfiguracaoComponent,
         ObrigacaoResumoComponent,
+        ObrigacaoUsersTableComponent,
     ],
 })
 export class ObrigacaoPage {
-    obrigacoesParameters: ObrigacoesParameter;
-
+    // obrigacoesParameters: ObrigacoesParameter;
+    usersParameter: ObrigacaoUsersParameter;
     subTitle: string;
 
     mes: Date;
@@ -70,7 +71,8 @@ export class ObrigacaoPage {
 
             //this.obrigacoesSidebarParameters = { perfilItemId: r['pi'], searchText: r['q'] }
 
-            this.obrigacoesParameters = { obrigacaoId: id, mes: this.mes };
+            this.usersParameter = { obrigacaoId: id, mes: this.mes };
+            //this.obrigacoesParameters = { obrigacaoId: id, mes: this.mes };
 
             //    this.userPreferencesService.userPrefSave(TUserPrefTipo.Obrigacoes, id.toString(), true).subscribe()
         });

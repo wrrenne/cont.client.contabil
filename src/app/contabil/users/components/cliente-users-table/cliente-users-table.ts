@@ -23,7 +23,7 @@ export interface ClienteUsersParameter {
     imports: [RouterLink, InfiniteScrollDirective, AvatarTitleComponent, ButtonDefaultComponent],
 })
 export class ClienteUsersTableComponent extends PagingBase<ClienteUserPageItem> {
-    descriptionBase = { none: '', plural: '{0} usuários', singular: '1 usuário' };
+    // descriptionBase = { none: '', plural: '{0} usuários', singular: '1 usuário' };
 
     public clienteId: number;
 

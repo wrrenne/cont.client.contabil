@@ -2,15 +2,18 @@ import { Component, Injector, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { ObrigacoesUtilsService } from 'src/app/contabil/obrigacoes/services/obrigacoesUtils.service';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PagingBase } from '../../../../shared/models';
 import { Vars } from '../../../../shared/variables';
 import { ClienteUserPageItem } from '../../../models/users/pageItems';
-import { ObrigacoesUtilsService } from '../../services/obrigacoesUtils.service';
+import { ObrigacaoUsersGetPagingService } from '../../services/pagings/obrigacaoUsersGet.service';
+import { ObrigacaoUserAssociarModalComponent } from '../obrigacao-user-associar-modal/obrigacao-user-associar-modal';
 
 export interface ObrigacaoUsersParameter {
     obrigacaoId: number;
+    mes: Date;
     searchText?: string;
 }
 
