@@ -1,7 +1,8 @@
 <div class="flex flex-col gap-y-4">
     <card [title]="'Configuração'">
         <ng-template #content>
-            <form *ngIf="obrigacao && firstFormGroup" [formGroup]="firstFormGroup">
+            @if (obrigacao && firstFormGroup) {
+            <form [formGroup]="firstFormGroup">
                 <div class="flex flex-col gap-y-4">
                     <folder-select
                         class="w-full md:w-144"
@@ -19,6 +20,7 @@
                     }
                 </div>
             </form>
+            }
         </ng-template>
     </card>
 </div>

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
-import { AlertComponent } from 'src/app/shared/controls/alert/alert';
+import { AlertComponent, AlertType } from 'src/app/shared/controls/alert/alert';
 import { InputFileComponent } from 'src/app/shared/controls/input-file/input-file';
 import { InputTextAreaExComponent } from 'src/app/shared/controls/input-textarea-ex/input-textarea-ex';
 import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
@@ -29,6 +29,8 @@ export interface ObrigacaoConclusaoModalData {
     ],
 })
 export class ObrigacaoConclusaoModalComponent {
+    AlertType = AlertType;
+
     firstFormGroup: FormGroup;
 
     obrigacaoClientePeriodo: ObrigacaoClientePeriodoView;

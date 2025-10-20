@@ -22,9 +22,12 @@
                 <input-file [label]="'Envio de Arquivos'" class="w-full" (onFileSelected)="fileSelected($event)"></input-file>
                 <input-textarea-ex class="w-full" [form]="firstFormGroup" formControlName="comentario" [label]="'Comentário opcional'"></input-textarea-ex>
 
-                <div *ngIf="!firstFormGroup.get('gedPastaCodigo')?.value">
-                    <alert [description]="'Pasta no GED não definida. Para enviar um arquivo é necessário definir uma pasta de destino'"></alert>
-                </div>
+                @if (!firstFormGroup.get('gedPastaCodigo')?.value) {
+                <alert
+                    [description]="'Pasta no GED não definida. Para enviar um arquivo é necessário definir uma pasta de destino'"
+                    [type]="AlertType.Error"
+                ></alert>
+                }
 
                 <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full text-white md:w-36" (click)="submit()">
                     Concluir

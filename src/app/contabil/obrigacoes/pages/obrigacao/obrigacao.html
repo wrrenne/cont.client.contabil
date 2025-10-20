@@ -1,90 +1,90 @@
-<div class="content-site">
-    <profile2 *ngIf="obrigacao" [title]="obrigacao.descricao">
-        <ng-template #profileavatar>
-            <!-- <avatar-image-esfera size="6rem" [parameter]="{esfera: obrigacao.esfera, uf: obrigacao.uf, municipioCodigo: obrigacao.municipioCodigo}" class="flex items-center justify-center"></avatar-image-esfera> -->
-        </ng-template>
+@if (obrigacao) {
+<profile2 [title]="obrigacao.descricao">
+    <ng-template #profileavatar>
+        <!-- <avatar-image-esfera size="6rem" [parameter]="{esfera: obrigacao.esfera, uf: obrigacao.uf, municipioCodigo: obrigacao.municipioCodigo}" class="flex items-center justify-center"></avatar-image-esfera> -->
+    </ng-template>
 
-        <!--        <ng-template #profilesubtitle>-->
-        <!--<div class="hyphen-between flex">
+    <!--        <ng-template #profilesubtitle>-->
+    <!--<div class="hyphen-between flex">
                 <span *ngIf="obrigacao.tipoDescricao" class="text-xs">{{obrigacao.tipoDescricao}} {{obrigacao.periodicidadeDescricao}}</span>
                 <span *ngIf="obrigacao.esferaDescricao" class="text-xs">{{obrigacao.esferaDescricao}}</span>
                 <span *ngIf="obrigacao.departamentoNome" class="text-xs">{{obrigacao.departamentoNome}}</span>
             </div>-->
 
-        <!--<div class="flex gap-3">
+    <!--<div class="flex gap-3">
                 <span *ngIf="obrigacao.tipoDescricao" class="badge badge-outline-success rounded-full">{{obrigacao.tipoDescricao}} {{obrigacao.periodicidadeDescricao}}</span>
                 <span *ngIf="obrigacao.esferaDescricao" class="badge badge-outline-warning rounded-full">{{obrigacao.esferaDescricao}}</span>
                 <span *ngIf="obrigacao.departamentoNome" class="badge badge-outline-primary rounded-full">{{obrigacao.departamentoNome}}</span>
             </div>-->
 
-        <!--    </ng-template>-->
-        <ng-template #profilecontent>
-            <div _class="_mx-auto relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
-                <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
-                    <nz-tabset [nzSelectedIndex]="tabIndex">
-                        <nz-tab nzTitle="Resumo">
-                            <ng-template nz-tab>
-                                <ng-template [ngTemplateOutlet]="resumo"></ng-template>
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Dados básicos">
-                            <ng-template nz-tab>
-                                @if (obrigacao) {
-                                <div class="flex flex-col gap-y-4">
-                                    <obrigacao-dados [obrigacao]="obrigacao"></obrigacao-dados>
-                                    <obrigacao-vencimentos-e-prazos [obrigacao]="obrigacao"></obrigacao-vencimentos-e-prazos>
-                                    <obrigacao-ged-configuracao [obrigacao]="obrigacao"></obrigacao-ged-configuracao>
-                                    <!--<funcionario-avatar-edit [funcionarioId]="funcionario.id!"></funcionario-avatar-edit>
+    <!--    </ng-template>-->
+    <ng-template #content>
+        <div _class="_mx-auto relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
+            <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
+                <nz-tabset [nzSelectedIndex]="tabIndex">
+                    <nz-tab nzTitle="Resumo">
+                        <ng-template nz-tab>
+                            <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Dados básicos">
+                        <ng-template nz-tab>
+                            @if (obrigacao) {
+                            <div class="flex flex-col gap-y-4">
+                                <obrigacao-dados [obrigacao]="obrigacao"></obrigacao-dados>
+                                <obrigacao-vencimentos-e-prazos [obrigacao]="obrigacao"></obrigacao-vencimentos-e-prazos>
+                                <obrigacao-ged-configuracao [obrigacao]="obrigacao"></obrigacao-ged-configuracao>
+                                <!--<funcionario-avatar-edit [funcionarioId]="funcionario.id!"></funcionario-avatar-edit>
     <funcionario-departamentos *ngIf="funcionarioDepartamentosParameter" [parameters]="funcionarioDepartamentosParameter"></funcionario-departamentos>
     <funcionario-cargos *ngIf="funcionarioCargosParameter" [parameters]="funcionarioCargosParameter"></funcionario-cargos>-->
-                                </div>
-                                }
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Colaboradores">
-                            <ng-template nz-tab>
-                                Col_asdfasdf
-                                <!--<funcionario-expedientes *ngIf="funcionario" [parameters]="funcionarioExpedientesParameter" (onUpdate)="funcionarioExpedientesUpdate()"></funcionario-expedientes>-->
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Perfis">
-                            <ng-template nz-tab> Per_asdfasdfasd </ng-template>
-                        </nz-tab>
+                            </div>
+                            }
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Colaboradores">
+                        <ng-template nz-tab>
+                            Col_asdfasdf
+                            <!--<funcionario-expedientes *ngIf="funcionario" [parameters]="funcionarioExpedientesParameter" (onUpdate)="funcionarioExpedientesUpdate()"></funcionario-expedientes>-->
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Perfis">
+                        <ng-template nz-tab> Per_asdfasdfasd </ng-template>
+                    </nz-tab>
 
-                        <nz-tab nzTitle="Obrigações">
-                            <ng-template [ngTemplateOutlet]="obrigacoes"></ng-template>
-                        </nz-tab>
+                    <nz-tab nzTitle="Obrigações">
+                        <ng-template [ngTemplateOutlet]="obrigacoes"></ng-template>
+                    </nz-tab>
 
-                        <nz-tab nzTitle="Clientes">
-                            <ng-template nz-tab>
-                                cli_asdfasdfasdf
-                                <!--<funcionario-ferias-table [parameters]="funcionarioFeriasParameter"></funcionario-ferias-table>-->
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Histórico">
-                            <ng-template nz-tab>
-                                <!--<lancamentos-table [parameters]="bancoParameters"></lancamentos-table>-->
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Arquivos">
-                            <ng-template nz-tab>
-                                <!--                    <arquivos-table [arquivosParameters]="arquivosParameters" *ngIf="arquivosParameters"></arquivos-table>-->
-                            </ng-template>
-                        </nz-tab>
-                        <!--<nz-tab nzTitle="Histórico">
+                    <nz-tab nzTitle="Clientes">
+                        <ng-template nz-tab>
+                            cli_asdfasdfasdf
+                            <!--<funcionario-ferias-table [parameters]="funcionarioFeriasParameter"></funcionario-ferias-table>-->
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Histórico">
+                        <ng-template nz-tab>
+                            <!--<lancamentos-table [parameters]="bancoParameters"></lancamentos-table>-->
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Arquivos">
+                        <ng-template nz-tab>
+                            <!--                    <arquivos-table [arquivosParameters]="arquivosParameters" *ngIf="arquivosParameters"></arquivos-table>-->
+                        </ng-template>
+                    </nz-tab>
+                    <!--<nz-tab nzTitle="Histórico">
                             <ng-template nz-tab>
                                 <ponto-timeline-funcionario-posts [parameters]="postParameter"></ponto-timeline-funcionario-posts>
                             </ng-template>
                         </nz-tab>-->
-                    </nz-tabset>
-                </div>
+                </nz-tabset>
             </div>
-        </ng-template>
-    </profile2>
-</div>
+        </div>
+    </ng-template>
+</profile2>
+}
 
 <ng-template #resumo>
-    <obrigacao-resumo *ngIf="obrigacao" [obrigacao]="obrigacao"></obrigacao-resumo>
+    <!-- <obrigacao-resumo *ngIf="obrigacao" [obrigacao]="obrigacao"></obrigacao-resumo> -->
 </ng-template>
 
 <ng-template #obrigacoes>

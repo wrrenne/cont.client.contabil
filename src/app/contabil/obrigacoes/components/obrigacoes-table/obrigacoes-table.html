@@ -20,11 +20,12 @@
                 <th>Obrigação</th>
                 <th>Departamento</th>
                 <th>Vencimento</th>
+                <th>GED</th>
             </tr>
         </thead>
         <tbody>
             @for (item of datas; track item) {
-            <tr class="cursor-pointer" [routerLink]="['/sistema/funcionarios/funcionario', encryptionService.encrypt(item.id)]">
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacao', encryptionService.encrypt(item.id)]">
                 <td class="whitespace-nowrap">
                     <avatar-title
                         [title]="item.descricao"
@@ -38,6 +39,7 @@
                         ><span>{{item.periodicidadeDescricao}} {{item.anualMesDescricao}}</span>
                     </div>
                 </td>
+                <td>{{item.gedPastaNome}}</td>
             </tr>
             }
         </tbody>

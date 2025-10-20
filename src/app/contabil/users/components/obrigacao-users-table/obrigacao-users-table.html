@@ -1,0 +1,30 @@
+<div class="mb-10 flex gap-3">
+    <button-default [text]="'Novo colaborador'" [bgClass]="'btn-primary'" (click)="clienteUserAssociarOpenModal()"></button-default>
+</div>
+
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <td>Colaborador</td>
+                <td class="hidden text-center md:table-cell">Setor</td>
+                <td class="hidden text-center md:table-cell">Obrigações</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item; let i = $index) {
+            <tr [routerLink]="['/sistema/users/user', getEncryptedId(item.id!)]">
+                <td>
+                    <avatar-title class="cursor-pointer" [title]="item.userNome" [subTitle]="item.userEmail" [userId]="item.userId"> </avatar-title>
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    <span [class]="obrigacoesUtilsService.getDepartamentoColor(item.departamentoCor)">{{item.departamentoNome}}</span>
+                </td>
+                <td class="hidden text-center md:table-cell">
+                    <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -6,16 +6,16 @@ import { NgIcon } from '@ng-icons/core';
     selector: 'alert',
     standalone: true,
     imports: [CommonModule, NgIcon],
-    templateUrl: './alert.html'
+    templateUrl: './alert.html',
 })
 export class AlertComponent {
     @Input() title: string;
     @Input() description: string;
     @Input() description2?: string;
     @Input() type: AlertType;
-    @Input() big = false
-    @Input() iconBig = false
-    @Input() textSmall = false
+    // @Input() big = false
+    @Input() iconBig = false;
+    @Input() textSmall = false;
 
     getIcon(): string {
         switch (this.type) {
@@ -67,5 +67,5 @@ export enum AlertType {
     Error,
     Success,
     Warning,
-    Info
+    Info,
 }

@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
 import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
@@ -17,7 +19,9 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
 @Component({
     selector: 'obrigacao-page',
     templateUrl: './obrigacao.html',
+    providers: [NzModalService],
     imports: [
+        CommonModule,
         Profile2Component,
         NzTabsModule,
         ObrigacaoDadosComponent,
