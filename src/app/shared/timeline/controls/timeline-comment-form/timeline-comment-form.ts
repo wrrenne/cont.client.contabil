@@ -16,6 +16,7 @@ import { DateUtilsService, StringsService } from '../../../services';
 import { TPostTipo, TSolicitacaoStatus } from '../../enums';
 import { SolicitacaoGrupo } from '../../models';
 import { CommentInput, SolicitacaoRespostaInput } from '../../models/inputs';
+import { SolicitacaoRespostaOutput } from '../../models/outputs';
 import { NewCommentParameter, TimelineCommentFormParameter } from '../../models/parameters';
 import { TimelinesService } from '../../services/timelines.service';
 
@@ -30,7 +31,16 @@ import { TimelinesService } from '../../services/timelines.service';
 export class TimelineCommentFormComponent implements OnInit {
     formComment: FormGroup;
 
-    @Input() parameter: TimelineCommentFormParameter;
+    //@HostBinding('class.hidden') hidden: boolean = false;
+
+    private _parameter: TimelineCommentFormParameter;
+    @Input() get parameter() {
+        return this._parameter;
+    }
+    set parameter(value: TimelineCommentFormParameter) {
+        //this.hidden = value.hideCommentLinksVisible ?? false;
+        this._parameter = value;
+    }
 
     private _newComment: NewCommentParameter | undefined;
     @Input() get newComment() {
@@ -40,7 +50,6 @@ export class TimelineCommentFormComponent implements OnInit {
         if (!value) return;
 
         this._newComment = value;
-
         if (this.openComment == undefined) this.openComment = false;
 
         if (value.solicitacaoId) this.openCloseSolicitacaoRespostaClick(value.solicitacaoStatus!);
@@ -50,7 +59,7 @@ export class TimelineCommentFormComponent implements OnInit {
     newCommentTitle: string;
 
     @Output() onNewCommentClick = new EventEmitter<NewCommentParameter>();
-    @Output() onEvaluated = new EventEmitter<number>();
+    @Output() onEvaluated = new EventEmitter<SolicitacaoRespostaOutput>();
     @Output() onCommented = new EventEmitter<number>();
 
     TSolicitacaoStatus = TSolicitacaoStatus;

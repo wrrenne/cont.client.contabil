@@ -1,3 +1,3 @@
 export interface PageItemBase {
-    id?: number
+    id?: number;
 }

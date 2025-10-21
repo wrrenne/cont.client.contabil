@@ -1,72 +1,66 @@
 @if (conteudoObj) {
-  <div>
-    <ng-container [ngTemplateOutlet]="conteudoObj">
-    </ng-container>
-  </div>
-}
-
-@if (!conteudoObj) {
-  <div class="panel mb-3 !p-0 text-sm font-medium xl:mb-4">
+<div>
+    <ng-container [ngTemplateOutlet]="conteudoObj"> </ng-container>
+</div>
+} @if (!conteudoObj) {
+<div class="panel mb-3 !p-0 text-sm font-medium xl:mb-4">
     <!--post heading-->
     <div class="card-header flex gap-3 p-2.5 text-sm font-medium sm:p-4">
-      @if (post.funcionarioId) {
-        <avatar-image [funcionarioId]="post.funcionarioId" [iconClass]="'text-base'" [defaultNoIconName]="post.funcionarioNome" />
-      }
-      @if (post.postUserId) {
-        <avatar-image [userId]="post.postUserId" [iconClass]="'text-base'" [defaultNoIconName]="post.postUserNome" />
-      }
-      @if (!post.funcionarioId && !post.postUserId) {
-        <avatar-image [iconClass]="'text-base'" [userId]="post.userId" [defaultNoIconName]="post.userNome" />
-      }
-      <div class="flex-1">
         @if (post.funcionarioId) {
-          <a [routerLink]="['/sistema/funcionarios/funcionario', getEncryptedId(post.funcionarioId)]" [queryParams]="post.tipo == TPostTipo.Ponto ? {tab: 1, d: post.publicacaoDataHora.substring(0,10)} : {}"> <h6 class="font-semibold text-black dark:text-white"> {{post.funcionarioNome}} </h6> </a>
+        <avatar-image [funcionarioId]="post.funcionarioId" [iconClass]="'text-base'" [defaultNoIconName]="post.funcionarioNome" />
+        } @if (post.postUserId) {
+        <avatar-image [userId]="post.postUserId" [iconClass]="'text-base'" [defaultNoIconName]="post.postUserNome" />
+        } @if (!post.funcionarioId && !post.postUserId) {
+        <avatar-image [iconClass]="'text-base'" [userId]="post.userId" [defaultNoIconName]="post.userNome" />
         }
-        @if (post.postUserId) {
-          <a [routerLink]="['/sistema/users/user', getEncryptedId(post.postUserId)]"> <h6 class="text-black dark:text-white"> {{post.postUserNome}} </h6> </a>
-        }
-        @if (!post.funcionarioId && !post.postUserId) {
-          <a [routerLink]="['/sistema/users/user', getEncryptedId(post.userId)]"> <h6 class="text-black dark:text-white"> {{post.userNome}} </h6> </a>
-        }
-        <!--publicacao data e hora-->
-        <div class="text-gray-500 text-[13px] dark:text-gray-400">
-          <div>
-            <span>{{ post.publicacaoDataFormat }}</span>
-            @if (post.headerDescricao) {
-              <span>&nbsp;&nbsp;-&nbsp;&nbsp;{{post.headerDescricao}}</span>
+        <div class="flex-1">
+            @if (post.funcionarioId) {
+            <a
+                [routerLink]="['/sistema/funcionarios/funcionario', getEncryptedId(post.funcionarioId)]"
+                [queryParams]="post.tipo == TPostTipo.Ponto ? {tab: 1, d: post.publicacaoDataHora.substring(0,10)} : {}"
+            >
+                <h6 class="font-semibold text-black dark:text-white">{{post.funcionarioNome}}</h6>
+            </a>
+            } @if (post.postUserId) {
+            <a [routerLink]="['/sistema/users/user', getEncryptedId(post.postUserId)]"> <h6 class="text-black dark:text-white">{{post.postUserNome}}</h6> </a>
+            } @if (!post.funcionarioId && !post.postUserId) {
+            <a [routerLink]="['/sistema/users/user', getEncryptedId(post.userId)]"> <h6 class="text-black dark:text-white">{{post.userNome}}</h6> </a>
             }
-            @if (post.headerDescricao2) {
-              <span>&nbsp;&nbsp;-&nbsp;&nbsp;{{post.headerDescricao2}}</span>
+            <!--publicacao data e hora-->
+            <div class="text-gray-500 text-[13px] dark:text-gray-400">
+                <div>
+                    <span>{{ post.publicacaoDataFormat }}</span>
+                    @if (post.headerDescricao) {
+                    <span>&nbsp;&nbsp;-&nbsp;&nbsp;{{post.headerDescricao}}</span>
+                    } @if (post.headerDescricao2) {
+                    <span>&nbsp;&nbsp;-&nbsp;&nbsp;{{post.headerDescricao2}}</span>
+                    }
+                </div>
+            </div>
+            @if ((post.postUserId || post.funcionarioId) && post.userId) {
+            <div>
+                <span>Por {{post.userNomeFormat}}</span>
+            </div>
             }
-          </div>
         </div>
-        @if ((post.postUserId || post.funcionarioId) && post.userId) {
-          <div>
-            <span>Por {{post.userNomeFormat}}</span>
-          </div>
-        }
-      </div>
     </div>
     <!--post image-->
     @if (post.imagemUrl) {
-      <div class="relative mb-3 mt-4 sm:px-4">
+    <div class="relative mb-3 mt-4 sm:px-4">
         <file-server-image [src]="post.imagemUrl" class="h-full w-full" [width]="400"></file-server-image>
-      </div>
-    }
-    @if ((post.userId && post.funcionarioNome) || post.acao || post.conteudo || conteudoObj) {
-      <div class="px-2.5 py-2.5 sm:px-4">
+    </div>
+    } @if ((post.userId && post.funcionarioNome) || post.acao || post.conteudo || conteudoObj) {
+    <div class="px-2.5 py-2.5 sm:px-4">
         @if (post.acaoTitulo) {
-          <div [innerHTML]="post.acaoTitulo.replace('\n', '<br>')" class="mb-2 font-semibold text-[15px] text-orange-900 dark:text-orange-700"></div>
+        <div [innerHTML]="post.acaoTitulo.replace('\n', '<br>')" class="mb-2 font-semibold text-[15px] text-orange-900 dark:text-orange-700"></div>
+        } @if (post.acao) {
+        <div [innerHTML]="post.acao.replace('\n', '<br>')"></div>
+        } @if (post.conteudo) {
+        <div [innerHTML]="post.conteudo.replace('\n', '<br>')" class="mt-3"></div>
         }
-        @if (post.acao) {
-          <div [innerHTML]="post.acao.replace('\n', '<br>')"></div>
-        }
-        @if (post.conteudo) {
-          <div [innerHTML]="post.conteudo.replace('\n', '<br>')" class="mt-3"></div>
-        }
-      </div>
+    </div>
     }
     <!--comments-->
     <timeline-comments [comments]="post.comments"></timeline-comments>
-  </div>
+</div>
 }

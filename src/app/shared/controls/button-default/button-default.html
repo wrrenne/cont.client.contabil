@@ -1,16 +1,20 @@
 <!-- [ngClass]="{'!py-0.5 !px-2.5': size == 'xs', '!py-4': size == 'lg' }" -->
 <button
     type="button"
-    class="button flex gap-2 text-center"
+    class="button"
     [class]="bgClass ?? 'btn-gray'"
-    [ngClass]="{'btn-xs': size == 'xs', 'btn-lg': size == 'lg' }"
+    [ngClass]="{'btn-xs': size == 'xs', 'btn-lg': size == 'lg', '!rounded-full': circle, '!rounded-lg': rounded, '!border-none': !border }"
     [disabled]="disabled"
+    [tippyProps]="tippyProps"
+    [ngxTippy]="tooltip"
 >
-    @if (icon) {
-    <ng-icon [name]="icon" class="text-lg text-black dark:text-white"></ng-icon>
-    } @if (text) {
-    <span>{{text}}</span>
-    } @if (showArrow) {
-    <ng-icon [name]="'iconoirFastArrowRight'" class="text-lg text-black dark:text-white"></ng-icon>
-    }
+    <div class="flex gap-2 items-center px-1">
+        @if (icon) {
+        <ng-icon [name]="icon" class="text-lg text-black dark:text-white"></ng-icon>
+        } @if (text) {
+        <span>{{text}}</span>
+        } @if (showArrow) {
+        <ng-icon [name]="'iconoirFastArrowRight'" class="text-lg text-black dark:text-white"></ng-icon>
+        }
+    </div>
 </button>

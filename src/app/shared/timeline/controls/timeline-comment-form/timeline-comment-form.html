@@ -1,67 +1,101 @@
-@if (!openComment || (parameter.solicitacao?.tipo && !isFuncionario && parameter.solicitacao?.status == TSolicitacaoStatus.EmAberto) || parameter.solicitacaoGrupos) {
-  <div class="my-1 flex space-x-4">
-    @if (!openComment || (parameter.solicitacao?.tipo && !isFuncionario && parameter.solicitacao?.status == TSolicitacaoStatus.EmAberto) || parameter.solicitacaoGrupos) {
-      <div class="flex grow items-center space-x-3">
+@if (!openComment || (parameter.solicitacao?.tipo && !isFuncionario && parameter.solicitacao?.status == TSolicitacaoStatus.EmAberto) ||
+parameter.solicitacaoGrupos) {
+<div class="_my-1 flex space-x-4">
+    @if (!openComment || (parameter.solicitacao?.tipo && !isFuncionario && parameter.solicitacao?.status == TSolicitacaoStatus.EmAberto) ||
+    parameter.solicitacaoGrupos) {
+    <div class="flex grow items-center space-x-3">
         @if (parameter.postInfo) {
-          <div class="flex items-center gap-2 rounded-full bg-gray-200 px-2.5 py-1 dark:bg-gray-800">
+        <div class="flex items-center gap-2 rounded-full bg-gray-200 px-2.5 py-1 dark:bg-gray-800">
             <ng-icon [name]="'ionChatbubblesOutline'" class="text-lg"></ng-icon>
             <span>{{parameter.postInfo.count}}</span>
-          </div>
-        }
-        @if (parameter.buttons && !parameter.buttonsAfterCommentButton) {
-          <ng-container *ngTemplateOutlet="buttons">
-          </ng-container>
-        }
-        @if (!openComment) {
-          @if (parameter.commentId != undefined) {
-            <hyperlink-button text="Responder" [icon]="'ionChatbubbleOutline'" (onButtonClick)="respostaClick()" [isButton]="false" [iconClass]="'text-lg'" class="text-[13px]"></hyperlink-button>
-          }
-          @if (parameter.commentId == undefined) {
-            <hyperlink-button text="Comentar" [icon]="'ionChatbubbleOutline'" (onButtonClick)="openCloseCommentClick()" [isButton]="false" [iconClass]="'text-lg'" class="text-[13px]"></hyperlink-button>
-          }
-          @if (parameter.solicitacao?.tipo && !isFuncionario && parameter.solicitacao?.status == TSolicitacaoStatus.EmAberto) {
-            <hyperlink-button [text]="'Aceitar'" [icon]="'iconoirSettingsProfiles'" (onButtonClick)="solicitacaoRespostaClick(TSolicitacaoStatus.Aceito)" [isButton]="false" [iconClass]="'text-lg'" class="text-yellow-700"></hyperlink-button>
-            <hyperlink-button [text]="'Rejeitar'" [icon]="'matBlockOutline'" (onButtonClick)="solicitacaoRespostaClick(TSolicitacaoStatus.Rejeitado)" [isButton]="false" [iconClass]="'text-lg'" class="text-yellow-700"></hyperlink-button>
-          }
-        }
-        @if (parameter.buttons && parameter.buttonsAfterCommentButton) {
-          <ng-container *ngTemplateOutlet="buttons">
-          </ng-container>
-        }
-        @if (parameter.solicitacaoGrupos) {
-          @for (solicitacaoGrupo of parameter.solicitacaoGrupos; track trackById($index, solicitacaoGrupo)) {
-            <div>
-              <hyperlink-button [text]="solicitacaoGrupo.label" [icon]="'ionChatboxEllipsesOutline'" (onButtonClick)="openCloseSolicitacaoClick(solicitacaoGrupo)" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button>
-            </div>
-          }
-        }
-      </div>
+        </div>
+        } @if (parameter.buttons && !parameter.buttonsAfterCommentButton) {
+        <ng-container *ngTemplateOutlet="buttons"> </ng-container>
+        } @if (!openComment) { @if (parameter.commentId != undefined) {
+        <hyperlink-button
+            text="Responder"
+            [icon]="'ionChatbubbleOutline'"
+            (onButtonClick)="respostaClick()"
+            [isButton]="false"
+            [iconClass]="'text-lg'"
+            class="text-[13px]"
+        ></hyperlink-button>
+        } @if (parameter.commentId == undefined && !parameter.hideCommentLinksVisible) {
+        <hyperlink-button
+            text="Comentar"
+            [icon]="'ionChatbubbleOutline'"
+            (onButtonClick)="openCloseCommentClick()"
+            [isButton]="false"
+            [iconClass]="'text-lg'"
+            class="text-[13px] pt-4"
+        ></hyperlink-button>
+        } @if (parameter.solicitacao?.tipo && !isFuncionario && parameter.solicitacao?.status == TSolicitacaoStatus.EmAberto) {
+        <hyperlink-button
+            [text]="'Aceitar'"
+            [icon]="'iconoirSettingsProfiles'"
+            (onButtonClick)="solicitacaoRespostaClick(TSolicitacaoStatus.Aceito)"
+            [isButton]="false"
+            [iconClass]="'text-lg'"
+            class="text-yellow-700"
+        ></hyperlink-button>
+        <hyperlink-button
+            [text]="'Rejeitar'"
+            [icon]="'matBlockOutline'"
+            (onButtonClick)="solicitacaoRespostaClick(TSolicitacaoStatus.Rejeitado)"
+            [isButton]="false"
+            [iconClass]="'text-lg'"
+            class="text-yellow-700"
+        ></hyperlink-button>
+        } } @if (parameter.buttons && parameter.buttonsAfterCommentButton) {
+        <ng-container *ngTemplateOutlet="buttons"> </ng-container>
+        } @if (parameter.solicitacaoGrupos) { @for (solicitacaoGrupo of parameter.solicitacaoGrupos; track trackById($index, solicitacaoGrupo)) {
+        <div>
+            <hyperlink-button
+                [text]="solicitacaoGrupo.label"
+                [icon]="'ionChatboxEllipsesOutline'"
+                (onButtonClick)="openCloseSolicitacaoClick(solicitacaoGrupo)"
+                [isButton]="false"
+                [iconClass]="'text-lg'"
+            ></hyperlink-button>
+        </div>
+        } }
+    </div>
     }
-  </div>
-}
-
-@if (openComment) {
-  <div class="w-full" @fadeInAnimation>
+</div>
+} @if (openComment) {
+<div class="w-full pt-4" @fadeInAnimation>
     @if (newCommentTitle) {
-      <div class="mb-1">{{newCommentTitle}}</div>
+    <div class="mb-1">{{newCommentTitle}}</div>
     }
     <form [formGroup]="formComment" class="flex w-full flex-col gap-1.5">
-      <div class="flex flex-col gap-2">
-        <input-textarea-ex [form]="formComment" formControlName="comentario" #comentario [placeholderText]="getComentarComo()" [noBorder]="true"></input-textarea-ex>
-        <input-file (onFileSelected)="onCommentFileSelected($event)"></input-file>
-      </div>
-      <div class="flex gap-2">
-        <button class="button btn-primary" [disabled]="!formComment.valid" (click)="submit()">{{postarLabel ? postarLabel : 'Postar'}}</button>
-        <button class="button btn-transparent" (click)="postCancel()">Cancelar</button>
-      </div>
+        <div class="flex flex-col gap-2">
+            <input-textarea-ex
+                [form]="formComment"
+                formControlName="comentario"
+                #comentario
+                [placeholderText]="getComentarComo()"
+                [noBorder]="true"
+            ></input-textarea-ex>
+            <input-file (onFileSelected)="onCommentFileSelected($event)"></input-file>
+        </div>
+        <div class="flex gap-2">
+            <button class="button btn-primary" [disabled]="!formComment.valid" (click)="submit()">{{postarLabel ? postarLabel : 'Postar'}}</button>
+            <button class="button btn-transparent" (click)="postCancel()">Cancelar</button>
+        </div>
     </form>
-  </div>
+</div>
 }
 
 <ng-template #buttons>
-  @for (button of parameter.buttons; track trackById($index, button)) {
+    @for (button of parameter.buttons; track trackById($index, button)) {
     <div>
-      <hyperlink-button [text]="button.label" [icon]="button.icon!" (onButtonClick)="button?.handler && button?.handler();" [isButton]="false" [iconClass]="'text-lg'"></hyperlink-button>
+        <hyperlink-button
+            [text]="button.label"
+            [icon]="button.icon!"
+            (onButtonClick)="button?.handler && button?.handler();"
+            [isButton]="false"
+            [iconClass]="'text-lg'"
+        ></hyperlink-button>
     </div>
-  }
+    }
 </ng-template>

@@ -1,7 +1,6 @@
 <div
-    class="flex items-center"
+    class="flex items-center gap-2"
     [ngxTippy]="tooltip"
-    _ngClass="{'items-center': verticalCenter, 'items-top': verticalCenter}"
     [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
 >
     @if (!reverse) {

@@ -28,4 +28,5 @@ export class TimelineCommentFormParameter {
     buttonsAfterCommentButton?: boolean;
     postInfo?: PostInfo;
     userNome?: string;
+    hideCommentLinksVisible? = false;
 }

@@ -4,6 +4,6 @@
     <timeline-comment [comment]="comment" (onNewCommentClick)="newCommentClick($event)" [showResponder]="showResponder"></timeline-comment>
     }
 </div>
-} @else {
+} @if (!comments || comments.length == 0) {
 <div class="text-muted">Sem comentários</div>
 }

@@ -98,3 +98,10 @@ export enum TPostTipo {
 export enum TPostIcone {
     Editar = 1,
 }
+
+export enum TCommentsFilter {
+    Todos = 0,
+    Solicitacoes = 1,
+    SolicitacoesEmAberto = 2,
+    CommentsAndSolicitacoesDone = 3,
+}
