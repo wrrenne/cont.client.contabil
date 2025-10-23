@@ -362,6 +362,14 @@ input {
     @apply rounded-full border border-blue-400 dark:border-blue-900 text-blue-800 dark:text-blue-200;
 }
 
+.tag-sky {
+    @apply rounded-full bg-sky-200 dark:bg-sky-900 text-sky-800 dark:text-sky-200;
+}
+
+.tag-sky-outline {
+    @apply rounded-full border border-sky-400 dark:border-sky-900 text-sky-800 dark:text-sky-200;
+}
+
 .tag-red {
     @apply rounded-full bg-red-200 dark:bg-red-900 text-red-800 dark:text-red-200;
 }
@@ -375,7 +383,7 @@ input {
 }
 
 .tag-yellow {
-    @apply rounded-full bg-yellow-200 dark:bg-yellow-400 text-black;
+    @apply rounded-full bg-yellow-200 dark:bg-yellow-800 text-black dark:text-white;
 }
 
 .tag-yellow-outline {

@@ -6,6 +6,7 @@ import { ApiResponse, ServiceBase } from '../../../shared/models';
 import { ApisUtilsService, TMicroService } from '../../services';
 import { Vars } from '../../variables';
 import { TPostTipo, TSolicitacaoStatus } from '../enums';
+import { SolicitacoesPorGrupoCount } from '../models';
 import { CommentInput, SolicitacaoRespostaInput, SolicitacaoTratamentoInput } from '../models/inputs';
 import { SolicitacaoRespostaOutput } from '../models/outputs';
 import { ActivityPageItem, CommentPageItem, PostPageItem, SolicitacaoPageItem } from '../models/pagings';
@@ -156,14 +157,14 @@ export class TimelinesService extends ServiceBase {
             .pipe(catchError(this.handleError));
     }
 
-    solicitacoesCountGet(): Observable<ApiResponse<number>> {
+    solicitacoesCountGet(): Observable<ApiResponse<SolicitacoesPorGrupoCount>> {
         const cadastroId = this.vars.cadastro?.id;
         const status = TSolicitacaoStatus.EmAberto;
         const userId = this.vars.user?.id;
 
         return this.http
             .get<
-                ApiResponse<number>
+                ApiResponse<SolicitacoesPorGrupoCount>
             >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTimeline)}/Solicitacoes/SolicitacoesCountGet/${cadastroId}/${status}/${userId}`)
             .pipe(catchError(this.handleError));
     }

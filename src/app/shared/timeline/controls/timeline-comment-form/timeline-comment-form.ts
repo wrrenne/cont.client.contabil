@@ -31,14 +31,11 @@ import { TimelinesService } from '../../services/timelines.service';
 export class TimelineCommentFormComponent implements OnInit {
     formComment: FormGroup;
 
-    //@HostBinding('class.hidden') hidden: boolean = false;
-
     private _parameter: TimelineCommentFormParameter;
     @Input() get parameter() {
         return this._parameter;
     }
     set parameter(value: TimelineCommentFormParameter) {
-        //this.hidden = value.hideCommentLinksVisible ?? false;
         this._parameter = value;
     }
 

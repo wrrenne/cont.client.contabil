@@ -36,7 +36,7 @@ parameter.solicitacaoGrupos) {
             (onButtonClick)="solicitacaoRespostaClick(TSolicitacaoStatus.Aceito)"
             [isButton]="false"
             [iconClass]="'text-lg'"
-            class="text-yellow-700"
+            class="text-green-700"
         ></hyperlink-button>
         <hyperlink-button
             [text]="'Rejeitar'"
@@ -44,7 +44,7 @@ parameter.solicitacaoGrupos) {
             (onButtonClick)="solicitacaoRespostaClick(TSolicitacaoStatus.Rejeitado)"
             [isButton]="false"
             [iconClass]="'text-lg'"
-            class="text-yellow-700"
+            class="text-red-700"
         ></hyperlink-button>
         } } @if (parameter.buttons && parameter.buttonsAfterCommentButton) {
         <ng-container *ngTemplateOutlet="buttons"> </ng-container>
