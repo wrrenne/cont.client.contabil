@@ -18,6 +18,11 @@
                 </div>
             </div>
 
+            @if (buttons) {
+            <div class="flex gap-2 mt-3 sm:mt-0">
+                <ng-container [ngTemplateOutlet]="buttons"></ng-container>
+            </div>
+            }
             <!-- Right Section: Buttons -->
             <!-- <div class="flex gap-2 mt-3 sm:mt-0">
                 <button class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition">Follow</button>

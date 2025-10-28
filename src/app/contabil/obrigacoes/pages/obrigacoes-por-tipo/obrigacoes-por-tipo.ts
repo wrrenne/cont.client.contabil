@@ -4,26 +4,20 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
 import { ClientesService } from 'src/app/contabil/clientes/services/clientes.service';
-import { TObrigacaoTipo } from 'src/app/contabil/models/enums';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
-import { ClienteObrigacoesComponent } from '../../components/cliente-obrigacoes-table/cliente-obrigacoes-table';
 
 @Component({
-    selector: 'cliente-obrigacoes-page',
-    templateUrl: './cliente-obrigacoes.html',
+    selector: 'obrigacoes-por-tipo-page',
+    templateUrl: './obrigacoes-por-tipo.html',
     providers: [NzModalService],
-    imports: [PageTitleComponent, NzTabsModule, ClienteObrigacoesComponent],
+    imports: [PageTitleComponent, NzTabsModule],
     standalone: true,
 })
-export class ClienteObrigacoesPage implements OnInit {
-    //cliente: ContabilClienteView;
-
-    impostosParameters: ObrigacoesParameter;
-    acessoriasParameters: ObrigacoesParameter;
-    relatoriosParameters: ObrigacoesParameter;
+export class ObrigacoesPorTipoPage implements OnInit {
+    parameters: ObrigacoesParameter;
 
     title: string;
     subTitle: string;
@@ -45,16 +39,14 @@ export class ClienteObrigacoesPage implements OnInit {
         }));
 
         urlParametrs.subscribe((r) => {
-            const clienteId = this.encryptionService.decrypt(r['id']);
+            const obrigacaoId = this.encryptionService.decrypt(r['id']);
 
             var mes = r['mes'] ?? this.dateUtilsService.firstDateOfCurrentMonth();
 
-            this.clientesService.clienteGet(clienteId).subscribe((x) => {
+            this.clientesService.clienteGet(obrigacaoId).subscribe((x) => {
                 this.title = x.obj.nome;
                 this.subTitle = x.obj.regime;
-                this.impostosParameters = { clienteId: clienteId, mes: mes, tipo: TObrigacaoTipo.Imposto };
-                this.acessoriasParameters = { clienteId: clienteId, mes: mes, tipo: TObrigacaoTipo.Acessoria };
-                this.relatoriosParameters = { clienteId: clienteId, mes: mes, tipo: TObrigacaoTipo.Relatorio };
+                this.parameters = { obrigacaoId: obrigacaoId, mes: mes };
             });
         });
     }

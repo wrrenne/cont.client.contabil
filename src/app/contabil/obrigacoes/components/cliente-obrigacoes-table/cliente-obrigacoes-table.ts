@@ -5,12 +5,12 @@ import { ObrigacoesBase } from '../obrigacoes-base/obrigacoes-base';
 import { ObrigacoesControl } from '../obrigacoes-control/obrigacoes-control';
 
 @Component({
-    selector: 'cliente-obrigacoes',
+    selector: 'cliente-obrigacoes-table',
     standalone: true,
     imports: [InfiniteScrollDirective, ObrigacoesControl],
-    templateUrl: './cliente-obrigacoes.html',
+    templateUrl: './cliente-obrigacoes-table.html',
 })
-export class ClienteObrigacoesComponent extends ObrigacoesBase {
+export class ClienteObrigacoesTableComponent extends ObrigacoesBase {
     constructor(injector: Injector, espelhosService: ClienteObrigacoesMesPagingService) {
         super(injector, espelhosService);
     }

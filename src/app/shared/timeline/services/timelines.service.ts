@@ -3,7 +3,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { ApiResponse, ServiceBase } from '../../../shared/models';
-import { ApisUtilsService, TMicroService } from '../../services';
+import { ApisUtilsService, DateUtilsService, TMicroService } from '../../services';
 import { Vars } from '../../variables';
 import { TPostTipo, TSolicitacaoStatus } from '../enums';
 import { SolicitacoesPorGrupoCount } from '../models';
@@ -20,6 +20,7 @@ export class TimelinesService extends ServiceBase {
         injector: Injector,
         private apisUtilsService: ApisUtilsService,
         private vars: Vars,
+        private dateUtilsService: DateUtilsService,
     ) {
         super(injector);
     }
@@ -161,11 +162,13 @@ export class TimelinesService extends ServiceBase {
         const cadastroId = this.vars.cadastro?.id;
         const status = TSolicitacaoStatus.EmAberto;
         const userId = this.vars.user?.id;
+        const dataInicial = this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!);
+        const dataFinal = this.dateUtilsService.GetDateIsoString(this.vars.dataFinal!);
 
         return this.http
             .get<
                 ApiResponse<SolicitacoesPorGrupoCount>
-            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTimeline)}/Solicitacoes/SolicitacoesCountGet/${cadastroId}/${status}/${userId}`)
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTimeline)}/Solicitacoes/SolicitacoesCountGet/${cadastroId}/${status}/${userId}/${dataInicial}/${dataFinal}`)
             .pipe(catchError(this.handleError));
     }
 

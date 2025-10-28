@@ -12,7 +12,6 @@ import { TEsfera } from '../../../models/enums';
 import { ObrigacaoView } from '../../../models/obrigacoes/views';
 import { ObrigacaoDadosComponent } from '../../components/obrigacao-dados/obrigacao-dados';
 import { ObrigacaoGedConfiguracaoComponent } from '../../components/obrigacao-ged-configuracao/obrigacao-ged-configuracao';
-import { ObrigacaoResumoComponent } from '../../components/obrigacao-resumo/obrigacao-resumo';
 import { ObrigacaoVencimentosEPrazosComponent } from '../../components/obrigacao-vencimentos-e-prazos/obrigacao-vencimentos-e-prazos';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
 
@@ -27,7 +26,6 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
         ObrigacaoDadosComponent,
         ObrigacaoVencimentosEPrazosComponent,
         ObrigacaoGedConfiguracaoComponent,
-        ObrigacaoResumoComponent,
         ObrigacaoUsersTableComponent,
     ],
 })

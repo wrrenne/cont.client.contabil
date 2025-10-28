@@ -6,6 +6,7 @@
 
 .ant-modal {
     @apply text-black/70 dark:text-white/70;
+    width: fit-content;
 }
 
 .ant-modal-confirm-body .ant-modal-confirm-title {

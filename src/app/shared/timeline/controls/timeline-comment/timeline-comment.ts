@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgIcon } from '@ng-icons/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { GedFileViewerModalComponent } from 'src/app/shared/ged/controls/ged-file-viewer-modal/ged-file-viewer-modal';
+import { GedFileViewerComponent } from 'src/app/shared/ged/controls/ged-file-viewer/ged-file-viewer';
 import { environment } from '../../../../../environments/environment';
 import { AvatarImageComponent } from '../../../controls/avatar-image/avatar-image';
 import { FileServerImageComponent } from '../../../controls/file-server-image/file-server-image';
@@ -14,7 +16,7 @@ import { TimelineCommentFormComponent } from '../timeline-comment-form/timeline-
     templateUrl: './timeline-comment.html',
     host: { class: 'flex gap-3' },
     standalone: true,
-    imports: [AvatarImageComponent, FileServerImageComponent, NgIcon, TimelineCommentFormComponent],
+    imports: [AvatarImageComponent, FileServerImageComponent, GedFileViewerComponent, TimelineCommentFormComponent],
 })
 export class TimelineCommentComponent {
     @Input() comment: CommentPageItem;
@@ -27,7 +29,10 @@ export class TimelineCommentComponent {
     TSolicitacaoTipo = TSolicitacaoTipo;
     TSolicitacaoStatus = TSolicitacaoStatus;
 
-    constructor(private vars: Vars) {}
+    constructor(
+        private vars: Vars,
+        private modalService: NzModalService,
+    ) {}
 
     get isDebug(): boolean {
         return environment.debug;
@@ -52,5 +57,19 @@ export class TimelineCommentComponent {
 
     newCommentClick(e: any) {
         this.onNewCommentClick.emit(e);
+    }
+
+    fileOpen(fileId: number) {
+        const modal = this.modalService.create({
+            nzContent: GedFileViewerModalComponent,
+            nzClosable: false,
+
+            nzFooter: null,
+            nzWidth: 'auto',
+            nzStyle: { display: 'table' },
+            nzData: {
+                fileId: fileId,
+            },
+        });
     }
 }

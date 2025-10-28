@@ -35,6 +35,7 @@ export class Profile2Component {
     }
 
     @ContentChild('content') content: TemplateRef<any>;
+    @ContentChild('buttons') buttons: TemplateRef<any>;
 
     constructor(private apisUtilsService: ApisUtilsService) {}
 }

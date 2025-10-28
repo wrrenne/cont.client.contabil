@@ -7,7 +7,6 @@ import { ReportParameters } from '../../models';
 @Component({
     selector: 'pdf-viewer',
     templateUrl: './pdf-viewer.html',
-    styleUrls: ['./pdf-viewer.scss'],
 })
 export class ReportPdfViewerComponent implements OnInit, OnDestroy {
     @Input() reportId!: number;
@@ -25,7 +24,7 @@ export class ReportPdfViewerComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         if (!this.reportId) {
-            this.error = 'Invalid report ID.';
+            this.error = 'Relatório inválido';
             return;
         }
 
