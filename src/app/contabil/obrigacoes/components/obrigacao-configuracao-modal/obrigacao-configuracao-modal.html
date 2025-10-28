@@ -1,16 +1,16 @@
-<modal-base [title]="title">
+<modal-base [title]="title" [subTitle]="subTitle">
     <ng-template #modalContent>
         <div class="flex flex-col gap-y-4">
             @if (obrigacao && firstFormGroup) {
             <form [formGroup]="firstFormGroup">
                 <div class="flex flex-col gap-y-4">
-                    <input-ex class="w-full" [formControlName]="'descricao'" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
-                    <input-textarea-ex
+                    <folder-select
+                        class="w-full"
+                        [formControlName]="'gedPastaCodigo'"
                         [form]="firstFormGroup"
-                        [placeholderText]="'Comentário opcional'"
-                        formControlName="comentario"
-                        [label]="'Comentário'"
-                    ></input-textarea-ex>
+                        [label]="'Pasta no Ged'"
+                        [parameters]="pastasParameters"
+                    ></folder-select>
 
                     <button-default
                         [text]="'Salvar'"
@@ -19,6 +19,10 @@
                         (click)="submitFirstFormGroup()"
                     >
                     </button-default>
+
+                    <!-- <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full md:w-36" (click)="submitFirstFormGroup()">
+                        Salvar
+                    </button> -->
                 </div>
             </form>
             }

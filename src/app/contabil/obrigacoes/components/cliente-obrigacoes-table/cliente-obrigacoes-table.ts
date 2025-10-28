@@ -14,8 +14,4 @@ export class ClienteObrigacoesTableComponent extends ObrigacoesBase {
     constructor(injector: Injector, espelhosService: ClienteObrigacoesMesPagingService) {
         super(injector, espelhosService);
     }
-
-    obrigacaoClienteUpdate(e: any) {
-        this.onObrigacaoUpdate.emit(e);
-    }
 }

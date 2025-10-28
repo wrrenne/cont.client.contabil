@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
 import { EncryptionService } from '../../../../shared/services';
@@ -15,6 +17,7 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
 @Component({
     selector: '[obrigacao-item]',
     templateUrl: './obrigacao-item.html',
+    imports: [CommonModule, AvatarIconComponent],
 })
 export class ObrigacaoItem {
     TEsfera = TEsfera;

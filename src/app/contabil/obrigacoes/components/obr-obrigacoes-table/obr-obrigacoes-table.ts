@@ -3,23 +3,23 @@ import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angul
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
-import { ClientesPagingService } from 'src/app/contabil/clientes/services/pagings';
+import { ObrigacaoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ContabilClientePageItem } from '../../../models/clientes/pageItems';
 import { ClientesParameter } from '../../../models/clientes/parameters';
+import { ObrigacoesPagingService } from '../../services/pagings/obrigacoes.service';
 
 @Component({
-    selector: 'obr-clientes-table',
-    templateUrl: './obr-clientes-table.html',
+    selector: 'obr-obrigacoes-table',
+    templateUrl: './obr-obrigacoes-table.html',
     standalone: true,
     imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, PercentageBarComponent, AvatarIconComponent],
 })
-export class ObrClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
+export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
     searchSubscription: Subscription;
 
     @Output() onClick = new EventEmitter<number>();
@@ -49,11 +49,11 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
 
     constructor(
         injector: Injector,
-        clientesPagingService: ClientesPagingService,
+        obrigacoesPagingService: ObrigacoesPagingService,
         private vars: Vars,
         private searchService: SearchService,
     ) {
-        super(injector, clientesPagingService);
+        super(injector, obrigacoesPagingService);
         this.vars.search = { showSearchBox: false };
 
         this.searchSubscription = this.searchService.onMessage().subscribe((x) => {
@@ -73,7 +73,7 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
         super.ngOnInit();
     }
 
-    modalClosed(pageItem: ContabilClientePageItem) {
+    modalClosed(pageItem: ObrigacaoPageItem) {
         let index = this.datas.findIndex((x) => x.id == pageItem.id);
 
         if (index == -1) this.datas.push(pageItem);

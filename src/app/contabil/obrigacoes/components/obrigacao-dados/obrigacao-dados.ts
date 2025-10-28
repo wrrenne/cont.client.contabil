@@ -170,6 +170,8 @@ export class ObrigacaoDadosComponent {
             },
         });
 
-        modal.afterClose.subscribe((r) => this.getData(r));
+        modal.afterClose.subscribe((r) => {
+            if (r) this.getData(r);
+        });
     }
 }

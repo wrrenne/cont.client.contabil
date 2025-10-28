@@ -83,13 +83,16 @@
                 [icon]="getStatusIcon()"
                 [label]="obrigacao.statusDescricao"
                 [label2]="obrigacao.concluidoEmFormat"
-                [rounded]="true"
+                [rounded]="false"
+                [circle]="false"
             ></label-icon>
             }
             <!--#endregion-->
 
             <!--#region Conclusao -->
+            @if (obrigacao.status == TObrigacaoStatus.EmAberto) {
             <button-default [bgClass]="'btn-primary'" [text]="'Concluir Obrigação'" (click)="openObrigacaoConclusaoModal()"></button-default>
+            }
             <!-- #endregion -->
 
             <!--#region Responsaveis-->

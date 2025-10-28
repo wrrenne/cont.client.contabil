@@ -2,9 +2,10 @@ import { Routes } from '@angular/router';
 import { ObrigacoesComponent } from './obrigacoes.component';
 import { ClienteObrigacoesPage } from './pages/cliente-obrigacoes/cliente-obrigacoes';
 import { ObrigacoesHomePage } from './pages/home/home';
+import { ObrigacaoObrigacoesPage } from './pages/obrigacao-obrigacoes/obrigacao-obrigacoes';
 import { ObrigacaoPage } from './pages/obrigacao/obrigacao';
 import { ObrigacoesPorClientePage } from './pages/obrigacoes-por-cliente/obrigacoes-por-cliente';
-import { ObrigacaoObrigacoesPage } from './pages/obrigacoes-por-tipo/obrigacoes-por-tipo';
+import { ObrigacoesPorObrigacaoPage } from './pages/obrigacoes-por-obrigacao/obrigacoes-por-obrigacao';
 import { PerfilPage } from './pages/perfil/perfil';
 import { PerfisPage } from './pages/perfis/perfis';
 
@@ -36,6 +37,10 @@ export const obrigacoesRoutes: Routes = [
             {
                 path: 'clientes',
                 component: ObrigacoesPorClientePage,
+            },
+            {
+                path: 'obrigacoes',
+                component: ObrigacoesPorObrigacaoPage,
             },
             {
                 path: 'perfil/:id',

@@ -10,6 +10,7 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 export class LabelTextComponent {
     @Input() label: string;
     @Input() text?: string | number | null;
+    @Input() textWhenNull = '~';
     @Input() minWidth?: number;
     @Input() textClass?: string = 'text-black/50 dark:text-white/50';
 

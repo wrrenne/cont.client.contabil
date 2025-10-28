@@ -180,7 +180,9 @@ export class ObrigacaoVencimentosEPrazosComponent {
             },
         });
 
-        modal.afterClose.subscribe((r) => this.getData(r));
+        modal.afterClose.subscribe((r) => {
+            if (r) this.getData(r);
+        });
     }
 
     getData(id: number) {

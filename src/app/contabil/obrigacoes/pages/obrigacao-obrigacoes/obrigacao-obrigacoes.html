@@ -1,0 +1,8 @@
+<profile2 [title]="title" [subTitle]="subTitle">
+    <ng-template #buttons>
+        <button-default [text]="'Cadastro'" [bgClass]="'btn-gray-outline'" (click)="cadastroClick()"></button-default>
+    </ng-template>
+    <ng-template #content>
+        <obrigacao-obrigacoes-table [parameters]="parameters"></obrigacao-obrigacoes-table>
+    </ng-template>
+</profile2>

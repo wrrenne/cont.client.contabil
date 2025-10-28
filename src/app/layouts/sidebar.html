@@ -79,7 +79,12 @@
                                 </li>
 
                                 <li class="menu nav-item">
-                                    <a routerLink="/sistema/users/" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                    <a
+                                        routerLink="/sistema/obrigacoes/obrigacoes"
+                                        class="nav-link group"
+                                        routerLinkActive="active"
+                                        (click)="toggleMobileMenu()"
+                                    >
                                         <div class="flex w-full items-center p-1">
                                             <avatar-icon [icon]="'ionPeopleSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
                                             <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Obrigações por Tipo</span>

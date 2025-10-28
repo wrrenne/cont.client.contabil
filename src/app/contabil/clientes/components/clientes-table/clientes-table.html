@@ -11,7 +11,7 @@
             @for (item of datas; track item; let i = $index) {
             <tr class="cursor-pointer" [routerLink]="['/sistema/clientes/cliente', encryptionService.encrypt(item.id)]" [queryParams]="{tab: 0}">
                 <td>
-                    <avatar-title [clienteId]="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
+                    <avatar-title _clienteId="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
                 </td>
                 <td class="hidden md:table-cell">{{item.cnpjFormat}}</td>
             </tr>

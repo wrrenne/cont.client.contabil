@@ -1,12 +1,19 @@
 <div [formGroup]="form">
-  @if (label) {
+    @if (label) {
     <label class="input-label mb-1.5 block">{{ label }}</label>
-  }
-  <nz-select [nzShowSearch]="showSearch" nzAllowClear [formControlName]="formControlName" [nzPlaceHolder]="placeholderText" class="w-full" [nzSize]="'large'" (ngModelChange)="selectChange($event)">
-    @for (data of datas; track data) {
-      <nz-option nzCustomContent  [nzValue]="data.id" [nzLabel]="data.text ?? data.id" [ngClass]="'special-option'">
-        <span [ngClass]="{'text-yellow-700 dark:text-yellow-600': data.shortcut}" >{{data.text}}</span>
-      </nz-option>
     }
-  </nz-select>
+    <nz-select
+        [nzShowSearch]="showSearch"
+        nzAllowClear
+        [formControlName]="formControlName"
+        [nzPlaceHolder]="placeholderText"
+        class="w-full"
+        (ngModelChange)="selectChange($event)"
+    >
+        @for (data of datas; track data) {
+        <nz-option nzCustomContent [nzValue]="data.id" [nzLabel]="data.text ?? data.id" [ngClass]="'special-option'">
+            <span [ngClass]="{'text-yellow-700 dark:text-yellow-600': data.shortcut}">{{data.text}}</span>
+        </nz-option>
+        }
+    </nz-select>
 </div>

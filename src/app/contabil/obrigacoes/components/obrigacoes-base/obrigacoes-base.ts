@@ -33,9 +33,14 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
         this._parameters = value;
 
         this.param.routeStrings = [];
-        this.param.routeStrings.push((<number>value.clienteId).toString());
+
+        if (value.clienteId) this.param.routeStrings.push(value.clienteId.toString());
+
+        if (value.obrigacaoId) this.param.routeStrings.push(value.obrigacaoId.toString());
+
         this.param.routeStrings.push(this.dateUtilsService.GetDateIsoString(value.mes!));
-        this.param.routeStrings.push(value.tipo!.toString());
+
+        if (value.tipo) this.param.routeStrings.push(value.tipo.toString());
 
         this.param.queryStrings.clear();
 
@@ -166,5 +171,9 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
         }
 
         this.parameters = { clienteId: this.parameters?.clienteId, mes: this.parameters?.mes, tipo: tipo };
+    }
+
+    obrigacaoUpdate(e: any) {
+        this.onObrigacaoUpdate.emit(e);
     }
 }

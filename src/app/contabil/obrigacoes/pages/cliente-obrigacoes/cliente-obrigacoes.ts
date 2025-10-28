@@ -5,22 +5,24 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
 import { ClientesService } from 'src/app/contabil/clientes/services/clientes.service';
 import { TObrigacaoTipo } from 'src/app/contabil/models/enums';
-import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
-import { ClienteObrigacoesComponent } from '../../components/cliente-obrigacoes-table/cliente-obrigacoes-table';
+import { ClienteObrigacoesTableComponent } from '../../components/cliente-obrigacoes-table/cliente-obrigacoes-table';
 
 @Component({
     selector: 'cliente-obrigacoes-page',
     templateUrl: './cliente-obrigacoes.html',
     providers: [NzModalService],
-    imports: [PageTitleComponent, NzTabsModule, ClienteObrigacoesComponent],
+    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent],
     standalone: true,
 })
 export class ClienteObrigacoesPage implements OnInit {
     //cliente: ContabilClienteView;
 
+    clienteId: number;
     impostosParameters: ObrigacoesParameter;
     acessoriasParameters: ObrigacoesParameter;
     relatoriosParameters: ObrigacoesParameter;
@@ -45,21 +47,25 @@ export class ClienteObrigacoesPage implements OnInit {
         }));
 
         urlParametrs.subscribe((r) => {
-            const clienteId = this.encryptionService.decrypt(r['id']);
+            this.clienteId = this.encryptionService.decrypt(r['id']);
 
             var mes = r['mes'] ?? this.dateUtilsService.firstDateOfCurrentMonth();
 
-            this.clientesService.clienteGet(clienteId).subscribe((x) => {
+            this.clientesService.clienteGet(this.clienteId).subscribe((x) => {
                 this.title = x.obj.nome;
                 this.subTitle = x.obj.regime;
-                this.impostosParameters = { clienteId: clienteId, mes: mes, tipo: TObrigacaoTipo.Imposto };
-                this.acessoriasParameters = { clienteId: clienteId, mes: mes, tipo: TObrigacaoTipo.Acessoria };
-                this.relatoriosParameters = { clienteId: clienteId, mes: mes, tipo: TObrigacaoTipo.Relatorio };
+                this.impostosParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Imposto };
+                this.acessoriasParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Acessoria };
+                this.relatoriosParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Relatorio };
             });
         });
     }
 
     getEncryptedId(id: number): string {
         return this.encryptionService.encrypt(id);
+    }
+
+    cadastroClick() {
+        this.router.navigate(['/sistema/clientes/cliente', this.encryptionService.encrypt(this.clienteId)]);
     }
 }

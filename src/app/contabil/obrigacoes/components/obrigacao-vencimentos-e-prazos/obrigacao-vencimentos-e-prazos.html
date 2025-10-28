@@ -1,7 +1,8 @@
 <card [title]="'Vencimentos e prazos'">
     <ng-template #content>
-        @if ((obrigacao?.tipo == TObrigacaoTipo.Imposto || obrigacao?.tipo == TObrigacaoTipo.Acessoria) && obrigacao?.periodicidade == TPeriodicidade.Mensal) {
         <div class="flex flex-col gap-y-4">
+            @if ((obrigacao?.tipo == TObrigacaoTipo.Imposto || obrigacao?.tipo == TObrigacaoTipo.Acessoria) && obrigacao?.periodicidade ==
+            TPeriodicidade.Mensal) {
             <div class="flex gap-2">
                 <label-text [label]="'Dia do Vencimento'" [text]="obrigacao?.impostoMensal?.vencimentoDia"></label-text>
             </div>
@@ -16,10 +17,8 @@
                 <label-text [label]="'Vencimento em Feriado'" [text]="obrigacao?.impostoMensal?.feriadoTipoDescricao"></label-text>
                 <label-text [label]="'Competência Inicial'" [text]="obrigacao?.impostoMensal?.competenciaInicialFormat"></label-text>
             </div>
-        </div>
-        } @if ((obrigacao?.tipo == TObrigacaoTipo.Imposto || obrigacao?.tipo == TObrigacaoTipo.Acessoria) && obrigacao?.tipo == TObrigacaoTipo.Imposto &&
-        obrigacao?.periodicidade == TPeriodicidade.Anual) {
-        <div class="flex flex-col gap-y-4">
+            } @if ((obrigacao?.tipo == TObrigacaoTipo.Imposto || obrigacao?.tipo == TObrigacaoTipo.Acessoria) && obrigacao?.tipo == TObrigacaoTipo.Imposto &&
+            obrigacao?.periodicidade == TPeriodicidade.Anual) {
             <div class="flex gap-2">
                 <label-text [label]="'Dia do Vencimento'" [text]="obrigacao?.impostoAnual?.vencimentoDia"></label-text>
             </div>
@@ -37,9 +36,7 @@
                 <label-text [label]="'Vencimento em Feriado'" [text]="obrigacao?.impostoAnual?.feriadoTipoDescricao"></label-text>
                 <label-text [label]="'Competência Inicial'" [text]="obrigacao?.impostoAnual?.competenciaAnoInicial!"></label-text>
             </div>
-        </div>
-        } @if (obrigacao?.tipo == TObrigacaoTipo.Relatorio && obrigacao?.periodicidade == TPeriodicidade.Mensal) {
-        <div class="flex flex-col gap-y-4">
+            } @if (obrigacao?.tipo == TObrigacaoTipo.Relatorio && obrigacao?.periodicidade == TPeriodicidade.Mensal) {
             <div class="flex gap-2">
                 <label-text [label]="'Dia do Prazo'" [text]="obrigacao?.relatorioMensal?.prazoDia"></label-text>
             </div>
@@ -53,9 +50,7 @@
                 <label-text [label]="'Vencimento em Feriado'" [text]="obrigacao?.relatorioMensal?.feriadoTipoDescricao"></label-text>
                 <label-text [label]="'Competência Inicial'" [text]="obrigacao?.relatorioMensal?.competenciaInicialFormat"></label-text>
             </div>
-        </div>
-        } @if (obrigacao?.tipo == TObrigacaoTipo.Relatorio && obrigacao?.periodicidade == TPeriodicidade.Anual) {
-        <div class="flex flex-col gap-y-4">
+            } @if (obrigacao?.tipo == TObrigacaoTipo.Relatorio && obrigacao?.periodicidade == TPeriodicidade.Anual) {
             <div class="flex gap-2">
                 <label-text [label]="'Dia do Prazo'" [text]="obrigacao?.relatorioAnual?.prazoDia"></label-text>
             </div>
@@ -72,10 +67,8 @@
                 <label-text [label]="'Vencimento em Feriado'" [text]="obrigacao?.relatorioAnual?.feriadoTipoDescricao"></label-text>
                 <label-text [label]="'Competência Inicial'" [text]="obrigacao?.relatorioAnual?.competenciaAnoInicial!"></label-text>
             </div>
+            }
+            <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
         </div>
-        }
-    </ng-template>
-    <ng-template #footer>
-        <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
     </ng-template>
 </card>

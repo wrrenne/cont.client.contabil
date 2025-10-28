@@ -1,16 +1,8 @@
 @if (parameters) {
 <div class="row" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
     <obrigacoes-control
-        [parameter]="{obrigacoes: datas, tipo: TObrigacaoClientePeriodoPor.PorCliente}"
-        (onObrigacaoUpdate)="obrigacaoClienteUpdate($event)"
+        [parameter]="{obrigacoes: datas, tipo: TObrigacaoClientePeriodoPor.PorObrigacao}"
+        (onObrigacaoUpdate)="obrigacaoUpdate($event)"
     ></obrigacoes-control>
 </div>
 }
-<!-- 
-<div infiniteScroll
-     [infiniteScrollDistance]="2"
-     [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <div>
-        <obrigacao-item *ngFor="let item of datas" [obrigacao]="item" [obrigacaoClientePeriodoPor]="TObrigacaoClientePeriodoPor.PorObrigacao"></obrigacao-item>
-    </div>
-</div> -->

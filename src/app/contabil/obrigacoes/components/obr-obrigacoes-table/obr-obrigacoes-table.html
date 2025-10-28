@@ -11,11 +11,11 @@
         </thead>
         <tbody>
             @for (item of datas; track item; let i = $index) {
-            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/clienteobrigacoes', encryptionService.encrypt(item.id)]" _queryParams="{tab: 0}">
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacaoobrigacoes', encryptionService.encrypt(item.id)]" _queryParams="{tab: 0}">
                 <td>
                     <div class="flex items-center gap-3">
                         <ng-container *ngTemplateOutlet="statusTemplate; context: {item: item}"></ng-container>
-                        <avatar-title _clienteId="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
+                        <avatar-title [title]="item.descricao" [subTitle]="item.tipoDescricao"></avatar-title>
                     </div>
                 </td>
                 <td class="hidden md:table-cell">
@@ -25,7 +25,6 @@
                         [total]="item.obrigacoesStat.total"
                         [showPercentage]="false"
                         [bordered]="true"
-                        [heightClass]="'h-2'"
                     ></percentage-bar>
                     }
                 </td>

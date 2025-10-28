@@ -3,21 +3,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
-import { ClientesService } from 'src/app/contabil/clientes/services/clientes.service';
-import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
+import { ObrigacaoObrigacoesTableComponent } from '../../components/obrigacao-obrigacoes-table/obrigacao-obrigacoes-table';
+import { ObrigacoesService } from '../../services/obrigacoes.service';
 
 @Component({
-    selector: 'obrigacoes-por-tipo-page',
-    templateUrl: './obrigacoes-por-tipo.html',
+    selector: 'obrigacao-obrigacoes-page',
+    templateUrl: './obrigacao-obrigacoes.html',
     providers: [NzModalService],
-    imports: [PageTitleComponent, NzTabsModule],
+    imports: [NzTabsModule, ObrigacaoObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent],
     standalone: true,
 })
-export class ObrigacoesPorTipoPage implements OnInit {
+export class ObrigacaoObrigacoesPage implements OnInit {
     parameters: ObrigacoesParameter;
+
+    obrigacaoId: number;
 
     title: string;
     subTitle: string;
@@ -29,7 +33,7 @@ export class ObrigacoesPorTipoPage implements OnInit {
         private modalService: NzModalService,
         private router: Router,
         private dateUtilsService: DateUtilsService,
-        private clientesService: ClientesService,
+        private obrigacoesService: ObrigacoesService,
     ) {}
 
     ngOnInit(): void {
@@ -39,19 +43,23 @@ export class ObrigacoesPorTipoPage implements OnInit {
         }));
 
         urlParametrs.subscribe((r) => {
-            const obrigacaoId = this.encryptionService.decrypt(r['id']);
+            this.obrigacaoId = this.encryptionService.decrypt(r['id']);
 
             var mes = r['mes'] ?? this.dateUtilsService.firstDateOfCurrentMonth();
 
-            this.clientesService.clienteGet(obrigacaoId).subscribe((x) => {
-                this.title = x.obj.nome;
-                this.subTitle = x.obj.regime;
-                this.parameters = { obrigacaoId: obrigacaoId, mes: mes };
+            this.obrigacoesService.obrigacaoGet(this.obrigacaoId).subscribe((x) => {
+                this.title = x.obj.descricao;
+                this.subTitle = x.obj.tipoDescricao;
+                this.parameters = { obrigacaoId: this.obrigacaoId, mes: mes };
             });
         });
     }
 
     getEncryptedId(id: number): string {
         return this.encryptionService.encrypt(id);
+    }
+
+    cadastroClick() {
+        this.router.navigate(['/sistema/obrigacoes/obrigacao', this.encryptionService.encrypt(this.obrigacaoId)]);
     }
 }

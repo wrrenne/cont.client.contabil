@@ -274,9 +274,9 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     getStatusIcon(): string | undefined {
         switch (this.obrigacao.status) {
             case TObrigacaoStatus.ConcluidoForadoPrazo:
-                return 'bootstrapExclamationLg';
-            case TObrigacaoStatus.ConcluidoNoPrazo:
                 return 'ionCheckmarkSharp';
+            case TObrigacaoStatus.ConcluidoNoPrazo:
+                return 'ionCheckmarkDone';
         }
 
         return undefined;
@@ -287,10 +287,10 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
 
         switch (this.obrigacao.status) {
             case TObrigacaoStatus.ConcluidoForadoPrazo:
-                result += ' bg-yellow-200 dark:bg-yellow-700';
+                result += ' bg-green-200 dark:bg-green-700';
                 break;
             case TObrigacaoStatus.ConcluidoNoPrazo:
-                result += ' bg-blue-200 dark:bg-blue-700';
+                result += ' bg-green-200 dark:bg-green-700';
                 break;
             case TObrigacaoStatus.EmAberto:
                 result += ' bg-zinc-200 dark:bg-zinc-700';

@@ -1,0 +1,8 @@
+<card [title]="'Configuração'">
+    <ng-template #content>
+        <div class="flex flex-col gap-y-4">
+            <label-text [label]="'Pasta no GED'" [text]="obrigacao!.gedPastaNome" [textWhenNull]="'Indefinida'"></label-text>
+            <button-default [bgClass]="'btn-gray'" (click)="editModal()" [text]="'Editar'"></button-default>
+        </div>
+    </ng-template>
+</card>
