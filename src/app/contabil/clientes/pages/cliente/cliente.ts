@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
+import { ClienteObrigacoesAvulsasTableComponent } from 'src/app/contabil/obrigacoes/components/cliente-obrigacoes-avulsas-table/cliente-obrigacoes-avulsas-table';
 import { ClientePerfisTableComponent } from 'src/app/contabil/obrigacoes/components/cliente-perfis-table/cliente-perfis-table';
 import { ClienteUsersParameter, ClienteUsersTableComponent } from 'src/app/contabil/users/components/cliente-users-table/cliente-users-table';
 import { ClienteArquivosDisponibilizadosWidgetComponent } from 'src/app/contabil/widgets/components/cliente-arquivos-disponibilizados-widget/cliente-arquivos-disponibilizados-widget';
@@ -20,7 +21,7 @@ import { DateUtilsService, EncryptionService } from '../../../../shared/services
 import { Vars } from '../../../../shared/variables';
 import { ClienteSenhasParameter, ClientesParameter } from '../../../models/clientes/parameters';
 import { ContabilClienteView } from '../../../models/clientes/views';
-import { ClientePerfisParameter } from '../../../models/obrigacoes/parameters';
+import { ClienteObrigacoesAvulsasParameter, ClientePerfisParameter } from '../../../models/obrigacoes/parameters';
 import { ClienteAvatarEditComponent } from '../../components/cliente-avatar-edit/cliente-avatar-edit';
 import { ClienteDadosComponent } from '../../components/cliente-dados/cliente-dados';
 import { ClienteEnderecos } from '../../components/cliente-enderecos/cliente-enderecos';
@@ -43,11 +44,13 @@ import { ClientesService } from '../../services/clientes.service';
         Profile2Component,
         ClienteUsersTableComponent,
         ClientePerfisTableComponent,
+        ClienteObrigacoesAvulsasTableComponent,
     ],
 })
 export class ClientePage implements OnInit {
     cliente: ContabilClienteView;
     clientePerfisParameters: ClientePerfisParameter;
+    clienteObrigacoesAvulsasParameters: ClienteObrigacoesAvulsasParameter;
     usersParameter: ClienteUsersParameter;
     clienteSenhasParameter: ClienteSenhasParameter;
     clientesParameters: ClientesParameter;
@@ -86,6 +89,7 @@ export class ClientePage implements OnInit {
             this.clientesParameters = { perfilItemId: perfilItemId, searchText: r['q'] };
             this.usersParameter = { clienteId: id };
             this.clientePerfisParameters = { clienteId: id };
+            this.clienteObrigacoesAvulsasParameters = { clienteId: id };
             this.clienteSenhasParameter = { clienteId: id };
             //this.obrigacoesParameters = { clienteId: id, mes: this.mes, tipo: TObrigacaoTipo.Imposto };
 

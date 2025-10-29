@@ -1,0 +1,38 @@
+<div class="mb-4">
+    <button-default (click)="clienteObrigacaoAvulsaNovo()" [bgClass]="'btn-primary'" [text]="'Nova Obrigação Avulsa'"> </button-default>
+</div>
+
+@if (loading) {
+<nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 3 }"></nz-skeleton>
+} @else { @if (datas && datas.length == 0) {
+<no-data-panel [title]="'Nenhuma obrigação'"></no-data-panel>
+} @else {
+
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>Obrigação</th>
+                <th>Departamento</th>
+                <th>Vencimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item) {
+            <tr>
+                <td class="whitespace-nowrap">
+                    <avatar-title [title]="item.descricao" [subTitle]="item.tipoDescricaoFormat"></avatar-title>
+                </td>
+                <td>{{item.departamentoNome}}</td>
+                <td>
+                    <div class="flex gap-3 items-center">
+                        <span class="tag tag-red w-10 flex justify-center">{{item.vencimentoPrazoDia.vencimentoDia ?? item.vencimentoPrazoDia.prazoDia}}</span
+                        ><span>{{item.periodicidadeDescricao}} {{item.anualMesDescricao}}</span>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}}

@@ -13,6 +13,12 @@
     <dropdown-radio [items]="setores" (valueChanged)="setorChanged($event)" [label]="'Filtro por Setor'" [btnClass]="'btn-gray'"></dropdown-radio>
 </div>
 
+@if (loading) {
+<nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 20 }"></nz-skeleton>
+} @else { @if (datas && datas.length == 0) {
+<no-data-panel [title]="'Nenuma obrigação'"></no-data-panel>
+} @else {
+
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
     <table class="tabela">
         <thead>
@@ -27,10 +33,7 @@
             @for (item of datas; track item) {
             <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacao', encryptionService.encrypt(item.id)]">
                 <td class="whitespace-nowrap">
-                    <avatar-title
-                        [title]="item.descricao"
-                        [subTitle]="item.tipoDescricao + (item.esfera == TEsfera.Estadual || item.esfera == TEsfera.Municipal ? ' - ' : '') + (item.municipioNome ?? '') + (item.uf ?? '')"
-                    ></avatar-title>
+                    <avatar-title [title]="item.descricao" [subTitle]="item.tipoDescricaoFormat"></avatar-title>
                 </td>
                 <td>{{item.departamentoNome}}</td>
                 <td>
@@ -45,7 +48,4 @@
         </tbody>
     </table>
 </div>
-
-@if (datas && datas.length == 0) {
-<no-data-panel [title]="'Nenhuma obrigação'"></no-data-panel>
-}
+}}

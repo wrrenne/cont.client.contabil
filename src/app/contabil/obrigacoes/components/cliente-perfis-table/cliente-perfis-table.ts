@@ -1,5 +1,6 @@
 import { Component, Injector, Input } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzSkeletonComponent } from 'ng-zorro-antd/skeleton';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { NoDataPanelComponent } from 'src/app/shared/controls/no-data-panel/no-data-panel';
@@ -9,11 +10,12 @@ import { ClientePerfisParameter } from '../../../models/obrigacoes/parameters';
 import { ObrigacoesUtilsService } from '../../services/obrigacoesUtils.service';
 import { ClientePerfisPagingService } from '../../services/pagings/cliente-perfis.service';
 import { ClientePerfilAssociarModalComponent } from '../cliente-perfil-associar-modal/cliente-perfil-associar-modal';
+import { ClientePerfilObrigacoesModalComponent } from '../cliente-perfil-obrigacoes-modal/cliente-perfil-obrigacoes-modal';
 
 @Component({
     selector: 'cliente-perfis-table',
     templateUrl: './cliente-perfis-table.html',
-    imports: [ButtonDefaultComponent, AvatarTitleComponent, NoDataPanelComponent],
+    imports: [ButtonDefaultComponent, AvatarTitleComponent, NoDataPanelComponent, NzSkeletonComponent],
 })
 export class ClientePerfisTableComponent extends PagingBase<ClientePerfilPageItem> {
     public clienteId: number;
@@ -61,6 +63,22 @@ export class ClientePerfisTableComponent extends PagingBase<ClientePerfilPageIte
 
         modal.afterClose.subscribe((r) => {
             if (r) this.modalClosed(r);
+        });
+    }
+
+    clientePerfilObrigacoesModalOpen(perfilItemId: number, perfilItemDescricao: string) {
+        const modal = this.modalService.create({
+            nzContent: ClientePerfilObrigacoesModalComponent,
+            nzWidth: 800,
+            nzClosable: false,
+            nzFooter: null,
+
+            nzData: {
+                clienteId: <number>this.clienteId,
+                clienteNome: this.title,
+                perfilItemId: perfilItemId,
+                perfilItemDescricao: perfilItemDescricao,
+            },
         });
     }
 

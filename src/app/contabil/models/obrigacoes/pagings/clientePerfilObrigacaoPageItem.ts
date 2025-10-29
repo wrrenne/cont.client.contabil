@@ -1,10 +1,8 @@
-import { ObrigacaoClientePeriodoUserPageItem } from '.';
-import { ObrigacoesStat } from '..';
-import { PageItemBase } from '../../../../shared/models';
+import { PageItemBase } from 'src/app/shared/models';
 import { TEsfera, TMes, TObrigacaoTipo, TPeriodicidade, TPeriodoAnual, TPeriodoMensal } from '../../enums';
 import { TVencimentoPrazo, TVencimentoPrazoDia } from '../../types';
 
-export interface ObrigacaoPageItem extends PageItemBase {
+export interface ClientePerfilObrigacaoPageItem extends PageItemBase {
     descricao: string;
     tipo: TObrigacaoTipo;
     tipoDescricao: string;
@@ -13,23 +11,18 @@ export interface ObrigacaoPageItem extends PageItemBase {
     periodicidadeDescricao: string;
     esfera: TEsfera;
     esferaDescricao: string;
-    uf?: string;
+    uf: string;
     municipioCodigo?: number;
-    municipioNome?: string;
+    municipioNome: string;
     departamentoId: number;
     departamentoNome: string;
-
     vencimentoPrazo: TVencimentoPrazo;
     vencimentoPrazoDia: TVencimentoPrazoDia;
     anualMes?: TMes;
     anualMesDescricao: string;
     periodoAnual?: TPeriodoAnual;
-    periodoAnualDescricao?: string;
+    periodoAnualDescricao: string;
     periodoMensal?: TPeriodoMensal;
-    periodoMensalDescricao?: string;
-
-    gedPastaCodigo: string;
-    gedPastaNome?: string;
-    obrigacoesStat: ObrigacoesStat;
-    users: ObrigacaoClientePeriodoUserPageItem[];
+    periodoMensalDescricao: string;
+    ativo: boolean;
 }

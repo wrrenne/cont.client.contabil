@@ -1,6 +1,8 @@
-@if (!loading) { @if (obrigacoes && obrigacoes.length == 0) {
+@if (loading) {
+<nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 20 }"></nz-skeleton>
+} @else { @if (obrigacoes && obrigacoes.length == 0) {
 <no-data-panel [title]="getNoDataTitle()"></no-data-panel>
-}
+} @else {
 
 <table class="tabela">
     <thead>
@@ -44,4 +46,4 @@
         }
     </tbody>
 </table>
-}
+} }

@@ -1,29 +1,27 @@
 @if (cliente) {
 <profile2 [title]="cliente.nome" [subTitle]="cliente.regime">
     <ng-template #content>
-        <div _class="relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
-            <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
-                <nz-tabset [nzSelectedIndex]="tabIndex">
-                    <nz-tab nzTitle="Resumo">
-                        <ng-template nz-tab>
-                            <ng-template [ngTemplateOutlet]="resumo"></ng-template>
-                        </ng-template>
-                    </nz-tab>
-                    <nz-tab nzTitle="Dados básicos">
-                        <ng-template nz-tab>
-                            <div class="flex flex-col gap-y-4">
-                                <ng-template [ngTemplateOutlet]="dados"></ng-template>
-                                <ng-template [ngTemplateOutlet]="enderecos"></ng-template>
-                            </div>
-                        </ng-template>
-                    </nz-tab>
-                    <nz-tab nzTitle="Colaboradores"><ng-template [ngTemplateOutlet]="colaboradores"></ng-template></nz-tab>
-                    <nz-tab nzTitle="Perfis"><ng-template [ngTemplateOutlet]="perfis"></ng-template></nz-tab>
-                    <!-- <nz-tab nzTitle="Obrigações"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab> -->
-                    <nz-tab nzTitle="Ged"><ng-template [ngTemplateOutlet]="ged"></ng-template></nz-tab>
-                    <!-- <nz-tab nzTitle="Senhas"><ng-template [ngTemplateOutlet]="senhas"></ng-template></nz-tab> -->
-                </nz-tabset>
-            </div>
+        <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
+            <nz-tabset [nzSelectedIndex]="tabIndex">
+                <nz-tab nzTitle="Resumo">
+                    <ng-template nz-tab>
+                        <ng-template [ngTemplateOutlet]="resumo"></ng-template>
+                    </ng-template>
+                </nz-tab>
+                <nz-tab nzTitle="Dados básicos">
+                    <ng-template nz-tab>
+                        <div class="flex flex-col gap-y-4">
+                            <ng-template [ngTemplateOutlet]="dados"></ng-template>
+                            <ng-template [ngTemplateOutlet]="enderecos"></ng-template>
+                        </div>
+                    </ng-template>
+                </nz-tab>
+                <nz-tab nzTitle="Colaboradores"><ng-template [ngTemplateOutlet]="colaboradores"></ng-template></nz-tab>
+                <nz-tab nzTitle="Perfis"><ng-template [ngTemplateOutlet]="perfis"></ng-template></nz-tab>
+                <!-- <nz-tab nzTitle="Obrigações"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab> -->
+                <nz-tab nzTitle="Ged"><ng-template [ngTemplateOutlet]="ged"></ng-template></nz-tab>
+                <!-- <nz-tab nzTitle="Senhas"><ng-template [ngTemplateOutlet]="senhas"></ng-template></nz-tab> -->
+            </nz-tabset>
         </div>
     </ng-template>
 </profile2>
@@ -50,7 +48,18 @@
 </ng-template>
 
 <ng-template #perfis>
-    <cliente-perfis-table [parameters]="clientePerfisParameters"></cliente-perfis-table>
+    <nz-tabset>
+        <nz-tab nzTitle="Perfis">
+            <ng-template nz-tab>
+                <cliente-perfis-table [parameters]="clientePerfisParameters"></cliente-perfis-table>
+            </ng-template>
+        </nz-tab>
+        <nz-tab nzTitle="Obrigações Avulsas">
+            <ng-template nz-tab>
+                <cliente-obrigacoes-avulsas-table [parameters]="clienteObrigacoesAvulsasParameters"></cliente-obrigacoes-avulsas-table>
+            </ng-template>
+        </nz-tab>
+    </nz-tabset>
 </ng-template>
 
 <!-- <ng-template #obrigacoes>

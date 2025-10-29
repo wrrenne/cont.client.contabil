@@ -2,8 +2,10 @@
     <button-default (click)="perfilAssociarOpen()" [bgClass]="'btn-primary'" [text]="'Novo Perfil'"> </button-default>
 </div>
 
-@if (datas) { @if (datas.length == 0) {
-<no-data-panel [title]="'Nenhum perfil'"></no-data-panel>
+@if (loading) {
+<nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 3 }"></nz-skeleton>
+} @else { @if (datas && datas.length == 0) {
+<no-data-panel [title]="'Nenhuma perfil'"></no-data-panel>
 } @else {
 
 <table class="tabela">
@@ -15,7 +17,7 @@
     </thead>
     <tbody>
         @for (item of datas; track item; let i = $index) {
-        <tr>
+        <tr (click)="clientePerfilObrigacoesModalOpen(item.perfilItemId, item.descricao)">
             <td>
                 <avatar-title class="cursor-pointer" [title]="item.descricao" _avatarFileName="item.avatarFileName"></avatar-title>
             </td>
@@ -24,28 +26,6 @@
                 <span>{{item.obrigacoesStat.total}}</span>
                 }
             </td>
-            <!-- <td class="hidden text-center md:table-cell">
-            <div class="flex w-full items-center gap-1" *ngIf="item.obrigacoesStat">
-                <div class="tag-lg mr-2 inline-block min-w-10" [class]="obrigacoesUtilsService.getPercentagemClass(item.obrigacoesStat.concluidoPorcento)">
-                    <div class="flex items-center gap-2">
-                        <ng-icon [name]="'ionCheckmarkDone'" class="text-lg"></ng-icon>
-                        <span>{{item.obrigacoesStat.concluidas}}</span>
-                    </div>
-                </div>
-                <percentage-bar [percentage]="item.obrigacoesStat.concluidoPorcento"></percentage-bar>
-            </div>
-        </td>
-        <td class="hidden text-center md:table-cell">
-            <div class="flex items-center gap-1" *ngIf="item.obrigacoesStat">
-                <div class="tag-lg mr-2 inline-block min-w-10" [class]="obrigacoesUtilsService.getPercentagemClass(item.obrigacoesStat.concluidoNoPrazoPorcento)">
-                    <div class="flex items-center gap-2">
-                        <ng-icon [name]="'bootstrapHourglass'" class="text-lg"></ng-icon>
-                        <span>{{item.obrigacoesStat.concluidasNoPrazo}}</span>
-                    </div>
-                </div>
-                <percentage-bar [percentage]="item.obrigacoesStat.concluidoNoPrazoPorcento"></percentage-bar>
-            </div>
-        </td> -->
         </tr>
         }
     </tbody>
