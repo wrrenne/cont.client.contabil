@@ -50,13 +50,7 @@
     @if (item.obrigacoesStat) {
     <!-- #region Tudo concluído no prazo -->
     @if (item.obrigacoesStat.concluidasNoPrazo == item.obrigacoesStat.total) {
-    <avatar-icon
-        [icon]="'ionCheckmarkDone'"
-        [tooltip]="'Tudo concluído no prazo'"
-        [size]="'2.2rem'"
-        [iconColor]="'text-green-500 dark:text-green-300'"
-        [bgColor]="'bg-green-200 dark:bg-green-800'"
-    ></avatar-icon>
+    <avatar-icon [icon]="'ionCheckmarkDone'" [tooltip]="'Tudo concluído no prazo'" [size]="'2.2rem'" [bgColor]="'bg-green-200 dark:bg-green-800'"></avatar-icon>
     }
     <!-- #endregion -->
 
@@ -66,7 +60,6 @@
         [icon]="'ionCheckmarkSharp'"
         [tooltip]="'Tem obrigações concluídas fora do prazo'"
         [size]="'2.2rem'"
-        [iconColor]="'text-green-500 dark:text-green-300'"
         [bgColor]="'bg-green-200 dark:bg-green-800'"
     ></avatar-icon>
     }
@@ -84,7 +77,6 @@
         [icon]="'bootstrapExclamationLg'"
         [tooltip]="'Tem obrigação em atraso'"
         [size]="'2.2rem'"
-        [iconColor]="'text-red-500 dark:text-red-300'"
         [bgColor]="'bg-red-200 dark:bg-red-800'"
     ></avatar-icon>
     }

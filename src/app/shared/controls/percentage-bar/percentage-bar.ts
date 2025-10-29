@@ -28,8 +28,8 @@ export class PercentageBarComponent {
             const p = this.getPercentage();
 
             if (p <= 25) return this._getBackgroundClass('red');
-            if (p > 25 && p <= 50) this._getBackgroundClass('yellow');
-            if (p > 50 && p <= 75) return this._getBackgroundClass('green');
+            if (p > 25 && p <= 50) return this._getBackgroundClass('yellow');
+            if (p > 50 && p <= 99) return this._getBackgroundClass('green');
             return this._getBackgroundClass('blue');
         } else {
             return this._getBackgroundClass(this.backgroundColor);
@@ -43,8 +43,8 @@ export class PercentageBarComponent {
             const p = this.getPercentage();
 
             if (p <= 25) return this.bordered ? this._getBorderClass('red') : this._getDefaultClass('red');
-            if (p > 25 && p <= 50) this.bordered ? this._getBorderClass('yellow') : this._getDefaultClass('yellow');
-            if (p > 50 && p <= 75) return this.bordered ? this._getBorderClass('green') : this._getDefaultClass('green');
+            if (p > 25 && p <= 50) return this.bordered ? this._getBorderClass('yellow') : this._getDefaultClass('yellow');
+            if (p > 50 && p <= 99) return this.bordered ? this._getBorderClass('green') : this._getDefaultClass('green');
             return this.bordered ? this._getBorderClass('blue') : this._getDefaultClass('blue');
         } else {
             return this.bordered

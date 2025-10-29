@@ -4,13 +4,13 @@ import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ObrigacaoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
+import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/parameters';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ClientesParameter } from '../../../models/clientes/parameters';
 import { ObrigacoesPagingService } from '../../services/pagings/obrigacoes.service';
 
 @Component({
@@ -25,11 +25,11 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
     @Output() onClick = new EventEmitter<number>();
     perfilItemId: number;
 
-    private _parameters?: ClientesParameter;
+    private _parameters?: ObrigacoesParameter;
     @Input() get parameters() {
         return this._parameters;
     }
-    set parameters(value: ClientesParameter | undefined) {
+    set parameters(value: ObrigacoesParameter | undefined) {
         this._parameters = value;
 
         this.param.routeStrings = [];
@@ -38,6 +38,10 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
 
         if (value?.perfilItemId != undefined) {
             this.param.queryStrings.set('pi', value.perfilItemId);
+        }
+
+        if (value?.tipo != undefined) {
+            this.param.queryStrings.set('tipo', value.tipo);
         }
 
         this.perfilItemId = value?.perfilItemId ?? 0;
