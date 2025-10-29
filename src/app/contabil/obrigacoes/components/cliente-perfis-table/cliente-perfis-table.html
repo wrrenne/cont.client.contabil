@@ -17,17 +17,11 @@
         @for (item of datas; track item; let i = $index) {
         <tr>
             <td>
-                <avatar-title class="cursor-pointer" [title]="item.descricao" [avatarFileName]="item.avatarFileName"></avatar-title>
+                <avatar-title class="cursor-pointer" [title]="item.descricao" _avatarFileName="item.avatarFileName"></avatar-title>
             </td>
             <td class="hidden md:table-cell">
                 @if (item.obrigacoesStat) {
-                <div class="flex items-center gap-1">
-                    <div class="tag-lg tag-silver inline-block min-w-10">
-                        <div class="flex items-center gap-2">
-                            <span>{{item.obrigacoesStat.total}}</span>
-                        </div>
-                    </div>
-                </div>
+                <span>{{item.obrigacoesStat.total}}</span>
                 }
             </td>
             <!-- <td class="hidden text-center md:table-cell">

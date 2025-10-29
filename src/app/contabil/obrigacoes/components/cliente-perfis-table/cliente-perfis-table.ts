@@ -16,8 +16,6 @@ import { ClientePerfilAssociarModalComponent } from '../cliente-perfil-associar-
     imports: [ButtonDefaultComponent, AvatarTitleComponent, NoDataPanelComponent],
 })
 export class ClientePerfisTableComponent extends PagingBase<ClientePerfilPageItem> {
-    //descriptionBase = { none: "", plural: "{0} perfis", singular: "1 perfil" }
-
     public clienteId: number;
 
     private _parameters?: ClientePerfisParameter;
