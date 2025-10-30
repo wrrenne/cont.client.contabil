@@ -9,10 +9,9 @@ import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-bas
 import { DateUtilsService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { TPeriodicidade } from '../../../models/enums';
-import { PerfilObrigacaoInput } from '../../../models/obrigacoes/inputs';
+import { ObrigacaoClienteInput } from '../../../models/obrigacoes/inputs';
 import { ObrigacaoPageItem } from '../../../models/obrigacoes/pagings';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
-import { PerfilItemView } from '../../../models/obrigacoes/views';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
 import { PerfisService } from '../../services/perfis.service';
 import { ObrigacaoSelectComponent } from '../obrigacao-select/obrigacao-select';
@@ -35,15 +34,14 @@ export interface ClienteObrigacaoAvulsaNovoModalData {
     ],
 })
 export class ClienteObrigacaoAvulsaNovoModalComponent extends ModalBaseComponent {
+    TPeriodicidade = TPeriodicidade;
+
     firstFormGroup: FormGroup;
 
+    clienteId: number;
     parameters: ObrigacoesParameter;
 
-    perfilItem: PerfilItemView;
-
-    periodicidade: TPeriodicidade;
-
-    TPeriodicidade = TPeriodicidade;
+    periodicidade?: TPeriodicidade;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -56,6 +54,7 @@ export class ClienteObrigacaoAvulsaNovoModalComponent extends ModalBaseComponent
         @Inject(NZ_MODAL_DATA) data: ClienteObrigacaoAvulsaNovoModalData,
     ) {
         super(injector);
+        this.clienteId = data.clienteId;
         this.clientesService.clienteGet(data.clienteId).subscribe((x) => (this.title = x.obj.nome));
         this.parameters = {};
     }
@@ -75,25 +74,29 @@ export class ClienteObrigacaoAvulsaNovoModalComponent extends ModalBaseComponent
     }
 
     submit() {
-        var input: PerfilObrigacaoInput = {
-            perfilItemId: this.perfilItem.perfilItemId,
+        var input: ObrigacaoClienteInput = {
+            cadastroId: this.vars.cadastro?.id!,
+            clienteId: this.clienteId,
             obrigacaoId: this.firstFormGroup.get('obrigacaoId')?.value,
             userId: this.vars.user?.id!,
             comentario: this.firstFormGroup.get('comentario')?.value,
         };
 
-        if (this.periodicidade == TPeriodicidade.Anual) input.competenciaAnoInicial = this.firstFormGroup.get('competenciaAnoInicial')?.value;
-        else
+        if (this.periodicidade == TPeriodicidade.Anual) {
+            input.competenciaAnoInicial = this.firstFormGroup.get('competenciaAnoInicial')?.value;
+        } else {
             input.competenciaInicial = this.dateUtilsService.GetDateIsoString(
                 this.dateUtilsService.firstDateOfMonth(this.firstFormGroup.get('competenciaMesInicial')?.value),
             );
+        }
 
-        this.perfisService.perfilObrigacaoCreateOrUpdate(input).subscribe((x) => {
+        this.perfisService.clienteObrigacaoAvulsaAdd(input).subscribe((x) => {
             this.firstFormGroup.reset();
 
-            this.obrigacoesService.obrigacaoPageItemGet(x.obj[0]).subscribe((y) => {
-                this.closeModal(y.obj);
-            });
+            this.closeModal(x.obj);
+            // this.obrigacoesService.obrigacaoPageItemGet(x.obj[0]).subscribe((y) => {
+            //     this.closeModal(y.obj);
+            // });
         });
     }
 

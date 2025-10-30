@@ -13,10 +13,14 @@
     >
         @for(data of datas; track data) {
         <nz-option [nzLabel]="data.descricao!" nzCustomContent [nzValue]="data.id">
-            <avatar-title
-                [title]="data.descricao"
-                [subTitle]="data.tipoDescricao + (data.esfera == TEsfera.Estadual || data.esfera == TEsfera.Municipal ? ' - ' : '') + (data.municipioNome ?? '') + (data.uf ?? '')"
-            ></avatar-title>
+            <div class="flex">
+                <avatar-title
+                    class="grow"
+                    [title]="data.descricao"
+                    [subTitle]="data.tipoDescricao + (data.esfera == TEsfera.Estadual || data.esfera == TEsfera.Municipal ? ' - ' : '') + (data.municipioNome ?? '') + (data.uf ?? '')"
+                ></avatar-title>
+                <div class="text-xs text-muted">{{data.periodicidadeDescricao}}</div>
+            </div>
         </nz-option>
         }
     </nz-select>

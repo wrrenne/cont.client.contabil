@@ -11,8 +11,7 @@
                     (onChanged)="obrigacaoChanged($event)"
                     [label]="'Obrigação'"
                 ></obrigacao-select>
-
-                @if (periodicidade != TPeriodicidade.Anual) {
+                {{periodicidade}} @if (periodicidade) { @if (periodicidade != TPeriodicidade.Anual) {
                 <input-month-year-ex
                     class="w-full md:w-5/12"
                     [formControlName]="'competenciaMesInicial'"
@@ -26,7 +25,7 @@
                     [form]="firstFormGroup"
                     [label]="'Competência Inicial'"
                 ></input-year-ex>
-                }
+                } }
 
                 <input-textarea-ex
                     class="w-full"

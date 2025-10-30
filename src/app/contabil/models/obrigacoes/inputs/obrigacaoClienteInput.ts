@@ -4,7 +4,7 @@ export interface ObrigacaoClienteInput extends InputBase {
     cadastroId: number;
     clienteId: number;
     obrigacaoId: number;
-    competenciaInicial?: Date;
+    competenciaInicial?: string;
     competenciaAnoInicial?: number;
     userId: number;
     comentario: string;
