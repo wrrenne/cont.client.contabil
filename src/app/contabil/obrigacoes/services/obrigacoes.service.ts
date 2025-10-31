@@ -134,7 +134,7 @@ export class ObrigacoesService extends ServiceBase {
         return this.http
             .post<
                 ApiResponse<number[]>
-            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes, true)}/ObrigacoesClientesPeriodos/ObrigacoesClientePeriodoConclusao/${this.vars.cadastro?.id}/${obrigacaoClientePeriodoId}/${this.vars.user?.id}`, formData)
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ObrigacoesClientePeriodoConclusao/${this.vars.cadastro?.id}/${obrigacaoClientePeriodoId}/${this.vars.user?.id}`, formData)
             .pipe(catchError(this.handleError));
     }
 

@@ -6,6 +6,7 @@ import { Vars } from '../../../variables';
 export interface GedFileViewerParameter {
     fileId: number;
     size?: number;
+    showAvatar?: boolean;
 }
 
 @Component({
@@ -47,6 +48,7 @@ export class GedFileViewerComponent {
      */
     private buildDownloadUrl(params: GedFileViewerParameter): string {
         const userId = this.vars.user?.id;
+        const avatarSize = 120;
 
         // 4. Input Validation/Type Safety Check
         if (!params.fileId || !userId) {
@@ -56,7 +58,7 @@ export class GedFileViewerComponent {
         }
 
         // 5. Use URLSearchParams for robust query string handling (recommended)
-        const baseUrl = `${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivoDownload/${params.fileId}/${userId}`;
+        const baseUrl = `${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivoDownload/${params.fileId}/${userId}?size=${avatarSize}&showAvatar=${params.showAvatar ?? false}`;
 
         const urlParams = new URLSearchParams();
 
