@@ -250,7 +250,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     getData(obrigacaoClientePeriodoId: number) {
         this.obrigacoesService.obrigacaoClientePeriodoPageItemGet(obrigacaoClientePeriodoId).subscribe((x) => {
             this.title = x.obj.clienteNomeFormat;
-            this.subTitle = x.obj.obrigacaoDescricaoFormat + (this.isDebug ? ' - #' + x.obj.id?.toString() : '');
+            this.subTitle = x.obj.tipoDescricaoFormat + (this.isDebug ? ' - #' + x.obj.id?.toString() : '');
             this.obrigacao = x.obj;
         });
     }

@@ -12,11 +12,11 @@ export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     clienteNomeFormat: string;
     obrigacaoId: number;
     obrigacaoDescricao: string;
-    obrigacaoDescricaoFormat: string;
     perfilItemId?: number;
     perfilItemDescricao: string;
     tipo: TObrigacaoTipo;
     tipoDescricao: string;
+    tipoDescricaoFormat: string;
     setor: TSetor;
     esfera: TEsfera;
     uf?: string;

@@ -11,21 +11,30 @@
                     (onChanged)="obrigacaoChanged($event)"
                     [label]="'Obrigação'"
                 ></obrigacao-select>
-                {{periodicidade}} @if (periodicidade) { @if (periodicidade != TPeriodicidade.Anual) {
+                @if (periodicidade) {
+
+                <!-- #region Mensal -->
+                @if (periodicidade != TPeriodicidade.Anual) {
                 <input-month-year-ex
                     class="w-full md:w-5/12"
                     [formControlName]="'competenciaMesInicial'"
                     [form]="firstFormGroup"
                     [label]="'Competência Inicial'"
                 ></input-month-year-ex>
-                } @if (periodicidade == TPeriodicidade.Anual) {
+                }
+                <!-- #endregion -->
+
+                <!-- #region Anual -->
+                @if (periodicidade == TPeriodicidade.Anual) {
                 <input-year-ex
                     class="w-full md:w-5/12"
                     [formControlName]="'competenciaAnoInicial'"
                     [form]="firstFormGroup"
                     [label]="'Competência Inicial'"
                 ></input-year-ex>
-                } }
+                }
+                <!-- #endregion -->
+                }
 
                 <input-textarea-ex
                     class="w-full"

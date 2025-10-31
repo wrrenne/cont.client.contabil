@@ -72,7 +72,9 @@
             <!--#endregion-->
 
             <!--#region Perfil-->
+            @if (obrigacao.perfilItemDescricao) {
             <label-text [text]="obrigacao.perfilItemDescricao" [label]="'Perfil'"></label-text>
+            }
             <!--#endregion-->
 
             <!--#region Status-->
@@ -124,7 +126,7 @@
                     class="flex items-center gap-1 py-4"
                     (onCommented)="commented($event)"
                     _onEvaluated="evaluated($event)"
-                    [parameter]="{origemId: obrigacao.id, tipo: TPostTipo.ContabilObrigacaoClientePeriodo, clienteId: obrigacao.clienteId, contabil_ObrigacaoNome: obrigacao.obrigacaoDescricaoFormat, contabil_Vencimento: obrigacao.vencimento, contabil_Prazo: obrigacao.prazo, contabil_CompetenciaMes: obrigacao.competenciaMes, contabil_CompetenciaAno: obrigacao.competenciaAno}"
+                    [parameter]="{origemId: obrigacao.id, tipo: TPostTipo.ContabilObrigacaoClientePeriodo, clienteId: obrigacao.clienteId, contabil_ObrigacaoNome: obrigacao.obrigacaoDescricao, contabil_Vencimento: obrigacao.vencimento, contabil_Prazo: obrigacao.prazo, contabil_CompetenciaMes: obrigacao.competenciaMes, contabil_CompetenciaAno: obrigacao.competenciaAno}"
                     [newComment]="newComment"
                 ></timeline-comment-form>
             </div>
