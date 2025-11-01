@@ -27,8 +27,8 @@
 
                 <!-- #region Arquivo -->
                 @if (comment.temArquivo) { @for (arquivo of comment.arquivos; track arquivo) {
-                <div class="flex items-center gap-1 cursor-pointer" (click)="fileOpen(arquivo.id!)">
-                    <ged-file-viewer [parameter]="{fileId: arquivo.id!, size: 100}"> </ged-file-viewer>
+                <div class="flex items-center gap-1 cursor-pointer" _click="fileOpen(arquivo.id!)">
+                    <ged-file-avatar-viewer [parameter]="{fileId: arquivo.id!, size: 120 }"></ged-file-avatar-viewer>
                 </div>
                 } }
                 <!-- #endregion -->

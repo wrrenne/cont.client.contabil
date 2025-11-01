@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { GedFileAvatarViewerComponent } from 'src/app/shared/ged/controls/ged-file-avatar-viewer/ged-file-avatar-viewer';
 import { GedFileViewerModalComponent } from 'src/app/shared/ged/controls/ged-file-viewer-modal/ged-file-viewer-modal';
-import { GedFileViewerComponent } from 'src/app/shared/ged/controls/ged-file-viewer/ged-file-viewer';
 import { environment } from '../../../../../environments/environment';
 import { AvatarImageComponent } from '../../../controls/avatar-image/avatar-image';
 import { FileServerImageComponent } from '../../../controls/file-server-image/file-server-image';
@@ -16,7 +16,7 @@ import { TimelineCommentFormComponent } from '../timeline-comment-form/timeline-
     templateUrl: './timeline-comment.html',
     host: { class: 'flex gap-3' },
     standalone: true,
-    imports: [AvatarImageComponent, FileServerImageComponent, GedFileViewerComponent, TimelineCommentFormComponent],
+    imports: [AvatarImageComponent, FileServerImageComponent, GedFileAvatarViewerComponent, TimelineCommentFormComponent],
 })
 export class TimelineCommentComponent {
     @Input() comment: CommentPageItem;

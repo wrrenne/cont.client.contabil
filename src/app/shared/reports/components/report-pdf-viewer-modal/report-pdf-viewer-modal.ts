@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
-import { ReportParameters } from '../../models';
-import { ReportPdfViewerComponent } from '../pdf-viewer/pdf-viewer';
+import { ReportParameters } from 'src/app/shared/models';
+import { ReportPdfViewerComponent } from '../pdf-viewer/report-pdf-viewer';
 
 export interface ReportPdfViewerModalData {
     reportId: number;
@@ -9,8 +9,9 @@ export interface ReportPdfViewerModalData {
 }
 
 @Component({
-    selector: 'pdf-viewer-modal',
-    templateUrl: './pdf-viewer-modal.html',
+    selector: 'report-pdf-viewer-modal',
+    templateUrl: './report-pdf-viewer-modal.html',
+    standalone: true,
     imports: [ReportPdfViewerComponent],
 })
 export class ReportPdfViewerModalComponent {
