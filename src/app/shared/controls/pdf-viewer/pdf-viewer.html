@@ -16,12 +16,13 @@
     }
 
     <!-- PDF Viewer -->
-    @if (pdfUrl && !loading && !error) {
-    <object [data]="pdfUrl" type="application/pdf" class="w-full h-[80vh] rounded-none">
+    @if (pdfUrl) {
+    <object [data]="pdfUrl" type="application/pdf" class="w-[400px] h-[80vh] rounded-none border-none">
         <p class="text-gray-700 p-4 text-center">
             O seu navegador não suporta leitura nativa de PDFs.
             <a [href]="pdfUrl" target="_blank" class="text-blue-600 underline hover:text-blue-800"> Abrir em uma nova aba </a>.
         </p>
     </object>
+    <!-- <iframe [src]="pdfUrl" type="application/pdf" class="w-full h-[80vh] rounded-none border-none"> </iframe> -->
     }
 </div>

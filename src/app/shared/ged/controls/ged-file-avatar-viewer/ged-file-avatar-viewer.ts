@@ -7,6 +7,7 @@ import { GedFileViewerModalComponent } from '../ged-file-viewer-modal/ged-file-v
 
 export interface GedFileAvatarViewerParameter {
     fileId: number;
+    extension: string;
     size?: number;
 }
 
@@ -75,7 +76,7 @@ export class GedFileAvatarViewerComponent {
         return queryString ? `${baseUrl}?${queryString}` : baseUrl;
     }
 
-    fileOpen(fileId: number) {
+    fileOpen() {
         const modal = this.modalService.create({
             nzContent: GedFileViewerModalComponent,
             nzClosable: false,
@@ -84,7 +85,8 @@ export class GedFileAvatarViewerComponent {
             nzWidth: 'auto',
             nzStyle: { display: 'table' },
             nzData: {
-                fileId: fileId,
+                fileId: this.parameter?.fileId!,
+                extension: this.parameter?.extension,
             },
         });
     }

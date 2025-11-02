@@ -1,7 +1,7 @@
 @if (arquivos) { @if (arquivos.length > 0) { @for (arquivo of arquivos; track arquivo) {
 <div class="flex">
     @if (showAvatar) {
-    <ged-file-viewer [parameter]="{fileId: arquivo.id!, showAvatar: true}"></ged-file-viewer>
+    <ged-file-avatar-viewer [parameter]="{fileId: arquivo.id!, size: 120, extension: arquivo.extensao}"></ged-file-avatar-viewer>
     } @else {
     <label-icon [label]="arquivo.nome" [icon]="'bootstrapFileEarmarkTextFill'"></label-icon>
     }

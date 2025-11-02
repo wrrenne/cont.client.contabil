@@ -1,45 +1,48 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ReportsService } from 'src/app/ponto-shared/reports/services/reports.service';
+import { HttpParams } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
 import { PdfViewerComponent } from 'src/app/shared/controls/pdf-viewer/pdf-viewer';
 import { ReportParameters } from 'src/app/shared/models';
+import { ApisUtilsService, DateUtilsService, TMicroService } from 'src/app/shared/services';
+import { Vars } from 'src/app/shared/variables';
 
 @Component({
     selector: 'report-pdf-viewer',
     templateUrl: './report-pdf-viewer.html',
     imports: [PdfViewerComponent],
 })
-export class ReportPdfViewerComponent extends PdfViewerComponent implements OnInit, OnDestroy {
-    @Input() reportId!: number;
-    @Input() parameters!: ReportParameters;
-
-    constructor(
-        private reportsService: ReportsService,
-        sanitizer: DomSanitizer,
-    ) {
-        super(sanitizer);
+export class ReportPdfViewerComponent {
+    private _parameters: ReportParameters;
+    @Input() get parameters() {
+        return this._parameters;
     }
+    set parameters(value: ReportParameters) {
+        this._parameters = value;
 
-    ngOnInit(): void {
-        if (!this.reportId) {
-            this.error = 'Relatório inválido';
-            return;
+        const cadastroId = this.vars.cadastro?.id;
+        const userId = this.vars.user?.id;
+
+        const url = `${this.apisUtilsService.getApiUrl(TMicroService.ApiReports)}/Reports/ReportPdfGet/${cadastroId}/${userId}/${value.reportId}`;
+
+        let params = new HttpParams();
+
+        if (value.dataInicial) {
+            params = params.set('dataInicial', this.dateUtilsService.GetDateIsoString(value.dataInicial!));
         }
 
-        this.loading = true;
-        this.sub = this.reportsService.reportPdfGet(this.reportId, this.parameters).subscribe({
-            next: (blob) => {
-                this.blob = blob;
-            },
-            error: (err) => {
-                this.error = 'Erro na leitura do PDF';
-                this.loading = false;
-                console.error(err);
-            },
-        });
+        if (value.dataFinal) {
+            params = params.set('dataFinal', this.dateUtilsService.GetDateIsoString(value.dataFinal!));
+        }
+
+        this.url = url + '?' + params.toString();
+
+        console.log(this.url);
     }
 
-    ngOnDestroy(): void {
-        if (this.sub) this.sub.unsubscribe();
-    }
+    url: string;
+
+    constructor(
+        private vars: Vars,
+        private apisUtilsService: ApisUtilsService,
+        private dateUtilsService: DateUtilsService,
+    ) {}
 }

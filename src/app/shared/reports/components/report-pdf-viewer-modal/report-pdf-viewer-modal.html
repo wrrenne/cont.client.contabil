@@ -1,7 +1,3 @@
-<!-- <modal-base [title]="'Novo Funcionário'">
-    <ng-template #modalContent> -->
-@if (reportId) {
-<report-pdf-viewer [reportId]="reportId" [parameters]="{ dataInicial: '2025-10-01', dataFinal: '2025-10-10' }"> </report-pdf-viewer>
+@if (parameters) {
+<report-pdf-viewer [parameters]="parameters"> </report-pdf-viewer>
 }
-<!-- </ng-template>
-</modal-base> -->

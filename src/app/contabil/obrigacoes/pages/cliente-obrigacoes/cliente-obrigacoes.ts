@@ -20,8 +20,6 @@ import { ClienteObrigacoesTableComponent } from '../../components/cliente-obriga
     standalone: true,
 })
 export class ClienteObrigacoesPage implements OnInit {
-    //cliente: ContabilClienteView;
-
     clienteId: number;
     impostosParameters: ObrigacoesParameter;
     acessoriasParameters: ObrigacoesParameter;
@@ -49,11 +47,13 @@ export class ClienteObrigacoesPage implements OnInit {
         urlParametrs.subscribe((r) => {
             this.clienteId = this.encryptionService.decrypt(r['id']);
 
+            this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
+
             var mes = r['mes'] ?? this.dateUtilsService.firstDateOfCurrentMonth();
 
             this.clientesService.clienteGet(this.clienteId).subscribe((x) => {
                 this.title = x.obj.nome;
-                this.subTitle = x.obj.regime;
+                //this.subTitle = x.obj.regime;
                 this.impostosParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Imposto };
                 this.acessoriasParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Acessoria };
                 this.relatoriosParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Relatorio };

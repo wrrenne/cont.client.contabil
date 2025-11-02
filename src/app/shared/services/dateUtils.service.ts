@@ -372,6 +372,18 @@ export class DateUtilsService {
             : `${weekdayPart}${inputDate.getDate()} de ${this.getMonthName(inputDate)} de ${inputDate.getFullYear()}${timePart}`;
     }
 
+    public formattedRelativeMonth(date: Date): string {
+        const today = this.getToday();
+
+        const sameYear = date.getFullYear() === today.getFullYear();
+
+        var result = this.getMonthName(date);
+
+        if (!sameYear) result = `de ${date.getFullYear()}`;
+
+        return result;
+    }
+
     compareDates(d1: Date, d2: Date): boolean {
         return d1.getDate() == d2.getDate() && d1.getMonth() == d2.getMonth() && d1.getFullYear() == d2.getFullYear();
     }

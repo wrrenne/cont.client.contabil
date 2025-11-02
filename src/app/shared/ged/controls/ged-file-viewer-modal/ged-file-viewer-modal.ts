@@ -5,6 +5,7 @@ import { GedFileViewerComponent } from '../ged-file-viewer/ged-file-viewer';
 
 export interface GedFileViewerModalData {
     fileId: number;
+    extension: string;
 }
 
 @Component({
@@ -14,9 +15,11 @@ export interface GedFileViewerModalData {
 })
 export class GedFileViewerModalComponent extends ModalBaseComponent {
     fileId?: number;
+    extension: string;
 
     constructor(injector: Injector, @Inject(NZ_MODAL_DATA) data: GedFileViewerModalData) {
         super(injector);
         this.fileId = data.fileId;
+        this.extension = data.extension;
     }
 }

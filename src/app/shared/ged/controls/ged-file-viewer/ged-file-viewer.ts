@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { PdfViewerComponent } from 'src/app/shared/controls/pdf-viewer/pdf-viewer';
 import { ApisUtilsService, TMicroService } from '../../../services';
 import { Vars } from '../../../variables';
 
 export interface GedFileViewerParameter {
     fileId: number;
     size?: number;
+    extension: string;
 }
 
 @Component({
     selector: 'ged-file-viewer',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, PdfViewerComponent],
     templateUrl: './ged-file-viewer.html',
 })
 export class GedFileViewerComponent {
@@ -20,11 +21,11 @@ export class GedFileViewerComponent {
 
     constructor(
         private apisUtilsService: ApisUtilsService,
-        private modalService: NzModalService,
         private vars: Vars,
     ) {}
 
     public url: string = '';
+    public extension: string;
 
     // 2. Use a private field to store the input value
     private _parameter: GedFileViewerParameter | undefined;
@@ -36,7 +37,7 @@ export class GedFileViewerComponent {
         if (value && value !== this._parameter) {
             this._parameter = value;
             this.url = this.buildDownloadUrl(value);
-            console.log(this.url);
+            this.extension = value.extension;
         }
     }
 

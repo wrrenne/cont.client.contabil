@@ -1,5 +1,6 @@
 export interface ReportParameters {
-    dataInicial?: string
-    dataFinal?: string
-    funcionarioId?: string
+    reportId: number;
+    dataInicial?: Date;
+    dataFinal?: Date;
+    funcionarioId?: string;
 }
