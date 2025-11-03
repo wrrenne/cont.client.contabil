@@ -1,6 +1,11 @@
 import { Component, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { InputMonthYearExComponent } from 'src/app/shared/controls/input-month-year-ex/input-month-year-ex';
+import { InputYearExComponent } from 'src/app/shared/controls/input-year-ex/input-year-ex';
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
+import { DateUtilsService } from 'src/app/shared/services';
+import { Vars } from 'src/app/shared/variables';
 
 export enum TPeriodoSelecaoTipo {
     VencimentoMes = 1,
@@ -11,7 +16,7 @@ export enum TPeriodoSelecaoTipo {
 @Component({
     selector: 'periodo-selecao-modal',
     templateUrl: './periodo-selecao-modal.html',
-    imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent],
+    imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, InputMonthYearExComponent, InputYearExComponent, ButtonDefaultComponent],
 })
 export class PeriodoSelecaoModalComponent extends ModalBaseComponent {
     TPeriodoSelecaoTipo = TPeriodoSelecaoTipo;
@@ -20,6 +25,8 @@ export class PeriodoSelecaoModalComponent extends ModalBaseComponent {
     constructor(
         injector: Injector,
         private formBuilder: FormBuilder,
+        private vars: Vars,
+        private dateUtilsService: DateUtilsService,
     ) {
         super(injector);
         this.createForm();
@@ -28,8 +35,8 @@ export class PeriodoSelecaoModalComponent extends ModalBaseComponent {
 
     createForm() {
         this.firstFormGroup = this.formBuilder.group({
-            option: [TPeriodoSelecaoTipo.CompetenciaMes],
-            vencimentoMes: [''],
+            option: [TPeriodoSelecaoTipo.VencimentoMes],
+            vencimentoMes: [this.vars.dataInicial],
             competenciaMes: [''],
             competenciaAno: [''],
         });
@@ -59,7 +66,12 @@ export class PeriodoSelecaoModalComponent extends ModalBaseComponent {
 
     submitFormGroup() {
         if (this.firstFormGroup.valid) {
-            console.log('Form submitted:', this.firstFormGroup.value);
+            const dataInicial = this.firstFormGroup.get('vencimentoMes')?.value;
+            this.vars.periodo = {
+                dataInicial: dataInicial,
+                dataFinal: this.dateUtilsService.lastDateOfMonth(dataInicial),
+            };
+
             this.closeModal(true);
         } else {
             this.firstFormGroup.markAllAsTouched();

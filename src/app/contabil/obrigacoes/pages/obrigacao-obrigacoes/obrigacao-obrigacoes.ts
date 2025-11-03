@@ -45,12 +45,11 @@ export class ObrigacaoObrigacoesPage implements OnInit {
         urlParametrs.subscribe((r) => {
             this.obrigacaoId = this.encryptionService.decrypt(r['id']);
 
-            var mes = r['mes'] ?? this.dateUtilsService.firstDateOfCurrentMonth();
+            this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
             this.obrigacoesService.obrigacaoGet(this.obrigacaoId).subscribe((x) => {
                 this.title = x.obj.descricao;
-                this.subTitle = x.obj.tipoDescricao;
-                this.parameters = { obrigacaoId: this.obrigacaoId, mes: mes };
+                this.parameters = { obrigacaoId: this.obrigacaoId, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! };
             });
         });
     }

@@ -7,7 +7,8 @@ export class ObrigacoesParameter {
     userId?: number;
     perfilItemId?: number;
     searchText?: string;
-    mes?: Date;
+    mesInicial?: Date;
+    mesFinal?: Date;
     departamentoId?: number;
     tipo?: TObrigacaoTipo;
 }

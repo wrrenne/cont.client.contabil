@@ -6,10 +6,10 @@
         <div class="h-full transition-all duration-300" [style.width.%]="getPercentage()" [ngClass]="getBackgroundClass()"></div>
     </div>
     @if (showInfos && done != undefined && total != undefined) {
-    <span class="text-muted">{{done}}/{{total}}</span>
+    <span>{{done}}/{{total}}</span>
     } @if (showInfos && done != undefined && total == undefined) {
-    <span class="text-muted">{{done}}</span>
+    <span>{{done}}</span>
     } @if (showPercentage) {
-    <span class="text-muted">{{ getPercentage() }}%</span>
+    <span>{{ getPercentage() }}%</span>
     }
 </div>

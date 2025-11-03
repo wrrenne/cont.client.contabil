@@ -38,8 +38,6 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
 
         if (value.obrigacaoId) this.param.routeStrings.push(value.obrigacaoId.toString());
 
-        this.param.routeStrings.push(this.dateUtilsService.GetDateIsoString(value.mes!));
-
         if (value.tipo) this.param.routeStrings.push(value.tipo.toString());
 
         this.param.queryStrings.clear();
@@ -48,11 +46,15 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
             this.param.queryStrings.set('pi', value.perfilItemId);
         }
 
+        this.param.queryStrings.set('mesInicial', this.dateUtilsService.GetDateIsoString(value.mesInicial!));
+        this.param.queryStrings.set('mesFinal', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(value.mesFinal!)));
+
         this.param.q = value?.searchText;
 
         this.clienteObrigacoesStatsMesParameters = {
             clienteId: value.clienteId!,
-            mes: value.mes!,
+            mesInicial: value.mesInicial!,
+            mesFinal: value.mesFinal!,
             tipo: value.tipo,
         };
 
@@ -135,12 +137,12 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
         //    this.stepperService.setStepperIndex(this.current)
     }
 
-    monthSelected(date: Date): void {
-        var c = this.parameters;
-        c!.mes = date;
+    // monthSelected(date: Date): void {
+    //     var c = this.parameters;
+    //     c!.mes = date;
 
-        this.parameters = c;
-    }
+    //     this.parameters = c;
+    // }
 
     tipoClicked(e: any) {
         this.obrigacaoTipo = e;
@@ -170,7 +172,7 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
                 break;
         }
 
-        this.parameters = { clienteId: this.parameters?.clienteId, mes: this.parameters?.mes, tipo: tipo };
+        // this.parameters = { clienteId: this.parameters?.clienteId, mes: this.parameters?.mes, tipo: tipo };
     }
 
     obrigacaoUpdate(e: any) {

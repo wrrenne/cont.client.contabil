@@ -7,7 +7,6 @@ import { UserAvatarComponent } from 'src/app/shared/control/components/user-avat
 import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { PostParameter } from '../../../../shared/timeline/models/parameters';
-import { TObrigacaoTipo } from '../../../models/enums';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
 import { UsersParameter } from '../../../models/users/parameters';
 import { ContabilUserView } from '../../../models/users/views';
@@ -48,14 +47,14 @@ export class UserPage implements OnInit {
             ...queryParams,
         }));
 
-        urlParametrs.subscribe((r) => {
-            const id: number = this.encryptionService.decrypt(r['id']);
+        // urlParametrs.subscribe((r) => {
+        //     const id: number = this.encryptionService.decrypt(r['id']);
 
-            this.getData(id);
+        //     this.getData(id);
 
-            this.id = id;
-            this.obrigacoesParameters = { userId: id, mes: this.mes, tipo: TObrigacaoTipo.Imposto };
-        });
+        //     this.id = id;
+        //     this.obrigacoesParameters = { userId: id, mes: this.mes, tipo: TObrigacaoTipo.Imposto };
+        // });
 
         this.usersParameters = {};
     }

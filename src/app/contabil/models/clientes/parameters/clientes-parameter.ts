@@ -1,4 +1,6 @@
 export class ClientesParameter {
-    perfilItemId?: number
-    searchText?: string
+    perfilItemId?: number;
+    dataInicial?: Date;
+    dataFinal?: Date;
+    searchText?: string;
 }

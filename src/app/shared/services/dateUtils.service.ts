@@ -136,7 +136,7 @@ export class DateUtilsService {
         const month = d.getUTCMonth();
         const year = d.getUTCFullYear();
 
-        return `${this.monthNamesFull[month]} de ${year}`;
+        return `${this.monthNamesFull[month]}/${year}`;
     }
 
     getWeekDayName(d: Date): string {
@@ -379,7 +379,7 @@ export class DateUtilsService {
 
         var result = this.getMonthName(date);
 
-        if (!sameYear) result = `de ${date.getFullYear()}`;
+        if (!sameYear) result += `/${date.getFullYear()}`;
 
         return result;
     }

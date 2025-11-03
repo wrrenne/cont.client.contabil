@@ -49,14 +49,29 @@ export class ClienteObrigacoesPage implements OnInit {
 
             this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
-            var mes = r['mes'] ?? this.dateUtilsService.firstDateOfCurrentMonth();
+            var mes = this.vars.dataInicial;
 
             this.clientesService.clienteGet(this.clienteId).subscribe((x) => {
                 this.title = x.obj.nome;
                 //this.subTitle = x.obj.regime;
-                this.impostosParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Imposto };
-                this.acessoriasParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Acessoria };
-                this.relatoriosParameters = { clienteId: this.clienteId, mes: mes, tipo: TObrigacaoTipo.Relatorio };
+                this.impostosParameters = {
+                    clienteId: this.clienteId,
+                    mesInicial: this.vars.dataInicial!,
+                    mesFinal: this.vars.dataFinal!,
+                    tipo: TObrigacaoTipo.Imposto,
+                };
+                this.acessoriasParameters = {
+                    clienteId: this.clienteId,
+                    mesInicial: this.vars.dataInicial!,
+                    mesFinal: this.vars.dataFinal!,
+                    tipo: TObrigacaoTipo.Acessoria,
+                };
+                this.relatoriosParameters = {
+                    clienteId: this.clienteId,
+                    mesInicial: this.vars.dataInicial!,
+                    mesFinal: this.vars.dataFinal!,
+                    tipo: TObrigacaoTipo.Relatorio,
+                };
             });
         });
     }

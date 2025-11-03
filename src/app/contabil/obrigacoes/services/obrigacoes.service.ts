@@ -138,19 +138,25 @@ export class ObrigacoesService extends ServiceBase {
             .pipe(catchError(this.handleError));
     }
 
-    clienteObrigacoesStatsMesGet(clienteId: number, mes: Date, tipo?: TObrigacaoTipo): Observable<ApiResponse<ClienteObrigacoesMesView>> {
+    clienteObrigacoesStatsMesGet(
+        clienteId: number,
+        mesInicial: Date,
+        mesFinal: Date,
+        tipo?: TObrigacaoTipo,
+    ): Observable<ApiResponse<ClienteObrigacoesMesView>> {
         var cadastroId = this.vars.cadastro?.id;
-
-        var m = this.dateUtilsService.GetDateIsoString(mes);
 
         let params = new HttpParams();
 
         if (tipo) params = params.set('tipo', tipo);
 
+        params.set('mesInicial', this.dateUtilsService.GetDateIsoString(mesInicial));
+        params.set('mesFinal', this.dateUtilsService.GetDateIsoString(mesFinal));
+
         return this.http
             .get<
                 ApiResponse<ClienteObrigacoesMesView>
-            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ClienteObrigacoesStatsMesGet/${cadastroId}/${clienteId}/${m}`, { params })
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ClienteObrigacoesStatsMesGet/${cadastroId}/${clienteId}`, { params })
             .pipe(catchError(this.handleError));
     }
 }

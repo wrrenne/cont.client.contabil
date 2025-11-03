@@ -1,4 +1,4 @@
 export interface PeriodoModel {
-    dataInicial: Date
-    dataFinal: Date
+    dataInicial: Date;
+    dataFinal: Date;
 }

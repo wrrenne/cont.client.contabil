@@ -40,6 +40,14 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
             this.param.queryStrings.set('pi', value.perfilItemId);
         }
 
+        if (value?.dataInicial) {
+            this.param.queryStrings.set('mesInicial', this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!));
+        }
+
+        if (value?.dataFinal) {
+            this.param.queryStrings.set('mesFinal', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(this.vars.dataFinal!)));
+        }
+
         this.perfilItemId = value?.perfilItemId ?? 0;
 
         this.param.q = value?.searchText;

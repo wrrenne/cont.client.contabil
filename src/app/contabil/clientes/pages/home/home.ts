@@ -44,7 +44,12 @@ export class ClientesHomePage implements OnInit {
         }));
 
         urlParametrs.subscribe((r) => {
-            this.clientesParameters = { perfilItemId: this.encryptionService.decrypt(r['pi']), searchText: r['q'] };
+            this.clientesParameters = {
+                perfilItemId: this.encryptionService.decrypt(r['pi']),
+                searchText: r['q'],
+                dataInicial: this.vars.dataInicial!,
+                dataFinal: this.vars.dataFinal!,
+            };
         });
     }
 

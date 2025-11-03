@@ -1,5 +1,10 @@
 <div class="content-site">
-    <page-title [title]="'Obrigações por Tipo'"></page-title>
+    <page-title [title]="'Obrigações por Tipo'" [subTitle]="subTitle"></page-title>
+
+    <div class="flex gap-4 mb-4">
+        <button-default [text]="'Alterar Período'" [bgClass]="'btn-primary'" (click)="PeriodoSelecaoModalOpen()"></button-default>
+        <button-default [text]="'Filtro'" [bgClass]="'btn-primary'"></button-default>
+    </div>
 
     <nz-tabset>
         <nz-tab nzTitle="Impostos">

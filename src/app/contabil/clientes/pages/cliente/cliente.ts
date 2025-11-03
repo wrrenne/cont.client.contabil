@@ -86,7 +86,7 @@ export class ClientePage implements OnInit {
             const id: number = this.encryptionService.decrypt(r['id']);
             const perfilItemId: number = this.encryptionService.decrypt(r['pi']);
 
-            this.clientesParameters = { perfilItemId: perfilItemId, searchText: r['q'] };
+            this.clientesParameters = { perfilItemId: perfilItemId, searchText: r['q'], dataInicial: this.vars.dataInicial!, dataFinal: this.vars.dataFinal! };
             this.usersParameter = { clienteId: id };
             this.clientePerfisParameters = { clienteId: id };
             this.clienteObrigacoesAvulsasParameters = { clienteId: id };

@@ -5,82 +5,79 @@
             <form [formGroup]="firstFormGroup" (ngSubmit)="submitFormGroup()" class="flex flex-col gap-y-6">
                 <!-- Radio Group -->
                 <div class="flex flex-col gap-y-3">
-                    <label class="font-semibold text-gray-700">Selecione o tipo de período:</label>
+                    <label class="font-semibold">Selecione o tipo de período:</label>
 
                     <div class="flex flex-col gap-y-2 pl-2">
                         <label class="flex items-center gap-x-2 cursor-pointer">
                             <input type="radio" formControlName="option" [value]="TPeriodoSelecaoTipo.VencimentoMes" class="accent-blue-600" />
-                            <span class="text-gray-800">Vencimento Mês</span>
+                            <span>Vencimentos no mês</span>
                         </label>
 
                         <label class="flex items-center gap-x-2 cursor-pointer">
                             <input type="radio" formControlName="option" [value]="TPeriodoSelecaoTipo.CompetenciaMes" class="accent-blue-600" />
-                            <span class="text-gray-800">Competência Mês</span>
+                            <span>Competência mensal</span>
                         </label>
 
                         <label class="flex items-center gap-x-2 cursor-pointer">
                             <input type="radio" formControlName="option" [value]="TPeriodoSelecaoTipo.CompetenciaAno" class="accent-blue-600" />
-                            <span class="text-gray-800">Competência Ano</span>
+                            <span>Competência anual</span>
                         </label>
                     </div>
                 </div>
 
                 <!-- Inputs -->
                 <div class="flex flex-col gap-y-3">
-                    <!-- Vencimento Mês -->
-                    <div *ngIf="firstFormGroup.get('option')?.value === TPeriodoSelecaoTipo.VencimentoMes">
-                        <label class="text-gray-700 font-medium">Vencimento Mês</label>
+                    @if (firstFormGroup.get('option')?.value === TPeriodoSelecaoTipo.VencimentoMes) {
+                    <div>
+                        <input-month-year-ex [formControlName]="'vencimentoMes'" [form]="firstFormGroup" [label]="'Selecione o mês'"></input-month-year-ex>
+
+                        <!-- <label class="text-gray-700 font-medium">Vencimento mês</label>
                         <input
                             type="text"
                             formControlName="vencimentoMes"
                             class="border rounded-lg p-2 w-full focus:ring focus:ring-blue-300"
-                            placeholder="Digite o vencimento do mês"
+                            placeholder="Digite o mês do vencimento"
                         />
-                        <div
-                            *ngIf="firstFormGroup.get('vencimentoMes')?.invalid && firstFormGroup.get('vencimentoMes')?.touched"
-                            class="text-red-500 text-sm mt-1"
-                        >
-                            Campo obrigatório.
-                        </div>
+                        @if (firstFormGroup.get('vencimentoMes')?.invalid && firstFormGroup.get('vencimentoMes')?.touched) {
+                        <div class="text-red-500 text-sm mt-1">Campo obrigatório</div>
+                        } -->
                     </div>
+                    } @if (firstFormGroup.get('option')?.value === TPeriodoSelecaoTipo.CompetenciaMes) {
+                    <div>
+                        <input-month-year-ex [formControlName]="'competenciaMes'" [form]="firstFormGroup" [label]="'Selecione o mês'"></input-month-year-ex>
 
-                    <!-- Competência Mês -->
-                    <div *ngIf="firstFormGroup.get('option')?.value === TPeriodoSelecaoTipo.CompetenciaMes">
-                        <label class="text-gray-700 font-medium">Competência Mês</label>
+                        <!-- <label class="text-gray-700 font-medium">Competência mês</label>
                         <input
                             type="text"
                             formControlName="competenciaMes"
                             class="border rounded-lg p-2 w-full focus:ring focus:ring-blue-300"
-                            placeholder="Digite a competência do mês"
+                            placeholder="Digite o mês da competência"
                         />
-                        <div
-                            *ngIf="firstFormGroup.get('competenciaMes')?.invalid && firstFormGroup.get('competenciaMes')?.touched"
-                            class="text-red-500 text-sm mt-1"
-                        >
-                            Campo obrigatório.
-                        </div>
+                        @if (firstFormGroup.get('competenciaMes')?.invalid && firstFormGroup.get('competenciaMes')?.touched) {
+                        <div class="text-red-500 text-sm mt-1">Campo obrigatório</div>
+                        } -->
                     </div>
+                    } @if (firstFormGroup.get('option')?.value === TPeriodoSelecaoTipo.CompetenciaAno) {
+                    <div>
+                        <input-year-ex [formControlName]="'competenciaAno'" [form]="firstFormGroup" [label]="'Selecione o ano'"></input-year-ex>
 
-                    <!-- Competência Ano -->
-                    <div *ngIf="firstFormGroup.get('option')?.value === TPeriodoSelecaoTipo.CompetenciaAno">
-                        <label class="text-gray-700 font-medium">Competência Ano</label>
+                        <!-- <label class="text-gray-700 font-medium">Competência ano</label>
                         <input
                             type="text"
                             formControlName="competenciaAno"
                             class="border rounded-lg p-2 w-full focus:ring focus:ring-blue-300"
-                            placeholder="Digite a competência do ano"
+                            placeholder="Digite o ano da competência"
                         />
-                        <div
-                            *ngIf="firstFormGroup.get('competenciaAno')?.invalid && firstFormGroup.get('competenciaAno')?.touched"
-                            class="text-red-500 text-sm mt-1"
-                        >
-                            Campo obrigatório.
-                        </div>
+                        @if (firstFormGroup.get('competenciaAno')?.invalid && firstFormGroup.get('competenciaAno')?.touched) {
+                        <div class="text-red-500 text-sm mt-1">Campo obrigatório</div>
+                        } -->
                     </div>
+                    }
                 </div>
 
+                <button-default [bgClass]="'btn-primary'" [text]="'Alterar'" (click)="submitFormGroup()"></button-default>
                 <!-- Submit Button -->
-                <button type="submit" class="self-end bg-blue-600 text-white font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition">Confirmar</button>
+                <!-- <button type="submit" class="self-end bg-blue-600 text-white font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition">Confirmar</button> -->
             </form>
             }
         </div>

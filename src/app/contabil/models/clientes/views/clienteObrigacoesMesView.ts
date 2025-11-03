@@ -1,8 +1,8 @@
-import { ObrigacoesStat } from "../../obrigacoes";
+import { ObrigacoesStat } from '../../obrigacoes';
 
 export interface ClienteObrigacoesMesView {
     clienteId: number;
-    mes: Date;
+    mes?: Date;
     impostos: ObrigacoesStat;
     acessorias: ObrigacoesStat;
     relatorios: ObrigacoesStat;

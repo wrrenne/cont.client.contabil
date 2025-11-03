@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
+import { PeriodoSelecaoModalComponent } from 'src/app/contabil/components/periodo-selecao-modal/periodo-selecao-modal';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
@@ -16,13 +17,12 @@ import { ObrClientesTableComponent } from '../../components/obr-clientes-table/o
     imports: [PageTitleComponent, ObrClientesTableComponent, ButtonDefaultComponent],
     standalone: true,
 })
-export class ObrigacoesPorClientePage implements OnInit {
+export class ObrigacoesPorClientePage implements OnInit, OnDestroy {
     clientesParameters: ClientesParameter;
-    //perfisParameters: PerfisParameter;
 
     subTitle: string;
-    prefLista = false;
-    displayType = 'grid';
+
+    private periodoSubscription: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -30,29 +30,43 @@ export class ObrigacoesPorClientePage implements OnInit {
         private encryptionService: EncryptionService,
         private modalService: NzModalService,
         private dateUtilsService: DateUtilsService,
-        private router: Router,
     ) {}
 
     ngOnInit(): void {
-        //this.perfisParameters = { cadastroId: this.vars.cadastro?.id! };
-
-        this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
-
         const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
             ...params,
             ...queryParams,
         }));
 
         urlParametrs.subscribe((r) => {
-            this.clientesParameters = { perfilItemId: this.encryptionService.decrypt(r['pi']), searchText: r['q'] };
+            this.getData(this.encryptionService.decrypt(r['pi'], r['q']));
+        });
+
+        this.periodoSubscription = this.vars.periodo$.subscribe((_) => {
+            this.getData();
         });
     }
 
-    // titleOnChange(e: string) {
-    //     this.subTitle = e;
-    // }
+    ngOnDestroy() {
+        if (this.periodoSubscription) this.periodoSubscription.unsubscribe();
+    }
+
+    getData(perfilItemId?: number, searchText?: string) {
+        this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
+
+        this.clientesParameters = { perfilItemId: perfilItemId, searchText: searchText, dataInicial: this.vars.dataInicial!, dataFinal: this.vars.dataFinal! };
+    }
 
     getEncryptedId(id: number): string {
         return this.encryptionService.encrypt(id);
+    }
+
+    PeriodoSelecaoModalOpen() {
+        const modal = this.modalService.create({
+            nzContent: PeriodoSelecaoModalComponent,
+            nzWidth: 460,
+            nzClosable: false,
+            nzFooter: null,
+        });
     }
 }

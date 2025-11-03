@@ -44,6 +44,14 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
             this.param.queryStrings.set('tipo', value.tipo);
         }
 
+        if (value?.mesInicial) {
+            this.param.queryStrings.set('mesInicial', this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!));
+        }
+
+        if (value?.mesFinal) {
+            this.param.queryStrings.set('mesFinal', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(this.vars.dataFinal!)));
+        }
+
         this.perfilItemId = value?.perfilItemId ?? 0;
 
         this.param.q = value?.searchText;
