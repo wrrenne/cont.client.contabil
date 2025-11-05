@@ -1,4 +1,5 @@
 export interface ObrigacoesStat {
+    cadastroId?: number;
     clienteId?: number;
     obrigacaoId?: number;
     userId?: number;

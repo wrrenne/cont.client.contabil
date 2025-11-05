@@ -1,51 +1,48 @@
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServiceBase } from '../../shared/models';
-import { DateUtilsService } from '../../shared/services';
-import { Vars } from '../../shared/variables';
-import { UsersService } from './users.service';
 import { UserPainel } from '../../contabil/models/users';
 import { VarsApp } from '../../contabil/variables';
-
+import { ServiceBase } from '../../shared/models';
+import { DateUtilsService } from '../../shared/services';
+import { UsersService } from './users.service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class UserLoginService extends ServiceBase {
-
     constructor(
         public injector: Injector,
         private usersService: UsersService<UserPainel>,
         private vars: VarsApp,
         private dateUtils: DateUtilsService,
-        protected router: Router
+        protected router: Router,
     ) {
-        super(injector)
+        super(injector);
     }
 
     userPainelGet(userId: number, cadastroId: number, goToHome: boolean) {
-        this.usersService.userPainelGet(userId, cadastroId).subscribe(
-            x => {
-                this.vars.dataInicial = this.dateUtils.convertIsoStringToDate('2025-08-01')
-                this.vars.dataFinal = this.dateUtils.convertIsoStringToDate('2025-08-31')
+        this.usersService.userPainelGet(userId, cadastroId).subscribe((x) => {
+            // this.vars.dataInicial = this.dateUtils.convertIsoStringToDate('2025-08-01')
+            // this.vars.dataFinal = this.dateUtils.convertIsoStringToDate('2025-08-31')
 
-                this.vars.cadastro = {
-                    id: <number>x.obj.cadastroId,
-                    nome: x.obj.cadastroNome
-                }
+            this.vars.dataInicial = x.obj.dataInicial;
+            this.vars.dataFinal = x.obj.dataFinal;
 
-                this.vars.user = {
-                    id: <number>x.obj.userId,
-                    nome: x.obj.userNome,
-                    email: x.obj.email,
-                    p: x.obj.pwd
-                }
+            this.vars.cadastro = {
+                id: <number>x.obj.cadastroId,
+                nome: x.obj.cadastroNome,
+            };
 
-                this.vars.loaded = true
+            this.vars.user = {
+                id: <number>x.obj.userId,
+                nome: x.obj.userNome,
+                email: x.obj.email,
+                p: x.obj.pwd,
+            };
 
-                if (goToHome)
-                    this.router.navigate(['/sistema/home']);
-            })
+            this.vars.loaded = true;
+
+            if (goToHome) this.router.navigate(['/sistema/home']);
+        });
     }
 }

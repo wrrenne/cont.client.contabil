@@ -11,17 +11,17 @@ export interface UserPainel {
     ultimoAcesso?: string;
     revendaId: number;
     revendaNome: string;
-    dataInicial?: string;
-    dataFinal?: string;
+    dataInicial?: Date;
+    dataFinal?: Date;
 
-//    userId?: number;
-//    sistemaUserId?: number;
-//    userNome: string;
-//    email: string;
-//    pwd: string;
-//    cadastroId: number;
-//    cadastroNome: string;
-//    ultimoAcesso?: string;
-//    revendaId: number;
-//    revendaNome: string;
+    //    userId?: number;
+    //    sistemaUserId?: number;
+    //    userNome: string;
+    //    email: string;
+    //    pwd: string;
+    //    cadastroId: number;
+    //    cadastroNome: string;
+    //    ultimoAcesso?: string;
+    //    revendaId: number;
+    //    revendaNome: string;
 }
