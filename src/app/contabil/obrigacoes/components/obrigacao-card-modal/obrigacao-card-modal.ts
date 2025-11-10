@@ -187,9 +187,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     //}
 
     commented(e: any) {
-        if (!this.obrigacao.comments) this.obrigacao.comments = [];
-
-        this.obrigacao.comments.push(e);
+        this.getData(this.obrigacao.id!);
     }
 
     evaluated() {

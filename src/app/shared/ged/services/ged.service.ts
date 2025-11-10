@@ -98,30 +98,30 @@ export class GedService extends ServiceBase {
             .pipe(catchError(this.handleError));
     }
 
-    arquivoTipoAtestadoUpload(
-        funcionarioId: number,
-        apontamentoId: number,
-        apontamentoData: string,
-        files: File[],
-    ): Observable<ApiResponse<number | undefined>> {
-        const formData = new FormData();
+    // arquivoTipoAtestadoUpload(
+    //     funcionarioId: number,
+    //     apontamentoId: number,
+    //     apontamentoData: string,
+    //     files: File[],
+    // ): Observable<ApiResponse<number | undefined>> {
+    //     const formData = new FormData();
 
-        formData.append('cadastroId', (<number>this.vars.cadastro?.id).toString());
-        formData.append('funcionarioId', funcionarioId.toString());
-        formData.append('apontamentoId', apontamentoId.toString());
-        formData.append('userId', (<number>this.vars.user?.id).toString());
-        formData.append('fileType', (<number>TFileType.Atestado).toString());
-        formData.append('competenciaMes', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(this.vars.dataInicial!)));
-        formData.append('apontamentoData', apontamentoData);
+    //     formData.append('cadastroId', (<number>this.vars.cadastro?.id).toString());
+    //     formData.append('funcionarioId', funcionarioId.toString());
+    //     formData.append('apontamentoId', apontamentoId.toString());
+    //     formData.append('userId', (<number>this.vars.user?.id).toString());
+    //     formData.append('fileType', (<number>TFileType.Atestado).toString());
+    //     formData.append('competenciaMes', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(this.vars.dataInicial!)));
+    //     formData.append('apontamentoData', apontamentoData);
 
-        for (const file of files) {
-            formData.append('files', file, file.name);
-        }
+    //     for (const file of files) {
+    //         formData.append('files', file, file.name);
+    //     }
 
-        return this.http
-            .post<ApiResponse<number | undefined>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivoFormUpload`, formData)
-            .pipe(catchError(this.handleError));
-    }
+    //     return this.http
+    //         .post<ApiResponse<number | undefined>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivoFormUpload`, formData)
+    //         .pipe(catchError(this.handleError));
+    // }
 
     arquivoTipoObrigacaoUpload(
         clienteId: number,

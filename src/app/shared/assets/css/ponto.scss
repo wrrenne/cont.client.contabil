@@ -11,7 +11,7 @@
 /*extra*/
 .ponto-box {
     /*@apply py-1 rounded-md;*/
-    @apply py-0.5 px-2 rounded-md;
+    @apply py-0.5 px-2;
 }
 
 .ponto-bg-normal {
@@ -23,11 +23,11 @@
 }
 
 .ponto-box-naotratado {
-    @apply border border-dashed border-amber-700 dark:border-yellow-400;
+    @apply border border-dashed border-amber-500 dark:border-yellow-700;
 }
 
 .ponto-box-tratamento {
-    @apply w-28 py-1.5 px-2 rounded-md text-black/80 dark:text-white/80 bg-neutral-200 dark:bg-neutral-800;
+    @apply w-28 py-1.5 px-2 text-black/80 dark:text-white/80 bg-neutral-200 dark:bg-neutral-800;
 }
 
 .ponto-extra-naotratado-box,

@@ -5,12 +5,12 @@ export interface UserPainel {
     pwd: string;
     cadastroId: number;
     cadastroNome: string;
-    funcionarioId?: number;
-    funcionarioCadastroId?: number;
-    funcionarioNome: string;
+    // funcionarioId?: number;
+    // funcionarioCadastroId?: number;
+    // funcionarioNome: string;
     ultimoAcesso?: string;
-    revendaId: number;
-    revendaNome: string;
+    // revendaId: number;
+    // revendaNome: string;
     dataInicial?: Date;
     dataFinal?: Date;
 

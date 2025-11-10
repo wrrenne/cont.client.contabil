@@ -68,9 +68,9 @@
             @if (isString(subTitle)) {
             <div class="flex gap-4">
                 @if (isString(subTitle)) {
-                <span class="mt-1 block text-xs text-black/50 dark:text-white/50">{{subTitle}}</span>
+                <span class="mt-1 block text-subtitle">{{subTitle}}</span>
                 } @if (subTitle2) {
-                <span class="mt-1 block text-xs text-black/50 dark:text-white/50">{{subTitle2}}</span>
+                <span class="mt-1 block text-subtitle">{{subTitle2}}</span>
                 }
             </div>
             } @if (!isString(subTitle) && subTitleTemplate) {

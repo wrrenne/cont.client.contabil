@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
+import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 import { AlertComponent, AlertType } from 'src/app/shared/controls/alert/alert';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { InputFileComponent } from 'src/app/shared/controls/input-file/input-file';
 import { InputTextAreaExComponent } from 'src/app/shared/controls/input-textarea-ex/input-textarea-ex';
 import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
@@ -26,9 +27,10 @@ export interface ObrigacaoConclusaoModalData {
         InputTextAreaExComponent,
         AlertComponent,
         LabelTextComponent,
+        ButtonDefaultComponent,
     ],
 })
-export class ObrigacaoConclusaoModalComponent {
+export class ObrigacaoConclusaoModalComponent extends ModalBaseComponent {
     AlertType = AlertType;
 
     firstFormGroup: FormGroup;
@@ -36,12 +38,15 @@ export class ObrigacaoConclusaoModalComponent {
     obrigacaoClientePeriodo: ObrigacaoClientePeriodoView;
     files: File[] = [];
 
+    submitting = false;
+
     constructor(
-        private modal: NzModalRef,
         private formBuilder: FormBuilder,
         private obrigacoesService: ObrigacoesService,
+        injector: Injector,
         @Inject(NZ_MODAL_DATA) data: ObrigacaoConclusaoModalData,
     ) {
+        super(injector);
         this.getData(data.obrigacaoClientePeriodoId);
     }
 
@@ -57,18 +62,17 @@ export class ObrigacaoConclusaoModalComponent {
     }
 
     submit() {
+        if (this.submitting) return;
+
+        this.submitting = true;
+
         const comentario = this.firstFormGroup.get('comentario')?.value;
         const gedPastaCodigo = this.firstFormGroup.get('gedPastaCodigo')?.value;
 
         this.obrigacoesService.obrigacaoConclusao(this.obrigacaoClientePeriodo.id!, comentario, gedPastaCodigo, this.files).subscribe((x) => {
+            this.submitting = false;
             this.closeModal(x.obj[0]);
-            this.firstFormGroup.reset();
         });
-    }
-
-    closeModal(o?: any) {
-        if (o) this.modal.close(o);
-        else this.modal.close();
     }
 
     getData(obrigacaoClientePeriodoId: number) {

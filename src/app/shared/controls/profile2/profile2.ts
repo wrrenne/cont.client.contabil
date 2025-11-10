@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { ApisUtilsService, TMicroService } from '../../services';
+import { AvatarImageComponent } from '../avatar-image/avatar-image';
 
 @Component({
     selector: 'profile2',
     standalone: true,
-    imports: [CommonModule, NzTabsModule],
+    imports: [CommonModule, NzTabsModule, AvatarImageComponent],
     templateUrl: './profile2.html',
 })
 export class Profile2Component {

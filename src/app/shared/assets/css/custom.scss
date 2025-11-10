@@ -144,6 +144,10 @@ ul {
     @apply font-medium text-green-600 dark:text-green-500;
 }
 
+.activity-fuchsia {
+    @apply font-medium text-fuchsia-600 dark:text-fuchsia-500;
+}
+
 .btn {
     @apply shadow-none py-1.5 rounded-none;
 }
@@ -178,6 +182,10 @@ ul {
 
 .text-muted {
     @apply text-zinc-400 dark:text-zinc-500;
+}
+
+.text-muted-hover {
+    @apply hover:text-zinc-800 dark:hover:text-zinc-400;
 }
 
 label {
@@ -523,8 +531,8 @@ apx-chart {
     @apply bg-zinc-800;
 }
 
-.text-subTitle {
-    @apply text-[12px] text-neutral-500;
+.text-subtitle {
+    @apply text-xs text-black/50 dark:text-white/40;
 }
 
 .hyphen-between span:not(:last-child)::after {

@@ -33,6 +33,10 @@
             </div> -->
 
         <div class="flex flex-col gap-3">
+            <!--#region Descrição-->
+            <label-text [text]="obrigacao.obrigacaoDescricao" [label]="'Obrigação'"></label-text>
+            <!--#endregion-->
+
             <!--#region Competencia-->
             <label-text [text]="obrigacao.competenciaMesFormat ?? obrigacao.competenciaAno" [label]="'Competência'"></label-text>
             <!--#endregion-->

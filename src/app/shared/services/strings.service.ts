@@ -1,24 +1,19 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class StringsService {
-
-    constructor() { }
+    constructor() {}
 
     getSingularPlural(n: number, messageNone: string | null, messageSingular: string, messagePlural: string | null): string {
-        if (n == 0)
-            return messageNone ?? '';
-        else
-            if (n == 1)
-                return messageSingular
-            else
-                return (messagePlural ?? '').replace('{0}', n.toString())
+        if (n == 0) return messageNone ?? '';
+        else if (n == 1) return messageSingular;
+        else return (messagePlural ?? '').replace('{0}', n.toString());
     }
 
     getCapital(s: string): string {
-        return s.charAt(0).toLocaleUpperCase() + s.slice(1)
+        return s.charAt(0).toLocaleUpperCase() + s.slice(1);
     }
     //convertDDMMYYYYtoDate(s: string) {
     //  let dateArray = s.split("/")
@@ -30,14 +25,14 @@ export class StringsService {
     //}
 
     notNull(s: string, c: string = '-') {
-        return (s == '' || s == null) ? c : s
+        return s == '' || s == null ? c : s;
     }
 
     /**
-    * format bytes
-    * @param bytes (File size in bytes)
-    * @param decimals (Decimals point)
-    */
+     * format bytes
+     * @param bytes (File size in bytes)
+     * @param decimals (Decimals point)
+     */
     formatBytes(bytes: any, decimals: any) {
         if (bytes === 0) {
             return '0 bytes';
@@ -51,7 +46,7 @@ export class StringsService {
     }
 
     stringAddLine(s: string, newLine: string) {
-        return `${s}<br>${newLine}`
+        return `${s}<br>${newLine}`;
     }
 
     firstWord(value: string): string {
@@ -76,7 +71,7 @@ export class StringsService {
 
         return {
             name: parts.substring(0, lastDotIndex),
-            extension: parts.substring(lastDotIndex + 1)
+            extension: parts.substring(lastDotIndex + 1),
         };
     }
 
@@ -88,22 +83,20 @@ export class StringsService {
         const words = name
             .trim()
             .split(/\s+/)
-            .filter(word => !ignoreWords.includes(word.toLowerCase()));
+            .filter((word) => !ignoreWords.includes(word.toLowerCase()));
 
         if (words.length === 0) return '';
 
         const firstInitial = words[0].charAt(0).toUpperCase();
         const secondInitial = words.length > 1 ? words[1].charAt(0).toUpperCase() : '';
 
-        return (capital ? firstInitial.toUpperCase() : firstInitial) + (capital ? secondInitial.toLowerCase() : secondInitial);
+        return (capital ? firstInitial.toUpperCase() : firstInitial) + (capital ? secondInitial.toUpperCase() : secondInitial);
     }
 
     getValueWithSignal(s: string | undefined): string | undefined {
         if (s == undefined || s == '' || s[0] == '+') return s;
 
-        if (s[0] != '-')
-            return '+' + s
-        else
-            return s
+        if (s[0] != '-') return '+' + s;
+        else return s;
     }
 }

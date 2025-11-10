@@ -1,11 +1,11 @@
-@if (arquivos) { @if (arquivos.length > 0) { @for (arquivo of arquivos; track arquivo) {
-<div class="flex">
-    @if (showAvatar) {
+@if (arquivos) { @if (arquivos.length > 0) {
+<div class="flex gap-3">
+    @for (arquivo of arquivos; track arquivo) { @if (showAvatar) {
     <ged-file-avatar-viewer [parameter]="{fileId: arquivo.id!, size: 120, extension: arquivo.extensao}"></ged-file-avatar-viewer>
     } @else {
     <label-icon [label]="arquivo.nome" [icon]="'bootstrapFileEarmarkTextFill'"></label-icon>
-    }
+    } }
 </div>
-} } @else {
+} @else {
 <div class="text-muted">Sem arquivos</div>
 } }
