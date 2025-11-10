@@ -83,7 +83,12 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
         });
 
         modal.afterClose.subscribe((result: number[] | null) => {
-            if (result) this.getData(this.obrigacao.id!);
+            this.obrigacoesService.obrigacaoClientePeriodoPageItemGet(this.obrigacao.id!).subscribe((x) => {
+                this.title = x.obj.clienteNomeFormat;
+                this.subTitle = x.obj.tipoDescricaoFormat + (this.isDebug ? ' - #' + x.obj.id?.toString() : '');
+                this.obrigacao = x.obj;
+                this.onObrigacaoUpdate.emit(x.obj);
+            });
         });
     }
 

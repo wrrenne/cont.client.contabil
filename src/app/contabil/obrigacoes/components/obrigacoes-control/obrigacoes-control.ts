@@ -121,6 +121,7 @@ export class ObrigacoesControl implements OnDestroy {
 
         // Subscribe to your custom event
         instance.onObrigacaoUpdate.subscribe((obrigacao: ObrigacaoClientePeriodoPageItem) => {
+            console.log(obrigacao);
             this.updateRow(obrigacao);
         });
     }
