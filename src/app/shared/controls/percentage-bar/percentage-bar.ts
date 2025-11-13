@@ -56,13 +56,13 @@ export class PercentageBarComponent {
     private _getDefaultClass(backgroundColor: string): string {
         switch (backgroundColor) {
             case 'blue':
-                return 'bg-blue-200 dark:bg-blue-950/50';
+                return 'bg-blue-200 dark:bg-blue-900/50';
             case 'red':
-                return 'bg-red-200 dark:bg-red-950/50';
+                return 'bg-red-200 dark:bg-red-900/50';
             case 'green':
-                return 'bg-green-200 dark:bg-green-950/50';
+                return 'bg-green-200 dark:bg-green-900/50';
             case 'yellow':
-                return 'bg-yellow-200 dark:bg-yellow-950/50';
+                return 'bg-yellow-200 dark:bg-yellow-900/50';
             case 'silver':
                 return 'bg-zinc-200 dark:bg-zinc-800/50';
             default:

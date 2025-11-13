@@ -2,7 +2,8 @@
     [src]="apisUtilsService.getFileServerUrl() + src"
     [ngClass]="{'rounded-lg': rounded}"
     alt="imagem"
+    class="flex-none object-contain max-w-none max-h-none"
     [class]="imageClass"
-    [style.height]="height?.toString() + 'px'"
-    [style.width]="width?.toString() + 'px'"
+    [style.height]="height ? height.toString() + 'px' : ''"
+    [style.width]="width ? width.toString() + 'px' : ''"
 />

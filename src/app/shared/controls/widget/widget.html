@@ -1,4 +1,4 @@
-<div class="ppanel flex h-full flex-col justify-center" [class]="bgClass">
+<div class="ppanel flex h-full flex-col justify-center dark:bg-[#080808]" [class]="bgClass">
     @if (title) {
     <div class="border-color h-[66px] border-b">
         <div class="flex items-center">
@@ -46,9 +46,10 @@
                     [icon]="'matGreaterThanOutline'"
                     [iconOffsetX]="1"
                     [showBorder]="false"
-                    [tooltip]="'Ver todos'"
+                    [tooltip]="moreLinkText"
                     [tooltipPlacement]="'left'"
                     [routerLink]="routerLinkValue"
+                    [showBorder]="false"
                 ></button-circle-icon>
             </div>
             }
@@ -56,7 +57,7 @@
     </div>
     }
 
-    <div [ngClass]="{'grow': !alignVertical}" class="mt-5">
+    <div [ngClass]="{'grow': !alignVertical}" class="mt-8">
         <ng-container [ngTemplateOutlet]="content"> </ng-container>
     </div>
 

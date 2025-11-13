@@ -6,9 +6,9 @@
                 <td>
                     <div class="flex items-center gap-3">
                         @if (!funcionarioId) {
-                        <avatar-image [funcionarioId]="item.funcionarioId" [userId]="item.postUserId ?? item.userId" [circle]="true" />
+                        <avatar-image [funcionarioId]="item.funcionarioId" [userId]="item.postUserId ?? item.userId" />
                         } @if (funcionarioId) {
-                        <avatar-image [funcionarioId]="item.userId == undefined ? item.funcionarioId : undefined" [userId]="item.userId" [circle]="true" />
+                        <avatar-image [funcionarioId]="item.userId == undefined ? item.funcionarioId : undefined" [userId]="item.userId" />
                         }
 
                         <div>

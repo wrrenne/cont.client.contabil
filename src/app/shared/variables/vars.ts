@@ -1,29 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { CadastroModel, DashboardConfigModel, DepartamentoModel, FuncionarioModel, PeriodoModel, SistemaTipo, UserInterno } from '../models';
 import { SearchModel } from '../models/searchModel';
+import { PeriodoRefreshService } from './periodo-refresh.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class Vars {
-    //public searchObservable = new Subject<SearchModel>();
-
-    //searchEmit(search: SearchModel) {
-    //    this.searchObservable.next(search);
-    //}
+    constructor(private injector: Injector) {}
 
     getVarName(name: string) {
         return `${environment.sistemaPrefix}:${name}`;
     }
 
-    private periodoSubject = new Subject<PeriodoModel>();
-    periodo$ = this.periodoSubject.asObservable();
+    // private periodoSubject = new Subject<void>();
+    // periodo$ = this.periodoSubject.asObservable();
 
-    periodoEmit(newValue: PeriodoModel) {
-        this.periodoSubject.next(newValue);
-    }
+    // periodoNotify() {
+    //     console.log('periodoNotify');
+    //     this.periodoSubject.next();
+    // }
 
     get user(): UserInterno | null {
         if (localStorage.getItem(this.getVarName('user')) == null) return null;
@@ -76,7 +73,8 @@ export class Vars {
             this.dataInicial = value.dataInicial;
             this.dataFinal = value.dataFinal;
 
-            this.periodoEmit(value);
+            const periodoRefreshService = this.injector.get(PeriodoRefreshService);
+            periodoRefreshService.notify();
         }
     }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { combineLatest } from 'rxjs';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
 import { Vars } from '../../../../shared/variables';
 import { UsersParameter } from '../../../models/users/parameters';
@@ -13,7 +14,7 @@ import { UsersTableComponent } from '../../components/users-table/users-table';
     standalone: true,
     templateUrl: './home.html',
     providers: [NzModalService],
-    imports: [UsersTableComponent, PageTitleComponent],
+    imports: [UsersTableComponent, PageTitleComponent, ButtonDefaultComponent],
 })
 export class UsersHomePage {
     parameters: UsersParameter;

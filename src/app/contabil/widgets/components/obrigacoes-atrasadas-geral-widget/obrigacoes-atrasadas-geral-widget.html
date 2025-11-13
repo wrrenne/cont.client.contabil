@@ -1,0 +1,89 @@
+﻿<widget
+    [title]="'Obrigações Atrasadas'"
+    [subTitle]="'Por tipo'"
+    [icon]="'matThumbDown'"
+    [iconBgColorClass]="'bg-red-100 dark:bg-red-800/70'"
+    [iconColorClass]="'text-red-500 dark:text-red-200'"
+    [showMoreLink]="['/sistema/funcionarios/funcionariostrabalhando']"
+>
+    <ng-template #content>
+        <div class="flex flex-col gap-8" _ngIf="widget.items && widget.items.length > 0">
+            <ng-container _ngFor="let item of widget.items; let i = index">
+                <div class="flex items-center">
+                    <div
+                        class="grow cursor-pointer"
+                        _routerLink="['/sistema/funcionarios/funcionario', getEncryptedId(item.funcionarioId)]"
+                        _queryParams="{d: widget.data, tab: 3}"
+                    >
+                        <div>
+                            <div class="text-black dark:text-white">Efd - Contribuições Pis/cofins</div>
+                            <div class="mt-1 flex items-center gap-3">
+                                <percentage-bar [total]="56" [done]="25" [showPercentage]="false" [percentage]="56" class="w-56"></percentage-bar>
+                                <span>5 atrasados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div
+                        class="grow cursor-pointer"
+                        _routerLink="['/sistema/funcionarios/funcionario', getEncryptedId(item.funcionarioId)]"
+                        _queryParams="{d: widget.data, tab: 3}"
+                    >
+                        <div>
+                            <div class="text-black dark:text-white">Efd - Contribuições Pis/cofins</div>
+                            <div class="mt-1 flex items-center gap-3">
+                                <percentage-bar [total]="56" [done]="25" [showPercentage]="false" [percentage]="56" class="w-56"></percentage-bar>
+                                <span>5 atrasados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div
+                        class="grow cursor-pointer"
+                        _routerLink="['/sistema/funcionarios/funcionario', getEncryptedId(item.funcionarioId)]"
+                        _queryParams="{d: widget.data, tab: 3}"
+                    >
+                        <div>
+                            <div class="text-black dark:text-white">Efd - Contribuições Pis/cofins</div>
+                            <div class="mt-1 flex items-center gap-3">
+                                <percentage-bar [total]="56" [done]="25" [showPercentage]="false" [percentage]="56" class="w-56"></percentage-bar>
+                                <span>5 atrasados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div
+                        class="grow cursor-pointer"
+                        _routerLink="['/sistema/funcionarios/funcionario', getEncryptedId(item.funcionarioId)]"
+                        _queryParams="{d: widget.data, tab: 3}"
+                    >
+                        <div>
+                            <div class="text-black dark:text-white">Efd - Contribuições Pis/cofins</div>
+                            <div class="mt-1 flex items-center gap-3">
+                                <percentage-bar [total]="56" [done]="25" [showPercentage]="false" [percentage]="56" class="w-56"></percentage-bar>
+                                <span>5 atrasados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- <ng-template #footer _ngIf="widget?.moreItemsCount">
+            <div class="flex items-center">
+                <div class="grow cursor-pointer" [routerLink]="['/sistema/apontamento/hoje']">
+                    <div class="flex items-center gap-2">
+                        <avatar-count [count]="23" [bgColor]="'text-bg-yellow-silver'" [size]="'2.6rem'" [circle]="false"></avatar-count>
+                        <avatar-count _count="widget.moreItemsCount!" [bgColor]="'text-bg-yellow-silver'" [size]="'2.2rem'"></avatar-count>
+                        <div>
+                            <span>Ver tudo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template> -->
+    </ng-template>
+</widget>

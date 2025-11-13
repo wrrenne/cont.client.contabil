@@ -1,5 +1,5 @@
-import { ArquivoPageItem } from ".";
-import { PageItemBase } from "../../../models";
+import { ArquivoPageItem } from '.';
+import { PageItemBase } from '../../../models';
 
 export interface PastaPageItem extends PageItemBase {
     pastaId?: number;
@@ -10,6 +10,7 @@ export interface PastaPageItem extends PageItemBase {
     nivel: number;
     arquivosPastasCountFormat: string;
     topFolder?: boolean;
+    openFolder?: boolean;
     pastas: PastaPageItem[];
     arquivos: ArquivoPageItem[];
 }

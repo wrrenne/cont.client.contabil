@@ -1,4 +1,48 @@
-<div infiniteScroll
+@if (datas) {
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <td>Arquivo</td>
+                <td>Tipo do Arquivo</td>
+                <td>Data</td>
+                <td>Competência</td>
+                <td>Tamanho</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item; let i = $index) { @if (item.groupTitle) {
+            <tr>
+                <td colspan="5"><div class="h-10 flex items-center text-yellow-700">{{item.groupTitle}}</div></td>
+            </tr>
+            } @else {
+            <tr class="cursor-pointer" (click)="fileOpen(item)">
+                <td>
+                    <div class="flex gap-3 items-center">
+                        <file-server-image [src]="'/images/icons/file_pdf_128.png'" [width]="32" class="cursor-pointer"></file-server-image>
+                        <div>
+                            <div class="font-semibold">{{item.nome}}</div>
+                            <div class="text-muted text-xs">
+                                @if (item.apontamentoData) {
+                                <span> Apontamento de {{item.apontamentoData | date:'dd/MM/yyyy'}} </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+                </td>
+                <td>@if (item) { {{item.fileTypeDescricao}} }</td>
+                <td>@if (item) { {{item.dataHora | date:'dd/MM/yyyy HH:mm'}} }</td>
+                <td>@if (item) { {{item.competenciaMesFormat ?? item.competenciaAno}} }</td>
+                <td>@if (item) { {{item.tamanho | formatBytes}} }</td>
+            </tr>
+            } }
+        </tbody>
+    </table>
+</div>
+}
+
+<!-- <div infiniteScroll
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="flex flex-wrap gap-x-8 gap-y-4">
   @for (item of datas; track item) {
@@ -11,4 +55,4 @@
       }
     </div>
   }
-</div>
+</div> -->

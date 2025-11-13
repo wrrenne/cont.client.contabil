@@ -1,0 +1,34 @@
+﻿<widget
+    [title]="'Obrigações Entregues'"
+    [subTitle]="'Geral'"
+    [icon]="'heroFolder'"
+    [iconBgColorClass]="'bg-blue-100 dark:bg-blue-800/70'"
+    [iconColorClass]="'text-blue-500 dark:text-blue-200'"
+>
+    <ng-template #content>
+        <div class="flex flex-col gap-2">
+            <div>
+                <div>Concluídas</div>
+                <div>
+                    <percentage-bar [percentage]="56" [total]="102" [done]="43" [showPercentage]="true"></percentage-bar>
+                </div>
+            </div>
+            <div>
+                <div>No Prazo</div>
+                <div>
+                    <percentage-bar [percentage]="48" [total]="204" [done]="75" [showPercentage]="true"></percentage-bar>
+                </div>
+            </div>
+            <div>
+                <div>Obrigações Atrasadas</div>
+                <div>48</div>
+            </div>
+            <div class="flex justify-center gap-4 mt-7">
+                <radial-progress [progress]="75" [label]="'Geral'"></radial-progress>
+                <radial-progress [progress]="75" [label]="'Fiscal'"></radial-progress>
+                <radial-progress [progress]="75" [label]="'Contábil'"></radial-progress>
+                <radial-progress [progress]="75" [label]="'DP'"></radial-progress>
+            </div>
+        </div>
+    </ng-template>
+</widget>

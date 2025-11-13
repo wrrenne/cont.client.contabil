@@ -4,7 +4,9 @@ import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ClientesPagingService } from 'src/app/contabil/clientes/services/pagings';
+import { ObrigacaoClientePeriodoUserPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
+import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { PagingBase } from '../../../../shared/models';
@@ -17,7 +19,7 @@ import { ClientesParameter } from '../../../models/clientes/parameters';
     selector: 'obr-clientes-table',
     templateUrl: './obr-clientes-table.html',
     standalone: true,
-    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, PercentageBarComponent, AvatarIconComponent],
+    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, PercentageBarComponent, AvatarIconComponent, AvatarImageGroupComponent],
 })
 export class ObrClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
     searchSubscription: Subscription;
@@ -85,5 +87,13 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
         let index = this.datas.findIndex((x) => x.id == pageItem.id);
 
         if (index == -1) this.datas.push(pageItem);
+    }
+
+    getUsuariosId(funcionarios?: ObrigacaoClientePeriodoUserPageItem[]): number[] {
+        return funcionarios != undefined ? funcionarios?.map((x) => x.userId) : [];
+    }
+
+    getUsuariosNome(funcionarios?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+        return funcionarios != undefined ? funcionarios?.map((x) => x.userNomeFormat) : [];
     }
 }

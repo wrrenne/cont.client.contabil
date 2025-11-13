@@ -15,6 +15,12 @@ module.exports = {
             center: true,
         },
         extend: {
+            screens: {
+                // Custom breakpoints
+                '3xl': '1920px', // e.g., 1080p monitors
+                '4xl': '2560px', // e.g., 2K / ultrawide
+                '5xl': '3440px', // 3440px ultrawide
+            },
             colors: {
                 primary: {
                     DEFAULT: '#4361ee',

@@ -1,0 +1,22 @@
+<div class="flex flex-wrap gap-5 w-full">
+    @for (data of datas; track data) { @if (parameters?.pastaId || !data.topFolder) {
+    <div class="flex flex-col items-center w-[120px]">
+        <file-server-image
+            [src]="data.topFolder ? '/images/icons/folder_128.png' : '/images/icons/folder_128.png'"
+            [width]="100"
+            (click)="pastaClick(data.id!)"
+            class="cursor-pointer"
+        ></file-server-image>
+        <div class="text-center">{{data.nome}}</div>
+    </div>
+    } }
+</div>
+
+<!-- @for (data of datas; track data) {
+  <div>
+    <div [style.padding-left]="(((data.nivel) - 1) * 20).toString() + 'px'" class="flex items-center gap-2">
+      <div class="badge rounded-full bg-gray-200 dark:bg-gray-800" [ngClass]="getColor(data.nivel)">{{data.pastaCodigo}}</div>
+      <div [ngClass]="getColor(data.nivel)">{{data.nome}}</div>
+    </div>
+  </div>
+} -->

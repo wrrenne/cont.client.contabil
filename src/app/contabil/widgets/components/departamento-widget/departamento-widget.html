@@ -1,0 +1,101 @@
+<widget
+    [title]="'Índice de obrigações no prazo'"
+    [subTitle]="'Departamento Fiscal - Junho'"
+    [icon]="'heroTrophy'"
+    [iconBgColorClass]="'bg-lime-100 dark:bg-lime-800/70'"
+    [iconColorClass]="'text-lime-500 dark:text-lime-200'"
+>
+    <ng-template #content>
+        <ng-container>
+            <!--<div class="flex h-96 flex-col">
+                <div>Top</div>
+                <div class="flex grow items-center justify-center">
+                    Content
+                </div>
+            </div>-->
+
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center mb-6">
+                    <div class="flex grow cursor-pointer items-center gap-3">
+                        <avatar-image
+                            [size]="'5rem'"
+                            class="flex-none"
+                            [userId]="61"
+                            [defaultNoIconName]="'Teste da Silva'"
+                            [circle]="true"
+                            [iconClass]="'text-xl'"
+                        />
+                        <div>
+                            <h6 class="font-semibold">Anna M. da Silva</h6>
+                            <div class="text-muted">Analista</div>
+                            <div class="flex items-center gap-1">
+                                <span class="text-blue-500">15/34</span>
+                                <span>34%</span>
+                                <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <apx-chart
+                            *ngIf="chartOptions"
+                            [series]="chartOptions.series"
+                            [chart]="chartOptions.chart"
+                            [labels]="chartOptions.labels"
+                            [plotOptions]="chartOptions.plotOptions"
+                            [colors]="chartOptions.colors"
+                        >
+                        </apx-chart>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 pr-6">
+                    @for (i of [62,63,61]; track i) {
+                    <div class="flex items-center">
+                        <div
+                            class="grow cursor-pointer flex items-center gap-2"
+                            [routerLink]="['/sistema/funcionarios/funcionario', encryptionService.encrypt(1)]"
+                            [queryParams]="{tab: 1}"
+                        >
+                            <avatar-image
+                                [size]="'2.2rem'"
+                                [iconClass]="'text-base'"
+                                [defaultNoIconName]="'Teste da Silva'"
+                                class="flex-none"
+                                [userId]="i"
+                                [circle]="true"
+                            />
+                            <div>
+                                <h6 class="font-semibold">Teste da Silva</h6>
+                                <div class="text-muted">Analista</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <div class="flex items-center gap-1">
+                                <span class="text-blue-500">15/34</span>
+                                <span>34%</span>
+                                <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="flex flex-col items-center gap-1">
+                        <avatar-image
+                            [size]="'2.7rem'"
+                            [iconClass]="'text-base'"
+                            [defaultNoIconName]="'Teste da Silva'"
+                            class="flex-none"
+                            [userId]="i"
+                            [circle]="true"
+                        />
+                        <span>Maria</span>
+                        <div class="flex items-center gap-1 text-blue-500">
+                            <span>34%</span>
+                            <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon>
+                        </div>
+                    </div> -->
+                    }
+                </div>
+            </div>
+        </ng-container>
+    </ng-template>
+</widget>

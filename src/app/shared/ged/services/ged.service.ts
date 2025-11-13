@@ -173,6 +173,16 @@ export class GedService extends ServiceBase {
             .pipe(catchError(this.handleError));
     }
 
+    arquivosDisponibilizadosCount(fileType: TFileType): Observable<ApiResponse<number>> {
+        const cadastroId = this.vars.cadastro?.id;
+
+        return this.http
+            .get<
+                ApiResponse<number>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivosDisponibilizadosCount/${cadastroId}/${fileType}`)
+            .pipe(catchError(this.handleError));
+    }
+
     //getPDF(id: number): Promise<Blob> {
     //    const userId = this.vars.user?.id
 

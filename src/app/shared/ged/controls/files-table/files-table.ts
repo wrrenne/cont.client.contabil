@@ -1,71 +1,61 @@
+import { CommonModule } from '@angular/common';
 import { Component, Injector, Input, OnInit } from '@angular/core';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { environment } from '../../../../../environments/environment';
 import { PagingBase } from '../../../../shared/models';
 import { TFileType } from '../../enums/ged-enums';
 import { ArquivoPageItem } from '../../models/pagings';
 import { PastaView } from '../../models/views';
 import { ArquivosPagingService } from '../../services/pagings/arquivos.service';
-import { FileItemComponent } from '../file-item/file-item';
-import { CommonModule } from '@angular/common';
-import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { GedFileAvatarViewerComponent } from '../ged-file-avatar-viewer/ged-file-avatar-viewer';
 
 export class FilesParameter {
-    pastaId?: number
-    cadastroId?: number
-    funcionarioId?: number
-    searchText?: string
-    userId?: number
+    pastaId?: number;
+    cadastroId?: number;
+    funcionarioId?: number;
+    searchText?: string;
+    userId?: number;
 }
 
 @Component({
     selector: 'files-table',
     standalone: true,
     templateUrl: './files-table.html',
-    imports: [CommonModule, FileItemComponent, InfiniteScrollDirective],
-    host: { 'class': 'w-full' }
+    imports: [CommonModule, InfiniteScrollDirective, GedFileAvatarViewerComponent],
+    host: { class: 'w-full' },
 })
 export class FilesTableComponent extends PagingBase<ArquivoPageItem> implements OnInit {
+    @Input() showTitle = true;
 
-    @Input() showTitle = true
+    TFileType = TFileType;
 
-    TFileType = TFileType
+    pasta?: PastaView;
 
-    pasta?: PastaView
-
-    private _parameters?: FilesParameter
+    private _parameters?: FilesParameter;
     @Input() get parameters() {
-        return this._parameters
+        return this._parameters;
     }
     set parameters(value: FilesParameter | undefined) {
-
-        if (!value) return
-
+        if (!value) return;
         //if (this.showTitle && value.pastaId)
         //    this.getPastaProperties(value.pastaId!, value.rootId!)
 
-        this._parameters = value
+        this._parameters = value;
 
-        this.param.routeStrings = []
-        this.param.routeStrings.push(value?.cadastroId!.toString())
+        this.param.routeStrings = [];
+        this.param.routeStrings.push(value?.cadastroId!.toString());
 
-        this.param.queryStrings.clear()
+        this.param.queryStrings.clear();
 
-        if (value.pastaId)
-            this.param.queryStrings.set('pastaId', value.pastaId)
+        if (value.pastaId) this.param.queryStrings.set('pastaId', value.pastaId);
 
-        this.param.q = value?.searchText
+        this.param.q = value?.searchText;
 
-        this.refresh()
+        this.refresh();
     }
 
-    constructor(
-        injector: Injector,
-        arquivosPagingService: ArquivosPagingService
-    ) {
-        super(
-            injector,
-            arquivosPagingService
-        )
+    constructor(injector: Injector, arquivosPagingService: ArquivosPagingService) {
+        super(injector, arquivosPagingService);
     }
 
     //getPastaProperties(pastaId: number, pastaRootId?: number) {
@@ -81,6 +71,6 @@ export class FilesTableComponent extends PagingBase<ArquivoPageItem> implements 
     //}
 
     getDebug(id: number): string | undefined {
-        return environment.debug ? id.toString() : undefined
+        return environment.debug ? id.toString() : undefined;
     }
 }

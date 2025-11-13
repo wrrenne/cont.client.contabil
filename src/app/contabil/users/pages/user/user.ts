@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
 import { UserAvatarComponent } from 'src/app/shared/control/components/user-avatar/user-avatar';
@@ -33,9 +32,8 @@ export class UserPage implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private modalService: NzModalService,
-        private encryptionService: EncryptionService,
         private usersService: ContabilUsersService,
+        private encryptionService: EncryptionService,
         dateUtilsService: DateUtilsService,
     ) {
         this.mes = dateUtilsService.firstDateOfCurrentMonth();
@@ -47,14 +45,14 @@ export class UserPage implements OnInit {
             ...queryParams,
         }));
 
-        // urlParametrs.subscribe((r) => {
-        //     const id: number = this.encryptionService.decrypt(r['id']);
+        urlParametrs.subscribe((r) => {
+            const id: number = this.encryptionService.decrypt(r['id']);
 
-        //     this.getData(id);
+            this.getData(id);
 
-        //     this.id = id;
-        //     this.obrigacoesParameters = { userId: id, mes: this.mes, tipo: TObrigacaoTipo.Imposto };
-        // });
+            this.id = id;
+            //this.obrigacoesParameters = { userId: id, mes: this.mes, tipo: TObrigacaoTipo.Imposto };
+        });
 
         this.usersParameters = {};
     }

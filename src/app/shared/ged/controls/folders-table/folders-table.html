@@ -1,8 +1,59 @@
-@for (data of datas; track data) {
-  <div>
-    <div [style.padding-left]="(((data.nivel) - 1) * 20).toString() + 'px'" class="flex items-center gap-2">
-      <div class="badge rounded-full bg-gray-200 dark:bg-gray-800" [ngClass]="getColor(data.nivel)">{{data.pastaCodigo}}</div>
-      <div [ngClass]="getColor(data.nivel)">{{data.nome}}</div>
-    </div>
-  </div>
+@if (datas) {
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <td>Pasta ou Arquivo</td>
+                <td>Tipo do Arquivo</td>
+                <td>Data</td>
+                <td>Competência</td>
+                <td>Tamanho</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item; let i = $index) { @if (item.pasta) {
+            <tr
+                [ngClass]="{'cursor-pointer': item.pasta && !item.pasta.openFolder}"
+                (click)="item.pasta && !item.pasta.openFolder ? pastaClick(item.id!) : null"
+            >
+                <td colspan="5">
+                    <div class="flex gap-3 items-center" [style.padding-left]="((item.pasta.nivel) * 20).toString() + 'px'">
+                        <file-server-image
+                            [src]="item.pasta.openFolder ? '/images/icons/folder_open_128.png' : (item.pasta.topFolder ? '/images/icons/folders_128.png' : '/images/icons/folder_128.png')"
+                            [width]="32"
+                            class="cursor-pointer"
+                        ></file-server-image>
+                        <div>
+                            <div class="font-semibold">{{item.pasta.nome}}</div>
+                            @if (item.pasta.pastasCount) {
+                            <div class="text-muted text-xs">{{item.pasta.pastasCount | singularPlural : '1 pasta' : 'pastas': ''}}</div>
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            } @else {
+            <tr class="cursor-pointer" (click)="fileOpen(item.arquivo)">
+                <td>
+                    <div class="flex gap-3 items-center" [style.padding-left]="((item.arquivo.nivel ?? 0) * 20).toString() + 'px'">
+                        <file-server-image [src]="'/images/icons/file_pdf_128.png'" [width]="32" class="cursor-pointer"></file-server-image>
+                        <div>
+                            <div class="font-semibold">{{item.arquivo.nome}}</div>
+                            <div class="text-muted text-xs">
+                                @if (item.arquivo.apontamentoData) {
+                                <span> Apontamento de {{item.arquivo.apontamentoData | date:'dd/MM/yyyy'}} </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>@if (item.arquivo) { {{item.arquivo.fileTypeDescricao}} }</td>
+                <td>@if (item.arquivo) { {{item.arquivo.dataHora | date:'dd/MM/yyyy HH:mm'}} }</td>
+                <td>@if (item.arquivo) { {{item.arquivo.competenciaMesFormat ?? item.arquivo.competenciaAno}} }</td>
+                <td>@if (item.arquivo) { {{item.arquivo.tamanho | formatBytes}} }</td>
+            </tr>
+            } }
+        </tbody>
+    </table>
+</div>
 }

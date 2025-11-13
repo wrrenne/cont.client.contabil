@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Vars } from '../../shared/variables/vars';
 
 @Injectable()
 export class VarsApp extends Vars {
-    constructor() {
-        super();
+    constructor(injector: Injector) {
+        super(injector);
     }
 
     get sidebarConfig(): string[] {

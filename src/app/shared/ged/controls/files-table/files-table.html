@@ -1,14 +1,12 @@
-﻿<div infiniteScroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="flex flex-wrap gap-x-12 gap-y-4">
-  @for (item of datas; track item) {
+﻿<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()" class="flex flex-wrap gap-x-12 gap-y-4">
+    @for (item of datas; track item) {
     <div [ngClass]="{'block w-full': item.groupTitle != undefined}">
-      @if (item.groupTitle) {
+        @if (item.groupTitle) {
         <div class="border-b border-zinc-300 text-black dark:border-zinc-800 dark:text-white">{{item.groupTitle}}</div>
-      }
-      @if (!item.groupTitle) {
-        <file-item [arquivo]="item" _click="fileClick(item)" class="mt-4"></file-item>
-      }
+        } @if (!item.groupTitle) {
+        <ged-file-avatar-viewer [parameter]="{fileId: item.id!, size: 120, extension: item.extensao}"></ged-file-avatar-viewer>
+        <!-- <file-item [arquivo]="item" _click="fileClick(item)" class="mt-4"></file-item> -->
+        }
     </div>
-  }
+    }
 </div>

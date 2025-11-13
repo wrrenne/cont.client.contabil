@@ -8,6 +8,7 @@ import { TObrigacaoTipo } from 'src/app/contabil/models/enums';
 import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/parameters';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
+import { PeriodoRefreshService } from 'src/app/shared/variables/periodo-refresh.service';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ObrObrigacoesTableComponent } from '../../components/obr-obrigacoes-table/obr-obrigacoes-table';
@@ -34,6 +35,7 @@ export class ObrigacoesPorObrigacaoPage implements OnInit, OnDestroy {
         private encryptionService: EncryptionService,
         private modalService: NzModalService,
         private router: Router,
+        private periodoRefreshService: PeriodoRefreshService,
         private dateUtilsService: DateUtilsService,
     ) {}
 
@@ -47,13 +49,13 @@ export class ObrigacoesPorObrigacaoPage implements OnInit, OnDestroy {
             this.getData();
         });
 
-        this.periodoSubscription = this.vars.periodo$.subscribe((_) => {
+        this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
             this.getData();
         });
     }
 
     ngOnDestroy() {
-        if (this.periodoSubscription) this.periodoSubscription.unsubscribe();
+        this.periodoSubscription.unsubscribe();
     }
 
     getData(perfilItemId?: number, searchText?: string) {

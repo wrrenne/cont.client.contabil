@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { InputExComponent } from 'src/app/shared/controls/input-ex/input-ex';
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
 import { environment } from '../../../../../environments/environment.prod';
@@ -15,7 +16,7 @@ import { Vars } from '../../../../shared/variables';
     selector: 'user-novo-modal',
     standalone: true,
     templateUrl: './user-novo-modal.html',
-    imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, InputExComponent],
+    imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, InputExComponent, ButtonDefaultComponent],
 })
 export class UserNovoModalComponent {
     showSecondForm = false;

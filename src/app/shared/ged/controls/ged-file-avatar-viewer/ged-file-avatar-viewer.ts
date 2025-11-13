@@ -15,6 +15,7 @@ export interface GedFileAvatarViewerParameter {
     selector: 'ged-file-avatar-viewer',
     standalone: true,
     imports: [CommonModule],
+    providers: [NzModalService],
     templateUrl: './ged-file-avatar-viewer.html',
 })
 export class GedFileAvatarViewerComponent {

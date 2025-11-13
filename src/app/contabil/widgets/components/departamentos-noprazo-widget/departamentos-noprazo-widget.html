@@ -1,0 +1,26 @@
+<widget
+    [title]="'Entregues no Prazo'"
+    [subTitle]="'Por Departamento'"
+    [icon]="'heroFolder'"
+    [iconBgColorClass]="'bg-orange-100 dark:bg-orange-800/70'"
+    [iconColorClass]="'text-orange-500 dark:text-orange-200'"
+>
+    <ng-template #content>
+        <apx-chart
+            *ngIf="chartOptions"
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis"
+            [yaxis]="chartOptions.yaxis"
+            [plotOptions]="chartOptions.plotOptions"
+            _dataLabels="chartOptions.dataLabels"
+            [markers]="chartOptions.markers"
+            [tooltip]="chartOptions.tooltip"
+            [fill]="chartOptions.fill"
+            [legend]="chartOptions.legend"
+            [colors]="chartOptions.colors"
+            [grid]="chartOptions.grid"
+        >
+        </apx-chart>
+    </ng-template>
+</widget>

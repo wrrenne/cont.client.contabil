@@ -1,5 +1,5 @@
-import { PageItemBase } from "../../../models";
-import { TFileSubType, TFileType } from "../../enums/ged-enums";
+import { PageItemBase } from '../../../models';
+import { TFileSubType, TFileType } from '../../enums/ged-enums';
 
 export interface ArquivoPageItem extends PageItemBase {
     nome: string;
@@ -13,15 +13,15 @@ export interface ArquivoPageItem extends PageItemBase {
     userId?: number;
     userNome: string;
     fileType?: TFileType;
-    fileTypeDescricao: string;
+    fileTypeDescricao?: string;
     fileSubType?: TFileSubType;
-    fileSubTypeDescricao: string;
+    fileSubTypeDescricao?: string;
     competenciaMes?: string;
-    competenciaMesFormat: string;
+    competenciaMesFormat?: string;
     competenciaAno?: number;
     funcionarioId?: number;
-    funcionarioNome: string;
-    apontamentoData: string
-    apontamentoDataFormat: string
+    funcionarioNome?: string;
+    apontamentoData?: string;
+    apontamentoDataFormat?: string;
     nivel?: number;
 }

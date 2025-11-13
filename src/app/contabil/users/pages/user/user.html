@@ -1,5 +1,6 @@
 <div class="content-site">
-    <profile2 [userId]="user.id!" *ngIf="user" [title]="user.userNome">
+    @if (user) {
+    <profile2 [userId]="user.id!" [title]="user.userNome">
         <ng-template #profilecontent>
             <div _class="_mx-auto relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
                 <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
@@ -24,6 +25,7 @@
             </div>
         </ng-template>
     </profile2>
+    }
 </div>
 
 <ng-template #obrigacoes>
