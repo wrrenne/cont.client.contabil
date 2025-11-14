@@ -22,17 +22,23 @@
 
 <!-- Vencimento -->
 <td class="hidden md:table-cell">
-    <div class="flex gap-2 items-center">{{obrigacao.vencimento}}</div>
+    <div class="flex gap-2 items-center">{{obrigacao.vencimento | dateFriendly}}</div>
 </td>
 
 <!-- Competência -->
 <td class="hidden md:table-cell">
-    <div class="flex gap-2 items-center">{{obrigacao.competenciaMes ?? obrigacao.competenciaAno}}</div>
+    <div class="flex gap-2 items-center">
+        @if (obrigacao.competenciaMes) {
+        <span>{{obrigacao.competenciaMes | monthYear}}</span>
+        } @if (obrigacao.competenciaAno) {
+        <span>obrigacao.competenciaAno</span>
+        }
+    </div>
 </td>
 
 <!-- Prazo -->
 <td class="hidden md:table-cell">
-    <div class="flex gap-2 items-center">{{obrigacao.prazo}}</div>
+    <div class="flex gap-2 items-center">{{obrigacao.prazo | dateFriendly}}</div>
 </td>
 
 <!-- Comments -->

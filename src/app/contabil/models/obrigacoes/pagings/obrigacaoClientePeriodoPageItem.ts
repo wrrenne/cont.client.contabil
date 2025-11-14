@@ -24,13 +24,13 @@ export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     municipioNome?: string;
     esferaDescricao: string;
     departamentoNome: string;
-    competenciaMes?: string;
+    competenciaMes?: Date;
     competenciaMesFormat?: string;
     competenciaAno?: number;
-    vencimento?: string;
+    vencimento?: Date;
     vencimentoDescricao: string;
     vencido?: boolean;
-    prazo: string;
+    prazo: Date;
     prazoDescricao: string;
     prazoVencido: boolean;
     status: TObrigacaoStatus;
