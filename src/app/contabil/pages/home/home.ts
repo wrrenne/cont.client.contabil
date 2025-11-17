@@ -8,7 +8,6 @@ import { CalendarAgendaWidgetComponent } from '../../widgets/components/calendar
 import { ClientesCountWidgetComponent } from '../../widgets/components/clientes-count/clientes-count';
 import { ClientesObrigacoesAtrasadasGeralWidgetComponent } from '../../widgets/components/clientes-obrigacoes-atrasadas-geral-widget/clientes-obrigacoes-atrasadas-geral-widget';
 import { DepartamentoWidgetComponent } from '../../widgets/components/departamento-widget/departamento-widget';
-import { DepartamentoNoPrazoWidgetComponent } from '../../widgets/components/departamentos-noprazo-widget/departamentos-noprazo-widget';
 import { ObrigacoesAtrasadasGeralWidgetComponent } from '../../widgets/components/obrigacoes-atrasadas-geral-widget/obrigacoes-atrasadas-geral-widget';
 import { ObrigacoesEntreguesGeralWidgetComponent } from '../../widgets/components/obrigacoes-entregues-geral-widget/obrigacoes-entregues-geral-widget';
 import { PeriodoWidgetComponent } from '../../widgets/components/periodo-widget/periodo-widget';
@@ -29,7 +28,6 @@ import { UsuariosCountWidgetComponent } from '../../widgets/components/usuarios-
         ClientesObrigacoesAtrasadasGeralWidgetComponent,
         ObrigacoesAtrasadasGeralWidgetComponent,
         DepartamentoWidgetComponent,
-        DepartamentoNoPrazoWidgetComponent,
     ],
 })
 export class ContabilHomePage {

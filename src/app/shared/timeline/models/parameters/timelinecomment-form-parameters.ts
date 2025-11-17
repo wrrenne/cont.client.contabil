@@ -18,11 +18,11 @@ export class TimelineCommentFormParameter {
     obrigacaoId?: number;
     tipo?: TPostTipo;
     solicitacao?: SolicitacaoPageItem;
-    ponto_ApontamentoData?: string;
+    ponto_ApontamentoData?: Date;
     contabil_ObrigacaoNome?: string;
-    contabil_Vencimento?: string;
-    contabil_Prazo?: string;
-    contabil_CompetenciaMes?: string;
+    contabil_Vencimento?: Date;
+    contabil_Prazo?: Date;
+    contabil_CompetenciaMes?: Date;
     contabil_CompetenciaAno?: number;
     buttons?: TimelineCommentButton[];
     buttonsAfterCommentButton?: boolean;

@@ -126,9 +126,9 @@ export class GedService extends ServiceBase {
     arquivoTipoObrigacaoUpload(
         clienteId: number,
         obrigacaoClientePeriodoId: number,
-        prazo: string,
-        vencimento: string | undefined,
-        competenciaMes: string | undefined,
+        prazo: Date,
+        vencimento: Date | undefined,
+        competenciaMes: Date | undefined,
         competenciaAno: number | undefined,
         commentId: number,
         files: File[],
@@ -140,13 +140,13 @@ export class GedService extends ServiceBase {
         formData.append('clienteId', clienteId.toString());
         formData.append('obrigacaoClientePeriodoId', obrigacaoClientePeriodoId.toString());
 
-        if (vencimento) formData.append('obrigacaoVencimento', vencimento);
+        if (vencimento) formData.append('obrigacaoVencimento', this.dateUtilsService.GetIsoString(vencimento));
 
-        if (competenciaMes) formData.append('competenciaMes', competenciaMes);
+        if (competenciaMes) formData.append('competenciaMes', this.dateUtilsService.GetIsoString(competenciaMes));
 
         if (competenciaAno) formData.append('competenciaAno', competenciaAno.toString());
 
-        formData.append('obrigacaoPrazo', prazo);
+        formData.append('obrigacaoPrazo', this.dateUtilsService.GetIsoString(prazo));
         formData.append('commentId', commentId.toString());
         formData.append('userId', (<number>this.vars.user?.id).toString());
         formData.append('fileType', (<number>TFileType.Obrigacao).toString());

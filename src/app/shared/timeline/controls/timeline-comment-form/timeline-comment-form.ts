@@ -116,9 +116,10 @@ export class TimelineCommentFormComponent implements OnInit {
             postId: this.parameter.postId,
             origemId: this.parameter.origemId,
             commentId: <number>this.newComment?.commentId,
-            ponto_ApontamentoData: this.parameter.ponto_ApontamentoData,
+            ponto_ApontamentoData:
+                this.parameter.ponto_ApontamentoData != undefined ? this.dateUtilsService.GetIsoString(this.parameter.ponto_ApontamentoData) : undefined,
             contabil_ObrigacaoNome: this.parameter.contabil_ObrigacaoNome,
-            contabil_Prazo: this.parameter.contabil_Prazo,
+            contabil_Prazo: this.parameter.contabil_Prazo != undefined ? this.dateUtilsService.GetIsoString(this.parameter.contabil_Prazo) : undefined,
 
             isFuncionario: environment.sistema == SistemaTipo.Funcionario ? this.vars.funcionario != undefined : undefined,
             isCliente: environment.sistema == SistemaTipo.Contabil ? false : undefined,
@@ -134,7 +135,7 @@ export class TimelineCommentFormComponent implements OnInit {
                             .arquivoTipoApontamentoUpload(
                                 this.parameter.funcionarioId!,
                                 this.parameter.origemId!,
-                                this.parameter.ponto_ApontamentoData!,
+                                this.dateUtilsService.GetIsoString(this.parameter.ponto_ApontamentoData!),
                                 x.obj[0],
                                 this.files,
                             )

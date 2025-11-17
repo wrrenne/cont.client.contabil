@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
+import { MonthYearPipe } from 'src/app/shared/pipes/monthYear.pipe';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
+import { DateFriendlyPipe } from '../../../../shared/pipes/dateFriendly.pipe';
 import { EncryptionService } from '../../../../shared/services';
 import { TPostTipo } from '../../../../shared/timeline/enums';
 import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
@@ -17,7 +19,7 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
 @Component({
     selector: '[obrigacao-item]',
     templateUrl: './obrigacao-item.html',
-    imports: [CommonModule, AvatarIconComponent],
+    imports: [CommonModule, AvatarIconComponent, DateFriendlyPipe, MonthYearPipe],
 })
 export class ObrigacaoItem {
     TEsfera = TEsfera;
