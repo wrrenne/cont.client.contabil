@@ -16,10 +16,10 @@
                     </avatar-title>
                 </td>
                 <td class="hidden md:table-cell">
-                    <span>{{item.obrigacoesStat?.clientesCount ?? '-'}}</span>
+                    <span>{{item.clientesCount | dashIfEmpty}}</span>
                 </td>
                 <td class="hidden md:table-cell">
-                    <span>{{item.obrigacoesStat?.total ?? '-'}}</span>
+                    <span>{{item.obrigacoesCount | dashIfEmpty}}</span>
                 </td>
             </tr>
             }

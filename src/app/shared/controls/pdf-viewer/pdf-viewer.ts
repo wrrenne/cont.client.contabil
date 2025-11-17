@@ -44,6 +44,10 @@ export class PdfViewerComponent {
                 },
             });
     }
+
+    pdfClick() {
+        console.log('aaa');
+    }
 }
 
 // import { Component, Input } from '@angular/core';

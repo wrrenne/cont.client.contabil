@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { NgIconComponent } from '@ng-icons/core';
 import { AvatarIconComponent } from '../avatar-icon/avatar-icon';
 import { AvatarImageComponent } from '../avatar-image/avatar-image';
 import { AvatarServerIconComponent } from '../avatar-server-icon/avatar-server-icon';
@@ -9,13 +10,14 @@ import { AvatarTextComponent } from '../avatar-text/avatar-text';
     selector: 'avatar-title',
     templateUrl: './avatar-title.html',
     standalone: true,
-    imports: [CommonModule, AvatarImageComponent, AvatarServerIconComponent, AvatarTextComponent, AvatarIconComponent],
+    imports: [CommonModule, AvatarImageComponent, AvatarServerIconComponent, AvatarTextComponent, AvatarIconComponent, NgIconComponent],
     styleUrls: ['./avatar-title.scss'],
 })
 export class AvatarTitleComponent {
     @Input() title?: string;
     @Input() titleDescription?: string;
     @Input() subTitle?: string;
+    @Input() subTitleIcon?: string;
     @Input() subTitle2?: string;
 
     @Input() funcionarioId?: number;
@@ -29,7 +31,7 @@ export class AvatarTitleComponent {
 
     @Input() clienteId?: number;
     @Input() rounded = false;
-    @Input() circle = false;
+    @Input() circle = true;
     @Input() avatarText?: string | number;
     @Input() avatarTextFontSize?: string;
     @Input() icon?: string;

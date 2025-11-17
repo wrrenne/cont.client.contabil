@@ -68,7 +68,12 @@
             @if (isString(subTitle)) {
             <div class="flex gap-4">
                 @if (isString(subTitle)) {
-                <span class="mt-1 block text-subtitle">{{subTitle}}</span>
+                <div class="flex gap-2 items-center">
+                    @if (subTitleIcon) {
+                    <ng-icon [name]="subTitleIcon" class="text-lg"></ng-icon>
+                    }
+                    <span class="mt-1 block text-subtitle">{{subTitle}}</span>
+                </div>
                 } @if (subTitle2) {
                 <span class="mt-1 block text-subtitle">{{subTitle2}}</span>
                 }

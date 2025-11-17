@@ -11,7 +11,7 @@ import { NgxTippyModule } from 'ngx-tippy-wrapper';
 })
 export class AvatarIconComponent implements OnInit {
     @Input() rounded = false;
-    @Input() circle = false;
+    @Input() circle = true;
     @Input() icon!: string;
     @Input() iconCss = 'text-lg';
     @Input() iconColor? = 'text-gray-800 dark:text-gray-200';

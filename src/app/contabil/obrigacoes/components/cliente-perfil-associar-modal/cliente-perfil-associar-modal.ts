@@ -53,6 +53,7 @@ export class ClientePerfilAssociarModalComponent {
 
     submit() {
         const input: PerfilClienteInput = {
+            cadastroId: this.vars.cadastro?.id!,
             clienteId: this.clienteId,
             competenciaInicial: this.dateUtilsService.GetDateIsoString(
                 this.dateUtilsService.firstDateOfMonth(this.firstFormGroup.get('competenciaInicial')?.value),

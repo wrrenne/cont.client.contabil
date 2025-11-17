@@ -23,7 +23,7 @@ export class AvatarImageComponent implements OnInit, OnDestroy {
     @Input() defaultFuncionariosDepartamentoIcon: string;
     @Input() defaultContabilDepartamentoIcon: string;
     @Input() defaultNoIconName?: string;
-    @Input() circle = false;
+    @Input() circle = true;
     @Input() rounded = false;
     @Input() border = false;
 

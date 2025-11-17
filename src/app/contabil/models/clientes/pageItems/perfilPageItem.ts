@@ -1,5 +1,5 @@
-import { PageItemBase } from "../../../../shared/models";
-import { ObrigacoesStat, PerfilChartItem } from "../../obrigacoes";
+import { PageItemBase } from '../../../../shared/models';
+import { ObrigacoesStat } from '../../obrigacoes';
 
 export interface PerfilPageItem extends PageItemBase {
     perfilItemId?: number;
@@ -9,7 +9,7 @@ export interface PerfilPageItem extends PageItemBase {
     perfilId?: number;
     cor: string;
     avatarFileName: string;
-    //obrigacoesCount?: number;
-    obrigacoesStat?: ObrigacoesStat
-    //chartItems: PerfilChartItem[]
+    obrigacoesCount: number;
+    clientesCount: number;
+    obrigacoesStat?: ObrigacoesStat;
 }

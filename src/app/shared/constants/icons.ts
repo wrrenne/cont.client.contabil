@@ -235,6 +235,7 @@ import {
     ionFlashOutline,
     ionFlashSharp,
     ionFolderOpenOutline,
+    ionFolderOpenSharp,
     ionFolderSharp,
     ionFunnelOutline,
     ionGridOutline,
@@ -587,4 +588,5 @@ export const appIcons = {
     heroEllipsisHorizontal,
     iconoirCalendarPlus,
     iconoirCalendarMinus,
+    ionFolderOpenSharp,
 };

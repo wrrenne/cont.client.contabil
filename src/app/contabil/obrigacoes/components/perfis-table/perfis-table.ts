@@ -3,6 +3,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PagingBase } from '../../../../shared/models';
+import { DashIfEmptyPipe } from '../../../../shared/pipes/dash-if-empty.pipe';
 import { PerfilPageItem } from '../../../models/clientes/pageItems';
 import { PerfisParameter } from '../../../models/obrigacoes/parameters';
 import { ObrigacoesUtilsService } from '../../services/obrigacoesUtils.service';
@@ -12,7 +13,7 @@ import { PerfilObrigacoesModalComponent } from '../perfil-obrigacoes-modal/perfi
 @Component({
     selector: 'perfis-table',
     standalone: true,
-    imports: [InfiniteScrollDirective, AvatarTitleComponent],
+    imports: [InfiniteScrollDirective, AvatarTitleComponent, DashIfEmptyPipe],
     templateUrl: './perfis-table.html',
 })
 export class PerfisTableComponent extends PagingBase<PerfilPageItem> implements OnInit {

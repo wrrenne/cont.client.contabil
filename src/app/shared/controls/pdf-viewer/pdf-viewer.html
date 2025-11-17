@@ -1,4 +1,4 @@
-<div class="w-full h-full flex flex-col items-center justify-center bg-gray-50 rounded-none shadow-sm">
+<div class="w-full h-full flex flex-col items-center justify-center bg-gray-50 dark:bg-zinc-900 rounded-none shadow-sm">
     <!-- Loading state -->
     @if (loading) {
     <div class="flex flex-col items-center justify-center text-gray-600 py-10">
@@ -17,12 +17,13 @@
 
     <!-- PDF Viewer -->
     @if (pdfUrl) {
-    <object [data]="pdfUrl" type="application/pdf" class="w-[400px] h-[80vh] rounded-none border-none">
-        <p class="text-gray-700 p-4 text-center">
-            O seu navegador não suporta leitura nativa de PDFs.
-            <a [href]="pdfUrl" target="_blank" class="text-blue-600 underline hover:text-blue-800"> Abrir em uma nova aba </a>.
-        </p>
-    </object>
-    <!-- <iframe [src]="pdfUrl" type="application/pdf" class="w-full h-[80vh] rounded-none border-none"> </iframe> -->
+    <div (click)="pdfClick()">
+        <object [data]="pdfUrl" type="application/pdf" class="w-[400px] h-[80vh] rounded-none border-none" (click)="pdfClick()">
+            <p class="text-gray-700 p-4 text-center">
+                O seu navegador não suporta leitura nativa de PDFs.
+                <a [href]="pdfUrl" target="_blank" class="text-blue-600 underline hover:text-blue-800"> Abrir em uma nova aba </a>
+            </p>
+        </object>
+    </div>
     }
 </div>
