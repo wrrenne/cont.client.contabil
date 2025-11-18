@@ -6,5 +6,6 @@ export interface ContabilClientePageItem extends ClientePageItem {
     perfis: ClientePerfilPageItem[];
     users: ObrigacaoClientePeriodoUserPageItem[];
     regime?: string;
+    perfisCount: number;
     obrigacoesStat?: ObrigacoesStat;
 }
