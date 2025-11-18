@@ -4,6 +4,7 @@
         <thead>
             <tr>
                 <td>Razão Social</td>
+                <td class="hidden md:table-cell">Colaborador</td>
                 <td class="hidden md:table-cell">Concluído</td>
                 <td class="hidden md:table-cell">No Prazo</td>
                 <td class="hidden md:table-cell">Atrasado</td>
@@ -17,6 +18,17 @@
                         <ng-container *ngTemplateOutlet="statusTemplate; context: {item: item}"></ng-container>
                         <avatar-title [title]="item.descricao" [subTitle]="item.tipoDescricao"></avatar-title>
                     </div>
+                </td>
+                <td class="hidden md:table-cell">
+                    <avatar-image-group
+                        class="flex-wrap"
+                        [usersId]="getUsuariosId(item.users)"
+                        [nomes]="getUsuariosNome(item.users)"
+                        _departamentos="getDepartamentosNome(item.users)"
+                        [size]="'2.2rem'"
+                        [showEmptyIcon]="true"
+                        [emptyIconTooltip]="'Nenhum colaborador'"
+                    ></avatar-image-group>
                 </td>
                 <td class="hidden md:table-cell">
                     @if (item.obrigacoesStat) {
@@ -75,5 +87,7 @@
     ></avatar-icon>
     }
     <!-- #endregion -->
+    } @else {
+    <avatar-icon-empty [tooltip]="'Sem obrigações'"></avatar-icon-empty>
     }
 </ng-template>

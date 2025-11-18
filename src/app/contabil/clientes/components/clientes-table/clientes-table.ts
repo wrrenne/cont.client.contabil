@@ -40,6 +40,10 @@ export class ClientesTableComponent extends PagingBase<ContabilClientePageItem> 
 
         this.perfilItemId = value?.perfilItemId ?? 0;
 
+        if (value?.userId != undefined) {
+            this.param.queryStrings.set('userId', value.userId);
+        }
+
         this.param.q = value?.searchText;
 
         this.refresh();

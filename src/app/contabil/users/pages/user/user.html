@@ -1,32 +1,35 @@
-<div class="content-site">
-    @if (user) {
-    <profile2 [userId]="user.id!" [title]="user.userNome">
-        <ng-template #profilecontent>
-            <div _class="_mx-auto relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
-                <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
-                    <nz-tabset [nzSelectedIndex]="tabIndex">
-                        <nz-tab nzTitle="Dados básicos">
-                            <ng-template nz-tab>
-                                <div class="flex flex-col gap-y-4">
-                                    <user-dados [user]="user"></user-dados>
-                                    <user-avatar [userId]="user.id!"></user-avatar>
-                                    <user-departamentos [departamentos]="user.departamentos" [userId]="user.id!"></user-departamentos>
-                                </div>
-                            </ng-template>
-                        </nz-tab>
-                        <nz-tab nzTitle="Obrigações"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab>
-                        <nz-tab nzTitle="Histórico">
-                            <ng-template nz-tab>
-                                <!--                        <ponto-timeline-funcionario-posts [parameters]="postParameter"></ponto-timeline-funcionario-posts>-->
-                            </ng-template>
-                        </nz-tab>
-                    </nz-tabset>
-                </div>
+@if (user) {
+<profile2 [userId]="user.id!" [title]="user.userNome">
+    <ng-template #content>
+        <div _class="_mx-auto relative ml-10 flex flex-col items-center gap-4 sm:-top-4 md:-top-6 lg:-top-8 xs:-top-4">
+            <div class="my-auto flex w-full flex-col justify-center gap-2 py-6">
+                <nz-tabset [nzSelectedIndex]="tabIndex">
+                    <nz-tab nzTitle="Dados básicos">
+                        <ng-template nz-tab>
+                            <div class="flex flex-col gap-y-4">
+                                <user-dados [user]="user"></user-dados>
+                                <user-avatar [userId]="user.id!"></user-avatar>
+                                <user-departamentos [departamentos]="user.departamentos" [userId]="user.id!"></user-departamentos>
+                            </div>
+                        </ng-template>
+                    </nz-tab>
+                    <nz-tab nzTitle="Clientes"><ng-template [ngTemplateOutlet]="clientes"></ng-template></nz-tab>
+                    <nz-tab nzTitle="Obrigações"><ng-template [ngTemplateOutlet]="obrigacoes"></ng-template></nz-tab>
+                    <nz-tab nzTitle="Histórico">
+                        <ng-template nz-tab>
+                            <!--                        <ponto-timeline-funcionario-posts [parameters]="postParameter"></ponto-timeline-funcionario-posts>-->
+                        </ng-template>
+                    </nz-tab>
+                </nz-tabset>
             </div>
-        </ng-template>
-    </profile2>
-    }
-</div>
+        </div>
+    </ng-template>
+</profile2>
+}
+
+<ng-template #clientes>
+    <clientes-table [parameters]="clientesParameters" (titleOnChange)="titleOnChange($event)"></clientes-table>
+</ng-template>
 
 <ng-template #obrigacoes>
     <!-- <user-obrigacoes-table [parameters]="obrigacoesParameters"></user-obrigacoes-table> -->

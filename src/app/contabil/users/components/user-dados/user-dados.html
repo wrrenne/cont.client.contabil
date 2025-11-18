@@ -1,6 +1,7 @@
 ﻿<card [title]="'Dados Básicos'">
     <ng-template #content>
-        <form *ngIf="user && firstFormGroup" [formGroup]="firstFormGroup">
+        @if (user && firstFormGroup) {
+        <form [formGroup]="firstFormGroup">
             <div class="flex flex-col gap-x-2 gap-y-4">
                 <div class="flex flex-col gap-x-2 gap-y-4 md:flex-row">
                     <input-ex class="w-full md:w-144" [formControlName]="'nome'" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
@@ -16,6 +17,7 @@
                 }
             </div>
         </form>
+        }
     </ng-template>
 </card>
 

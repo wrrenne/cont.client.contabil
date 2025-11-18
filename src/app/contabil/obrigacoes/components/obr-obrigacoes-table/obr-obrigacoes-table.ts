@@ -3,9 +3,11 @@ import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angul
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
-import { ObrigacaoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
+import { ObrigacaoClientePeriodoUserPageItem, ObrigacaoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
 import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/parameters';
+import { AvatarIconEmptyComponent } from 'src/app/shared/controls/avatar-icon-empty/avatar-icon-empty';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
+import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { PagingBase } from '../../../../shared/models';
@@ -17,7 +19,16 @@ import { ObrigacoesPagingService } from '../../services/pagings/obrigacoes.servi
     selector: 'obr-obrigacoes-table',
     templateUrl: './obr-obrigacoes-table.html',
     standalone: true,
-    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, PercentageBarComponent, AvatarIconComponent],
+    imports: [
+        CommonModule,
+        InfiniteScrollDirective,
+        AvatarTitleComponent,
+        RouterLink,
+        PercentageBarComponent,
+        AvatarIconComponent,
+        AvatarIconEmptyComponent,
+        AvatarImageGroupComponent,
+    ],
 })
 export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
     searchSubscription: Subscription;
@@ -89,5 +100,13 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
         let index = this.datas.findIndex((x) => x.id == pageItem.id);
 
         if (index == -1) this.datas.push(pageItem);
+    }
+
+    getUsuariosId(users?: ObrigacaoClientePeriodoUserPageItem[]): number[] {
+        return users != undefined ? users?.map((x) => x.userId) : [];
+    }
+
+    getUsuariosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+        return users != undefined ? users?.map((x) => x.userNomeFormat) : [];
     }
 }

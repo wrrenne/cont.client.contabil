@@ -24,13 +24,14 @@
                         class="flex-wrap"
                         [usersId]="getUsuariosId(item.users)"
                         [nomes]="getUsuariosNome(item.users)"
+                        [departamentos]="getDepartamentosNome(item.users)"
                         [size]="'2.2rem'"
                         [showEmptyIcon]="true"
-                        [emptyIconTooltip]="'Nenhum funcionário'"
+                        [emptyIconTooltip]="'Nenhum colaborador'"
                     ></avatar-image-group>
                 </td>
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat) {
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
                     <percentage-bar
                         [done]="item.obrigacoesStat.concluidas"
                         [total]="item.obrigacoesStat.total"
@@ -41,12 +42,13 @@
                 </td>
 
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat) { {{item.obrigacoesStat.concluidasNoPrazo > 0 ? item.obrigacoesStat.concluidasNoPrazo : '-'}}
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasNoPrazo > 0 ?
+                    item.obrigacoesStat.concluidasNoPrazo : '-'}}
                     <!-- {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}}  -->
                     }
                 </td>
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat) { {{item.obrigacoesStat.emAtraso > 0 ? item.obrigacoesStat.emAtraso : '-'}}
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAtraso > 0 ? item.obrigacoesStat.emAtraso : '-'}}
                     <!-- {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}}  -->
                     }
                 </td>
@@ -57,12 +59,17 @@
 </div>
 }
 <ng-template #statusTemplate let-item="item">
-    @if (item.obrigacoesStat) {
+    <!-- #region Sem obrigaçoes -->
+    @if (item.obrigacoesStat) { @if (item.obrigacoesStat.total == 0) {
+    <avatar-icon-empty [tooltip]="'Sem obrigações'"></avatar-icon-empty>
+    }
+    <!-- #endregion -->
+    @else {
     <!-- #region Tudo concluído no prazo -->
     @if (item.obrigacoesStat.concluidasNoPrazo == item.obrigacoesStat.total) {
     <avatar-icon [icon]="'ionCheckmarkDone'" [tooltip]="'Tudo concluído no prazo'" [size]="'2.2rem'" [bgColor]="'bg-green-200 dark:bg-green-800'"></avatar-icon>
-    }
     <!-- #endregion -->
+    }
 
     <!-- #region Ao menos uma obrigação fora do prazo -->
     @if (item.obrigacoesStat.concluidas == item.obrigacoesStat.total && item.obrigacoesStat.concluidasForaDoPrazo > 0) {
@@ -89,7 +96,7 @@
         [size]="'2.2rem'"
         [bgColor]="'bg-red-200 dark:bg-red-800'"
     ></avatar-icon>
-    }
+    } }
     <!-- #endregion -->
     }
 </ng-template>

@@ -2,12 +2,12 @@
     <ng-template #content>
         <div class="flex flex-col gap-3">
             <div class="flex flex-col gap-2">
-                <avatar-title *ngFor="let item of departamentos" [avatarFileName]="item.avatarFileName" [title]="item.departamentoNome" [avatarSize]="'2rem'"></avatar-title>
+                @for (item of departamentos; track item) {
+                <avatar-title [avatarFileName]="item.avatarFileName" [title]="item.departamentoNome" [avatarSize]="'2rem'"></avatar-title>
+                }
             </div>
             <div>
-                <button class="button btn-primary" (click)="openUserDepartamentoModal()">
-                    Adicionar
-                </button>
+                <button class="button btn-primary" (click)="openUserDepartamentoModal()">Adicionar</button>
             </div>
         </div>
     </ng-template>

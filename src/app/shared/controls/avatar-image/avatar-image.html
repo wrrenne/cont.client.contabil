@@ -1,5 +1,5 @@
 <div
-    [ngxTippy]="tooltip"
+    [ngxTippy]="tooltipHTMLTemplate"
     class="relative h-full w-full"
     [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
 >
@@ -68,3 +68,13 @@
     </div>
     } } }
 </div>
+
+<template #tooltipHTMLTemplate>
+    <div class="flex flex-col gap-2 text-center">
+        <span> {{tooltip}} </span>
+
+        @if (tooltipInfo) {
+        <span class="text-muted"> {{ tooltipInfo }} </span>
+        }
+    </div>
+</template>

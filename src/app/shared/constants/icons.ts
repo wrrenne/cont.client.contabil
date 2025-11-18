@@ -269,6 +269,7 @@ import {
 import {
     matAttachMoney,
     matBeachAccess,
+    matBlock,
     matEngineering,
     matEquals,
     matHome,
@@ -589,4 +590,5 @@ export const appIcons = {
     iconoirCalendarPlus,
     iconoirCalendarMinus,
     ionFolderOpenSharp,
+    matBlock,
 };

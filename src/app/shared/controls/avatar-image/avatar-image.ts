@@ -28,6 +28,7 @@ export class AvatarImageComponent implements OnInit, OnDestroy {
     @Input() border = false;
 
     @Input() tooltip?: string;
+    @Input() tooltipInfo?: string;
     @Input() tooltipPlacement: string;
 
     @Input() size?: string = '3.5rem';

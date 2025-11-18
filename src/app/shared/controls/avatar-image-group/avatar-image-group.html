@@ -4,6 +4,7 @@
         [size]="size"
         [funcionarioId]="funcionarioId"
         [tooltip]="nomes && nomes[$index]"
+        [tooltipInfo]="departamentos && departamentos[$index]"
         [rounded]="rounded"
         [circle]="circle"
         [iconClass]="'text-base'"
@@ -14,13 +15,14 @@
         [size]="size"
         [userId]="userId"
         [tooltip]="nomes && nomes[$index]"
+        [tooltipInfo]="departamentos && departamentos[$index]"
         [rounded]="rounded"
         [circle]="circle"
         [iconClass]="'text-base'"
         [defaultNoIconName]="nomes && nomes[$index]"
     />
     } } @if (showEmptyIcon && (!funcionariosId || funcionariosId.length == 0) && (!usersId || usersId.length == 0)) {
-    <avatar-icon [size]="size" [rounded]="rounded" [circle]="circle" [icon]="'matBlockOutline'" [tooltip]="emptyIconTooltip"></avatar-icon>
+    <avatar-icon-empty [tooltip]="emptyIconTooltip"></avatar-icon-empty>
     } @if (seeMoreCount) {
     <avatar-count [count]="seeMoreCount" [bgColor]="'text-bg-yellow-silver'" [size]="size" [rounded]="rounded" [circle]="circle"></avatar-count>
     }
