@@ -246,6 +246,7 @@ import {
     ionMedkitOutline,
     ionMoon,
     ionPartlySunnyOutline,
+    ionPause,
     ionPauseCircle,
     ionPeopleOutline,
     ionPeopleSharp,
@@ -591,4 +592,5 @@ export const appIcons = {
     iconoirCalendarMinus,
     ionFolderOpenSharp,
     matBlock,
+    ionPause,
 };

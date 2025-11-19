@@ -1,5 +1,5 @@
 <div
-    [ngxTippy]="tooltipHTMLTemplate"
+    [ngxTippy]="tooltip ? tooltipHTMLTemplate : undefined"
     class="relative h-full w-full"
     [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
 >

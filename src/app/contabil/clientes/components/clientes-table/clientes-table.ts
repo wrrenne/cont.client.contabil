@@ -3,7 +3,7 @@ import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angul
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
-import { RegimeTagComponent } from 'src/app/contabil/components/regime-tag/regime-tag';
+import { PerfilTagComponent } from 'src/app/contabil/components/perfil-tag/perfil-tag';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
@@ -16,7 +16,7 @@ import { ClientesPagingService } from '../../services/pagings/clientes.service';
     selector: 'clientes-table',
     templateUrl: './clientes-table.html',
     standalone: true,
-    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, RegimeTagComponent],
+    imports: [CommonModule, InfiniteScrollDirective, AvatarTitleComponent, RouterLink, PerfilTagComponent],
 })
 export class ClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
     searchSubscription: Subscription;

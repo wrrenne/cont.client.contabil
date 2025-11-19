@@ -37,6 +37,11 @@ export class Profile2Component {
 
     @ContentChild('content') content: TemplateRef<any>;
     @ContentChild('buttons') buttons: TemplateRef<any>;
+    @ContentChild('subTitle', { static: true }) subTitleTemplate: TemplateRef<any>;
 
     constructor(private apisUtilsService: ApisUtilsService) {}
+
+    isString(value: any): value is string {
+        return typeof value === 'string';
+    }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ApisUtilsService } from '../../services';
+import { RouterLink } from '@angular/router';
+import { ApisUtilsService, EncryptionService } from '../../services';
 import { AvatarCountComponent } from '../avatar-count/avatar-count';
 import { AvatarIconEmptyComponent } from '../avatar-icon-empty/avatar-icon-empty';
 import { AvatarImageComponent } from '../avatar-image/avatar-image';
@@ -9,7 +10,7 @@ import { AvatarImageComponent } from '../avatar-image/avatar-image';
     selector: 'avatar-image-group',
     templateUrl: './avatar-image-group.html',
     standalone: true,
-    imports: [CommonModule, AvatarImageComponent, AvatarCountComponent, AvatarIconEmptyComponent],
+    imports: [CommonModule, RouterLink, AvatarImageComponent, AvatarCountComponent, AvatarIconEmptyComponent],
 })
 export class AvatarImageGroupComponent {
     @Input() imgClass: string;
@@ -25,6 +26,16 @@ export class AvatarImageGroupComponent {
     @Input() showEmptyIcon = false;
     @Input() emptyIconTooltip?: string;
     @Input() overlap = false;
+    @Input() link?: any[] | string;
+    @Input() iconClass = 'text-base';
+    @Input() seeMoreLink?: any[] | string;
 
-    constructor(private apisUtilsService: ApisUtilsService) {}
+    constructor(
+        private apisUtilsService: ApisUtilsService,
+        private encryptionService: EncryptionService,
+    ) {}
+
+    getEncryptedId(id: number): string {
+        return this.encryptionService.encrypt(id);
+    }
 }

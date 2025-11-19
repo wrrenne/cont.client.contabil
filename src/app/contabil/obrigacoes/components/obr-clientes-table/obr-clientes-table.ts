@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ClientesPagingService } from 'src/app/contabil/clientes/services/pagings';
+import { PerfilTagComponent } from 'src/app/contabil/components/perfil-tag/perfil-tag';
 import { ObrigacaoClientePeriodoUserPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
 import { AvatarIconEmptyComponent } from 'src/app/shared/controls/avatar-icon-empty/avatar-icon-empty';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
@@ -29,6 +30,7 @@ import { ClientesParameter } from '../../../models/clientes/parameters';
         AvatarIconComponent,
         AvatarImageGroupComponent,
         AvatarIconEmptyComponent,
+        PerfilTagComponent,
     ],
 })
 export class ObrClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {

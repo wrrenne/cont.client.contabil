@@ -13,9 +13,12 @@
                 <td>
                     <avatar-title _clienteId="item.id" [title]="item.nome">
                         <ng-template #subTitle>
-                            <div class="mt-2">
-                                <regime-tag [regime]="item.regime"></regime-tag>
-                                {{ item.perfis | json}}
+                            <div class="mt-1 flex gap-2">
+                                <perfil-tag [regime]="item.regime ?? 'Regime Indefinido'"></perfil-tag>
+
+                                @for (perfilSecundarioItem of item.perfisSecundarios; track perfilSecundarioItem) {
+                                <perfil-tag [perfil]="perfilSecundarioItem.descricao"></perfil-tag>
+                                }
                             </div>
                         </ng-template>
                     </avatar-title>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgIconComponent } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest } from 'rxjs';
@@ -16,7 +17,7 @@ import { ClienteObrigacoesTableComponent } from '../../components/cliente-obriga
     selector: 'cliente-obrigacoes-page',
     templateUrl: './cliente-obrigacoes.html',
     providers: [NzModalService],
-    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent],
+    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent, NgIconComponent],
     standalone: true,
 })
 export class ClienteObrigacoesPage implements OnInit {
@@ -26,7 +27,7 @@ export class ClienteObrigacoesPage implements OnInit {
     relatoriosParameters: ObrigacoesParameter;
 
     title: string;
-    subTitle: string;
+    mesFormat: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -47,9 +48,9 @@ export class ClienteObrigacoesPage implements OnInit {
         urlParametrs.subscribe((r) => {
             this.clienteId = this.encryptionService.decrypt(r['id']);
 
-            this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
+            this.mesFormat = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
-            var mes = this.vars.dataInicial;
+            //var mes = this.vars.dataInicial;
 
             this.clientesService.clienteGet(this.clienteId).subscribe((x) => {
                 this.title = x.obj.nome;

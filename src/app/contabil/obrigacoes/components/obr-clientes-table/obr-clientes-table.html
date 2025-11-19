@@ -16,7 +16,17 @@
                 <td>
                     <div class="flex items-center gap-3">
                         <ng-container *ngTemplateOutlet="statusTemplate; context: {item: item}"></ng-container>
-                        <avatar-title _clienteId="item.id" [title]="item.nome" [subTitle]="item.regime ?? 'Regime indefinido'"></avatar-title>
+                        <avatar-title _clienteId="item.id" [title]="item.nome">
+                            <ng-template #subTitle>
+                                <div class="mt-1 flex gap-2">
+                                    <perfil-tag [regime]="item.regime ?? 'Regime Indefinido'"></perfil-tag>
+
+                                    @for (perfilSecundarioItem of item.perfisSecundarios; track perfilSecundarioItem) {
+                                    <perfil-tag [perfil]="perfilSecundarioItem.descricao"></perfil-tag>
+                                    }
+                                </div>
+                            </ng-template>
+                        </avatar-title>
                     </div>
                 </td>
                 <td class="hidden md:table-cell">

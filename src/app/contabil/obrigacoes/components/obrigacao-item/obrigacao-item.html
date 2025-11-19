@@ -65,7 +65,7 @@
         [icon]="'ionCheckmarkDone'"
         [tooltip]="'Concluído no prazo'"
         [size]="'2.2rem'"
-        [iconColor]="'text-green-500 dark:text-green-300'"
+        [iconColor]="'dark:text-white/80 text-black/80'"
         [bgColor]="'bg-green-200 dark:bg-green-800'"
     ></avatar-icon>
     }
@@ -77,7 +77,7 @@
         [icon]="'ionCheckmarkSharp'"
         [tooltip]="'Concluído fora do prazo'"
         [size]="'2.2rem'"
-        [iconColor]="'text-green-500 dark:text-green-300'"
+        [iconColor]="'dark:text-white/80 text-black/80'"
         [bgColor]="'bg-green-200 dark:bg-green-800'"
     ></avatar-icon>
     }
@@ -85,7 +85,7 @@
 
     <!-- #region Em Aberto  -->
     @if (obrigacao.status == TObrigacaoStatus.EmAberto && !obrigacao.prazoVencido) {
-    <avatar-icon [icon]="'bootstrapStop'" [tooltip]="'Em Aberto'" [size]="'2.2rem'" [bgColor]="'bg-zinc-200 dark:bg-zinc-800'"></avatar-icon>
+    <avatar-icon [icon]="'ionPause'" [tooltip]="'Em Aberto'" [size]="'2.2rem'" [bgColor]="'bg-zinc-200 dark:bg-zinc-800'"></avatar-icon>
     }
     <!-- #endregion -->
 
@@ -95,7 +95,7 @@
         [icon]="'bootstrapExclamationLg'"
         [tooltip]="'Atrasado'"
         [size]="'2.2rem'"
-        [iconColor]="'text-red-500 dark:text-red-300'"
+        [iconColor]="'dark:text-white/80 text-black/80'"
         [bgColor]="'bg-red-200 dark:bg-red-800'"
     ></avatar-icon>
     }

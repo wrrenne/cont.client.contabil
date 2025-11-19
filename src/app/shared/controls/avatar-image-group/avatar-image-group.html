@@ -3,29 +3,43 @@
     <avatar-image
         [size]="size"
         [funcionarioId]="funcionarioId"
+        [iconClass]="iconClass"
         [tooltip]="nomes && nomes[$index]"
         [tooltipInfo]="departamentos && departamentos[$index]"
         [rounded]="rounded"
         [circle]="circle"
-        [iconClass]="'text-base'"
+        [iconClass]="iconClass"
         [ring]="overlap"
         [defaultNoIconName]="nomes && nomes[$index]"
+        [ngClass]="{'cursor-pointer': link != undefined}"
+        [routerLink]="[link, getEncryptedId(funcionarioId)]"
     />
     } } @if (usersId) { @for (userId of usersId; track userId) {
     <avatar-image
         [size]="size"
         [userId]="userId"
+        [iconClass]="iconClass"
         [tooltip]="nomes && nomes[$index]"
         [tooltipInfo]="departamentos && departamentos[$index]"
         [rounded]="rounded"
         [circle]="circle"
-        [iconClass]="'text-base'"
+        [iconClass]="iconClass"
         [ring]="overlap"
         [defaultNoIconName]="nomes && nomes[$index]"
+        [ngClass]="{'cursor-pointer': link != undefined}"
+        [routerLink]="[link, getEncryptedId(userId)]"
     />
     } } @if (showEmptyIcon && (!funcionariosId || funcionariosId.length == 0) && (!usersId || usersId.length == 0)) {
     <avatar-icon-empty [tooltip]="emptyIconTooltip"></avatar-icon-empty>
     } @if (seeMoreCount) {
-    <avatar-count [count]="seeMoreCount" [bgColor]="'text-bg-yellow-silver'" [size]="size" [rounded]="rounded" [circle]="circle"></avatar-count>
+    <avatar-count
+        [ngClass]="{'cursor-pointer': seeMoreLink != undefined}"
+        [count]="seeMoreCount"
+        [bgColor]="'text-bg-yellow-silver'"
+        [size]="size"
+        [rounded]="rounded"
+        [circle]="circle"
+        [routerLink]="seeMoreLink"
+    ></avatar-count>
     }
 </div>

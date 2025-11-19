@@ -358,68 +358,84 @@ input {
     @apply text-black/20 dark:text-white/20;
 }
 
-.tag-white-black {
-    @apply rounded-full bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900;
+.tag-text {
+    @apply text-black/60 dark:text-white/60;
 }
 
-.tag-blue {
-    @apply rounded-full bg-blue-200 dark:bg-blue-900 text-blue-800 dark:text-blue-200;
+.tag-rounded {
+    @apply rounded-full;
+}
+
+.tag-white-black {
+    @apply tag-rounded bg-gray-900 dark:bg-gray-100 tag-text;
 }
 
 .tag-blue-outline {
-    @apply rounded-full border border-blue-400 dark:border-blue-900 text-blue-800 dark:text-blue-200;
+    @apply tag-rounded border border-blue-300 dark:border-blue-900 tag-text;
 }
 
-.tag-sky {
-    @apply rounded-full bg-sky-200 dark:bg-sky-900 text-sky-800 dark:text-sky-200;
+.tag-blue {
+    @apply bg-blue-200 dark:bg-blue-900 border tag-blue-outline;
 }
 
 .tag-sky-outline {
-    @apply rounded-full border border-sky-400 dark:border-sky-900 text-sky-800 dark:text-sky-200;
+    @apply tag-rounded border border-sky-300 dark:border-sky-900 tag-text;
 }
 
-.tag-red {
-    @apply rounded-full bg-red-200 dark:bg-red-900 text-red-800 dark:text-red-200;
+.tag-sky {
+    @apply bg-sky-200 dark:bg-sky-900 tag-sky-outline;
 }
 
 .tag-red-outline {
-    @apply rounded-full border border-red-400 dark:border-red-900 text-red-800 dark:text-red-200;
+    @apply tag-rounded border border-red-300 dark:border-red-900 tag-text;
+}
+
+.tag-red {
+    @apply bg-red-200 dark:bg-red-900 tag-red-outline;
+}
+
+.tag-green-outline {
+    @apply tag-rounded border border-green-300 dark:border-green-900 tag-text;
 }
 
 .tag-green {
-    @apply rounded-full bg-green-200 dark:bg-green-900 text-green-800 dark:text-green-200;
-}
-
-.tag-yellow {
-    @apply rounded-full bg-yellow-200 dark:bg-yellow-700 text-black dark:text-white;
+    @apply bg-green-200 dark:bg-green-900 tag-green-outline;
 }
 
 .tag-yellow-outline {
-    @apply rounded-full border border-yellow-400 dark:border-yellow-900 text-yellow-800 dark:text-yellow-200;
+    @apply tag-rounded border border-yellow-300 dark:border-yellow-900 tag-text;
+}
+
+.tag-yellow {
+    @apply bg-yellow-200 dark:bg-yellow-700 tag-yellow-outline;
+}
+
+.tag-amber-outline {
+    @apply tag-rounded border border-amber-200 dark:border-amber-900 tag-text;
 }
 
 .tag-amber {
-    @apply rounded-full bg-amber-200 dark:bg-amber-900 text-black dark:text-white;
-}
-
-.tag-violet {
-    @apply rounded-full bg-violet-200 dark:bg-violet-900 text-violet-800 dark:text-violet-200;
+    @apply bg-amber-200 dark:bg-amber-900 tag-amber-outline;
 }
 
 .tag-violet-outline {
-    @apply rounded-full border border-violet-400 dark:border-violet-900 text-violet-800 dark:text-violet-200;
+    @apply tag-rounded border border-violet-300 dark:border-violet-900 tag-text;
 }
 
-.tag-silver {
-    @apply rounded-full bg-zinc-300 dark:bg-zinc-600 text-zinc-800 dark:text-white;
+.tag-violet {
+    @apply bg-violet-200 dark:bg-violet-900 tag-violet-outline;
 }
 
 .tag-silver-outline {
-    @apply rounded-full border border-zinc-300 dark:border-zinc-600 text-zinc-800 dark:text-zinc-200;
+    @apply tag-rounded border border-zinc-200 dark:border-zinc-800 tag-text;
+}
+
+.tag-silver {
+    @apply bg-zinc-200 dark:bg-zinc-800 tag-silver-outline;
 }
 
 .tag-muted-outline {
-    @apply rounded-full border border-zinc-300 dark:border-zinc-600 text-zinc-400 dark:text-zinc-500;
+    @apply tag-rounded border border-zinc-300 dark:border-zinc-600 text-zinc-400 dark:text-zinc-500;
 }
 
 .tag {

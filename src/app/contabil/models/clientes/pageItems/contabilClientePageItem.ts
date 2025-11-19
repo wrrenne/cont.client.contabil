@@ -3,7 +3,7 @@ import { ObrigacoesStat } from '../../obrigacoes';
 import { ClientePerfilPageItem, ObrigacaoClientePeriodoUserPageItem } from '../../obrigacoes/pagings';
 
 export interface ContabilClientePageItem extends ClientePageItem {
-    perfis: ClientePerfilPageItem[];
+    perfisSecundarios: ClientePerfilPageItem[];
     users: ObrigacaoClientePeriodoUserPageItem[];
     regime?: string;
     perfisCount: number;
