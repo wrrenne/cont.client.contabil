@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ApisUtilsService } from '../../services';
 import { AvatarCountComponent } from '../avatar-count/avatar-count';
@@ -8,7 +9,7 @@ import { AvatarImageComponent } from '../avatar-image/avatar-image';
     selector: 'avatar-image-group',
     templateUrl: './avatar-image-group.html',
     standalone: true,
-    imports: [AvatarImageComponent, AvatarCountComponent, AvatarIconEmptyComponent],
+    imports: [CommonModule, AvatarImageComponent, AvatarCountComponent, AvatarIconEmptyComponent],
 })
 export class AvatarImageGroupComponent {
     @Input() imgClass: string;
@@ -23,6 +24,7 @@ export class AvatarImageGroupComponent {
     @Input() seeMoreCount?: number;
     @Input() showEmptyIcon = false;
     @Input() emptyIconTooltip?: string;
+    @Input() overlap = false;
 
     constructor(private apisUtilsService: ApisUtilsService) {}
 }

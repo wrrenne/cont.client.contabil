@@ -391,7 +391,7 @@ input {
 }
 
 .tag-yellow {
-    @apply rounded-full bg-yellow-200 dark:bg-yellow-800 text-black dark:text-white;
+    @apply rounded-full bg-yellow-200 dark:bg-yellow-700 text-black dark:text-white;
 }
 
 .tag-yellow-outline {
@@ -416,6 +416,10 @@ input {
 
 .tag-silver-outline {
     @apply rounded-full border border-zinc-300 dark:border-zinc-600 text-zinc-800 dark:text-zinc-200;
+}
+
+.tag-muted-outline {
+    @apply rounded-full border border-zinc-300 dark:border-zinc-600 text-zinc-400 dark:text-zinc-500;
 }
 
 .tag {

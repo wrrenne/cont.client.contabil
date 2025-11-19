@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
+import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { MonthYearPipe } from 'src/app/shared/pipes/monthYear.pipe';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
@@ -19,7 +20,7 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
 @Component({
     selector: '[obrigacao-item]',
     templateUrl: './obrigacao-item.html',
-    imports: [CommonModule, AvatarIconComponent, DateFriendlyPipe, MonthYearPipe],
+    imports: [CommonModule, AvatarIconComponent, DateFriendlyPipe, MonthYearPipe, AvatarImageGroupComponent],
 })
 export class ObrigacaoItem {
     TEsfera = TEsfera;
@@ -271,5 +272,17 @@ export class ObrigacaoItem {
         }
 
         return result;
+    }
+
+    getUsuariosId(users?: ObrigacaoClientePeriodoUserPageItem[]): number[] {
+        return users != undefined ? users?.map((x) => x.userId) : [];
+    }
+
+    getUsuariosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+        return users != undefined ? users?.map((x) => x.userNomeFormat) : [];
+    }
+
+    getDepartamentosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+        return users != undefined ? users?.map((x) => x.departamentoNome) : [];
     }
 }

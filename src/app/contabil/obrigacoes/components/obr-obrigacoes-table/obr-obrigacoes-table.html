@@ -24,10 +24,11 @@
                         class="flex-wrap"
                         [usersId]="getUsuariosId(item.users)"
                         [nomes]="getUsuariosNome(item.users)"
-                        _departamentos="getDepartamentosNome(item.users)"
+                        [departamentos]="getDepartamentosNome(item.users)"
                         [size]="'2.2rem'"
                         [showEmptyIcon]="true"
                         [emptyIconTooltip]="'Nenhum colaborador'"
+                        [overlap]="true"
                     ></avatar-image-group>
                 </td>
                 <td class="hidden md:table-cell">

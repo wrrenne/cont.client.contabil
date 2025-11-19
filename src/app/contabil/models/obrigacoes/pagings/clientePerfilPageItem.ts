@@ -1,5 +1,5 @@
-import { ObrigacoesStat } from "..";
-import { PageItemBase } from "../../../../shared/models";
+import { ObrigacoesStat } from '..';
+import { PageItemBase } from '../../../../shared/models';
 
 export interface ClientePerfilPageItem extends PageItemBase {
     perfilItemId: number;
@@ -10,4 +10,6 @@ export interface ClientePerfilPageItem extends PageItemBase {
     avatarFileName: string;
     competenciaInicial: string;
     obrigacoesStat: ObrigacoesStat;
+    regime: boolean;
+    secundario: boolean;
 }

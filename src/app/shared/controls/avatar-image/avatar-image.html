@@ -6,23 +6,48 @@
     @if (iconFilename || logotipoFilename || avatarFileName) {
     <div>
         @if (iconFilename) {
-        <img [src]="getImageIconFullPath()" alt="" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" />
+        <img
+            [src]="getImageIconFullPath()"
+            alt=""
+            [ngClass]="{'ring-2 ring-gray-200 dark:ring-gray-800': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
+        />
         } @if (logotipoFilename) {
-        <img [src]="getImageLogotipoFullPath()" alt="" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" />
+        <img
+            [src]="getImageLogotipoFullPath()"
+            alt=""
+            [ngClass]="{'ring-2 ring-gray-200 dark:ring-gray-800': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
+        />
         } @if (avatarFileName) {
-        <img [src]="getImageAvatarFullPath()" alt="" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" />
+        <img
+            [src]="getImageAvatarFullPath()"
+            alt=""
+            [ngClass]="{'ring-2 ring-gray-200 dark:ring-gray-800': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
+        />
         }
     </div>
     } @else { @if (imageUrl) {
     <div>
-        <img [src]="imageUrl" alt="Avatar" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}" (error)="onImageError()" />
+        <img
+            [src]="imageUrl"
+            alt="Avatar"
+            [ngClass]="{'ring-2 ring-gray-200 dark:ring-gray-800': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
+            (error)="onImageError()"
+        />
     </div>
     } @else { @if (icon) {
-    <div class="flex h-full w-full items-center justify-center" [class]="bgClass" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
+    <div
+        class="flex h-full w-full items-center justify-center"
+        [class]="bgClass"
+        [ngClass]="{'ring-2 ring-gray-200 dark:ring-gray-800': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
+    >
         <ng-icon [name]="icon" class="text-black/70 dark:text-white/70" [ngClass]="iconClass"></ng-icon>
     </div>
     } @else {
-    <div class="flex h-full w-full items-center justify-center" [class]="bgClass" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
+    <div
+        class="flex h-full w-full items-center justify-center"
+        [class]="bgClass"
+        [ngClass]="{'ring-2 ring-gray-200 dark:ring-gray-800': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
+    >
         @if (defaultNoIconName) {
         <span [class]="iconClass + ' ' + (iconColor ?? '')">{{getDefaultIconNameInitials()}}</span>
         } @if (!defaultNoIconName) {

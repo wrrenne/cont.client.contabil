@@ -13,7 +13,7 @@ export class DateFriendlyPipe implements PipeTransform {
         const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
 
         if (isToday) {
-            return 'Today';
+            return 'Hoje';
         }
 
         const isDifferentMonthAndYear = date.getMonth() !== today.getMonth() && date.getFullYear() !== today.getFullYear();

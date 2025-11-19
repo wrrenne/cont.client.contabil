@@ -109,4 +109,8 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
     getUsuariosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
         return users != undefined ? users?.map((x) => x.userNomeFormat) : [];
     }
+
+    getDepartamentosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+        return users != undefined ? users?.map((x) => x.departamentoNome) : [];
+    }
 }

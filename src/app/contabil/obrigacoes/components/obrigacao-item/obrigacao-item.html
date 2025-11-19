@@ -20,6 +20,18 @@
 </td>
 }
 
+<td class="hidden md:table-cell">
+    <avatar-image-group
+        class="flex-wrap"
+        [usersId]="getUsuariosId(obrigacao.users)"
+        [nomes]="getUsuariosNome(obrigacao.users)"
+        [departamentos]="getDepartamentosNome(obrigacao.users)"
+        [size]="'2.2rem'"
+        [showEmptyIcon]="true"
+        [emptyIconTooltip]="'Nenhum colaborador'"
+        [overlap]="true"
+    ></avatar-image-group>
+</td>
 <!-- Vencimento -->
 <td class="hidden md:table-cell">
     <div class="flex gap-2 items-center">{{obrigacao.vencimento | dateFriendly}}</div>

@@ -1,4 +1,4 @@
-<div class="flex items-center justify-start space-x-2">
+<div class="flex items-center justify-start" [ngClass]="{'-space-x-2': overlap, 'space-x-2': !overlap}">
     @if (funcionariosId) { @for (funcionarioId of funcionariosId; track funcionarioId) {
     <avatar-image
         [size]="size"
@@ -8,6 +8,7 @@
         [rounded]="rounded"
         [circle]="circle"
         [iconClass]="'text-base'"
+        [ring]="overlap"
         [defaultNoIconName]="nomes && nomes[$index]"
     />
     } } @if (usersId) { @for (userId of usersId; track userId) {
@@ -19,6 +20,7 @@
         [rounded]="rounded"
         [circle]="circle"
         [iconClass]="'text-base'"
+        [ring]="overlap"
         [defaultNoIconName]="nomes && nomes[$index]"
     />
     } } @if (showEmptyIcon && (!funcionariosId || funcionariosId.length == 0) && (!usersId || usersId.length == 0)) {
