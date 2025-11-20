@@ -1,3 +1,4 @@
-export * from './obrigacaoListItem'
-export * from './perfilChartItem'
-export * from './obrigacoesStat'
+export * from './auditoriaModel';
+export * from './obrigacaoListItem';
+export * from './obrigacoesStat';
+export * from './perfilChartItem';

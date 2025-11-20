@@ -7,6 +7,7 @@ import { ApisUtilsService, DateUtilsService, TMicroService } from '../../../shar
 import { Vars } from '../../../shared/variables';
 import { ClienteObrigacoesMesView } from '../../models/clientes/views';
 import { TObrigacaoTipo } from '../../models/enums';
+import { AuditoriaModel } from '../../models/obrigacoes';
 import { ObrigacaoInput } from '../../models/obrigacoes/inputs/obrigacaoInput';
 import { ObrigacaoClientePeriodoPageItem, ObrigacaoPageItem } from '../../models/obrigacoes/pagings';
 import { ObrigacaoClientePeriodoView, ObrigacaoView } from '../../models/obrigacoes/views';
@@ -157,6 +158,20 @@ export class ObrigacoesService extends ServiceBase {
             .get<
                 ApiResponse<ClienteObrigacoesMesView>
             >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ClienteObrigacoesStatsMesGet/${cadastroId}/${clienteId}`, { params })
+            .pipe(catchError(this.handleError));
+    }
+
+    auditoriaGet(mes: Date): Observable<ApiResponse<AuditoriaModel>> {
+        var cadastroId = this.vars.cadastro?.id;
+
+        let params = new HttpParams();
+
+        params.set('mes', this.dateUtilsService.GetDateIsoString(mes));
+
+        return this.http
+            .get<
+                ApiResponse<ClienteObrigacoesMesView>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Auditoria/AuditoriaGet/${cadastroId}`, { params })
             .pipe(catchError(this.handleError));
     }
 }
