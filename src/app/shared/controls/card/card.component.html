@@ -1,6 +1,6 @@
-<div class="ppanel flex h-full flex-col" [ngClass]="getClass()">
+<div class="flex h-full flex-col" [ngClass]="getClass()">
     @if (title || titleTemplate) {
-        <div class="card-header -m-5 mb-5 flex items-center px-3 py-4" [ngClass]="getHeaderClass()">
+        <div class="card-header flex items-center px-3 py-4" [ngClass]="getHeaderClass()">
             <div class="grow px-1 py-2">
                 @if (isString(title)) {
                     <div class="flex items-center gap-1">

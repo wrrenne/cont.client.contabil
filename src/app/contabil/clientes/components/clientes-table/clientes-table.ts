@@ -57,6 +57,9 @@ export class ClientesTableComponent extends PagingBase<ContabilClientePageItem> 
         private searchService: SearchService,
     ) {
         super(injector, clientesPagingService);
+
+        this.convertDatesObjects = true;
+
         this.vars.search = { showSearchBox: false };
 
         this.searchSubscription = this.searchService.onMessage().subscribe((x) => {
@@ -72,9 +75,9 @@ export class ClientesTableComponent extends PagingBase<ContabilClientePageItem> 
         if (this.searchSubscription) this.searchSubscription.unsubscribe();
     }
 
-    override ngOnInit(): void {
-        super.ngOnInit();
-    }
+    // override ngOnInit(): void {
+    //     super.ngOnInit();
+    // }
 
     modalClosed(pageItem: ContabilClientePageItem) {
         let index = this.datas.findIndex((x) => x.id == pageItem.id);

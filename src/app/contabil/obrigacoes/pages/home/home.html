@@ -89,26 +89,24 @@
 
     <nz-tabset [nzSelectedIndex]="tabIndex">
         <nz-tab nzTitle="Impostos">
-            <obrigacoes-table [parameters]="obrigacoesImpostosParameters"></obrigacoes-table>
+            <ng-template nz-tab>
+                <obrigacoes-table [parameters]="obrigacoesImpostosParameters"></obrigacoes-table>
+            </ng-template>
         </nz-tab>
         <nz-tab nzTitle="Obrigações Acessórias">
-            <obrigacoes-table [parameters]="obrigacoesAcessoriasParameters"></obrigacoes-table>
+            <ng-template nz-tab>
+                <obrigacoes-table [parameters]="obrigacoesAcessoriasParameters"></obrigacoes-table>
+            </ng-template>
         </nz-tab>
         <nz-tab nzTitle="Relatórios">
-            <obrigacoes-table [parameters]="obrigacoesRelatoriosParameters"></obrigacoes-table>
+            <ng-template nz-tab>
+                <obrigacoes-table [parameters]="obrigacoesRelatoriosParameters"></obrigacoes-table>
+            </ng-template>
         </nz-tab>
     </nz-tabset>
 
     <!--<obrigacoes-table [parameters]="obrigacoesParameters" (titleOnChange)="titleOnChange($event)" [link]="'/sistema/clientes/cliente'"></obrigacoes-table>-->
 </div>
-
-
-
-
-
-
-
-
 
 <!--<div class="flex h-full w-full">
     <navigation-app [showSidebar]="true" [sidebarWidth]="300">

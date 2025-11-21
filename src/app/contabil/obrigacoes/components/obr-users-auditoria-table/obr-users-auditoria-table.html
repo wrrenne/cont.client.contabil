@@ -1,0 +1,44 @@
+@if (users) {
+<table class="tabela">
+    <thead>
+        <tr>
+            <td>Colaborador</td>
+            <!-- <td class="hidden md:table-cell">Concluído</td> -->
+            <td class="hidden md:table-cell">No Prazo</td>
+            <td class="hidden md:table-cell">Fora do Prazo</td>
+            <td class="hidden md:table-cell">Atrasado</td>
+            <td class="hidden md:table-cell">Em Aberto</td>
+            <td class="hidden md:table-cell">Total</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of users; track item; let i = $index) {
+        <tr class="cursor-pointer">
+            <td>
+                <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.userId"> </avatar-title>
+            </td>
+            <!-- <td class="hidden md:table-cell">
+                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
+                <percentage-bar
+                    [done]="item.obrigacoesStat.concluidas"
+                    [total]="item.obrigacoesStat.total"
+                    [showPercentage]="false"
+                    [heightClass]="'h-2'"
+                ></percentage-bar>
+                }
+            </td> -->
+
+            <td class="hidden md:table-cell">
+                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasNoPrazo | dashIfEmpty}} }
+            </td>
+            <td class="hidden md:table-cell">
+                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasForaDoPrazo | dashIfEmpty}} }
+            </td>
+            <td class="hidden md:table-cell">@if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAtraso | dashIfEmpty}} }</td>
+            <td class="hidden md:table-cell">@if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAberto | dashIfEmpty}} }</td>
+            <td class="hidden md:table-cell">@if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.total}} }</td>
+        </tr>
+        }
+    </tbody>
+</table>
+}

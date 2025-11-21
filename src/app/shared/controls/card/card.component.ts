@@ -37,6 +37,7 @@ export class CardComponent {
     @Input() clienteId?: number;
     @Input() iconSize = '3rem';
     @Input() border = true;
+    @Input() contentPadding = true;
 
     @ContentChild('title', { static: true }) titleTemplate: TemplateRef<any>;
     @ContentChild('tools') tools: TemplateRef<any>;
@@ -52,10 +53,16 @@ export class CardComponent {
     }
 
     getClass(): string {
-        return [this.color ? this.htmlUtilsService.getLightBgColor(this.color) : '', this.border ? 'border border-color' : '!pl-2'].filter(Boolean).join(' ');
+        return [
+            this.color ? this.htmlUtilsService.getLightBgColor(this.color) : '',
+            this.border ? 'border border-color' : '!pl-2',
+            this.contentPadding ? 'p-5' : '',
+        ]
+            .filter(Boolean)
+            .join(' ');
     }
 
     getHeaderClass(): string {
-        return [this.headerBgColorClass, this.border ? 'border-b border-color' : ''].filter(Boolean).join(' ');
+        return [this.headerBgColorClass, this.border ? 'border-b border-color' : '', this.contentPadding ? '-m-5 mb-5' : ''].filter(Boolean).join(' ');
     }
 }

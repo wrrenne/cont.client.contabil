@@ -4,12 +4,12 @@ import { AuditoriaModel } from 'src/app/contabil/models/obrigacoes';
 import { CardComponent } from 'src/app/shared/controls/card/card.component';
 import { DateUtilsService } from 'src/app/shared/services';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
-import { ObrUsersTableComponent } from '../obr-users-table/obr-users-table';
+import { ObrUsersAuditoriaTableComponent } from '../obr-users-auditoria-table/obr-users-auditoria-table';
 
 @Component({
     selector: 'auditoria-cards',
     templateUrl: './auditoria-cards.html',
-    imports: [CommonModule, CardComponent, ObrUsersTableComponent],
+    imports: [CommonModule, CardComponent, ObrUsersAuditoriaTableComponent],
 })
 export class AuditoriaCardsComponent implements OnInit {
     auditoria: AuditoriaModel;

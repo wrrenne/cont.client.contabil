@@ -93,14 +93,6 @@ export class ObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> impl
 
         if (value.departamentoId) this.param.queryStrings.set('departamentoId', value.departamentoId);
 
-        //if (value?.tipos != undefined && value?.tipos != '') {
-        //    this.param.queryStrings.set('tipos', value.tipos)
-        //}
-
-        //if (value?.departamentoIds != undefined && value?.departamentoIds != '') {
-        //    this.param.queryStrings.set('departamentoIds', value.departamentoIds)
-        //}
-
         this.param.q = value?.searchText;
 
         this.refresh();
