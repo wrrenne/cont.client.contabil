@@ -1,14 +1,12 @@
 import { PageItemBase } from '../../../../shared/models';
 import { ObrigacoesStat } from '../../obrigacoes';
-import { ObrigacaoClientePeriodoUserPageItem } from '../../obrigacoes/pagings';
+import { ContUserPageItem } from '../../users/pageItems';
 
 export interface DepartamentoPageItem extends PageItemBase {
     cadastroId: number;
     nome: string;
     cor: string;
-    avatarFileName: string;
-    //users: UserDepartamentoPageItem[]
-    users: ObrigacaoClientePeriodoUserPageItem[];
+    users: ContUserPageItem[];
     obrigacoesCount?: number;
     obrigacoesStat?: ObrigacoesStat;
 }

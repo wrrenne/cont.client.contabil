@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
 import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { MonthYearPipe } from 'src/app/shared/pipes/monthYear.pipe';
@@ -13,7 +14,7 @@ import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
 import { TimelinesService } from '../../../../shared/timeline/services/timelines.service';
 import { Vars } from '../../../../shared/variables';
 import { TEsfera, TObrigacaoClientePeriodoPor, TObrigacaoStatus } from '../../../models/enums';
-import { ObrigacaoClientePeriodoPageItem, ObrigacaoClientePeriodoUserPageItem } from '../../../models/obrigacoes/pagings';
+import { ObrigacaoClientePeriodoPageItem } from '../../../models/obrigacoes/pagings';
 import { ObrigacaoView } from '../../../models/obrigacoes/views';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
 
@@ -237,11 +238,11 @@ export class ObrigacaoItem {
     //    this.blinkDirective.triggerBlink();
     //}
 
-    getUserIds(users: ObrigacaoClientePeriodoUserPageItem[]): number[] {
-        return users.map((x) => x.userId);
+    getUserIds(users: ContUserPageItem[]): number[] {
+        return users.map((x) => x.userId!);
     }
 
-    getUserNomes(users: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getUserNomes(users: ContUserPageItem[]): string[] {
         return users.map((x) => x.userNomeFormat);
     }
 
@@ -274,15 +275,15 @@ export class ObrigacaoItem {
         return result;
     }
 
-    getUsuariosId(users?: ObrigacaoClientePeriodoUserPageItem[]): number[] {
-        return users != undefined ? users?.map((x) => x.userId) : [];
+    getUsuariosId(users?: ContUserPageItem[]): number[] {
+        return users != undefined ? users?.map((x) => x.userId!) : [];
     }
 
-    getUsuariosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getUsuariosNome(users?: ContUserPageItem[]): string[] {
         return users != undefined ? users?.map((x) => x.userNomeFormat) : [];
     }
 
-    getDepartamentosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getDepartamentosNome(users?: ContUserPageItem[]): string[] {
         return users != undefined ? users?.map((x) => x.departamentoNome) : [];
     }
 }

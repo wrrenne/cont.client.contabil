@@ -8,7 +8,6 @@ export interface PerfilPageItem extends PageItemBase {
     descricao: string;
     perfilId?: number;
     cor: string;
-    avatarFileName: string;
     obrigacoesCount: number;
     clientesCount: number;
     obrigacoesStat?: ObrigacoesStat;

@@ -1,4 +1,4 @@
-import { ObrigacoesStat } from "../../obrigacoes";
+import { ObrigacoesStat } from '../../obrigacoes';
 
 export interface UserDepartamentoPageItem {
     userId?: number;
@@ -7,6 +7,4 @@ export interface UserDepartamentoPageItem {
     departamentoId?: number;
     departamentoNome: string;
     obrigacoesStat: ObrigacoesStat;
-    cor: string;
-    avatarFileName: string;
 }

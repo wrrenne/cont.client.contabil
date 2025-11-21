@@ -1,11 +1,11 @@
-import { AcessoriaAnualView, AcessoriaMensalView, ImpostoAnualView, ImpostoMensalView, RelatorioAnualView, RelatorioMensalView } from ".";
-import { ObrigacoesStat } from "..";
-import { ViewBase } from "../../../../shared/models";
-import { PostInfo } from "../../../../shared/timeline/models";
-import { CommentPageItem } from "../../../../shared/timeline/models/pagings";
-import { TEsfera, TMes, TObrigacaoTipo, TPeriodicidade, TPeriodoAnual, TPeriodoMensal } from "../../enums";
-import { TVencimentoPrazo, TVencimentoPrazoDia } from "../../types";
-import { ObrigacaoClientePeriodoUserPageItem } from "../pagings";
+import { AcessoriaAnualView, AcessoriaMensalView, ImpostoAnualView, ImpostoMensalView, RelatorioAnualView, RelatorioMensalView } from '.';
+import { ObrigacoesStat } from '..';
+import { ViewBase } from '../../../../shared/models';
+import { PostInfo } from '../../../../shared/timeline/models';
+import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
+import { TEsfera, TMes, TObrigacaoTipo, TPeriodicidade, TPeriodoAnual, TPeriodoMensal } from '../../enums';
+import { TVencimentoPrazo, TVencimentoPrazoDia } from '../../types';
+import { ContUserPageItem } from '../../users/pageItems';
 
 export interface ObrigacaoView extends ViewBase {
     cadastroId?: number;
@@ -41,9 +41,9 @@ export interface ObrigacaoView extends ViewBase {
     gedPastaNome: string;
     identificadorArquivo: string;
     comments: CommentPageItem[];
-    postInfo: PostInfo
-    users: ObrigacaoClientePeriodoUserPageItem[]
-    obrigacoesStat: ObrigacoesStat
+    postInfo: PostInfo;
+    users: ContUserPageItem[];
+    obrigacoesStat: ObrigacoesStat;
 
     vencimentoPrazo: TVencimentoPrazo;
     vencimentoPrazoDia: TVencimentoPrazoDia;

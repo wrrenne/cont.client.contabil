@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ObrigacoesComponent } from './obrigacoes.component';
+import { AuditoriaPage } from './pages/auditoria/auditoria';
 import { ClienteObrigacoesPage } from './pages/cliente-obrigacoes/cliente-obrigacoes';
 import { ObrigacoesHomePage } from './pages/home/home';
 import { ObrigacaoObrigacoesPage } from './pages/obrigacao-obrigacoes/obrigacao-obrigacoes';
@@ -49,6 +50,10 @@ export const obrigacoesRoutes: Routes = [
             {
                 path: 'perfis',
                 component: PerfisPage,
+            },
+            {
+                path: 'auditoria',
+                component: AuditoriaPage,
             },
         ],
     },

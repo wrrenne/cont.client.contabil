@@ -4,12 +4,12 @@ import { RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PagingBase } from '../../../../shared/models';
 import { CustomDateTimePipe } from '../../../../shared/pipes/customDateTime.pipe';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ContabilUserPageItem } from '../../../models/users/pageItems';
 import { UsersParameter } from '../../../models/users/parameters';
 import { ObrigacoesUtilsService } from '../../../obrigacoes/services/obrigacoesUtils.service';
 import { CadastroUsersService } from '../../services/pagings/cadastroUsersGet.service';
@@ -21,7 +21,7 @@ import { UserNovoModalComponent } from '../user-novo-modal/user-novo-modal';
     templateUrl: './users-table.html',
     imports: [CommonModule, RouterLink, CustomDateTimePipe, InfiniteScrollDirective, AvatarTitleComponent],
 })
-export class UsersTableComponent extends PagingBase<ContabilUserPageItem> implements OnInit {
+export class UsersTableComponent extends PagingBase<ContUserPageItem> implements OnInit {
     @Output() onClick = new EventEmitter<number>();
 
     searchSubscription: Subscription;
@@ -81,7 +81,7 @@ export class UsersTableComponent extends PagingBase<ContabilUserPageItem> implem
         });
     }
 
-    modalClosed(pageItem: ContabilUserPageItem) {
+    modalClosed(pageItem: ContUserPageItem) {
         this.datas.push(pageItem);
     }
 }

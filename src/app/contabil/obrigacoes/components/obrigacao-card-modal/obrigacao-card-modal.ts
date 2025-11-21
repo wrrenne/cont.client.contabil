@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Inject, Injector, Input, Output, ViewChild } from '@angular/core';
 import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarImageVerticalGroupComponent } from 'src/app/shared/controls/avatar-image-vertical-group/avatar-image-vertical-group';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { LabelIconComponent } from 'src/app/shared/controls/label-icon/label-icon';
@@ -18,7 +19,7 @@ import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
 import { TimelinesService } from '../../../../shared/timeline/services/timelines.service';
 import { Vars } from '../../../../shared/variables';
 import { TEsfera, TObrigacaoClientePeriodoPor, TObrigacaoStatus } from '../../../models/enums';
-import { ObrigacaoClientePeriodoPageItem, ObrigacaoClientePeriodoUserPageItem } from '../../../models/obrigacoes/pagings';
+import { ObrigacaoClientePeriodoPageItem } from '../../../models/obrigacoes/pagings';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
 import { ObrigacaoConclusaoModalComponent } from '../obrigacao-conclusao-modal/obrigacao-conclusao-modal';
 import { ObrigacaoItemArquivosComponent } from '../obrigacao-item-arquivos/obrigacao-item-arquivos';
@@ -262,15 +263,15 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
     //    this.blinkDirective.triggerBlink();
     //}
 
-    getUserIds(users: ObrigacaoClientePeriodoUserPageItem[]): number[] {
-        return users.map((x) => x.userId);
+    getUserIds(users: ContUserPageItem[]): number[] {
+        return users.map((x) => x.userId!);
     }
 
-    getUserNomes(users: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getUserNomes(users: ContUserPageItem[]): string[] {
         return users.map((x) => x.userNomeFormat);
     }
 
-    getUserDepartamentos(users: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getUserDepartamentos(users: ContUserPageItem[]): string[] {
         return users.map((x) => x.departamentoNome);
     }
 

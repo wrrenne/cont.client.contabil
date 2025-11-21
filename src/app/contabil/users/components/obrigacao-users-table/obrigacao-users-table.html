@@ -18,7 +18,7 @@
                     <avatar-title class="cursor-pointer" [title]="item.userNome" [subTitle]="item.userEmail" [userId]="item.userId"> </avatar-title>
                 </td>
                 <td class="hidden text-center md:table-cell">
-                    <span [class]="obrigacoesUtilsService.getDepartamentoColor(item.departamentoCor)">{{item.departamentoNome}}</span>
+                    <span [class]="obrigacoesUtilsService.getDepartamentoColor()">{{item.departamentoNome}}</span>
                 </td>
                 <td class="hidden text-center md:table-cell">
                     <span>{{item.obrigacoesStat?.total ?? '-'}}</span>

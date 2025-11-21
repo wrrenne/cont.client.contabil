@@ -2,12 +2,12 @@ import { Component, Injector, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { ObrigacoesUtilsService } from 'src/app/contabil/obrigacoes/services/obrigacoesUtils.service';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PagingBase } from '../../../../shared/models';
 import { Vars } from '../../../../shared/variables';
-import { ClienteUserPageItem } from '../../../models/users/pageItems';
 import { ObrigacaoUsersGetPagingService } from '../../services/pagings/obrigacaoUsersGet.service';
 import { ObrigacaoUserAssociarModalComponent } from '../obrigacao-user-associar-modal/obrigacao-user-associar-modal';
 
@@ -23,7 +23,7 @@ export interface ObrigacaoUsersParameter {
     templateUrl: './obrigacao-users-table.html',
     imports: [RouterLink, InfiniteScrollDirective, AvatarTitleComponent, ButtonDefaultComponent],
 })
-export class ObrigacaoUsersTableComponent extends PagingBase<ClienteUserPageItem> {
+export class ObrigacaoUsersTableComponent extends PagingBase<ContUserPageItem> {
     public obrigacaoId: number;
 
     private _parameters?: ObrigacaoUsersParameter;
@@ -80,7 +80,7 @@ export class ObrigacaoUsersTableComponent extends PagingBase<ClienteUserPageItem
         });
     }
 
-    modalClosed(pageItem: ClienteUserPageItem) {
+    modalClosed(pageItem: ContUserPageItem) {
         this.datas.push(pageItem);
     }
 }

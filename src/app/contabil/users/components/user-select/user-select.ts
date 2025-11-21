@@ -1,8 +1,8 @@
 import { Component, forwardRef, Injector, Input } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { InputBasePagingComponent } from '../../../../shared/controls/input-base-paging/input-base-paging';
-import { ContabilUserPageItem } from '../../../models/users/pageItems';
 import { SistemaUsersParameter } from '../../../models/users/parameters';
 import { ObrigacoesUtilsService } from '../../../obrigacoes/services/obrigacoesUtils.service';
 import { CadastroUsersService } from '../../services/pagings/cadastroUsersGet.service';
@@ -20,7 +20,7 @@ import { CadastroUsersService } from '../../services/pagings/cadastroUsersGet.se
         },
     ],
 })
-export class UserSelectComponent extends InputBasePagingComponent<ContabilUserPageItem> implements ControlValueAccessor {
+export class UserSelectComponent extends InputBasePagingComponent<ContUserPageItem> implements ControlValueAccessor {
     //override descriptionBase = { none: "", plural: "{0} usuários", singular: "1 usuário" }
 
     //@Input() form: any

@@ -2,11 +2,11 @@ import { Component, Injector, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PagingBase } from '../../../../shared/models';
 import { Vars } from '../../../../shared/variables';
-import { ClienteUserPageItem } from '../../../models/users/pageItems';
 import { ObrigacoesUtilsService } from '../../../obrigacoes/services/obrigacoesUtils.service';
 import { ClienteUsersGetPagingService } from '../../services/pagings/clienteUsersGet.service';
 import { ClienteUserAssociarModalComponent } from '../cliente-user-associar-modal/cliente-user-associar-modal';
@@ -22,9 +22,7 @@ export interface ClienteUsersParameter {
     templateUrl: './cliente-users-table.html',
     imports: [RouterLink, InfiniteScrollDirective, AvatarTitleComponent, ButtonDefaultComponent],
 })
-export class ClienteUsersTableComponent extends PagingBase<ClienteUserPageItem> {
-    // descriptionBase = { none: '', plural: '{0} usuários', singular: '1 usuário' };
-
+export class ClienteUsersTableComponent extends PagingBase<ContUserPageItem> {
     public clienteId: number;
 
     private _parameters?: ClienteUsersParameter;
@@ -82,7 +80,7 @@ export class ClienteUsersTableComponent extends PagingBase<ClienteUserPageItem> 
         });
     }
 
-    modalClosed(pageItem: ClienteUserPageItem) {
+    modalClosed(pageItem: ContUserPageItem) {
         this.datas.push(pageItem);
     }
 }

@@ -19,7 +19,7 @@
         @for (item of datas; track item; let i = $index) {
         <tr (click)="clientePerfilObrigacoesModalOpen(item.perfilItemId, item.descricao)">
             <td>
-                <avatar-title class="cursor-pointer" [title]="item.descricao" _avatarFileName="item.avatarFileName"></avatar-title>
+                <avatar-title class="cursor-pointer" [title]="item.descricao"></avatar-title>
             </td>
             <td class="hidden md:table-cell">
                 @if (item.obrigacoesStat) {

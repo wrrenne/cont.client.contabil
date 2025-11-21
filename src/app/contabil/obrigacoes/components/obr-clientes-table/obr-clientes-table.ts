@@ -5,7 +5,7 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ClientesPagingService } from 'src/app/contabil/clientes/services/pagings';
 import { PerfilTagComponent } from 'src/app/contabil/components/perfil-tag/perfil-tag';
-import { ObrigacaoClientePeriodoUserPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
+import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarIconEmptyComponent } from 'src/app/shared/controls/avatar-icon-empty/avatar-icon-empty';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
 import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
@@ -101,15 +101,15 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
         if (index == -1) this.datas.push(pageItem);
     }
 
-    getUsuariosId(users?: ObrigacaoClientePeriodoUserPageItem[]): number[] {
-        return users != undefined ? users?.map((x) => x.userId) : [];
+    getUsuariosId(users?: ContUserPageItem[]): number[] {
+        return users != undefined ? users?.map((x) => x.userId!) : [];
     }
 
-    getUsuariosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getUsuariosNome(users?: ContUserPageItem[]): string[] {
         return users != undefined ? users?.map((x) => x.userNomeFormat) : [];
     }
 
-    getDepartamentosNome(users?: ObrigacaoClientePeriodoUserPageItem[]): string[] {
+    getDepartamentosNome(users?: ContUserPageItem[]): string[] {
         return users != undefined ? users?.map((x) => x.departamentoNome) : [];
     }
 }

@@ -5,7 +5,7 @@ import { ApiResponse, ServiceBase } from '../../../shared/models';
 import { ApisUtilsService, DateUtilsService, TMicroService } from '../../../shared/services';
 import { Vars } from '../../../shared/variables';
 import { UserClienteInput, UserObrigacaoInput } from '../../models/users/inputs';
-import { ClienteUserPageItem, ObrigacaoUserPageItem } from '../../models/users/pageItems';
+import { ContUserPageItem } from '../../models/users/pageItems';
 import { ContabilUserView } from '../../models/users/views';
 
 @Injectable({
@@ -21,18 +21,18 @@ export class ContabilUsersService extends ServiceBase {
         super(injector);
     }
 
-    userClienteAdd(userCliente: UserClienteInput): Observable<ApiResponse<ClienteUserPageItem[]>> {
+    userClienteAdd(userCliente: UserClienteInput): Observable<ApiResponse<ContUserPageItem[]>> {
         return this.http
             .post<
-                ApiResponse<ClienteUserPageItem[]>
+                ApiResponse<ContUserPageItem[]>
             >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/Users/UserClienteAdd`, [userCliente], this.httpService.httpOptions)
             .pipe(catchError(this.handleError));
     }
 
-    userObrigacaoAdd(userObrigacao: UserObrigacaoInput): Observable<ApiResponse<ObrigacaoUserPageItem[]>> {
+    userObrigacaoAdd(userObrigacao: UserObrigacaoInput): Observable<ApiResponse<ContUserPageItem[]>> {
         return this.http
             .post<
-                ApiResponse<ObrigacaoUserPageItem[]>
+                ApiResponse<ContUserPageItem[]>
             >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Users/UserObrigacaoAdd`, [userObrigacao], this.httpService.httpOptions)
             .pipe(catchError(this.handleError));
     }

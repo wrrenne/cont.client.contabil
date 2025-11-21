@@ -1,8 +1,8 @@
-import { ObrigacaoClientePeriodoUserPageItem } from '.';
 import { ObrigacoesStat } from '..';
 import { PageItemBase } from '../../../../shared/models';
 import { TEsfera, TMes, TObrigacaoTipo, TPeriodicidade, TPeriodoAnual, TPeriodoMensal } from '../../enums';
 import { TVencimentoPrazo, TVencimentoPrazoDia } from '../../types';
+import { ContUserPageItem } from '../../users/pageItems';
 
 export interface ObrigacaoPageItem extends PageItemBase {
     descricao: string;
@@ -31,5 +31,5 @@ export interface ObrigacaoPageItem extends PageItemBase {
     gedPastaCodigo: string;
     gedPastaNome?: string;
     obrigacoesStat: ObrigacoesStat;
-    users: ObrigacaoClientePeriodoUserPageItem[];
+    users: ContUserPageItem[];
 }

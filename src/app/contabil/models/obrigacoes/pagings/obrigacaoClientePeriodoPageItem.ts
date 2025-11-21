@@ -4,7 +4,8 @@ import { PageItemBase } from '../../../../shared/models';
 import { PostInfo } from '../../../../shared/timeline/models';
 import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
 import { TEsfera, TObrigacaoStatus, TObrigacaoTipo, TPeriodicidade } from '../../enums';
-import { ClientePerfilPageItem, ObrigacaoClientePeriodoUserPageItem } from '../pagings';
+import { ContUserPageItem } from '../../users/pageItems';
+import { ClientePerfilPageItem } from '../pagings';
 
 export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     clienteId: number;
@@ -42,8 +43,7 @@ export interface ObrigacaoClientePeriodoPageItem extends PageItemBase {
     userConcluidoPorNomeFormat?: string;
     gedPastaCodigo: string;
     gedPastaNome: string;
-    users: ObrigacaoClientePeriodoUserPageItem[];
-    //users: UserPageItem[];
+    users: ContUserPageItem[];
     perfis: ClientePerfilPageItem[];
     comments: CommentPageItem[];
     arquivos: ArquivoPageItem[];

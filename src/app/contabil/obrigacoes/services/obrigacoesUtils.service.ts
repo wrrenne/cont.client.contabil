@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class ObrigacoesUtilsService {
-
     getPercentagemColor(percentage: number): string {
         if (percentage <= 25) {
             return 'text-red-500'; // Red (from-red-500)
@@ -30,7 +28,8 @@ export class ObrigacoesUtilsService {
         }
     }
 
-    getDepartamentoColor(cor: string) {
-        return 'text-' + cor + '-500'
+    getDepartamentoColor() {
+        //return 'text-' + cor + '-500';
+        return 'text-gray-500';
     }
 }

@@ -7,7 +7,6 @@ export interface ClientePerfilPageItem extends PageItemBase {
     clienteNome: string;
     clienteId?: number;
     cor: string;
-    avatarFileName: string;
     competenciaInicial: string;
     obrigacoesStat: ObrigacoesStat;
     regime: boolean;

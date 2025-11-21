@@ -1,10 +1,11 @@
-import { TSetor } from "../../../../shared/enums";
-import { ArquivoPageItem } from "../../../../shared/ged/models/pagings";
-import { ViewBase } from "../../../../shared/models";
-import { PostInfo } from "../../../../shared/timeline/models";
-import { CommentPageItem } from "../../../../shared/timeline/models/pagings";
-import { TEsfera, TObrigacaoStatus, TObrigacaoTipo, TPeriodicidade } from "../../enums";
-import { ClientePerfilPageItem, ObrigacaoClientePeriodoUserPageItem } from "../pagings";
+import { TSetor } from '../../../../shared/enums';
+import { ArquivoPageItem } from '../../../../shared/ged/models/pagings';
+import { ViewBase } from '../../../../shared/models';
+import { PostInfo } from '../../../../shared/timeline/models';
+import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
+import { TEsfera, TObrigacaoStatus, TObrigacaoTipo, TPeriodicidade } from '../../enums';
+import { ContUserPageItem } from '../../users/pageItems';
+import { ClientePerfilPageItem } from '../pagings';
 
 export interface ObrigacaoClientePeriodoView extends ViewBase {
     clienteId: number;
@@ -41,7 +42,7 @@ export interface ObrigacaoClientePeriodoView extends ViewBase {
     userConcluidoPorNomeFormat?: string;
     gedPastaCodigo: string;
     gedPastaNome: string;
-    users: ObrigacaoClientePeriodoUserPageItem[]
+    users: ContUserPageItem[];
     perfis: ClientePerfilPageItem[];
     comments: CommentPageItem[];
     arquivos: ArquivoPageItem[];
