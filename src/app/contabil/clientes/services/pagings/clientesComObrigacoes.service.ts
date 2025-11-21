@@ -2,13 +2,13 @@ import { Injectable, Injector } from '@angular/core';
 import { ServicePagingBase } from '../../../../shared/models';
 import { ApisUtilsService, TMicroService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ObrigacaoPageItem } from '../../../models/obrigacoes/pagings';
+import { ContabilClientePageItem } from '../../../models/clientes/pageItems/contabilClientePageItem';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ObrigacoesPagingService extends ServicePagingBase<ObrigacaoPageItem> {
+export class ClientesComObrigacoesPagingService extends ServicePagingBase<ContabilClientePageItem> {
     constructor(vars: Vars, injector: Injector, apisUtilsService: ApisUtilsService) {
-        super(`${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Obrigacoes/ObrigacoesPagingGet/${vars.cadastro?.id}`, injector);
+        super(`${apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/Clientes/ClientesComObrigacoesPagingGet/${vars.cadastro?.id}`, injector);
     }
 }

@@ -14,7 +14,7 @@ import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/p
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ObrigacoesPagingService } from '../../services/pagings/obrigacoes.service';
+import { ObrigacoesComObrigacoesPagingService } from '../../services/pagings/obrigacoesComObrigacoes.service';
 
 @Component({
     selector: 'obr-obrigacoes-table',
@@ -73,11 +73,11 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
 
     constructor(
         injector: Injector,
-        obrigacoesPagingService: ObrigacoesPagingService,
+        obrigacoesComObrigacoesPagingService: ObrigacoesComObrigacoesPagingService,
         private vars: Vars,
         private searchService: SearchService,
     ) {
-        super(injector, obrigacoesPagingService);
+        super(injector, obrigacoesComObrigacoesPagingService);
         this.vars.search = { showSearchBox: false };
 
         this.searchSubscription = this.searchService.onMessage().subscribe((x) => {

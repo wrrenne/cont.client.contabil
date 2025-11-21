@@ -3,7 +3,7 @@ import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angul
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
-import { ClientesPagingService } from 'src/app/contabil/clientes/services/pagings';
+import { ClientesComObrigacoesPagingService } from 'src/app/contabil/clientes/services/pagings';
 import { PerfilTagComponent } from 'src/app/contabil/components/perfil-tag/perfil-tag';
 import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarIconEmptyComponent } from 'src/app/shared/controls/avatar-icon-empty/avatar-icon-empty';
@@ -71,11 +71,11 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
 
     constructor(
         injector: Injector,
-        clientesPagingService: ClientesPagingService,
+        clientesComObrigacoesPagingService: ClientesComObrigacoesPagingService,
         private vars: Vars,
         private searchService: SearchService,
     ) {
-        super(injector, clientesPagingService);
+        super(injector, clientesComObrigacoesPagingService);
         this.vars.search = { showSearchBox: false };
 
         this.searchSubscription = this.searchService.onMessage().subscribe((x) => {

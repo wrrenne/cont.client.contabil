@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzSkeletonComponent } from 'ng-zorro-antd/skeleton';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
@@ -23,15 +22,7 @@ import { PerfilObrigacaoAssociarModalComponent } from '../perfil-obrigacao-assoc
 @Component({
     selector: 'obrigacoes-table',
     templateUrl: './obrigacoes-table.html',
-    imports: [
-        RouterLink,
-        InfiniteScrollDirective,
-        DropDownRadioComponent,
-        ButtonDefaultComponent,
-        AvatarTitleComponent,
-        NoDataPanelComponent,
-        NzSkeletonComponent,
-    ],
+    imports: [RouterLink, InfiniteScrollDirective, DropDownRadioComponent, ButtonDefaultComponent, AvatarTitleComponent, NoDataPanelComponent],
 })
 export class ObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
     @Input() link: string;

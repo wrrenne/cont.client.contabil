@@ -13,9 +13,12 @@
     <dropdown-radio [items]="setores" (valueChanged)="setorChanged($event)" [label]="'Filtro por Setor'" [btnClass]="'btn-gray'"></dropdown-radio>
 </div>
 
-@if (loading && param.pg <= 1) {
+<!-- @if (loading && param.pg <= 1) {
 <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 20 }"></nz-skeleton>
-} @else { @if (datas && datas.length == 0) {
+}  -->
+<!-- @else  -->
+<!-- {  -->
+@if (!loading) { @if (datas && datas.length == 0) {
 <no-data-panel [title]="'Nenuma obrigação'"></no-data-panel>
 } @else {
 
@@ -46,4 +49,5 @@
         </tbody>
     </table>
 </div>
-}}
+} }
+<!-- } -->
