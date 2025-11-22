@@ -1,5 +1,5 @@
 @if (users) {
-<table class="tabela">
+<table class="tabela tabela-border">
     <thead>
         <tr>
             <td>Colaborador</td>
@@ -15,7 +15,7 @@
         @for (item of users; track item; let i = $index) {
         <tr class="cursor-pointer">
             <td>
-                <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.userId"> </avatar-title>
+                <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.userId" [avatarSize]="'2.0rem'"> </avatar-title>
             </td>
             <!-- <td class="hidden md:table-cell">
                 @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {

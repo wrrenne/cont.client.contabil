@@ -1,9 +1,9 @@
 <div class="flex flex-col gap-3">
     @for (departamento of auditoria.departamentos; track departamento) {
-    <card [title]="departamento.departamentoNome" [contentPadding]="false" [border]="false" [headerBgColorClass]="'bg-gray-500'">
+    <panel-table [title]="departamento.departamentoNome">
         <ng-template #content>
             <obr-users-auditoria-table [users]="departamento.users"></obr-users-auditoria-table>
         </ng-template>
-    </card>
+    </panel-table>
     }
 </div>
