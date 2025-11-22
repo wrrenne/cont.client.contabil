@@ -100,6 +100,7 @@ export enum TObrigacaoStatus {
     ConcluidoNoPrazo = 1,
     ConcluidoForadoPrazo = 2,
     SemMovimento = 3,
+    EmAbertoAtrasado = 4,
 }
 
 export enum TMessageText {

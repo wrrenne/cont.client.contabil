@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { AuditoriaUser } from 'src/app/contabil/models/obrigacoes';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { DashIfEmptyPipe } from 'src/app/shared/pipes';
+import { environment } from 'src/environments/environment';
 import { Vars } from '../../../../shared/variables';
 
 @Component({
@@ -15,4 +16,8 @@ export class ObrUsersAuditoriaTableComponent {
     @Input() users: AuditoriaUser[];
 
     constructor(private vars: Vars) {}
+
+    get debug() {
+        return environment.debug;
+    }
 }

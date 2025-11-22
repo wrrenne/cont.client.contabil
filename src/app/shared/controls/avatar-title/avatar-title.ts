@@ -35,7 +35,7 @@ export class AvatarTitleComponent {
     @Input() avatarText?: string | number;
     @Input() avatarTextFontSize?: string;
     @Input() icon?: string;
-    @Input() debug?: string;
+    @Input() debug?: string | number;
     @Input() iconbgcolor: string = 'bg-avatar';
     @Input() iconClass: string;
     @Input() avatarSize?: string = '3.5rem';
