@@ -1,20 +1,30 @@
-@if (users) {
-<table class="tabela">
+@if (datas) {
+<table class="tabela tabela-border">
     <thead>
         <tr>
-            <td>Razão Social</td>
-            <td class="hidden md:table-cell">Concluído</td>
+            <td>Colaborador</td>
+            <!-- <td class="hidden md:table-cell">Concluído</td> -->
             <td class="hidden md:table-cell">No Prazo</td>
+            <td class="hidden md:table-cell">Fora do Prazo</td>
             <td class="hidden md:table-cell">Atrasado</td>
+            <td class="hidden md:table-cell">Em Aberto</td>
+            <td class="hidden md:table-cell">Concluído/Total</td>
         </tr>
     </thead>
     <tbody>
-        @for (item of users; track item; let i = $index) {
-        <tr class="cursor-pointer">
+        @for (item of datas; track item; let i = $index) {
+        <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/userobrigacoes', encryptionService.encrypt(item.userId)]">
             <td>
-                <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.userId"> </avatar-title>
+                <avatar-title
+                    class="cursor-pointer"
+                    [debug]="debug ? item.userId : undefined"
+                    [title]="item.userNome"
+                    [userId]="item.userId"
+                    [avatarSize]="'2.5rem'"
+                >
+                </avatar-title>
             </td>
-            <td class="hidden md:table-cell">
+            <!-- <td class="hidden md:table-cell">
                 @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
                 <percentage-bar
                     [done]="item.obrigacoesStat.concluidas"
@@ -23,18 +33,28 @@
                     [heightClass]="'h-2'"
                 ></percentage-bar>
                 }
-            </td>
+            </td> -->
 
             <td class="hidden md:table-cell">
-                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasNoPrazo > 0 ? item.obrigacoesStat.concluidasNoPrazo
-                : '-'}}
-                <!-- {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}}  -->
-                }
+                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasNoPrazo | dashIfEmpty}} }
             </td>
             <td class="hidden md:table-cell">
-                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAtraso > 0 ? item.obrigacoesStat.emAtraso : '-'}}
-                <!-- {{item.obrigacoesStat.concluidoNoPrazoPorcento > 0 ? item.obrigacoesStat.concluidoNoPrazoPorcento + '%' : ''}}  -->
+                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasForaDoPrazo | dashIfEmpty}} }
+            </td>
+            <td class="hidden md:table-cell">@if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAtraso | dashIfEmpty}} }</td>
+            <td class="hidden md:table-cell">@if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAberto | dashIfEmpty}} }</td>
+            <td class="hidden md:table-cell">
+                @if (item.obrigacoesStat && item.obrigacoesStat.total > 0 && item.obrigacoesStat.concluidas > -1) {
+                <percentage-bar
+                    class="block w-32 mt-2"
+                    [done]="item.obrigacoesStat.concluidas"
+                    [total]="item.obrigacoesStat.total"
+                    [showPercentage]="false"
+                    [heightClass]="'h-2'"
+                ></percentage-bar>
                 }
+
+                <!-- @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.total}} } -->
             </td>
         </tr>
         }

@@ -5,17 +5,18 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ClientesComObrigacoesPagingService } from 'src/app/contabil/clientes/services/pagings';
 import { PerfilTagComponent } from 'src/app/contabil/components/perfil-tag/perfil-tag';
+import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/parameters';
 import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarIconEmptyComponent } from 'src/app/shared/controls/avatar-icon-empty/avatar-icon-empty';
 import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-icon';
 import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
+import { DashIfEmptyPipe } from 'src/app/shared/pipes';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ContabilClientePageItem } from '../../../models/clientes/pageItems';
-import { ClientesParameter } from '../../../models/clientes/parameters';
 
 @Component({
     selector: 'obr-clientes-table',
@@ -31,6 +32,7 @@ import { ClientesParameter } from '../../../models/clientes/parameters';
         AvatarImageGroupComponent,
         AvatarIconEmptyComponent,
         PerfilTagComponent,
+        DashIfEmptyPipe,
     ],
 })
 export class ObrClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
@@ -39,11 +41,11 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
     @Output() onClick = new EventEmitter<number>();
     perfilItemId: number;
 
-    private _parameters?: ClientesParameter;
+    private _parameters?: ObrigacoesParameter;
     @Input() get parameters() {
         return this._parameters;
     }
-    set parameters(value: ClientesParameter | undefined) {
+    set parameters(value: ObrigacoesParameter | undefined) {
         this._parameters = value;
 
         this.param.routeStrings = [];
@@ -54,11 +56,11 @@ export class ObrClientesTableComponent extends PagingBase<ContabilClientePageIte
             this.param.queryStrings.set('pi', value.perfilItemId);
         }
 
-        if (value?.dataInicial) {
+        if (value?.mesInicial) {
             this.param.queryStrings.set('mesInicial', this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!));
         }
 
-        if (value?.dataFinal) {
+        if (value?.mesFinal) {
             this.param.queryStrings.set('mesFinal', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(this.vars.dataFinal!)));
         }
 

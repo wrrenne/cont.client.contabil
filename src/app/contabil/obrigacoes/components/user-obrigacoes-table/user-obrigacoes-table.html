@@ -2,6 +2,7 @@
 <div class="row" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
     <obrigacoes-control
         [parameter]="{obrigacoes: datas, tipo: TObrigacaoClientePeriodoPor.PorUser}"
+        [loading]="loading"
         (onObrigacaoUpdate)="obrigacaoUpdate($event)"
     ></obrigacoes-control>
 </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
@@ -11,6 +11,7 @@ import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-
 import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
+import { DashIfEmptyPipe } from 'src/app/shared/pipes';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
@@ -22,6 +23,7 @@ import { ObrigacoesComObrigacoesPagingService } from '../../services/pagings/obr
     standalone: true,
     imports: [
         CommonModule,
+        DashIfEmptyPipe,
         InfiniteScrollDirective,
         AvatarTitleComponent,
         RouterLink,
@@ -31,7 +33,7 @@ import { ObrigacoesComObrigacoesPagingService } from '../../services/pagings/obr
         AvatarImageGroupComponent,
     ],
 })
-export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
+export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> {
     searchSubscription: Subscription;
 
     @Output() onClick = new EventEmitter<number>();
@@ -93,9 +95,9 @@ export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> i
         if (this.searchSubscription) this.searchSubscription.unsubscribe();
     }
 
-    override ngOnInit(): void {
-        super.ngOnInit();
-    }
+    // override ngOnInit(): void {
+    //     super.ngOnInit();
+    // }
 
     modalClosed(pageItem: ObrigacaoPageItem) {
         let index = this.datas.findIndex((x) => x.id == pageItem.id);

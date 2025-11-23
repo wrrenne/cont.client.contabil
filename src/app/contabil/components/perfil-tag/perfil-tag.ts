@@ -18,11 +18,12 @@ export class PerfilTagComponent {
 
     getClass(): string {
         if (this.regime) {
-            return this.regime != 'Regime Indefinido' ? 'tag-amber' : 'tag-silver-outline';
+            return this.regime != 'Regime Indefinido' ? 'text-amber-700 dark:text-amber-500' : 'text-zinc-500';
+            // return this.regime != 'Regime Indefinido' ? 'tag-amber' : 'tag-silver-outline';
         }
 
-        return 'tag-silver-outline';
-        //return this.regime != undefined ? 'tag-silver-outline' : 'tag-silver';
+        return 'text-zinc-500';
+        // return 'tag-silver-outline';
     }
 
     // getClass(): string {

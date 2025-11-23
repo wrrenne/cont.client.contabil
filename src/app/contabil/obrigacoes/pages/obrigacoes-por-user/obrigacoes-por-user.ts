@@ -9,17 +9,17 @@ import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-titl
 import { PeriodoRefreshService } from 'src/app/shared/variables/periodo-refresh.service';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ObrClientesTableComponent } from '../../components/obr-clientes-table/obr-clientes-table';
+import { ObrUsersTableComponent } from '../../components/obr-users-table/obr-users-table';
 
 @Component({
-    selector: 'obrigacoes-por-cliente-page',
-    templateUrl: './obrigacoes-por-cliente.html',
+    selector: 'obrigacoes-por-user-page',
+    templateUrl: './obrigacoes-por-user.html',
     providers: [NzModalService],
-    imports: [PageTitleComponent, ObrClientesTableComponent, ButtonDefaultComponent],
+    imports: [PageTitleComponent, ButtonDefaultComponent, ObrUsersTableComponent],
     standalone: true,
 })
-export class ObrigacoesPorClientePage implements OnInit, OnDestroy {
-    clientesParameters: ObrigacoesParameter;
+export class ObrigacoesPorUserPage implements OnInit, OnDestroy {
+    usersParameters: ObrigacoesParameter;
 
     subTitle: string;
 
@@ -41,7 +41,7 @@ export class ObrigacoesPorClientePage implements OnInit, OnDestroy {
         }));
 
         urlParametrs.subscribe((r) => {
-            this.getData(this.encryptionService.decrypt(r['pi'], r['q']));
+            this.getData(this.encryptionService.decrypt(r['id'], r['q']));
         });
 
         this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
@@ -53,10 +53,10 @@ export class ObrigacoesPorClientePage implements OnInit, OnDestroy {
         if (this.periodoSubscription) this.periodoSubscription.unsubscribe();
     }
 
-    getData(perfilItemId?: number, searchText?: string) {
+    getData(userId?: number, searchText?: string) {
         this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
-        this.clientesParameters = { perfilItemId: perfilItemId, searchText: searchText, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! };
+        this.usersParameters = { departamentoId: 8, searchText: searchText, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! };
     }
 
     getEncryptedId(id: number): string {
