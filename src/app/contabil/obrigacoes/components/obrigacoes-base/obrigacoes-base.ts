@@ -34,20 +34,28 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
 
         this.param.routeStrings = [];
 
-        if (value.clienteId) this.param.routeStrings.push(value.clienteId.toString());
+        // if (value.clienteId) this.param.routeStrings.push(value.clienteId.toString());
 
-        if (value.obrigacaoId) this.param.routeStrings.push(value.obrigacaoId.toString());
+        // if (value.obrigacaoId) this.param.routeStrings.push(value.obrigacaoId.toString());
 
-        if (value.tipo) this.param.routeStrings.push(value.tipo.toString());
+        // if (value.tipo) this.param.routeStrings.push(value.tipo.toString());
 
         this.param.queryStrings.clear();
 
-        if (value?.perfilItemId != undefined) {
-            this.param.queryStrings.set('pi', value.perfilItemId);
-        }
-
         this.param.queryStrings.set('mesInicial', this.dateUtilsService.GetDateIsoString(value.mesInicial!));
         this.param.queryStrings.set('mesFinal', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(value.mesFinal!)));
+
+        if (value?.perfilItemId) this.param.queryStrings.set('pi', value.perfilItemId);
+
+        if (value.clienteId) this.param.queryStrings.set('clienteId', value.clienteId.toString());
+
+        if (value.obrigacaoId) this.param.queryStrings.set('obrigacaoId', value.obrigacaoId.toString());
+
+        if (value.userId) this.param.queryStrings.set('userId', value.userId.toString());
+
+        if (value.tipo) this.param.queryStrings.set('tipo', value.tipo.toString());
+
+        if (value.status) this.param.queryStrings.set('status', value.status.toString());
 
         this.param.q = value?.searchText;
 
@@ -64,26 +72,6 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
     constructor(injector: Injector, service: ServicePagingBase<ObrigacaoClientePeriodoPageItem>) {
         super(injector, service);
     }
-
-    //getData() {
-    //    this.obrigacoesService.clienteObrigacoesMesPagingGet(this.parameters?.clienteId!, this.parameters?.mes!).subscribe(x => {
-    //        //this.obrigacoesService.fillAvatares(x.obj.obrigacoesImpostos)
-    //        //this.obrigacoesService.fillAvatares(x.obj.obrigacoesAcessorias)
-    //        //this.obrigacoesService.fillAvatares(x.obj.obrigacoesRelatorios)
-
-    //        this.clienteObrigacoes = x.obj
-    //    })
-    //}
-
-    //fillAvatares(obrigacoes: ObrigacaoClientePeriodoView[]) {
-    //    obrigacoes
-    //        .forEach(y => {
-    //            y.avatares = []
-    //            y.responsaveis.forEach(z => y.avatares
-    //                .push({ refId: z.userId, nome: z.userNome })
-    //            )
-    //        })
-    //}
 
     getObrigacaoTipoCor(tipo: TObrigacaoTipo): string {
         switch (tipo) {

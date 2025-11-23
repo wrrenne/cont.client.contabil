@@ -9,6 +9,7 @@ import { ObrigacoesPorClientePage } from './pages/obrigacoes-por-cliente/obrigac
 import { ObrigacoesPorObrigacaoPage } from './pages/obrigacoes-por-obrigacao/obrigacoes-por-obrigacao';
 import { PerfilPage } from './pages/perfil/perfil';
 import { PerfisPage } from './pages/perfis/perfis';
+import { UserObrigacoesPage } from './pages/user-obrigacoes/user-obrigacoes';
 
 export const obrigacoesRoutes: Routes = [
     {
@@ -30,6 +31,10 @@ export const obrigacoesRoutes: Routes = [
             {
                 path: 'obrigacaoobrigacoes/:id',
                 component: ObrigacaoObrigacoesPage,
+            },
+            {
+                path: 'userobrigacoes/:id',
+                component: UserObrigacoesPage,
             },
             {
                 path: 'obrigacao/:id',

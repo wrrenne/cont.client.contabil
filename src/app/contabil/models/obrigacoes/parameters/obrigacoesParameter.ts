@@ -1,4 +1,4 @@
-import { TObrigacaoTipo } from '../../enums';
+import { TObrigacaoStatus, TObrigacaoTipo } from '../../enums';
 
 export class ObrigacoesParameter {
     clienteId?: number;
@@ -11,4 +11,5 @@ export class ObrigacoesParameter {
     mesFinal?: Date;
     departamentoId?: number;
     tipo?: TObrigacaoTipo;
+    status?: TObrigacaoStatus;
 }

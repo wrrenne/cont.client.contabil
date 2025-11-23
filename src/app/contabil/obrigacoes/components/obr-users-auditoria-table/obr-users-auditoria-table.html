@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         @for (item of users; track item; let i = $index) {
-        <tr class="cursor-pointer">
+        <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/userobrigacoes', encryptionService.encrypt(item.userId)]">
             <td>
                 <avatar-title
                     class="cursor-pointer"

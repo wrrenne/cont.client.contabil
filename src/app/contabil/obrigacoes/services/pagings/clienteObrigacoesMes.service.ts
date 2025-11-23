@@ -9,9 +9,6 @@ import { ObrigacaoClientePeriodoPageItem } from '../../../models/obrigacoes/pagi
 })
 export class ClienteObrigacoesMesPagingService extends ServicePagingBase<ObrigacaoClientePeriodoPageItem> {
     constructor(injector: Injector, apisUtilsService: ApisUtilsService, vars: Vars) {
-        super(
-            `${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ClienteObrigacoesMesPagingGet/${vars.cadastro?.id!}`,
-            injector,
-        );
+        super(`${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesMes/ClienteObrigacoesMesPagingGet/${vars.cadastro?.id!}`, injector);
     }
 }

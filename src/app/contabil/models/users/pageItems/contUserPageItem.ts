@@ -7,7 +7,7 @@ export interface ContUserPageItem extends PageItemBase {
     userNome: string;
     userNomeFormat: string;
     userEmail: string;
-    departamentoId: number;
+    departamentoId?: number;
     departamentoNome: string;
     departamentoCor: string;
     mesInicial?: Date;
