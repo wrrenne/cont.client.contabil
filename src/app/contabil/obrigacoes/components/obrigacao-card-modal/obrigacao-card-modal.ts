@@ -12,7 +12,7 @@ import { TimelineCommentsComponent } from 'src/app/shared/timeline/controls/time
 import { NewCommentParameter } from 'src/app/shared/timeline/models/parameters';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
-import { EncryptionService } from '../../../../shared/services';
+import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { TimelineCommentButton, TimelineCommentFormComponent } from '../../../../shared/timeline/controls/timeline-comment-form/timeline-comment-form';
 import { TPostTipo } from '../../../../shared/timeline/enums';
 import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
@@ -65,6 +65,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
         private vars: Vars,
         private timelinesService: TimelinesService,
         private obrigacoesService: ObrigacoesService,
+        private dateUtilsService: DateUtilsService,
         injector: Injector,
         @Inject(NZ_MODAL_DATA) data: ObrigacaoCardModalData,
     ) {
@@ -253,6 +254,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
 
     getData(obrigacaoClientePeriodoId: number) {
         this.obrigacoesService.obrigacaoClientePeriodoPageItemGet(obrigacaoClientePeriodoId).subscribe((x) => {
+            x.obj = this.dateUtilsService.convertDates(x.obj);
             this.title = x.obj.clienteNomeFormat;
             this.subTitle = x.obj.tipoDescricaoFormat + (this.isDebug ? ' - #' + x.obj.id?.toString() : '');
             this.obrigacao = x.obj;

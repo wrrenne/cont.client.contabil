@@ -140,13 +140,13 @@ export class GedService extends ServiceBase {
         formData.append('clienteId', clienteId.toString());
         formData.append('obrigacaoClientePeriodoId', obrigacaoClientePeriodoId.toString());
 
-        if (vencimento) formData.append('obrigacaoVencimento', this.dateUtilsService.GetIsoString(vencimento));
+        if (vencimento) formData.append('obrigacaoVencimento', this.dateUtilsService.GetDateIsoString(vencimento));
 
-        if (competenciaMes) formData.append('competenciaMes', this.dateUtilsService.GetIsoString(competenciaMes));
+        if (competenciaMes) formData.append('competenciaMes', this.dateUtilsService.GetDateIsoString(competenciaMes));
 
         if (competenciaAno) formData.append('competenciaAno', competenciaAno.toString());
 
-        formData.append('obrigacaoPrazo', this.dateUtilsService.GetIsoString(prazo));
+        formData.append('obrigacaoPrazo', this.dateUtilsService.GetDateIsoString(prazo));
         formData.append('commentId', commentId.toString());
         formData.append('userId', (<number>this.vars.user?.id).toString());
         formData.append('fileType', (<number>TFileType.Obrigacao).toString());

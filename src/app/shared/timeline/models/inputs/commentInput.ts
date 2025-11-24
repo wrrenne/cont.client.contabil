@@ -1,4 +1,4 @@
-import { InputBase, SistemaTipo } from "../../../models";
+import { InputBase, SistemaTipo } from '../../../models';
 
 export interface CommentInput extends InputBase {
     cadastroId: number;
@@ -15,12 +15,12 @@ export interface CommentInput extends InputBase {
     funcionarioId?: number;
     isFuncionario?: boolean;
 
-    postClienteId?: number;
-    //clienteId?: number;
+    // postClienteId?: number;
+    clienteId?: number;
     isCliente?: boolean;
 
-    //obrigacaoId?: number;
-    postObrigacaoId?: number;
+    obrigacaoId?: number;
+    // postObrigacaoId?: number;
 
     sistemaId: SistemaTipo;
 

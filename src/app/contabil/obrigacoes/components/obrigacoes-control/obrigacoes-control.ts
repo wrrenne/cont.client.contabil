@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzSkeletonComponent } from 'ng-zorro-antd/skeleton';
 import { Subject, Subscription } from 'rxjs';
 import { TObrigacaoClientePeriodoPor } from 'src/app/contabil/models/enums';
 import { ObrigacaoClientePeriodoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
@@ -19,7 +18,7 @@ export interface ObrigacoesControlParameter {
 @Component({
     selector: 'obrigacoes-control',
     standalone: true,
-    imports: [NzSkeletonComponent, NoDataPanelComponent, ObrigacaoItem, NgIcon],
+    imports: [NoDataPanelComponent, ObrigacaoItem, NgIcon],
     templateUrl: './obrigacoes-control.html',
 })
 export class ObrigacoesControl implements OnDestroy {

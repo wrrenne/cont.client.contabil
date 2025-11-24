@@ -31,10 +31,10 @@ export const contabilRoutes: Routes = [
                 path: 'obrigacoes',
                 loadChildren: () => import('./obrigacoes/obrigacoes.routes').then((m) => m.obrigacoesRoutes),
             },
-            // {
-            //     path: 'ged',
-            //     loadChildren: () => import('./ged/ged.module').then((m) => m.ContabilGedModule),
-            // },
+            {
+                path: 'ged',
+                loadChildren: () => import('./ged/ged.routes').then((m) => m.gedRoutes),
+            },
             {
                 path: 'departamentos',
                 loadChildren: () => import('./departamentos/departamentos.routes').then((m) => m.departamentosRoutes),

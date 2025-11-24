@@ -1,37 +1,6 @@
 <modal-base [title]="title" [subTitle]="subTitle">
     <ng-template #modalContent>
         @if (obrigacao) {
-        <!-- <div class="card-header flex gap-3 p-2.5 text-sm font-medium sm:p-4">
-                <div class="flex w-full items-center space-x-3">
-                    @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorObrigacao || obrigacaoClientePeriodoPor ==
-                    TObrigacaoClientePeriodoPor.PorUser) {
-                    <avatar-title [clienteId]="obrigacao.clienteId" [title]="obrigacao.clienteNomeFormat" [subTitle]="'Lucro Presumido'"></avatar-title>
-                    } @if (obrigacaoClientePeriodoPor == TObrigacaoClientePeriodoPor.PorCliente) {
-                    <avatar-image-esfera
-                        [parameter]="{esfera: obrigacao.esfera, uf: obrigacao.uf, municipioCodigo: obrigacao.municipioCodigo}"
-                        class="flex items-center justify-center"
-                    ></avatar-image-esfera>
-                    <div class="grow">
-                        <div class="mb-0 flex w-full">
-                            <h5 class="grow">{{obrigacao.obrigacaoDescricao}}</h5>
-                        </div>
-                        <div class="flex gap-3">
-                            @if (obrigacao.tipoDescricao) {
-                            <span class="text-xs">{{obrigacao.tipoDescricao}} {{obrigacao.periodicidadeDescricao}}</span>
-                            } @if (obrigacao.esferaDescricao) {
-                            <span class="text-xs">{{obrigacao.esferaDescricao}}</span>
-                            } @if (obrigacao.departamentoNome) {
-                            <span class="text-xs">{{obrigacao.departamentoNome}}</span>
-                            }
-                        </div>
-                    </div>
-                    }
-                </div>
-                @if (isDebug) {
-                <span class="debug">#{{obrigacao.id}}</span>
-                }
-            </div> -->
-
         <div class="flex flex-col gap-3">
             <!--#region Descrição-->
             <label-text [text]="obrigacao.obrigacaoDescricao" [label]="'Obrigação'"></label-text>
@@ -105,7 +74,7 @@
             <div>
                 <text-separator [text]="'Responsáveis'"></text-separator>
                 <avatar-image-vertical-group
-                    [circle]="false"
+                    [circle]="true"
                     [size]="'2.8rem'"
                     [usersId]="getUserIds(obrigacao.users)"
                     [nomes]="getUserNomes(obrigacao.users)"
