@@ -1,8 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentRef, OnDestroy, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { combineLatest, Subscription } from 'rxjs';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { Subscription } from 'rxjs';
 import { PeriodoSelecaoModalComponent } from 'src/app/contabil/components/periodo-selecao-modal/periodo-selecao-modal';
+import { DepartamentosService } from 'src/app/contabil/departamentos/services/departamentos.service';
+import { DepartamentoListingItem } from 'src/app/contabil/models/contabil/listings/departamentoListingItem';
 import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/parameters';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
@@ -11,14 +14,30 @@ import { DateUtilsService, EncryptionService } from '../../../../shared/services
 import { Vars } from '../../../../shared/variables';
 import { ObrUsersTableComponent } from '../../components/obr-users-table/obr-users-table';
 
+interface DynamicTab {
+    title: string;
+    component: Type<any>;
+    inputValue: any;
+    instanceRef?: ComponentRef<any>;
+}
+
 @Component({
     selector: 'obrigacoes-por-user-page',
     templateUrl: './obrigacoes-por-user.html',
     providers: [NzModalService],
-    imports: [PageTitleComponent, ButtonDefaultComponent, ObrUsersTableComponent],
+    imports: [PageTitleComponent, ButtonDefaultComponent, NzTabsModule],
     standalone: true,
 })
-export class ObrigacoesPorUserPage implements OnInit, OnDestroy {
+export class ObrigacoesPorUserPage implements OnDestroy {
+    departamentos: DepartamentoListingItem[];
+
+    tabs: DynamicTab[] = [];
+
+    @ViewChild('tabContent', { read: ViewContainerRef, static: false })
+    tabContent!: ViewContainerRef;
+
+    selectedIndex = 0;
+
     usersParameters: ObrigacoesParameter;
 
     subTitle: string;
@@ -32,31 +51,48 @@ export class ObrigacoesPorUserPage implements OnInit, OnDestroy {
         private modalService: NzModalService,
         private dateUtilsService: DateUtilsService,
         private periodoRefreshService: PeriodoRefreshService,
+        private departamentosService: DepartamentosService,
     ) {}
 
-    ngOnInit(): void {
-        const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
-            ...params,
-            ...queryParams,
-        }));
+    ngAfterViewInit(): void {
+        this.getData();
 
-        urlParametrs.subscribe((r) => {
-            this.getData(this.encryptionService.decrypt(r['id'], r['q']));
-        });
+        // this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
+        //     this.getData();
+        // });
 
-        this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
-            this.getData();
-        });
+        // const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
+        //     ...params,
+        //     ...queryParams,
+        // }));
+
+        // urlParametrs.subscribe((r) => {
+        //     this.getData(this.encryptionService.decrypt(r['id'], r['q']));
+        // });
+
+        // this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
+        //     this.getData();
+        // });
     }
 
     ngOnDestroy() {
         if (this.periodoSubscription) this.periodoSubscription.unsubscribe();
     }
 
-    getData(userId?: number, searchText?: string) {
-        this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
+    getData(searchText?: string) {
+        this.departamentosService.departamentosListingItemsByCadastroIdGet().subscribe((x) => {
+            this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
-        this.usersParameters = { departamentoId: 8, searchText: searchText, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! };
+            this.departamentos = x.obj;
+            this.departamentos.map((x) => {
+                if (x.contabil || x.pessoal || x.fiscal) {
+                    this.addTab(x.nome, { departamentoId: x.id, searchText: searchText, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! });
+                }
+            });
+            this.selectTab(0);
+        });
+
+        // this.usersParameters = { departamentoId: 8, searchText: searchText, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! };
     }
 
     getEncryptedId(id: number): string {
@@ -70,5 +106,31 @@ export class ObrigacoesPorUserPage implements OnInit, OnDestroy {
             nzClosable: false,
             nzFooter: null,
         });
+    }
+
+    addTab(tabName: string, value: ObrigacoesParameter) {
+        this.tabs.push({
+            title: tabName,
+            component: ObrUsersTableComponent,
+            inputValue: value,
+        });
+    }
+
+    selectTab(i: number) {
+        if (!this.tabContent) return;
+
+        this.selectedIndex = i;
+
+        const tab = this.tabs[i];
+
+        this.tabContent.clear();
+
+        const compRef = this.tabContent.createComponent(tab.component);
+
+        // Pass the Input()
+        compRef.instance.parameters = tab.inputValue;
+        console.log(tab.inputValue);
+        // Optional: save reference
+        tab.instanceRef = compRef;
     }
 }

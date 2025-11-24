@@ -75,10 +75,6 @@ export class ClientesTableComponent extends PagingBase<ContabilClientePageItem> 
         if (this.searchSubscription) this.searchSubscription.unsubscribe();
     }
 
-    // override ngOnInit(): void {
-    //     super.ngOnInit();
-    // }
-
     modalClosed(pageItem: ContabilClientePageItem) {
         let index = this.datas.findIndex((x) => x.id == pageItem.id);
 

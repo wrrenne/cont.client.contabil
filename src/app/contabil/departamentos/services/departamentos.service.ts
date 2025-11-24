@@ -5,36 +5,51 @@ import { ApiResponse, ServiceBase } from '../../../shared/models';
 import { ApisUtilsService, DateUtilsService, TMicroService } from '../../../shared/services';
 import { Vars } from '../../../shared/variables';
 import { UserDepartamentoInput } from '../../models/contabil/inputs';
+import { DepartamentoListingItem } from '../../models/contabil/listings/departamentoListingItem';
 import { UserDepartamentoPageItem } from '../../models/contabil/pageItems';
 import { DepartamentoView } from '../../models/contabil/views';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class DepartamentosService extends ServiceBase {
-
     constructor(
         public injector: Injector,
         private vars: Vars,
         private apisUtilsService: ApisUtilsService,
-        private dateUtilsService: DateUtilsService
+        private dateUtilsService: DateUtilsService,
     ) {
-        super(injector)
+        super(injector);
     }
 
     departamentoGet(id: number): Observable<ApiResponse<DepartamentoView>> {
-        const cadastroId = this.vars.cadastro?.id
+        const cadastroId = this.vars.cadastro?.id;
 
-        return this.http.get<ApiResponse<DepartamentoView>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/departamentos/DepartamentoGet/${cadastroId}/${id}`)
-            .pipe(catchError(this.handleError))
+        return this.http
+            .get<
+                ApiResponse<DepartamentoView>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/departamentos/DepartamentoGet/${cadastroId}/${id}`)
+            .pipe(catchError(this.handleError));
+    }
+
+    departamentosListingItemsByCadastroIdGet(): Observable<ApiResponse<DepartamentoListingItem[]>> {
+        const cadastroId = this.vars.cadastro?.id;
+
+        return this.http
+            .get<
+                ApiResponse<DepartamentoListingItem[]>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/departamentos/departamentosListingItemsByCadastroIdGet/${cadastroId}`)
+            .pipe(catchError(this.handleError));
     }
 
     departamentoAddUser(input: UserDepartamentoInput): Observable<ApiResponse<UserDepartamentoPageItem[]>> {
-        const cadastroId = this.vars.cadastro?.id
+        const cadastroId = this.vars.cadastro?.id;
 
-        return this.http.post<ApiResponse<UserDepartamentoPageItem[]>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/departamentos/DepartamentoAddUser/${cadastroId}`, [input], this.httpService.httpOptions)
-            .pipe(catchError(this.handleError))
+        return this.http
+            .post<
+                ApiResponse<UserDepartamentoPageItem[]>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/departamentos/DepartamentoAddUser/${cadastroId}`, [input], this.httpService.httpOptions)
+            .pipe(catchError(this.handleError));
     }
 
     //ClienteCreateOrUpdate(cliente: ClienteInput): Observable<ApiResponse<number[]>> {

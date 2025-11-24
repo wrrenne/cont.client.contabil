@@ -30,7 +30,7 @@ export class TimelinesService extends ServiceBase {
         if (postTipo) params = params.set('postTipo', postTipo);
 
         return this.http
-            .post<ApiResponse<number[]>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTimeline, true)}/Post/CommentCreate`, [input], {
+            .post<ApiResponse<number[]>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTimeline)}/Post/CommentCreate`, [input], {
                 ...this.httpService.httpOptions,
                 params,
             })

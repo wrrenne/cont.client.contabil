@@ -15,7 +15,8 @@ import { EncryptionService } from '../../../../shared/services';
     imports: [PageTitleComponent, FoldersTableComponent],
 })
 export class GedHomePage {
-    pastaRoot = '1.01.08';
+    // pastaRoot = '1.01.08';
+    pastaRoot?: string = undefined;
     pastaRootId?: number;
     subTitle: string;
 
@@ -39,22 +40,32 @@ export class GedHomePage {
             var id = this.encryptionService.decrypt(r['id']);
             //var id = this.encryptionService.get(r['id'])
 
-            this.gedService.pastaIdGet(this.pastaRoot).subscribe((x) => {
-                if (x.obj) {
-                    this.pastaRootId = x.obj;
-                    this.getPastasArquivos(id ?? x.obj!);
-                }
-            });
+            if (this.pastaRoot) {
+                this.gedService.pastaIdGet(this.pastaRoot).subscribe((x) => {
+                    if (x.obj) {
+                        this.pastaRootId = x.obj;
+                        this.getPastasArquivos(id ?? x.obj!);
+                    }
+                });
+            } else {
+                this.gedService.pastaCadastroIdGet(this.vars.cadastro?.id!).subscribe((x) => {
+                    if (x.obj) {
+                        this.pastaRootId = x.obj;
+                        console.log(this.pastaRootId);
+                        this.getPastasArquivos(this.pastaRootId);
+                    }
+                });
+            }
         });
     }
 
-    //getCadastroPasta() {
+    // getCadastroPasta() {
     //    this.gedService.pastaCadastroIdGet(this.vars.cadastro?.id!).subscribe(x => {
     //        this.pastasParameters = {
     //            id: x.obj!,
     //        }
     //    })
-    //}
+    // }
 
     // filesFolderChange(e: any) {
     //     this.getPastaProperties(e);
