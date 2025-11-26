@@ -9,7 +9,7 @@ import { PagingBase } from '../../../models';
 import { FormatBytesPipe } from '../../../pipes/formatBytes.pipe';
 import { FormatSingularPluralPipe } from '../../../pipes/singular-plural.pipe';
 import { Vars } from '../../../variables';
-import { ArquivoPageItem, PastaOuArquivoPageItem } from '../../models/pagings';
+import { ArquivoPageItem, PastaOuArquivoPageItem, PastaPageItem } from '../../models/pagings';
 import { PastasParameter } from '../../models/parameters';
 import { PastasOuArquivosPagingService } from '../../services/pagings/pastasOuArquivos.service';
 import { GedFileViewerModalComponent } from '../ged-file-viewer-modal/ged-file-viewer-modal';
@@ -23,6 +23,8 @@ import { GedFileViewerModalComponent } from '../ged-file-viewer-modal/ged-file-v
 })
 export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
     searchSubscription: Subscription;
+
+    cadastroId!: number;
 
     @Input() codigoAsId = true;
     @Output() onPastaClick = new EventEmitter<number>();
@@ -39,6 +41,11 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         //const userId = this.vars.user?.id!;
         const pastaId = value.pastaId ?? value.rootId!;
         this.param.routeStrings = [];
+
+        this.cadastroId = value.cadastroId ?? this.vars.cadastro?.id!;
+
+        this.param.routeStrings.push(this.cadastroId.toString());
+
         // this.param.routeStrings.push(pastaId.toString());
         //this.param.routeStrings.push(userId.toString());
 
@@ -77,25 +84,19 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         if (this.searchSubscription) this.searchSubscription.unsubscribe();
     }
 
-    // getColor(nivel: number): string {
-    //     switch (nivel) {
-    //         case 1:
-    //             return 'text-blue-500';
-    //         case 2:
-    //             return 'text-yellow-500';
-    //         default:
-    //             return '';
-    //     }
-    // }
-
     compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1 === o2 : o1 === o2);
 
-    pastaClick(pastaId: number) {
-        this.onPastaClick.emit(pastaId);
+    pastaClick(pasta: PastaPageItem) {
+        console.log(pasta);
+
+        this.onPastaClick.emit(pasta.id);
 
         var par = this.parameters;
 
-        par!.pastaId = pastaId;
+        par!.pastaId = pasta.id;
+        par!.cadastroId = pasta.cadastroId;
+
+        if (pasta.root) par!.rootId = pasta.id;
 
         this.parameters = par;
     }

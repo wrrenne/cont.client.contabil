@@ -14,7 +14,7 @@
             @for (item of datas; track item; let i = $index) { @if (item.pasta) {
             <tr
                 [ngClass]="{'cursor-pointer': item.pasta && !item.pasta.openFolder}"
-                (click)="item.pasta && !item.pasta.openFolder ? pastaClick(item.id!) : null"
+                (click)="item.pasta && !item.pasta.openFolder ? pastaClick(item.pasta) : null"
             >
                 <td colspan="5">
                     <div class="flex gap-3 items-center" [style.padding-left]="((item.pasta.nivel) * 20).toString() + 'px'">

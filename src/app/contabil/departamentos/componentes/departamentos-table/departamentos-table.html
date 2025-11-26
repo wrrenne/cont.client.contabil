@@ -14,7 +14,7 @@
                     <avatar-title
                         class="cursor-pointer"
                         [title]="item.nome"
-                        subTitle="{{item.users.length | singularPlural : '1 usuário' : 'usuários': 'Nenhuma obrigação'}}"
+                        subTitle="{{item.users.length | singularPlural : '1 usuário' : 'usuários': 'Nenhum usuário'}}"
                         [routerLink]="['/sistema/departamentos/departamento', encryptionService.encrypt(item.id)]"
                     >
                     </avatar-title>
