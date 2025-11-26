@@ -1,5 +1,7 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIcon } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
@@ -19,12 +21,13 @@ import { GedFileViewerModalComponent } from '../ged-file-viewer-modal/ged-file-v
     standalone: true,
     templateUrl: './folders-table.html',
     providers: [NzModalService],
-    imports: [CommonModule, InfiniteScrollDirective, FileServerImageComponent, FormatSingularPluralPipe, FormatBytesPipe, DatePipe],
+    imports: [FormsModule, CommonModule, InfiniteScrollDirective, NgIcon, FileServerImageComponent, FormatSingularPluralPipe, FormatBytesPipe, DatePipe],
 })
 export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
     searchSubscription: Subscription;
 
     cadastroId!: number;
+    cadastroNome: string;
 
     @Input() codigoAsId = true;
     @Output() onPastaClick = new EventEmitter<number>();
@@ -49,10 +52,14 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         // this.param.routeStrings.push(pastaId.toString());
         //this.param.routeStrings.push(userId.toString());
 
-        this.param.queryStrings.clear;
+        this.param.queryStrings.clear();
 
-        if (value.rootId != null) this.param.queryStrings.set('rootId', value.rootId);
-        if (value.pastaId != null) this.param.queryStrings.set('pastaId', value.pastaId);
+        if (value.rootId != undefined) {
+            this.param.queryStrings.set('rootId', value.rootId);
+        }
+        if (value.pastaId != undefined) {
+            this.param.queryStrings.set('pastaId', value.pastaId);
+        }
 
         this.param.q = value?.searchText;
         this.refresh();
@@ -74,7 +81,10 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         this.searchSubscription = this.searchService.onMessage().subscribe((x) => {
             var p = this.parameters;
             p!.searchText = x;
+            p!.pastaId = undefined;
+            p!.rootId = undefined;
             this.parameters = p;
+            console.log(['this.parameters', this.param]);
         });
     }
 
@@ -96,7 +106,10 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         par!.pastaId = pasta.id;
         par!.cadastroId = pasta.cadastroId;
 
-        if (pasta.root) par!.rootId = pasta.id;
+        if (pasta.cadastroId) {
+            par!.rootId = pasta.id;
+            par!.searchText = undefined;
+        }
 
         this.parameters = par;
     }
@@ -114,5 +127,16 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
                 extension: item.extensao,
             },
         });
+    }
+
+    private _query: string;
+    get query() {
+        return this._query;
+    }
+    set query(value: string) {
+        this._query = value;
+        var p = this.parameters;
+        p!.searchText = value;
+        this.parameters = p;
     }
 }

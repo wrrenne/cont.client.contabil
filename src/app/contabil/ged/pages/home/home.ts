@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { combineLatest } from 'rxjs';
 import { VarsApp } from 'src/app/contabil/variables';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { ClienteFolderSelectModalComponent } from 'src/app/shared/ged/controls/cliente-folder-select-modal/cliente-folder-select-modal';
 import { FoldersTableComponent } from 'src/app/shared/ged/controls/folders-table/folders-table';
+import { PastaOuArquivoPageItem } from 'src/app/shared/ged/models/pagings';
 import { PageTitleComponent } from '../../../../shared/controls/page-title/page-title';
 import { PastasParameter } from '../../../../shared/ged/models/parameters';
 import { GedService } from '../../../../shared/ged/services/ged.service';
@@ -12,7 +16,8 @@ import { EncryptionService } from '../../../../shared/services';
     selector: 'ged-home',
     templateUrl: './home.html',
     standalone: true,
-    imports: [PageTitleComponent, FoldersTableComponent],
+    providers: [NzModalService],
+    imports: [PageTitleComponent, FoldersTableComponent, ButtonDefaultComponent],
 })
 export class GedHomePage {
     // pastaRoot = '1.01.08';
@@ -28,6 +33,7 @@ export class GedHomePage {
         private vars: VarsApp,
         private encryptionService: EncryptionService,
         private gedService: GedService,
+        private modalService: NzModalService,
     ) {}
 
     ngOnInit(): void {
@@ -41,7 +47,7 @@ export class GedHomePage {
             //var id = this.encryptionService.get(r['id'])
 
             if (this.pastaRoot) {
-                this.gedService.pastaIdGet(this.pastaRoot).subscribe((x) => {
+                this.gedService.pastaIdGet(this.vars.cadastro?.id!, this.pastaRoot).subscribe((x) => {
                     if (x.obj) {
                         this.pastaRootId = x.obj;
                         this.getPastasArquivos(id ?? x.obj!);
@@ -51,7 +57,6 @@ export class GedHomePage {
                 this.gedService.pastaCadastroIdGet(this.vars.cadastro?.id!).subscribe((x) => {
                     if (x.obj) {
                         this.pastaRootId = x.obj;
-                        console.log(this.pastaRootId);
                         this.getPastasArquivos(this.pastaRootId);
                     }
                 });
@@ -77,6 +82,7 @@ export class GedHomePage {
 
         this.pastasParameters = {
             cadastroId: cadastroId,
+            pastaId: pastaId,
             //id: pastaId,
             userId: userId,
             rootId: this.pastaRootId,
@@ -101,6 +107,25 @@ export class GedHomePage {
 
     titleOnChange(e: string) {
         this.subTitle = e;
+    }
+
+    clienteChangeClick() {
+        const modal = this.modalService.create({
+            nzContent: ClienteFolderSelectModalComponent,
+            nzWidth: 460,
+            nzClosable: false,
+            nzFooter: null,
+        });
+
+        modal.afterClose.subscribe((r) => {
+            if (r) {
+                this.clienteChanged(r);
+            }
+        });
+    }
+
+    clienteChanged(pasta: PastaOuArquivoPageItem) {
+        console.log(pasta);
     }
 
     // pastaClick(e: any) {

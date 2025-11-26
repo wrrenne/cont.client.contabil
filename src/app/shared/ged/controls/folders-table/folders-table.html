@@ -1,3 +1,19 @@
+{{cadastroId}} - {{parameters?.pastaId}}
+
+<div class="relative mb-4">
+    <input
+        type="text"
+        [(ngModel)]="query"
+        name="query"
+        [placeholder]="'Pesquisar pasta'"
+        class="form-input w-full rounded-none bg-gray-100 px-9 sm:bg-transparent sm:pr-4"
+        disableautocomplete
+    />
+    <button type="button" class="absolute inset-0 h-9 w-9 appearance-none ltr:right-auto rtl:left-auto peer-focus:text-primary">
+        <ng-icon [name]="'iconoirSearch'" [ngClass]="'mx-auto text-[17px] relative top-[3px] text-black/50 dark:text-white/50'"></ng-icon>
+    </button>
+</div>
+
 @if (datas) {
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
     <table class="tabela">

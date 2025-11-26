@@ -1,0 +1,19 @@
+@if (datas) {
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <tbody>
+            @for (item of datas; track item; let i = $index) {
+            <tr class="cursor-pointer" (click)="folderClick(item)">
+                <td>
+                    <file-server-image
+                        [src]="item.pasta.openFolder ? '/images/icons/folder_open_128.png' : (item.pasta.topFolder ? '/images/icons/folders_128.png' : '/images/icons/folder_128.png')"
+                        [width]="32"
+                        class="cursor-pointer"
+                    ></file-server-image>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

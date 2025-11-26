@@ -1,4 +1,5 @@
 <page-title [title]="'Gerenciador Eletrônico de Documentos'" [subTitle]="subTitle"></page-title>
 <folders-table [parameters]="pastasParameters" (titleOnChange)="titleOnChange($event)" _onPastaClick="pastaClick($event)"></folders-table>
+<button-default (click)="clienteChangeClick()">Empresa</button-default>
 <!-- <ged-plano-contas class="w-[400px]" [parameters]="pastasParameters" (onClick)="planoContasClick($event)"></ged-plano-contas> -->
 <!-- <files-table [parameters]="filesParameters"></files-table> -->

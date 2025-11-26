@@ -48,9 +48,8 @@ export class GedService extends ServiceBase {
             .pipe(catchError(this.handleError));
     }
 
-    pastaIdGet(codigo: string): Observable<ApiResponse<number | undefined>> {
-        //const cadastroId = this.vars.cadastroOuContabilidadeIdGet()
-        const cadastroId = this.vars.cadastro?.id;
+    pastaIdGet(cadastroId: number, codigo: string): Observable<ApiResponse<number | undefined>> {
+        // const cadastroId = this.vars.cadastro?.id;
 
         return this.http
             .get<ApiResponse<number | undefined>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/PastaIdGet/${cadastroId}/${codigo}`)
