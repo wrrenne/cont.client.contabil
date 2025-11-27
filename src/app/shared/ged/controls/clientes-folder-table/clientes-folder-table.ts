@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIcon } from '@ng-icons/core';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { FileServerImageComponent } from 'src/app/shared/controls/file-server-image/file-server-image';
 import { PagingBase } from '../../../models';
@@ -12,7 +14,7 @@ import { PastasOuArquivosPagingService } from '../../services/pagings/pastasOuAr
     selector: 'clientes-folder-table',
     templateUrl: './clientes-folder-table.html',
     standalone: true,
-    imports: [CommonModule, InfiniteScrollDirective, FileServerImageComponent],
+    imports: [CommonModule, FormsModule, InfiniteScrollDirective, NgIcon, FileServerImageComponent],
 })
 export class ClientesFolderTableComponent extends PagingBase<PastaOuArquivoPageItem> implements OnInit {
     @Output() onClick = new EventEmitter<PastaOuArquivoPageItem>();
@@ -49,5 +51,16 @@ export class ClientesFolderTableComponent extends PagingBase<PastaOuArquivoPageI
 
     folderClick(e: any) {
         this.onClick.emit(e);
+    }
+
+    private _query: string;
+    get query() {
+        return this._query;
+    }
+    set query(value: string) {
+        this._query = value;
+        var p = this.parameters;
+        p!.searchText = value;
+        this.parameters = p;
     }
 }

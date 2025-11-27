@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgIconComponent } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { combineLatest } from 'rxjs';
 import { VarsApp } from 'src/app/contabil/variables';
-import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { ClienteFolderSelectModalComponent } from 'src/app/shared/ged/controls/cliente-folder-select-modal/cliente-folder-select-modal';
+import { FolderCadastroComponent } from 'src/app/shared/ged/controls/folder-cadastro/folder-cadastro';
 import { FoldersTableComponent } from 'src/app/shared/ged/controls/folders-table/folders-table';
 import { PastaOuArquivoPageItem } from 'src/app/shared/ged/models/pagings';
 import { PageTitleComponent } from '../../../../shared/controls/page-title/page-title';
@@ -17,7 +19,7 @@ import { EncryptionService } from '../../../../shared/services';
     templateUrl: './home.html',
     standalone: true,
     providers: [NzModalService],
-    imports: [PageTitleComponent, FoldersTableComponent, ButtonDefaultComponent],
+    imports: [PageTitleComponent, FoldersTableComponent, FolderCadastroComponent, NgIconComponent, NgxTippyModule],
 })
 export class GedHomePage {
     // pastaRoot = '1.01.08';
@@ -83,7 +85,6 @@ export class GedHomePage {
         this.pastasParameters = {
             cadastroId: cadastroId,
             pastaId: pastaId,
-            //id: pastaId,
             userId: userId,
             rootId: this.pastaRootId,
         };
@@ -125,7 +126,11 @@ export class GedHomePage {
     }
 
     clienteChanged(pasta: PastaOuArquivoPageItem) {
-        console.log(pasta);
+        this.pastasParameters = {
+            cadastroId: pasta.pasta.cadastroId,
+            rootId: pasta.id,
+            pastaId: pasta.id,
+        };
     }
 
     // pastaClick(e: any) {

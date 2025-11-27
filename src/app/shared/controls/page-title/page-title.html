@@ -1,17 +1,31 @@
 <div class="justify-content-between flex items-end" [ngClass]="{'content-title': !noBorder, 'content-title-no-border': noBorder}">
-  <div class="grow">
-    <h4 class="font-sans font-semibold">{{title}}</h4>
-    @if (subTitle) {
-      <h6 class="text-dark/70 text-[13px] dark:text-white/40">{{subTitle}}</h6>
-    }
-    @if (subTitle2) {
-      <h6 class="text-dark/70 text-[13px] dark:text-white/40">{{subTitle2}}</h6>
-    }
-  </div>
-  @if (buttonsHeader) {
-    <div class="flex gap-2">
-      <ng-container [ngTemplateOutlet]="buttonsHeader">
-      </ng-container>
+    <div class="grow">
+        <h4 class="font-sans font-semibold">{{title}}</h4>
+
+        @if (subTitle || subTitleTemplate) {
+        <!-- #region SubTitle String -->
+        @if (isString(subTitle)) {
+        <h6 class="text-dark/70 text-[13px] dark:text-white/40">{{subTitle}}</h6>
+        }
+        <!-- #endregion -->
+
+        <!-- #region SubTitle Template -->
+        @if (!isString(subTitle) && subTitleTemplate) {
+        <ng-container [ngTemplateOutlet]="subTitleTemplate"></ng-container>
+        }
+        <!-- #endregion -->
+
+        }
+
+        <!-- #region SubTitle2 -->
+        @if (subTitle2) {
+        <h6 class="text-dark/70 text-[13px] dark:text-white/40">{{subTitle2}}</h6>
+        }
+        <!-- #endregion -->
     </div>
-  }
+    @if (buttonsHeader) {
+    <div class="flex gap-2">
+        <ng-container [ngTemplateOutlet]="buttonsHeader"> </ng-container>
+    </div>
+    }
 </div>

@@ -1,5 +1,5 @@
 <modal-base [title]="'Selecione a pasta do cliente'">
     <ng-template #modalContent>
-        <clientes-folder-table (onClick)="folderClick($event)" [autoLoad]="true"></clientes-folder-table>
+        <clientes-folder-table (onClick)="folderClick($event)" [autoLoad]="true" [parameters]="{}"></clientes-folder-table>
     </ng-template>
 </modal-base>

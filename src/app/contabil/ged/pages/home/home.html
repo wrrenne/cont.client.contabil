@@ -1,5 +1,10 @@
-<page-title [title]="'Gerenciador Eletrônico de Documentos'" [subTitle]="subTitle"></page-title>
+<page-title [title]="'Gerenciador Eletrônico de Documentos'"></page-title>
+@if (pastasParameters) {
+<div class="flex gap-2 items-center mb-5">
+    <folder-cadastro [cadastroId]="pastasParameters.cadastroId!"></folder-cadastro>
+    <ng-icon [name]="'ionSync'" class="text-lg cursor-pointer" (click)="clienteChangeClick()" [ngxTippy]="'Alterar pasta de cliente'"></ng-icon>
+</div>
 <folders-table [parameters]="pastasParameters" (titleOnChange)="titleOnChange($event)" _onPastaClick="pastaClick($event)"></folders-table>
-<button-default (click)="clienteChangeClick()">Empresa</button-default>
+}
 <!-- <ged-plano-contas class="w-[400px]" [parameters]="pastasParameters" (onClick)="planoContasClick($event)"></ged-plano-contas> -->
 <!-- <files-table [parameters]="filesParameters"></files-table> -->

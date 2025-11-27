@@ -1,7 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIcon } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
@@ -21,7 +20,7 @@ import { GedFileViewerModalComponent } from '../ged-file-viewer-modal/ged-file-v
     standalone: true,
     templateUrl: './folders-table.html',
     providers: [NzModalService],
-    imports: [FormsModule, CommonModule, InfiniteScrollDirective, NgIcon, FileServerImageComponent, FormatSingularPluralPipe, FormatBytesPipe, DatePipe],
+    imports: [FormsModule, CommonModule, InfiniteScrollDirective, FileServerImageComponent, FormatSingularPluralPipe, FormatBytesPipe, DatePipe],
 })
 export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
     searchSubscription: Subscription;
@@ -45,9 +44,9 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         const pastaId = value.pastaId ?? value.rootId!;
         this.param.routeStrings = [];
 
-        this.cadastroId = value.cadastroId ?? this.vars.cadastro?.id!;
+        //this.cadastroId = value.cadastroId ?? this.vars.cadastro?.id!;
 
-        this.param.routeStrings.push(this.cadastroId.toString());
+        //this.param.routeStrings.push(this.cadastroId.toString());
 
         // this.param.routeStrings.push(pastaId.toString());
         //this.param.routeStrings.push(userId.toString());
@@ -104,12 +103,12 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         var par = this.parameters;
 
         par!.pastaId = pasta.id;
-        par!.cadastroId = pasta.cadastroId;
+        //par!.cadastroId = pasta.cadastroId;
 
-        if (pasta.cadastroId) {
-            par!.rootId = pasta.id;
-            par!.searchText = undefined;
-        }
+        // if (pasta.cadastroId) {
+        //     par!.rootId = pasta.id;
+        //     par!.searchText = undefined;
+        // }
 
         this.parameters = par;
     }
@@ -129,14 +128,14 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         });
     }
 
-    private _query: string;
-    get query() {
-        return this._query;
-    }
-    set query(value: string) {
-        this._query = value;
-        var p = this.parameters;
-        p!.searchText = value;
-        this.parameters = p;
-    }
+    // private _query: string;
+    // get query() {
+    //     return this._query;
+    // }
+    // set query(value: string) {
+    //     this._query = value;
+    //     var p = this.parameters;
+    //     p!.searchText = value;
+    //     this.parameters = p;
+    // }
 }

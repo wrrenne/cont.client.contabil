@@ -1,6 +1,4 @@
-{{cadastroId}} - {{parameters?.pastaId}}
-
-<div class="relative mb-4">
+<!-- <div class="relative mb-4">
     <input
         type="text"
         [(ngModel)]="query"
@@ -12,7 +10,7 @@
     <button type="button" class="absolute inset-0 h-9 w-9 appearance-none ltr:right-auto rtl:left-auto peer-focus:text-primary">
         <ng-icon [name]="'iconoirSearch'" [ngClass]="'mx-auto text-[17px] relative top-[3px] text-black/50 dark:text-white/50'"></ng-icon>
     </button>
-</div>
+</div> -->
 
 @if (datas) {
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
@@ -35,7 +33,7 @@
                 <td colspan="5">
                     <div class="flex gap-3 items-center" [style.padding-left]="((item.pasta.nivel) * 20).toString() + 'px'">
                         <file-server-image
-                            [src]="item.pasta.openFolder ? '/images/icons/folder_open_128.png' : (item.pasta.topFolder ? '/images/icons/folders_128.png' : '/images/icons/folder_128.png')"
+                            [src]="item.pasta.openFolder ? '/images/icons/folder_opened_128.png' : '/images/icons/folder_closed_128.png'"
                             [width]="32"
                             class="cursor-pointer"
                         ></file-server-image>

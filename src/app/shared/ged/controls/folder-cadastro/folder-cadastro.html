@@ -1,0 +1,11 @@
+@if (pasta) {
+<div class="flex gap-3 items-center">
+    <file-server-image [src]="'/images/icons/folder_user_128.png'" [width]="32" class="cursor-pointer"></file-server-image>
+    <div>
+        <div class="font-bold text-black dark:text-white">{{pasta.nome}}</div>
+        @if (pasta.pastasCount) {
+        <div class="text-muted text-xs">{{pasta.pastasCount | singularPlural : '1 pasta' : 'pastas': ''}}</div>
+        }
+    </div>
+</div>
+}

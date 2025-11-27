@@ -9,6 +9,6 @@ import { ClientesFolderTableComponent } from '../clientes-folder-table/clientes-
 })
 export class ClienteFolderSelectModalComponent extends ModalBaseComponent {
     folderClick(e: any) {
-        console.log(e);
+        this.closeModal(e);
     }
 }

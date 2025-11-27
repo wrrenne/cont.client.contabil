@@ -260,6 +260,7 @@ import {
     ionShieldHalfOutline,
     ionStarOutline,
     ionStarSharp,
+    ionSync,
     ionTimeOutline,
     ionTimeSharp,
     ionTimerOutline,
@@ -593,4 +594,5 @@ export const appIcons = {
     ionFolderOpenSharp,
     matBlock,
     ionPause,
+    ionSync,
 };
