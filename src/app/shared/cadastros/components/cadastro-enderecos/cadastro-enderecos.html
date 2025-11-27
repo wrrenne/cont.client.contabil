@@ -1,14 +1,18 @@
 <card [title]="'Endereços'">
-  <ng-template #content>
-    <div>
-      <div class="mb-4 flex flex-col gap-4">
-        @for (endereco of enderecos; track endereco) {
-          <cadastro-endereco [endereco]="endereco" [cadastroId]="cadastroId" [cadastroNome]="cadastroNome" (onUpdate)="enderecoUpdate($event)" cardBorder></cadastro-endereco>
-        }
-      </div>
-    </div>
-    <button type="button" class="button btn-primary w-full md:w-36" (click)="enderecoNovoModal()">
-      Novo Endereço
-    </button>
-  </ng-template>
+    <ng-template #content>
+        <div>
+            <div class="mb-4 flex flex-col gap-4">
+                @for (endereco of enderecos; track endereco) {
+                <cadastro-endereco
+                    [endereco]="endereco"
+                    [cadastroId]="cadastroId"
+                    [cadastroNome]="cadastroNome"
+                    (onUpdate)="enderecoUpdate($event)"
+                    cardBorder
+                ></cadastro-endereco>
+                }
+            </div>
+        </div>
+        <button type="button" class="button btn-blue w-full md:w-36" (click)="enderecoNovoModal()">Novo Endereço</button>
+    </ng-template>
 </card>

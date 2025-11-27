@@ -16,7 +16,6 @@ export class UsersService<T> extends ServiceBase {
     }
 
     userPainelGet(userId: number, cadastroId: number): Observable<ApiResponse<T>> {
-        console.log([userId, cadastroId]);
         return this.http
             .get<ApiResponse<T>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabil)}/Users/UserPainelGet/${userId}/${cadastroId}`)
             .pipe(catchError(this.handleError));

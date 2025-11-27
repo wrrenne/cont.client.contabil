@@ -2,14 +2,18 @@
     <ng-template #modalContent>
         <form [formGroup]="firstFormGroup" class="flex flex-col gap-y-6">
             <user-select [form]="firstFormGroup" [formControlName]="'userId'" [label]="'Colaborador'" [autoLoad]="true"></user-select>
-            <input-textarea-ex [formControlName]="'comentario'" [form]="firstFormGroup" [label]="'Comentário'" [placeholderText]="'Comentário opcional'"></input-textarea-ex>
+            <input-textarea-ex
+                [formControlName]="'comentario'"
+                [form]="firstFormGroup"
+                [label]="'Comentário'"
+                [placeholderText]="'Comentário opcional'"
+            ></input-textarea-ex>
             <div class="flex-none">
-                <button class="button btn-primary" (click)="submitClick()" [disabled]="!firstFormGroup.valid || !firstFormGroup.dirty">Salvar</button>
+                <button class="button btn-blue" (click)="submitClick()" [disabled]="!firstFormGroup.valid || !firstFormGroup.dirty">Salvar</button>
             </div>
         </form>
     </ng-template>
 </modal-base>
-
 
 <!--<div class="h-[500px] w-full p-4" *ngIf="firstFormGroup">
     <div class="mb-8 flex items-center">

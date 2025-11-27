@@ -1,21 +1,19 @@
 <modal-base [title]="'Adicionar Produto'">
-  <ng-template #modalContent>
-    <div class="flex flex-col gap-y-4">
-      @if (firstFormGroup) {
-        <div>
-          <form [formGroup]="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
-            <div class="flex w-full flex-col gap-4">
-              <sistema-select [formControlName]="'sistemaId'" class="w-full" [form]="firstFormGroup" [label]="'Produto'"></sistema-select>
-              @if (isPonto) {
-                <pacote-ponto-select [formControlName]="'pacoteId'" class="w-full" [form]="firstFormGroup" [label]="'Plano'"></pacote-ponto-select>
-              }
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            @if (firstFormGroup) {
+            <div>
+                <form [formGroup]="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                    <div class="flex w-full flex-col gap-4">
+                        <sistema-select [formControlName]="'sistemaId'" class="w-full" [form]="firstFormGroup" [label]="'Produto'"></sistema-select>
+                        @if (isPonto) {
+                        <pacote-ponto-select [formControlName]="'pacoteId'" class="w-full" [form]="firstFormGroup" [label]="'Plano'"></pacote-ponto-select>
+                        }
+                    </div>
+                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-blue text-white" (click)="submit()">Adicionar</button>
+                </form>
             </div>
-            <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary text-white" (click)="submit()">
-              Adicionar
-            </button>
-          </form>
+            }
         </div>
-      }
-    </div>
-  </ng-template>
+    </ng-template>
 </modal-base>

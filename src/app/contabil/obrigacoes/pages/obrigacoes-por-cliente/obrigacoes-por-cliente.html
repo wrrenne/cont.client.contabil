@@ -1,9 +1,8 @@
 <div class="content-site">
     <page-title [title]="'Obrigações por Cliente'" [subTitle]="subTitle"> </page-title>
 
-    <div class="flex gap-4 mb-4">
-        <button-default [text]="'Alterar Período'" [bgClass]="'btn-primary'" (click)="PeriodoSelecaoModalOpen()"></button-default>
-        <button-default [text]="'Filtro'" [bgClass]="'btn-primary'"></button-default>
+    <div class="mb-4">
+        <month-buttons [givenMonth]="mesAtual" (onMonthClicked)="monthClicked($event)"></month-buttons>
     </div>
 
     <obr-clientes-table [parameters]="clientesParameters"></obr-clientes-table>

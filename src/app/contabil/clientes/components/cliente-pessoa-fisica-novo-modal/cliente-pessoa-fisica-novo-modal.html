@@ -6,7 +6,7 @@
                 <input-ex [formControlName]="'cpf'" class="w-full" [form]="firstFormGroup" [label]="'Cpf'"></input-ex>
 
                 <div class="flex gap-4">
-                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-1/2 text-white" (click)="localizarCpfClick()">
+                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-blue w-1/2 text-white" (click)="localizarCpfClick()">
                         <ng-icon [name]="'iconoirSearch'" class="mr-2 text-base"></ng-icon>
                         Localizar CPF
                     </button>
@@ -32,7 +32,7 @@
                     [label]="'Comentário'"
                 ></input-textarea-ex>
 
-                <button type="button" [disabled]="!secondFormGroup.valid" class="button btn-primary mt-3 w-full text-white md:w-36" (click)="submit()">
+                <button type="button" [disabled]="!secondFormGroup.valid" class="button btn-blue mt-3 w-full text-white md:w-36" (click)="submit()">
                     Salvar
                 </button>
             </form>

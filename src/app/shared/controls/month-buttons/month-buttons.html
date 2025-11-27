@@ -1,7 +1,11 @@
-﻿<div class="flex flex-wrap gap-1">
-  @for (month of months; track month) {
-    <button class="button" [ngClass]="{'btn-primary': isGivenMonth(month.date), 'btn-gray': !isGivenMonth(month.date)}" (click)="onMonthClick(month.date)">
-      {{ month.label }}
-    </button>
-  }
+﻿<div class="flex flex-wrap gap-3">
+    @for (month of months; track month) {
+    <button-default
+        [text]="month.label"
+        [bgClass]="month.date.getTime() < givenMonth.getTime() ? 'btn-red' : 'btn-blue'"
+        (click)="onMonthClick(month.date)"
+        [iconPosition]="month.date.getTime() < givenMonth.getTime() ? 'left' : 'right'"
+        [icon]="month.date.getTime() < givenMonth.getTime() ? 'iconoirFastArrowLeft' : 'iconoirFastArrowRight'"
+    ></button-default>
+    }
 </div>

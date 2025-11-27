@@ -19,7 +19,7 @@
             <div class="flex gap-2">
                 <button
                     class="button"
-                    [ngClass]="{'btn-primary' : status == TSolicitacaoStatus.Aceito, 'btn-danger' : status == TSolicitacaoStatus.Rejeitado}"
+                    [ngClass]="{'btn-blue' : status == TSolicitacaoStatus.Aceito, 'btn-danger' : status == TSolicitacaoStatus.Rejeitado}"
                     [disabled]="!formComment.valid"
                     (click)="solicitacaoRespostaSubmit()"
                 >

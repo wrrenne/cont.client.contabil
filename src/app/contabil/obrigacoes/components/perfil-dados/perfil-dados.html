@@ -6,7 +6,7 @@
                     <input-ex class="w-full md:w-144" [formControlName]="'descricao'" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
 
                     @if (firstFormGroup.dirty) {
-                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary w-full md:w-36" (click)="submitFirstFormGroup()">
+                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-blue w-full md:w-36" (click)="submitFirstFormGroup()">
                         <ng-icon [name]="'iconoirFloppyDisk'" class="mr-2 text-xl"></ng-icon>
                         Salvar
                     </button>

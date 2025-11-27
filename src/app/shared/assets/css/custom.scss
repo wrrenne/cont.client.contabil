@@ -160,6 +160,10 @@ ul {
     @apply bg-blue-200 dark:bg-blue-900 border-none text-black dark:text-white;
 }
 
+.btn-red {
+    @apply bg-red-200 dark:bg-red-900 border-none text-black dark:text-white;
+}
+
 .btn-border {
     @apply shadow-none border rounded-none;
 }

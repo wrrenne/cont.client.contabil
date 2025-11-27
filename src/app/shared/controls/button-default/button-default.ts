@@ -22,4 +22,7 @@ export class ButtonDefaultComponent {
     @Input() border = true;
     @Input() size: 'xs' | 'md' | 'lg' = 'md';
     @Input() tooltip?: string;
+
+    /** NEW INPUT */
+    @Input() iconPosition: 'left' | 'right' = 'left';
 }

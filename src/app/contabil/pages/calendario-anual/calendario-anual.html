@@ -1,0 +1,12 @@
+<div class="content-site">
+    <page-title title="Calendário {{ year.toString() }}">
+        <ng-template #buttonsHeader>
+            <div class="flex gap-3">
+                <avatar-icon [icon]="'ionChevronBackSharp'" [rounded]="false" [size]="'2.2rem'" (click)="previousYear()"></avatar-icon>
+                <avatar-icon [icon]="'ionChevronForwardSharp'" [rounded]="false" [size]="'2.2rem'" (click)="nextYear()"></avatar-icon>
+            </div>
+        </ng-template>
+    </page-title>
+
+    <annual-holidays-calendar [year]="year"></annual-holidays-calendar>
+</div>

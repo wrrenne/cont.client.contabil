@@ -434,4 +434,24 @@ export class DateUtilsService {
 
         return isNegative ? `-${result}` : result;
     }
+
+    getMonths(startDate: Date, monthCount: number, ignoredDate?: Date): Date[] {
+        const result: Date[] = [];
+
+        const year = startDate.getFullYear();
+        const month = startDate.getMonth();
+        const dia = startDate.getDate();
+
+        const ignoredTime = ignoredDate?.getTime();
+
+        for (let i = 0; i < monthCount; i++) {
+            const date = new Date(year, month + i, dia);
+
+            if (ignoredTime == null || date.getTime() !== ignoredTime) {
+                result.push(date);
+            }
+        }
+
+        return result;
+    }
 }

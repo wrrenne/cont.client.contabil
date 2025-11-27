@@ -1,15 +1,15 @@
 <div class="mb-7 flex gap-4">
     @if (perfilItemId) {
-    <button-default [bgClass]="'btn-primary'" (click)="perfilObrigacaoAssociarModal()" [text]="'Associar Obrigação'"></button-default>
+    <button-default [bgClass]="'btn-blue'" (click)="perfilObrigacaoAssociarModal()" [text]="'Associar Obrigação'"></button-default>
     } @if (!perfilItemId) { @if (parameters?.tipo == undefined || parameters?.tipo! == TObrigacaoTipo.Imposto) {
-    <button-default [bgClass]="'btn-primary'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Imposto)" [text]="'Novo Imposto'"></button-default>
+    <button-default [bgClass]="'btn-blue'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Imposto)" [text]="'Novo Imposto'"></button-default>
     } @if (parameters?.tipo == undefined || parameters?.tipo! == TObrigacaoTipo.Acessoria) {
-    <button-default [bgClass]="'btn-primary'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Acessoria)" [text]="'Nova Obrigação Acessória'"></button-default>
+    <button-default [bgClass]="'btn-blue'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Acessoria)" [text]="'Nova Obrigação Acessória'"></button-default>
     } @if (parameters?.tipo == undefined || parameters?.tipo! == TObrigacaoTipo.Relatorio) {
-    <button-default [bgClass]="'btn-primary'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Relatorio)" [text]="'Novo Relatório'"></button-default>
+    <button-default [bgClass]="'btn-blue'" (click)="obrigacaoNovoModal(TObrigacaoTipo.Relatorio)" [text]="'Novo Relatório'"></button-default>
     } }
 
-    <!--<dropdown-radio [items]="obrigacaoTipos" (valueChanged)="obrigacaoTipoChanged($event)" [label]="'Filtro por Tipo'" [btnClass]="'btn-primary'"></dropdown-radio>-->
+    <!--<dropdown-radio [items]="obrigacaoTipos" (valueChanged)="obrigacaoTipoChanged($event)" [label]="'Filtro por Tipo'" [btnClass]="'btn-blue'"></dropdown-radio>-->
     <dropdown-radio [items]="setores" (valueChanged)="setorChanged($event)" [label]="'Filtro por Setor'" [btnClass]="'btn-gray'"></dropdown-radio>
 </div>
 

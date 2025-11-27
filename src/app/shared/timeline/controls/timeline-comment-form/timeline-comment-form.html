@@ -79,7 +79,7 @@ parameter.solicitacaoGrupos) {
             <input-file (onFileSelected)="onCommentFileSelected($event)"></input-file>
         </div>
         <div class="flex gap-2">
-            <button class="button btn-primary" [disabled]="!formComment.valid" (click)="submit()">{{postarLabel ? postarLabel : 'Postar'}}</button>
+            <button class="button btn-blue" [disabled]="!formComment.valid" (click)="submit()">{{postarLabel ? postarLabel : 'Postar'}}</button>
             <button class="button btn-transparent" (click)="postCancel()">Cancelar</button>
         </div>
     </form>

@@ -1,9 +1,8 @@
 <div class="content-site">
     <page-title [title]="'Obrigações por Usuário'" [subTitle]="subTitle"> </page-title>
 
-    <div class="flex gap-4 mb-4">
-        <button-default [text]="'Alterar Período'" [bgClass]="'btn-primary'" (click)="PeriodoSelecaoModalOpen()"></button-default>
-        <button-default [text]="'Filtro'" [bgClass]="'btn-primary'"></button-default>
+    <div class="mb-4">
+        <month-buttons [givenMonth]="mesAtual" (onMonthClicked)="monthClicked($event)"></month-buttons>
     </div>
 
     <nz-tabset [(nzSelectedIndex)]="selectedIndex" (nzSelectedIndexChange)="selectTab($event)">
@@ -12,8 +11,7 @@
         }
     </nz-tabset>
 
-    <div class="mt-3">
+    <div class="mt-1">
         <ng-container #tabContent></ng-container>
     </div>
-    <!-- <obr-users-table [parameters]="usersParameters"></obr-users-table> -->
 </div>

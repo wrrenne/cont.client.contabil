@@ -1,53 +1,50 @@
 @if (!showConclusion) {
-  <!-- Step headers -->
-  <ol class="w-full items-center space-y-4 sm:flex sm:space-x-8 sm:space-y-0">
+<!-- Step headers -->
+<ol class="w-full items-center space-y-4 sm:flex sm:space-x-8 sm:space-y-0">
     @for (step of steps.toArray(); track step; let i = $index) {
-      <li class="flex cursor-pointer items-center space-x-2.5"
+    <li
+        class="flex cursor-pointer items-center space-x-2.5"
         (click)="selectStep(i)"
-        [ngClass]="{ 'text-blue-600 dark:text-blue-500' : i <= selectedIndex, 'text-gray-500 dark:text-gray-400': i > selectedIndex }">
-        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
-          [ngClass]="{'border-blue-600 dark:border-blue-500': i <= selectedIndex, 'border-gray-500 dark:border-gray-400': i > selectedIndex }">
-          @if (i < selectedIndex) {
+        [ngClass]="{ 'text-blue-600 dark:text-blue-500' : i <= selectedIndex, 'text-gray-500 dark:text-gray-400': i > selectedIndex }"
+    >
+        <span
+            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
+            [ngClass]="{'border-blue-600 dark:border-blue-500': i <= selectedIndex, 'border-gray-500 dark:border-gray-400': i > selectedIndex }"
+        >
+            @if (i < selectedIndex) {
             <ng-icon [name]="'ionCheckmarkSharp'"></ng-icon>
-          } @else {
-            {{ step.index }}
-          }
+            } @else { {{ step.index }} }
         </span>
         <h6 class="font-medium leading-tight">
-          <ng-container *ngTemplateOutlet="step.title"></ng-container>
+            <ng-container *ngTemplateOutlet="step.title"></ng-container>
         </h6>
-      </li>
+    </li>
     }
-  </ol>
-  <!-- Step content with animation -->
-  @if (steps.toArray()[selectedIndex]; as activeStep) {
-    <div
-      _stepSlideAnimation="{value: activeStepKey,params: {enterX: direction === 'forward' ? '100%' : '-100%',leaveX: direction === 'forward' ? '-100%' : '100%'}}" class="relative mt-6">
-      <ng-container *ngTemplateOutlet="activeStep.content"></ng-container>
-    </div>
-  }
-  <!-- Next button -->
-  <div class="mt-6 flex gap-3">
-    <button class="button btn-primary flex items-center gap-2"
-      (click)="goForward(0)"
-      [disabled]="!steps.toArray()[selectedIndex].isValid()">
-      {{ currentNextButtonText }}
-      @if (selectedIndex < steps.length - 1) {
+</ol>
+<!-- Step content with animation -->
+@if (steps.toArray()[selectedIndex]; as activeStep) {
+<div
+    _stepSlideAnimation="{value: activeStepKey,params: {enterX: direction === 'forward' ? '100%' : '-100%',leaveX: direction === 'forward' ? '-100%' : '100%'}}"
+    class="relative mt-6"
+>
+    <ng-container *ngTemplateOutlet="activeStep.content"></ng-container>
+</div>
+}
+<!-- Next button -->
+<div class="mt-6 flex gap-3">
+    <button class="button btn-blue flex items-center gap-2" (click)="goForward(0)" [disabled]="!steps.toArray()[selectedIndex].isValid()">
+        {{ currentNextButtonText }} @if (selectedIndex < steps.length - 1) {
         <ng-icon [name]="'ionChevronForwardSharp'"></ng-icon>
-      }
+        }
     </button>
     @if (secondButtonText) {
-      <button class="button btn-gray flex items-center gap-2"
-        (click)="goForward(1)">
-        {{ secondButtonText }}
-        @if (selectedIndex < steps.length - 1) {
-          <ng-icon [name]="'ionChevronForwardSharp'"></ng-icon>
+    <button class="button btn-gray flex items-center gap-2" (click)="goForward(1)">
+        {{ secondButtonText }} @if (selectedIndex < steps.length - 1) {
+        <ng-icon [name]="'ionChevronForwardSharp'"></ng-icon>
         }
-      </button>
+    </button>
     }
-  </div>
-}
-
-@if (showConclusion) {
-  <ng-container [ngTemplateOutlet]="stepperConclusion"></ng-container>
+</div>
+} @if (showConclusion) {
+<ng-container [ngTemplateOutlet]="stepperConclusion"></ng-container>
 }

@@ -14,5 +14,5 @@ export const environment: EnvironmentModel = {
     sistema: SistemaTipo.Contabil,
     simulateDelay: false,
     delayMs: 4000,
-    logPaging: true,
+    logPaging: false,
 };

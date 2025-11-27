@@ -2,8 +2,8 @@
     <page-title [title]="'Clientes'"> </page-title>
 
     <div class="mb-10 flex gap-3">
-        <button-default [bgClass]="'btn-primary'" (click)="clientePessoaJuridicaNovoModal()" [text]="'Novo Cliente Pessoa Jurídica'"></button-default>
-        <button-default [bgClass]="'btn-primary'" (click)="clientePessoaFisicaNovoModal()" [text]="'Novo Cliente Pessoa Física'"></button-default>
+        <button-default [bgClass]="'btn-blue'" (click)="clientePessoaJuridicaNovoModal()" [text]="'Novo Cliente Pessoa Jurídica'"></button-default>
+        <button-default [bgClass]="'btn-blue'" (click)="clientePessoaFisicaNovoModal()" [text]="'Novo Cliente Pessoa Física'"></button-default>
     </div>
 
     <clientes-table [parameters]="clientesParameters" (titleOnChange)="titleOnChange($event)"></clientes-table>

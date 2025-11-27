@@ -3,11 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { Subscription } from 'rxjs';
-import { PeriodoSelecaoModalComponent } from 'src/app/contabil/components/periodo-selecao-modal/periodo-selecao-modal';
 import { DepartamentosService } from 'src/app/contabil/departamentos/services/departamentos.service';
 import { DepartamentoListingItem } from 'src/app/contabil/models/contabil/listings/departamentoListingItem';
 import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/parameters';
-import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
+import { MonthButtonsComponent } from 'src/app/shared/controls/month-buttons/month-buttons';
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
 import { PeriodoRefreshService } from 'src/app/shared/variables/periodo-refresh.service';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
@@ -25,11 +24,13 @@ interface DynamicTab {
     selector: 'obrigacoes-por-user-page',
     templateUrl: './obrigacoes-por-user.html',
     providers: [NzModalService],
-    imports: [PageTitleComponent, ButtonDefaultComponent, NzTabsModule],
+    imports: [PageTitleComponent, NzTabsModule, MonthButtonsComponent],
     standalone: true,
 })
 export class ObrigacoesPorUserPage implements OnDestroy {
     departamentos: DepartamentoListingItem[];
+
+    mesAtual: Date;
 
     tabs: DynamicTab[] = [];
 
@@ -55,7 +56,13 @@ export class ObrigacoesPorUserPage implements OnDestroy {
     ) {}
 
     ngAfterViewInit(): void {
+        this.setMesButtons();
         this.getData();
+
+        this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
+            this.setMesButtons();
+            this.selectTab(this.selectedIndex);
+        });
 
         // this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
         //     this.getData();
@@ -73,6 +80,10 @@ export class ObrigacoesPorUserPage implements OnDestroy {
         // this.periodoSubscription = this.periodoRefreshService.refresh$.subscribe((_) => {
         //     this.getData();
         // });
+    }
+
+    setMesButtons() {
+        this.mesAtual = this.vars.periodo?.dataInicial!;
     }
 
     ngOnDestroy() {
@@ -99,14 +110,14 @@ export class ObrigacoesPorUserPage implements OnDestroy {
         return this.encryptionService.encrypt(id);
     }
 
-    PeriodoSelecaoModalOpen() {
-        const modal = this.modalService.create({
-            nzContent: PeriodoSelecaoModalComponent,
-            nzWidth: 460,
-            nzClosable: false,
-            nzFooter: null,
-        });
-    }
+    // PeriodoSelecaoModalOpen() {
+    //     const modal = this.modalService.create({
+    //         nzContent: PeriodoSelecaoModalComponent,
+    //         nzWidth: 460,
+    //         nzClosable: false,
+    //         nzFooter: null,
+    //     });
+    // }
 
     addTab(tabName: string, value: ObrigacoesParameter) {
         this.tabs.push({
@@ -127,10 +138,18 @@ export class ObrigacoesPorUserPage implements OnDestroy {
 
         const compRef = this.tabContent.createComponent(tab.component);
 
-        // Pass the Input()
         compRef.instance.parameters = tab.inputValue;
-        console.log(tab.inputValue);
-        // Optional: save reference
+
         tab.instanceRef = compRef;
+    }
+
+    monthClicked(mes: Date) {
+        this.selectTab(this.selectedIndex);
+        this.mesAtual = mes;
+
+        this.vars.periodo = {
+            dataInicial: mes,
+            dataFinal: this.dateUtilsService.lastDateOfMonth(mes),
+        };
     }
 }

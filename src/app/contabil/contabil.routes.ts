@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ContabilComponent } from './contabil.component';
+import { CalendarioAnualPage } from './pages/calendario-anual/calendario-anual';
 import { ContabilHomePage } from './pages/home/home';
 
 export const contabilRoutes: Routes = [
@@ -11,10 +12,10 @@ export const contabilRoutes: Routes = [
                 path: 'home',
                 component: ContabilHomePage,
             },
-            // {
-            //     path: 'calendario',
-            //     component: CalendarioAnualPage,
-            // },
+            {
+                path: 'calendario',
+                component: CalendarioAnualPage,
+            },
             // {
             //     path: 'tasks',
             //     loadChildren: () => import('./tasks/tasks.module').then((m) => m.TasksModule),

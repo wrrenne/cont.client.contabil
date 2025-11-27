@@ -9,24 +9,26 @@
         <button-default [text]="'Cadastro'" [bgClass]="'btn-gray-outline'" (click)="cadastroClick()"></button-default>
     </ng-template>
     <ng-template #content>
-        <div class="my-auto flex w-full flex-col justify-center gap-2">
-            <nz-tabset>
-                <nz-tab nzTitle="Impostos">
-                    <ng-template nz-tab>
-                        <cliente-obrigacoes-table [parameters]="impostosParameters"></cliente-obrigacoes-table>
-                    </ng-template>
-                </nz-tab>
-                <nz-tab nzTitle="Obrigações Acessórias">
-                    <ng-template nz-tab>
-                        <cliente-obrigacoes-table [parameters]="acessoriasParameters"></cliente-obrigacoes-table>
-                    </ng-template>
-                </nz-tab>
-                <nz-tab nzTitle="Relatórios">
-                    <ng-template nz-tab>
-                        <cliente-obrigacoes-table [parameters]="relatoriosParameters"></cliente-obrigacoes-table>
-                    </ng-template>
-                </nz-tab>
-            </nz-tabset>
+        <div class="mb-4">
+            <month-buttons [givenMonth]="mesAtual" (onMonthClicked)="monthClicked($event)"></month-buttons>
         </div>
+
+        <nz-tabset>
+            <nz-tab nzTitle="Impostos">
+                <ng-template nz-tab>
+                    <cliente-obrigacoes-table [parameters]="impostosParameters"></cliente-obrigacoes-table>
+                </ng-template>
+            </nz-tab>
+            <nz-tab nzTitle="Obrigações Acessórias">
+                <ng-template nz-tab>
+                    <cliente-obrigacoes-table [parameters]="acessoriasParameters"></cliente-obrigacoes-table>
+                </ng-template>
+            </nz-tab>
+            <nz-tab nzTitle="Relatórios">
+                <ng-template nz-tab>
+                    <cliente-obrigacoes-table [parameters]="relatoriosParameters"></cliente-obrigacoes-table>
+                </ng-template>
+            </nz-tab>
+        </nz-tabset>
     </ng-template>
 </profile2>

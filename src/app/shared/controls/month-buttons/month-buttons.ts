@@ -1,43 +1,53 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DateUtilsService } from '../../services';
+import { ButtonDefaultComponent } from '../button-default/button-default';
 
 @Component({
     selector: 'month-buttons',
-    templateUrl: './month-buttons.html'
+    templateUrl: './month-buttons.html',
+    imports: [ButtonDefaultComponent],
 })
-export class MonthButtonsComponent implements OnInit {
-    @Input() givenMonth: Date = new Date(); // Default to current month if not provided
-    @Output() monthClicked = new EventEmitter<Date>(); // Emit the clicked month
-    months: { label: string, date: Date }[] = [];
-
-    constructor(private dateUtilsService: DateUtilsService) { }
-
-    ngOnInit(): void {
-        this.generateMonthLabels();
+export class MonthButtonsComponent {
+    private _givenMonth: Date;
+    @Input() get givenMonth() {
+        return this._givenMonth;
+    }
+    set givenMonth(value: Date) {
+        this._givenMonth = value;
+        this.getData();
     }
 
-    generateMonthLabels(): void {
+    @Input() span = 2;
+    @Input() showGivenMonth = false;
+
+    @Output() onMonthClicked = new EventEmitter<Date>(); // Emit the clicked month
+    months: { label: string; date: Date }[] = [];
+
+    constructor(private dateUtilsService: DateUtilsService) {}
+
+    // ngOnInit(): void {
+    //     this.generateMonthLabels();
+    // }
+
+    getData(): void {
         const currentYear = this.givenMonth.getFullYear();
         const currentMonth = this.givenMonth.getMonth();
 
         // Generate months from -3 to +3 relative to the given month
-        this.months = Array.from({ length: 7 }, (_, index) => {
-            const offset = index - 3; // 3 months before to 3 months after
+        this.months = Array.from({ length: this.span * 2 + 1 }, (_, index) => {
+            const offset = index - this.span; // 3 months before to 3 months after
             const date = new Date(currentYear, currentMonth + offset, 1); // First day of the month
-            //const yearLabel = date.getFullYear() !== currentYear ? ` ${date.getFullYear()}` : '';
             return { label: `${this.dateUtilsService.monthNames[date.getMonth()]}`, date };
-        //    return { label: `${this.dateUtilsService.monthNames[date.getMonth()]}${yearLabel}`, date };
         });
+
+        if (!this.showGivenMonth) this.months = this.months.filter((x) => x.date.getTime() != this.givenMonth.getTime());
     }
 
     onMonthClick(month: Date): void {
-        this.monthClicked.emit(month);
+        this.onMonthClicked.emit(month);
     }
 
     isGivenMonth(date: Date): boolean {
-        return (
-            date.getFullYear() === this.givenMonth.getFullYear() &&
-            date.getMonth() === this.givenMonth.getMonth()
-        );
+        return date.getFullYear() === this.givenMonth.getFullYear() && date.getMonth() === this.givenMonth.getMonth();
     }
 }

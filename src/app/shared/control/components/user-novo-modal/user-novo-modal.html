@@ -1,31 +1,30 @@
 <modal-base [title]="'Novo Usuário'">
-  <ng-template #modalContent>
-    <div class="flex flex-col gap-y-4">
-      @if (firstFormGroup && !showSecondForm) {
-        <div>
-          <form [formGroup]="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
-            <div class="flex w-full flex-col gap-4">
-              <input-ex [formControlName]="'email'" class="w-full" [form]="firstFormGroup" [label]="'E-mail'"></input-ex>
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            @if (firstFormGroup && !showSecondForm) {
+            <div>
+                <form [formGroup]="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                    <div class="flex w-full flex-col gap-4">
+                        <input-ex [formControlName]="'email'" class="w-full" [form]="firstFormGroup" [label]="'E-mail'"></input-ex>
+                    </div>
+                    <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-blue text-white md:w-36" (click)="emailPesquisar()">
+                        Localizar E-mail
+                    </button>
+                </form>
             </div>
-            <button type="button" [disabled]="!firstFormGroup.valid" class="button btn-primary text-white md:w-36" (click)="emailPesquisar()">
-              Localizar E-mail
-            </button>
-          </form>
-        </div>
-      }
-      @if (showSecondForm && secondFormGroup) {
-        <div>
-          <form [formGroup]="secondFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
-            <div class="flex w-full flex-col gap-4">
-              <input-ex [formControlName]="'email'" class="w-full" [form]="secondFormGroup" [label]="'E-mail'"></input-ex>
-              <input-ex [formControlName]="'nome'" class="w-full" [form]="secondFormGroup" [label]="'Nome'"></input-ex>
+            } @if (showSecondForm && secondFormGroup) {
+            <div>
+                <form [formGroup]="secondFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                    <div class="flex w-full flex-col gap-4">
+                        <input-ex [formControlName]="'email'" class="w-full" [form]="secondFormGroup" [label]="'E-mail'"></input-ex>
+                        <input-ex [formControlName]="'nome'" class="w-full" [form]="secondFormGroup" [label]="'Nome'"></input-ex>
+                    </div>
+                    <button type="button" [disabled]="!secondFormGroup.valid" class="button btn-blue text-white md:w-52" (click)="submit()">
+                        Salvar e Enviar Convite
+                    </button>
+                </form>
             </div>
-            <button type="button" [disabled]="!secondFormGroup.valid" class="button btn-primary text-white md:w-52" (click)="submit()">
-              Salvar e Enviar Convite
-            </button>
-          </form>
+            }
         </div>
-      }
-    </div>
-  </ng-template>
+    </ng-template>
 </modal-base>
