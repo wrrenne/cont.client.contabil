@@ -3,6 +3,10 @@
         <button-default [text]="'Cadastro'" [bgClass]="'btn-gray-outline'" (click)="cadastroClick()"></button-default>
     </ng-template>
     <ng-template #content>
+        <div class="mb-4">
+            <month-buttons [givenMonth]="mesAtual" (onMonthClicked)="monthClicked($event)"></month-buttons>
+        </div>
+
         <obrigacao-obrigacoes-table [parameters]="parameters"></obrigacao-obrigacoes-table>
     </ng-template>
 </profile2>
