@@ -39,9 +39,13 @@ export class ObrigacaoConfiguracaoModalComponent extends ModalBaseComponent {
         @Inject(NZ_MODAL_DATA) data: any,
     ) {
         super(injector);
-        this.obrigacao = data.obrigacao;
-        this.getData(this.obrigacao);
-        this.title = this.obrigacao.descricao;
+        if (data.obrigacaoId) {
+            this.getData(data.obrigacaoId);
+        } else {
+            this.obrigacao = data.obrigacao;
+            this.createForm(this.obrigacao);
+        }
+
         this.subTitle = 'Configuração';
     }
 
@@ -51,7 +55,15 @@ export class ObrigacaoConfiguracaoModalComponent extends ModalBaseComponent {
         };
     }
 
-    getData(obrigacao: ObrigacaoView) {
+    getData(obrigacaoId: number) {
+        this.obrigacoesService.obrigacaoGet(obrigacaoId).subscribe((x) => {
+            this.obrigacao = x.obj;
+            this.createForm(this.obrigacao);
+        });
+    }
+
+    createForm(obrigacao: ObrigacaoView) {
+        this.title = obrigacao.descricao;
         this.createFirstForm(obrigacao);
         this.firstFormGroup.get('gedPastaCodigo')?.updateValueAndValidity();
     }
@@ -78,6 +90,8 @@ export class ObrigacaoConfiguracaoModalComponent extends ModalBaseComponent {
                 this.firstFormGroup.updateValueAndValidity();
 
                 this.createNotification();
+
+                this.closeModal(true);
             }
         });
     }

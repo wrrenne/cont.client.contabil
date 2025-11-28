@@ -1,23 +1,25 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { ServiceBase, ApiResponse } from '../../models';
+import { ApiResponse, ServiceBase } from '../../models';
 import { ApisUtilsService, TMicroService } from '../../services';
 import { FeriadoData } from '../models/feriadoData';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class TabelasService extends ServiceBase {
-
     constructor(
         public injector: Injector,
-        private apisUtilsService: ApisUtilsService
+        private apisUtilsService: ApisUtilsService,
     ) {
-        super(injector)
+        super(injector);
     }
 
     feriadoDatasGet(dataInicial: string, dataFinal: string): Observable<ApiResponse<FeriadoData[]>> {
-        return this.http.get<ApiResponse<FeriadoData[]>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTabelas)}/Feriados/FeriadoDatasGet/${dataInicial}/${dataFinal}`)
-            .pipe(catchError(this.handleError))
+        return this.http
+            .post<
+                ApiResponse<FeriadoData[]>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiTabelas)}/Feriados/FeriadoDatasGet/${dataInicial}/${dataFinal}`, [3550308])
+            .pipe(catchError(this.handleError));
     }
 }

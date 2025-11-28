@@ -1,47 +1,51 @@
 <!--<text-separator [text]="getMonthName()" [colorClass]="'text-gray-800 dark:text-gray-200'"></text-separator>-->
-<div class="mb-4">{{getMonthName()}}</div>
+<div class="mb-4 font-semibold text-black dark:text-white">{{getMonthName()}}</div>
 <!-- Weekday names -->
 <div class="grid-cols-7 mb-2.5 grid gap-1 text-center text-sm font-medium text-gray-600 dark:text-zinc-300">
-  @for (dayName of weekdayNames; track dayName; let i = $index) {
+    @for (dayName of weekdayNames; track dayName; let i = $index) {
     <span class="p-1" [ngClass]="{'text-red-500': i == 0}">{{ dayName }}</span>
-  }
+    }
 </div>
 <!-- Calendar days -->
 
 <div class="grid-cols-7 grid gap-1 text-center">
-  @for (dayObj of daysArray; track dayObj) {
-    <div
-      class="px-2.5 py-1 text-sm"
-      [class]="dayObj.cor != undefined ? dayObj.cor : 'text-gray-700 dark:text-gray-400'">
+    @for (dayObj of daysArray; track dayObj) {
+    <div class="px-2.5 py-1 text-sm" [class]="dayObj.cor != undefined ? dayObj.cor : 'text-gray-700 dark:text-gray-400'">
         <!--[ngClass]="{
              'text-gray-400 dark:text-gray-600': !diaInfos && !dayObj.currentMonth,
              'text-red-500': !diaInfos && (isSunday(year, i, dayObj.day) || isHoliday(year, i, dayObj.day)),
              'text-gray-700 dark:text-gray-400': !diaInfos && dayObj.currentMonth && !isSunday(year, i, dayObj.day) && !isHoliday(year, i, dayObj.day)
          }">-->
-      <div class="font-semibold">{{ dayObj.day }}</div>
-      @if (diaInfos) {
+        <div class="font-semibold">{{ dayObj.day }}</div>
+        @if (diaInfos) {
         <ng-container *ngTemplateOutlet="diaInfosTemplate; context: {infos: dayObj.infos}">
-          <!--<ng-container *ngTemplateOutlet="diaInfos; context: {infos: getDayInfos(dayObj.date)}">-->
+            <!--<ng-container *ngTemplateOutlet="diaInfos; context: {infos: getDayInfos(dayObj.date)}">-->
         </ng-container>
-      }
+        }
     </div>
-  }
+    }
 </div>
 
 @if (feriados) {
-  <div class="mt-3.5 flex flex-col gap-2 text-xs">
+<div class="mt-3.5 flex flex-col gap-2 text-xs">
     @for (feriado of feriados; track feriado) {
-      <div>
-        <b>{{feriado.data | date: 'd'}}</b> {{feriado.descricao}} @if (feriado.municipioNome) {
-        <span> - {{feriado.municipioNome}}</span>
-      }
+    <div class="flex gap-2">
+        <div>
+            <b>{{feriado.data | date: 'dd'}}</b>
+        </div>
+        <div>
+            <div>{{feriado.descricao}}</div>
+            @if (feriado.municipioNome) {
+            <div class="text-muted">{{feriado.municipioNome}}</div>
+            }
+        </div>
     </div>
-  }
+    }
 </div>
 }
 
 <ng-template #diaInfosTemplate let-infos="infos">
-  @for (info of infos; track info) {
+    @for (info of infos; track info) {
     <div class="text-xs">{{info}}</div>
-  }
+    }
 </ng-template>

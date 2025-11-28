@@ -13,9 +13,9 @@
 @if (tipo != TObrigacaoClientePeriodoPor.PorObrigacao) {
 <td>
     <div class="flex items-center gap-3">
+        @if (tipo != TObrigacaoClientePeriodoPor.PorUser) {
         <ng-container [ngTemplateOutlet]="statusTemplate"></ng-container>
-
-        {{obrigacao.obrigacaoDescricao}}
+        } {{obrigacao.obrigacaoDescricao}}
     </div>
 </td>
 }
@@ -78,7 +78,7 @@
         [tooltip]="'Concluído fora do prazo'"
         [size]="'2.2rem'"
         [iconColor]="'dark:text-white/80 text-black/80'"
-        [bgColor]="'bg-green-200 dark:bg-green-800'"
+        [bgColor]="'bg-amber-200 dark:bg-amber-600'"
     ></avatar-icon>
     }
     <!-- #endregion -->

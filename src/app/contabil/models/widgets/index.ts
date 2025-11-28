@@ -1,1 +1,2 @@
-export * from './widgetObrigacoesDia'
+export * from './widgetObrigacoesDia';
+export * from './widgetObrigacoesEntregues';

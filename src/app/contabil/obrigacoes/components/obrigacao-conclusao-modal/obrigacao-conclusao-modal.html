@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-y-4">
             <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
                 <label-text class="w-full" [label]="'Empresa'" [text]="obrigacaoClientePeriodo.clienteNome"></label-text>
-                <label-text class="w-full" [label]="'Obrigação'" [text]="obrigacaoClientePeriodo.obrigacaoDescricao"></label-text>
+                <label-text class="w-full" [label]="'Obrigação'" [text]="obrigacaoClientePeriodo.obrigacaoDescricao"> </label-text>
                 <label-text
                     class="w-full"
                     [label]="'Competência'"
@@ -15,7 +15,11 @@
 
                 @if (!firstFormGroup.get('gedPastaCodigo')?.value) {
                 <alert
-                    [description]="'Pasta no GED não definida. Para enviar um arquivo é necessário definir uma pasta de destino'"
+                    class="cursor-pointer"
+                    (click)="obrigacaoConfiguracaoModal()"
+                    [iconBig]="true"
+                    [description]="'Pasta no GED não definida. Para enviar um arquivo é necessário definir uma pasta de destino.'"
+                    [description2]="'Clique aqui para definir uma pasta'"
                     [type]="AlertType.Error"
                 ></alert>
                 }

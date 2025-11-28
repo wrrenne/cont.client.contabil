@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, Injector } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
+import { NZ_MODAL_DATA, NzModalService } from 'ng-zorro-antd/modal';
 import { AlertComponent, AlertType } from 'src/app/shared/controls/alert/alert';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { InputFileComponent } from 'src/app/shared/controls/input-file/input-file';
@@ -10,6 +10,7 @@ import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-tex
 import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
 import { ObrigacaoClientePeriodoView } from '../../../models/obrigacoes/views';
 import { ObrigacoesService } from '../../services/obrigacoes.service';
+import { ObrigacaoConfiguracaoModalComponent } from '../obrigacao-configuracao-modal/obrigacao-configuracao-modal';
 
 export interface ObrigacaoConclusaoModalData {
     obrigacaoClientePeriodoId: number;
@@ -44,6 +45,7 @@ export class ObrigacaoConclusaoModalComponent extends ModalBaseComponent {
         private formBuilder: FormBuilder,
         private obrigacoesService: ObrigacoesService,
         injector: Injector,
+        private modalService: NzModalService,
         @Inject(NZ_MODAL_DATA) data: ObrigacaoConclusaoModalData,
     ) {
         super(injector);
@@ -80,6 +82,23 @@ export class ObrigacaoConclusaoModalComponent extends ModalBaseComponent {
             this.obrigacaoClientePeriodo = x.obj;
 
             this.createForm();
+        });
+    }
+
+    obrigacaoConfiguracaoModal() {
+        const modal = this.modalService.create({
+            nzContent: ObrigacaoConfiguracaoModalComponent,
+            nzWidth: 440,
+            nzClosable: false,
+            nzFooter: null,
+
+            nzData: {
+                obrigacaoId: this.obrigacaoClientePeriodo.obrigacaoId,
+            },
+        });
+
+        modal.afterClose.subscribe((r) => {
+            if (r) this.getData(this.obrigacaoClientePeriodo.id!);
         });
     }
 }

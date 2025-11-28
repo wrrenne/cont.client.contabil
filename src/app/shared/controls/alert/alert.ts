@@ -13,7 +13,6 @@ export class AlertComponent {
     @Input() description: string;
     @Input() description2?: string;
     @Input() type: AlertType;
-    // @Input() big = false
     @Input() iconBig = false;
     @Input() textSmall = false;
 
