@@ -1,2 +1,3 @@
 export * from './widgetObrigacoesDia';
 export * from './widgetObrigacoesEntregues';
+export * from './widgetProximosImpostos';

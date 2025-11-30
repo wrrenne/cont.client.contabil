@@ -1,0 +1,56 @@
+<modal-base [title]="title">
+    <ng-template #modalContent>
+        @if (cliente) {
+        <div class="flex flex-col gap-y-4">
+            @if (firstFormGroup) {
+            <form [formGroup]="firstFormGroup">
+                <div class="flex flex-col gap-y-4">
+                    <input-ex class="w-full" [formControlName]="'nome'" [form]="firstFormGroup" [label]="'Nome'"></input-ex>
+                    <div class="flex gap-3">
+                        <input-ex [formControlName]="'cnpj'" [form]="firstFormGroup" [label]="'Cpf'"></input-ex>
+                        <input-ex [formControlName]="'inscricaoEstadual'" [form]="firstFormGroup" [label]="'Inscrição Estadual'"></input-ex>
+                    </div>
+                    <input-textarea-ex
+                        [form]="firstFormGroup"
+                        [placeholderText]="'Comentário opcional'"
+                        formControlName="comentario"
+                        [label]="'Comentário'"
+                    ></input-textarea-ex>
+
+                    <button-default
+                        [disabled]="!firstFormGroup.dirty || !firstFormGroup.valid"
+                        (click)="submitFirstFormGroup()"
+                        [text]="'Salvar'"
+                        [bgClass]="'btn-blue'"
+                    >
+                    </button-default>
+                </div>
+            </form>
+            } @if (secondFormGroup) {
+            <form [formGroup]="secondFormGroup">
+                <div class="flex flex-col gap-y-4">
+                    <input-ex class="w-full" [formControlName]="'nome'" [form]="secondFormGroup" [label]="'Nome'"></input-ex>
+                    <div class="flex gap-3">
+                        <input-ex [formControlName]="'cpf'" [form]="secondFormGroup" [label]="'Cpf'"></input-ex>
+                    </div>
+                    <input-textarea-ex
+                        [form]="secondFormGroup"
+                        [placeholderText]="'Comentário opcional'"
+                        formControlName="comentario"
+                        [label]="'Comentário'"
+                    ></input-textarea-ex>
+
+                    <button-default
+                        [disabled]="!secondFormGroup.dirty || !secondFormGroup.valid"
+                        (click)="submitSecondFormGroup()"
+                        [text]="'Salvar'"
+                        [bgClass]="'btn-blue'"
+                    >
+                    </button-default>
+                </div>
+            </form>
+            }
+        </div>
+        }
+    </ng-template>
+</modal-base>

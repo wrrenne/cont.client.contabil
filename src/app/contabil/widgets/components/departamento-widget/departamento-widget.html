@@ -36,8 +36,8 @@
                         </div>
                     </div>
                     <div>
+                        @if (chartOptions) {
                         <apx-chart
-                            *ngIf="chartOptions"
                             [series]="chartOptions.series"
                             [chart]="chartOptions.chart"
                             [labels]="chartOptions.labels"
@@ -45,6 +45,7 @@
                             [colors]="chartOptions.colors"
                         >
                         </apx-chart>
+                        }
                     </div>
                 </div>
 

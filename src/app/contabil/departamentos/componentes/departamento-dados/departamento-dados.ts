@@ -1,24 +1,21 @@
 import { Component, Input } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DepartamentoView } from 'src/app/contabil/models/contabil/views';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { CardComponent } from 'src/app/shared/controls/card/card.component';
 import { LabelTextComponent } from 'src/app/shared/controls/label-text/label-text';
-import { TTipoPessoa } from '../../../../shared/enums';
-import { ContabilClienteView } from '../../../models/clientes/views';
-import { ClientesService } from '../../services/clientes.service';
-import { ClienteDadosModalComponent } from '../cliente-dados-modal/cliente-dados-modal';
+import { DepartamentosService } from '../../services/departamentos.service';
+import { DepartamentoDadosModalComponent } from '../departamento-dados-modal/departamento-dados-modal';
 
 @Component({
-    selector: 'cliente-dados',
-    templateUrl: './cliente-dados.html',
+    selector: 'departamento-dados',
+    templateUrl: './departamento-dados.html',
     providers: [NzModalService],
     standalone: true,
     imports: [CardComponent, LabelTextComponent, ButtonDefaultComponent],
 })
-export class ClienteDadosComponent {
-    cliente: ContabilClienteView;
-
-    TTipoPessoa = TTipoPessoa;
+export class DepartamentoDadosComponent {
+    departamento: DepartamentoView;
 
     private _id: number | undefined;
     @Input() get id() {
@@ -30,25 +27,25 @@ export class ClienteDadosComponent {
     }
 
     constructor(
-        private clientesService: ClientesService,
+        private departamentosService: DepartamentosService,
         private modalService: NzModalService,
     ) {}
 
     getData(id: number) {
-        this.clientesService.clienteGet(id).subscribe((x) => {
-            this.cliente = x.obj;
+        this.departamentosService.departamentoGet(id).subscribe((x) => {
+            this.departamento = x.obj;
         });
     }
 
     editModal() {
         const modal = this.modalService.create({
-            nzContent: ClienteDadosModalComponent,
+            nzContent: DepartamentoDadosModalComponent,
             nzWidth: 460,
             nzClosable: false,
             nzFooter: null,
 
             nzData: {
-                id: <number>this.cliente?.id,
+                id: <number>this.departamento?.id,
             },
         });
 

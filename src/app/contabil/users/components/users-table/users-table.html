@@ -11,7 +11,7 @@
             @for(item of datas; track item; let i = $index) {
             <tr [routerLink]="['/sistema/users/user', getEncryptedId(item.id!)]">
                 <td>
-                    <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.id">
+                    <avatar-title class="cursor-pointer" [title]="item.userNome" [userId]="item.id" [avatarSize]="'2.5rem'">
                         <ng-template #subTitle>
                             <div class="flex items-center gap-1">
                                 @for (departamento of item.departamentos; track departamento) {

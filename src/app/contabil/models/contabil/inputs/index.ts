@@ -1,1 +1,2 @@
-export * from './userDepartamentoInput'
+export * from './departamentoInput';
+export * from './userDepartamentoInput';

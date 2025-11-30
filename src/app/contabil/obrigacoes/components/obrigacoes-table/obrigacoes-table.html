@@ -18,10 +18,12 @@
 }  -->
 <!-- @else  -->
 <!-- {  -->
-@if (!loading) { @if (datas && datas.length == 0) {
+<!-- @if (!loading) { 
+    @if (datas && datas.length == 0) {
 <no-data-panel [title]="'Nenuma obrigação'"></no-data-panel>
-} @else {
-
+} 
+@else {
+ -->
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
     <table class="tabela">
         <thead>
@@ -49,5 +51,5 @@
         </tbody>
     </table>
 </div>
-} }
+<!-- } } -->
 <!-- } -->

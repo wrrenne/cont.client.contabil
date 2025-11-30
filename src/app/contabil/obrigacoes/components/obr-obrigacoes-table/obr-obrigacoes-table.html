@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             @for (item of datas; track item; let i = $index) {
-            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacaoobrigacoes', encryptionService.encrypt(item.id)]" _queryParams="{tab: 0}">
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacaoobrigacoes', encryptionService.encrypt(item.id)]">
                 <td>
                     <div class="flex items-center gap-3">
                         <ng-container *ngTemplateOutlet="statusTemplate; context: {item: item}"></ng-container>

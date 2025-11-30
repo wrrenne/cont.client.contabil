@@ -1,8 +1,10 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { WidgetObrigacoesEntregues } from 'src/app/contabil/models/widgets';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { RadialProgressComponent } from 'src/app/shared/controls/radial-progress/radial-progress';
 import { WidgetComponent } from 'src/app/shared/controls/widget/widget';
 import { EncryptionService } from '../../../../shared/services';
+import { WidgetsService } from '../../services/widgets.service';
 
 @Component({
     selector: 'obrigacoes-entregues-geral-widget',
@@ -17,29 +19,25 @@ export class ObrigacoesEntreguesGeralWidgetComponent implements OnInit {
         return this.isHidden ? 'none' : 'block';
     }
 
-    //widget: WidgetFuncionarioBanco
+    widget: WidgetObrigacoesEntregues;
 
-    constructor(private encryptionService: EncryptionService) {}
+    constructor(
+        private encryptionService: EncryptionService,
+        private widgetsService: WidgetsService,
+    ) {}
 
     ngOnInit(): void {
         this.getData();
     }
 
     getData(): void {
-        //    this.widgetsService.widgetFuncionarioBancoGet(this.funcionarioId).subscribe(x => {
-        //        this.widget = x.obj
-        //        this.isHidden = !this.widget
-        //        if (this.widget) {
-        //            this.initStore();
-        //        }
-        //    })
+        this.widgetsService.widgetObrigacoesEntreguesGet().subscribe((x) => {
+            this.widget = x.obj;
+            this.isHidden = !this.widget;
+        });
     }
-
-    store: any;
-    isLoading = true;
 
     getEncryptedId(id: number | undefined): string {
         return this.encryptionService.encrypt(<number>id);
-        //    return this.encryptionService.set(<number>id)
     }
 }

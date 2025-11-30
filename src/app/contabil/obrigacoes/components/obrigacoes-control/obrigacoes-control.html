@@ -1,8 +1,8 @@
-@if (loading) {
+<!-- @if (loading) { -->
 <!-- <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 20 }"></nz-skeleton> -->
-} @else { @if (obrigacoes && obrigacoes.length == 0) {
+<!-- } @else { @if (obrigacoes && obrigacoes.length == 0) {
 <no-data-panel [title]="getNoDataTitle()"></no-data-panel>
-} @else {
+} @else { -->
 
 <table class="tabela">
     <thead>
@@ -33,7 +33,8 @@
         </tr>
     </thead>
     <tbody>
-        @for (obrigacao of obrigacoes; track trackById($index, obrigacao)) {
+        <!-- @for (obrigacao of obrigacoes; track trackById($index, obrigacao)) { -->
+        @for (obrigacao of obrigacoes; track obrigacao) {
         <tr
             class="cursor-pointer"
             (click)="obrigacaoCardModalOpen(obrigacao.id!)"
@@ -47,4 +48,4 @@
         }
     </tbody>
 </table>
-} }
+<!-- } } -->
