@@ -518,9 +518,9 @@ apx-chart {
     @apply py-0 px-0.5 text-left;
 }
 
-.divide {
-    @apply divide-y divide-solid divide-zinc-300 dark:divide-zinc-800;
-}
+// .divide {
+//     @apply divide-y divide-solid divide-zinc-300 dark:divide-zinc-800;
+// }
 
 .table {
     @apply border-separate [border-spacing:15px];
@@ -608,6 +608,6 @@ apx-chart {
 }
 */
 
-.divide-y > :not([hidden]) ~ :not([hidden]) {
-    @apply border-color;
-}
+// .divide-y > :not([hidden]) ~ :not([hidden]) {
+//     @apply border-color;
+// }

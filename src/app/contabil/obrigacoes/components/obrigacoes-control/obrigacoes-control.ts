@@ -5,7 +5,6 @@ import { Subject, Subscription } from 'rxjs';
 import { TObrigacaoClientePeriodoPor } from 'src/app/contabil/models/enums';
 import { ObrigacaoClientePeriodoPageItem } from 'src/app/contabil/models/obrigacoes/pagings';
 import { environment } from '../../../../../environments/environment';
-import { NoDataPanelComponent } from '../../../../shared/controls/no-data-panel/no-data-panel';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { ObrigacaoCardModalComponent } from '../obrigacao-card-modal/obrigacao-card-modal';
 import { ObrigacaoItem } from '../obrigacao-item/obrigacao-item';
@@ -18,7 +17,7 @@ export interface ObrigacoesControlParameter {
 @Component({
     selector: 'obrigacoes-control',
     standalone: true,
-    imports: [NoDataPanelComponent, ObrigacaoItem, NgIcon],
+    imports: [ObrigacaoItem, NgIcon],
     templateUrl: './obrigacoes-control.html',
 })
 export class ObrigacoesControl implements OnDestroy {

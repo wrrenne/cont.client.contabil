@@ -1,0 +1,30 @@
+﻿<widget
+    [title]="'Obrigações Atrasadas'"
+    [subTitle]="'Por tipo'"
+    [icon]="'matThumbDown'"
+    [iconBgColorClass]="'bg-red-100 dark:bg-red-800/70'"
+    [iconColorClass]="'text-red-500 dark:text-red-200'"
+>
+    <ng-template #content>
+        <div class="divide-y divide-black/60 dark:divide-white/30 divide-dashed flex flex-col">
+            @for (obrigacao of widget.obrigacoes; track obrigacao; let i = $index) {
+            <div
+                class="w-full cursor-pointer pb-3"
+                [ngClass]="{'pt-3': i > 0}"
+                [routerLink]="['/sistema/obrigacoes/obrigacaoobrigacoes', encryptionService.encrypt(obrigacao.obrigacaoId)]"
+            >
+                <div class="flex gap-2 items-center">
+                    <div class="text-amber-500">{{i + 1 | padNumber:2 }}.</div>
+                    <div class="grow text-black dark:text-white">{{obrigacao.obrigacaoNome}}</div>
+                    <div class="tag tag-red">{{obrigacao.obrigacoesStat.emAtraso}}</div>
+                </div>
+            </div>
+            }
+        </div>
+    </ng-template>
+    @if (widget.seeMoreCount > 0) {
+    <ng-template #footer>
+        <div>Ver mais {{widget.seeMoreCount| singularPlural : '1 obrigacão' : 'obrigações': ''}}</div>
+    </ng-template>
+    }
+</widget>
