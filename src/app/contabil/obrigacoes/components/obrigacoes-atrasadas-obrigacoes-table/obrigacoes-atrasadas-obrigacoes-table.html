@@ -1,0 +1,20 @@
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>Obrigação</th>
+                <th>Departamento</th>
+                <th>Vencimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of datas; track item) {
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacao', encryptionService.encrypt(item.id)]">
+                <td class="whitespace-nowrap">{{item.descricao}}</td>
+                <td>{{item.departamentoNome}}</td>
+                <td>{{item.obrigacoesStat.emAtraso}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

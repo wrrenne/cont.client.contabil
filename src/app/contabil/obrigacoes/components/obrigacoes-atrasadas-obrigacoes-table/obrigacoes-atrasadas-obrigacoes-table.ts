@@ -1,0 +1,180 @@
+import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { Subscription } from 'rxjs';
+import { RadioItem } from '../../../../shared/controls/dropdown-radio/dropdown-radio';
+import { SetorDescription, TSetor } from '../../../../shared/enums';
+import { PagingBase } from '../../../../shared/models';
+import { SearchService } from '../../../../shared/services';
+import { Vars } from '../../../../shared/variables';
+import { TEsfera, TObrigacaoTipo } from '../../../models/enums';
+import { ObrigacaoPageItem } from '../../../models/obrigacoes/pagings';
+import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
+import { ObrigacoesUtilsService } from '../../services/obrigacoesUtils.service';
+import { ObrigacoesAtrasadasObrigacoesPagingService } from '../../services/pagings/obrigacoesAtrasadasObrigacoes.service';
+
+@Component({
+    selector: 'obrigacoes-atrasadas-obrigacoes-table',
+    templateUrl: './obrigacoes-atrasadas-obrigacoes-table.html',
+    imports: [RouterLink, InfiniteScrollDirective],
+})
+export class ObrigacoesAtrasadasObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
+    @Input() link: string;
+
+    perfilItemId?: number;
+
+    searchSubscription: Subscription;
+
+    @Output() onClick = new EventEmitter<number>();
+
+    TObrigacaoTipo = TObrigacaoTipo;
+    TEsfera = TEsfera;
+
+    //obrigacaoTipos: RadioItem[] = [
+    //    {
+    //        value: TObrigacaoTipo.Imposto,
+    //        text: ObrigacaoTipoDescription.get(TObrigacaoTipo.Imposto)!,
+    //        checked: true
+    //    },
+    //    {
+    //        value: TObrigacaoTipo.Acessoria,
+    //        text: ObrigacaoTipoDescription.get(TObrigacaoTipo.Acessoria)!,
+    //        checked: true
+    //    },
+    //    {
+    //        value: TObrigacaoTipo.Relatorio,
+    //        text: ObrigacaoTipoDescription.get(TObrigacaoTipo.Relatorio)!,
+    //        checked: true
+    //    },
+    //]
+
+    setores: RadioItem[] = [
+        {
+            value: TSetor.Fiscal,
+            text: SetorDescription.get(TSetor.Fiscal)!,
+            checked: true,
+        },
+        {
+            value: TSetor.Contabil,
+            text: SetorDescription.get(TSetor.Contabil)!,
+            checked: true,
+        },
+        {
+            value: TSetor.Pessoal,
+            text: SetorDescription.get(TSetor.Pessoal)!,
+            checked: true,
+        },
+    ];
+
+    public _parameters?: ObrigacoesParameter;
+    @Input() get parameters() {
+        return this._parameters;
+    }
+    set parameters(value: ObrigacoesParameter | undefined) {
+        if (value == null) return;
+
+        this._parameters = value;
+        this.param.routeStrings = [];
+
+        this.param.queryStrings.clear();
+        this.perfilItemId = value.perfilItemId;
+
+        if (value?.perfilItemId != undefined) {
+            this.param.queryStrings.set('pi', value.perfilItemId);
+        }
+
+        this.param.queryStrings.set('userId', this.vars.user?.id);
+
+        this.param.queryStrings.set('mes', this.vars.dataInicial);
+
+        if (value.tipo) this.param.queryStrings.set('tipo', value.tipo);
+
+        if (value.departamentoId) this.param.queryStrings.set('departamentoId', value.departamentoId);
+
+        this.param.q = value?.searchText;
+
+        this.refresh();
+    }
+
+    constructor(
+        injector: Injector,
+        obrigacoesAtrasadasObrigacoesPagingService: ObrigacoesAtrasadasObrigacoesPagingService,
+        private modalService: NzModalService,
+        private searchService: SearchService,
+        private vars: Vars,
+        private router: Router,
+        public obrigacoesUtilsService: ObrigacoesUtilsService,
+    ) {
+        super(injector, obrigacoesAtrasadasObrigacoesPagingService);
+
+        this.convertDatesObjects = true;
+
+        this.vars.search = { showSearchBox: false };
+
+        this.searchSubscription = this.searchService.onMessage().subscribe((x) => {
+            var p = this.parameters;
+            p!.searchText = x;
+            this.parameters = p;
+        });
+    }
+
+    override ngOnDestroy() {
+        super.ngOnDestroy();
+        this.vars.search = null;
+        if (this.searchSubscription) this.searchSubscription.unsubscribe();
+    }
+
+    getObrigacaoTipoCor(tipo: TObrigacaoTipo): string {
+        switch (tipo) {
+            case TObrigacaoTipo.Imposto:
+                return 'red';
+            case TObrigacaoTipo.Acessoria:
+                return 'blue';
+            case TObrigacaoTipo.Relatorio:
+                return 'green';
+        }
+
+        return '';
+    }
+
+    getObrigacaoSetorCor(tipo: TSetor): string {
+        switch (tipo) {
+            case TSetor.Fiscal:
+                return 'red2';
+            case TSetor.Contabil:
+                return 'blue2';
+            case TSetor.Pessoal:
+                return 'green2';
+        }
+
+        return '';
+    }
+
+    getObrigacaoEsferaCor(tipo: TEsfera): string {
+        switch (tipo) {
+            case TEsfera.Municipal:
+                return 'indigo';
+            case TEsfera.Estadual:
+                return 'pink';
+            case TEsfera.Federal:
+                return 'purple';
+        }
+    }
+
+    getEnc(id: number) {
+        return this.encryptionService.encrypt(id);
+    }
+
+    obrigacaoTipoChanged(e: any) {
+        var par = this.parameters;
+        par!.tipo = e;
+        this.parameters = par;
+    }
+
+    setorChanged(e: any) {
+        var par = this.parameters;
+        par!.departamentoId = e;
+        this.parameters = par;
+    }
+}

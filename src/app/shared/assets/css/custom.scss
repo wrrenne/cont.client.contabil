@@ -1,8 +1,8 @@
 body {
-    @apply text-color-body bg-[#fafafa];
+    @apply text-color-body bg-[#f6f6f6];
 }
 body.dark {
-    @apply text-color-body bg-[#0b0b0b];
+    @apply text-color-body bg-[#0f0f0f];
 }
 
 .border-color {
@@ -149,7 +149,7 @@ ul {
 }
 
 .btn {
-    @apply shadow-none py-1.5 rounded-none;
+    @apply shadow-none py-1.5 rounded-sm;
 }
 
 .btn-xs {
@@ -157,11 +157,11 @@ ul {
 }
 
 .btn-blue {
-    @apply bg-blue-200 dark:bg-blue-900 border-none text-black dark:text-white;
+    @apply bg-blue-900 border-none text-white;
 }
 
 .btn-red {
-    @apply bg-red-200 dark:bg-red-900 border-none text-black dark:text-white;
+    @apply bg-red-900 border-none text-white;
 }
 
 .btn-border {
@@ -242,7 +242,7 @@ input {
 
     thead td,
     th {
-        @apply px-3 py-6 text-black/90 dark:text-white/90 text-sm last:pr-0 bg-[#e0e0e0] dark:bg-[#505050] border border-table border-b border-r;
+        @apply px-3 py-6 text-white/90 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#202020] dark:bg-[#505050] border border-table border-b border-r;
     }
 
     tbody {

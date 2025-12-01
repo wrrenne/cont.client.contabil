@@ -21,6 +21,10 @@ export const contabilRoutes: Routes = [
             //     loadChildren: () => import('./tasks/tasks.module').then((m) => m.TasksModule),
             // },
             {
+                path: 'timeline',
+                loadChildren: () => import('./timeline/timelines.routes').then((m) => m.timelineRoutes),
+            },
+            {
                 path: 'clientes',
                 loadChildren: () => import('./clientes/clientes.routes').then((m) => m.clienteRoutes),
             },

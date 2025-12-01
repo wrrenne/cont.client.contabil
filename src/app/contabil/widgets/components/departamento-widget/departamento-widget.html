@@ -1,10 +1,11 @@
 <widget
-    [title]="'Índice de obrigações no prazo'"
-    [subTitle]="'Departamento Fiscal - Junho'"
+    [title]="title"
+    [subTitle]="subTitle"
     [icon]="'heroTrophy'"
-    [iconBgColorClass]="'bg-lime-100 dark:bg-lime-800/70'"
+    [iconBgColorClass]="'bg-lime-200 dark:bg-lime-800/70'"
     [iconColorClass]="'text-lime-500 dark:text-lime-200'"
 >
+    @if (widget) {
     <ng-template #content>
         <ng-container>
             <!--<div class="flex h-96 flex-col">
@@ -18,39 +19,28 @@
                 <div class="flex items-center mb-6">
                     <div class="flex grow cursor-pointer items-center gap-3">
                         <avatar-image
-                            [size]="'5rem'"
+                            [size]="'4rem'"
                             class="flex-none"
-                            [userId]="61"
-                            [defaultNoIconName]="'Teste da Silva'"
+                            [userId]="widget.users[0].userId"
+                            [defaultNoIconName]="widget.users[0].userNome"
                             [circle]="true"
                             [iconClass]="'text-xl'"
                         />
                         <div>
-                            <h6 class="font-semibold">Anna M. da Silva</h6>
-                            <div class="text-muted">Analista</div>
-                            <div class="flex items-center gap-1">
-                                <span class="text-blue-500">15/34</span>
-                                <span>34%</span>
-                                <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon>
+                            <h6 class="font-semibold">{{widget.users[0].userNomeFormat}}</h6>
+                            <div class="flex items-center gap-3">
+                                <span class="text-blue-500"
+                                    >{{widget.users[0].obrigacoesStat.concluidasNoPrazo}}/{{widget.users[0].obrigacoesStat.concluidas}}</span
+                                >
+                                <span>{{widget.users[0].obrigacoesStat.concluidoNoPrazoPorcento}}%</span>
+                                <!-- <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon> -->
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        @if (chartOptions) {
-                        <apx-chart
-                            [series]="chartOptions.series"
-                            [chart]="chartOptions.chart"
-                            [labels]="chartOptions.labels"
-                            [plotOptions]="chartOptions.plotOptions"
-                            [colors]="chartOptions.colors"
-                        >
-                        </apx-chart>
-                        }
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-3 pr-6">
-                    @for (i of [62,63,61]; track i) {
+                    @for (item of widget.users | slice:1; track item; let i = $index) {
                     <div class="flex items-center">
                         <div
                             class="grow cursor-pointer flex items-center gap-2"
@@ -60,43 +50,41 @@
                             <avatar-image
                                 [size]="'2.2rem'"
                                 [iconClass]="'text-base'"
-                                [defaultNoIconName]="'Teste da Silva'"
+                                [defaultNoIconName]="item.userNome"
                                 class="flex-none"
-                                [userId]="i"
+                                [userId]="item.userId"
                                 [circle]="true"
                             />
                             <div>
-                                <h6 class="font-semibold">Teste da Silva</h6>
-                                <div class="text-muted">Analista</div>
+                                <h6 class="font-semibold">{{item.userNomeFormat}}</h6>
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <div class="flex items-center gap-1">
-                                <span class="text-blue-500">15/34</span>
-                                <span>34%</span>
-                                <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon>
+                            <div class="flex items-center gap-3">
+                                <span class="text-blue-500">{{item.obrigacoesStat.concluidasNoPrazo}}/{{item.obrigacoesStat.concluidas}}</span>
+                                <span>{{item.obrigacoesStat.concluidoNoPrazoPorcento}}%</span>
+                                <!-- <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon> -->
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="flex flex-col items-center gap-1">
-                        <avatar-image
-                            [size]="'2.7rem'"
-                            [iconClass]="'text-base'"
-                            [defaultNoIconName]="'Teste da Silva'"
-                            class="flex-none"
-                            [userId]="i"
-                            [circle]="true"
-                        />
-                        <span>Maria</span>
-                        <div class="flex items-center gap-1 text-blue-500">
-                            <span>34%</span>
-                            <ng-icon [name]="'bootstrapCaretUpFill'" class="text-lg"></ng-icon>
-                        </div>
-                    </div> -->
                     }
                 </div>
             </div>
         </ng-container>
     </ng-template>
+
+    @if (widget.moreItemsCount) {
+    <ng-template #footer []>
+        <div class="flex items-center">
+            <div class="grow cursor-pointer" [routerLink]="['/sistema/apontamento/calculo']" [queryParams]="{tipo: 1}">
+                <div class="flex items-center gap-2">
+                    <avatar-count [count]="widget.moreItemsCount" [bgColor]="'text-bg-yellow-silver'" [size]="'2.2rem'"></avatar-count>
+                    <div>
+                        <span>Ver tudo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    } }
 </widget>

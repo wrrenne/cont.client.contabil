@@ -1,22 +1,35 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostBinding } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgIconComponent } from '@ng-icons/core';
 import { Store } from '@ngrx/store';
-import { ApexChart, ApexNonAxisChartSeries, ApexPlotOptions, ChartComponent } from 'ng-apexcharts';
+import { ApexChart, ApexNonAxisChartSeries, ApexPlotOptions } from 'ng-apexcharts';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { WidgetDepartamento } from 'src/app/contabil/models/widgets';
+import { AvatarCountComponent } from 'src/app/shared/controls/avatar-count/avatar-count';
 import { AvatarImageComponent } from 'src/app/shared/controls/avatar-image/avatar-image';
 import { WidgetComponent } from 'src/app/shared/controls/widget/widget';
 import { EncryptionService, StringsService } from '../../../../shared/services';
+import { WidgetsService } from '../../services/widgets.service';
 
 @Component({
     selector: 'departamento-widget',
     templateUrl: './departamento-widget.html',
     host: { class: 'h-[430px]' },
-    imports: [RouterLink, NgxTippyModule, WidgetComponent, NgIconComponent, ChartComponent, AvatarImageComponent],
+    imports: [CommonModule, RouterLink, NgxTippyModule, WidgetComponent, AvatarImageComponent, AvatarCountComponent],
 })
 export class DepartamentoWidgetComponent {
+    private isHidden = false;
+    @HostBinding('style.display') get display() {
+        return this.isHidden ? 'none' : 'block';
+    }
+
+    title: string;
+    subTitle: string;
+
     store: any;
     isLoading = true;
+
+    widget: WidgetDepartamento;
 
     public chartOptions: {
         series: ApexNonAxisChartSeries;
@@ -30,8 +43,22 @@ export class DepartamentoWidgetComponent {
         public storeData: Store<any>,
         private stringsService: StringsService,
         public encryptionService: EncryptionService,
+        private widgetsService: WidgetsService,
     ) {
-        this.initStore();
+        //this.initStore();
+    }
+
+    ngOnInit(): void {
+        this.getData();
+    }
+
+    getData(): void {
+        this.widgetsService.widgetDepartamentoFiscalGet().subscribe((x) => {
+            this.widget = x.obj;
+            this.title = x.obj.title;
+            this.subTitle = x.obj.subTitle;
+            this.isHidden = !this.widget;
+        });
     }
 
     async initStore() {
@@ -60,7 +87,7 @@ export class DepartamentoWidgetComponent {
     initCharts() {
         const isDark = this.store.theme === 'dark' || this.store.isDarkMode ? true : false;
 
-        const rawData = [{ category: 'Conclusão', value: 8 }];
+        const rawData = [{ category: 'Conclusão', value: 12 }];
 
         const color = this.getColor(rawData[0].value);
         const chartlabel = this.stringsService.getSingularPlural(8, 'Nenhuma obrigação', '1 obrigação', '{0} obrigações');

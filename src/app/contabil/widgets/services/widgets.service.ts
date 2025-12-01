@@ -1,8 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
+import { TSetor } from 'src/app/shared/enums';
 import { ApiResponse, ServiceBase } from '../../../shared/models';
 import { ApisUtilsService, DateUtilsService, TMicroService } from '../../../shared/services';
-import { WidgetObrigacoesAtrasadas, WidgetObrigacoesEntregues, WidgetProximosImpostos } from '../../models/widgets';
+import { WidgetDepartamento, WidgetObrigacoesAtrasadas, WidgetObrigacoesEntregues, WidgetProximosImpostos } from '../../models/widgets';
 import { VarsApp } from '../../variables';
 
 @Injectable({
@@ -63,6 +64,45 @@ export class WidgetsService extends ServiceBase {
             .get<
                 ApiResponse<WidgetObrigacoesAtrasadas>
             >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Widgets/WidgetObrigacoesAtrasadasObrigacoesGet/${cadastroId}/${userId}?mes=${mes}&max=5`)
+            .pipe(catchError(this.handleError));
+    }
+
+    widgetDepartamentoFiscalGet(): Observable<ApiResponse<WidgetDepartamento>> {
+        const cadastroId = this.vars.cadastro?.id;
+        const mes = this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!);
+        const userId = this.vars.user?.id;
+        const setor = TSetor.Fiscal;
+
+        return this.http
+            .get<
+                ApiResponse<WidgetDepartamento>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Widgets/WidgetDepartamentoGet/${cadastroId}/${mes}/${userId}/${setor}`)
+            .pipe(catchError(this.handleError));
+    }
+
+    widgetDepartamentoContabilGet(): Observable<ApiResponse<WidgetDepartamento>> {
+        const cadastroId = this.vars.cadastro?.id;
+        const mes = this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!);
+        const userId = this.vars.user?.id;
+        const setor = TSetor.Contabil;
+
+        return this.http
+            .get<
+                ApiResponse<WidgetDepartamento>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Widgets/WidgetDepartamentoGet/${cadastroId}/${mes}/${userId}/${setor}`)
+            .pipe(catchError(this.handleError));
+    }
+
+    widgetDepartamentoPessoalGet(): Observable<ApiResponse<WidgetDepartamento>> {
+        const cadastroId = this.vars.cadastro?.id;
+        const mes = this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!);
+        const userId = this.vars.user?.id;
+        const setor = TSetor.Pessoal;
+
+        return this.http
+            .get<
+                ApiResponse<WidgetDepartamento>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Widgets/WidgetDepartamentoGet/${cadastroId}/${mes}/${userId}/${setor}`)
             .pipe(catchError(this.handleError));
     }
 }

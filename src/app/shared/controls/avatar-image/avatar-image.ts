@@ -31,7 +31,7 @@ export class AvatarImageComponent implements OnInit, OnDestroy {
     @Input() tooltipInfo?: string;
     @Input() tooltipPlacement: string;
 
-    @Input() size?: string = '3.5rem';
+    @Input() size?: string = '2.6rem';
     @Input() iconColor? = 'text-gray-800 dark:text-gray-200';
     @Input() iconClass = 'text-3xl';
     @Input() bgClass = 'bg-avatar';

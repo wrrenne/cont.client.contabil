@@ -2,7 +2,7 @@
     <!-- Circular chart -->
     <div class="relative w-20 h-20 flex items-center justify-center">
         <!-- Background circle -->
-        <div class="absolute inset-0 rounded-full border-[14px] border-gray-800"></div>
+        <div class="absolute inset-0 rounded-full border-[14px] border-gray-300 dark:border-gray-800"></div>
 
         <!-- Progress circle -->
         <div
@@ -14,9 +14,9 @@
         ></div>
 
         <!-- Percentage text -->
-        <div class="text-base text-gray-300">{{ progress }}%</div>
+        <div class="text-base text-gray-800 dark:text-gray-300">{{ progress }}%</div>
     </div>
 
     <!-- Label below -->
-    <div class="mt-3 text-gray-400 text-xs text-center">{{ label }}</div>
+    <div class="mt-3 text-gray-800 dark:text-gray-400 text-xs text-center">{{ label }}</div>
 </div>

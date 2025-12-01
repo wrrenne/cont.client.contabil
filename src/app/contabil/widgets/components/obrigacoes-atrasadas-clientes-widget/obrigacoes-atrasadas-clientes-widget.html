@@ -5,6 +5,7 @@
     [iconBgColorClass]="'bg-red-100 dark:bg-red-800/70'"
     [iconColorClass]="'text-red-500 dark:text-red-200'"
 >
+    @if (widget) {
     <ng-template #content>
         <div class="divide-y divide-black/60 dark:divide-white/30 divide-dashed flex flex-col">
             @for (cliente of widget.clientes; track cliente; let i = $index) {
@@ -24,7 +25,9 @@
     </ng-template>
     @if (widget.seeMoreCount > 0) {
     <ng-template #footer>
-        <div>Ver mais {{widget.seeMoreCount| singularPlural : '1 cliente' : 'clientes': ''}}</div>
+        <div class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacoesatrasadasclientes']">
+            Ver mais {{widget.seeMoreCount| singularPlural : '1 cliente' : 'clientes': ''}}
+        </div>
     </ng-template>
-    }
+    } }
 </widget>
