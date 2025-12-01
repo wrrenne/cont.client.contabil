@@ -23,11 +23,11 @@ export class UserLoginService extends ServiceBase {
     userPainelGet(userId: number, cadastroId: number, goToHome: boolean) {
         this.usersService.userPainelGet(userId, cadastroId).subscribe((x) => {
             x.obj = this.dateUtils.convertDates(x.obj);
-            // this.vars.dataInicial = this.dateUtils.convertIsoStringToDate('2025-08-01')
-            // this.vars.dataFinal = this.dateUtils.convertIsoStringToDate('2025-08-31')
+            this.vars.dataInicial = this.dateUtils.convertIsoStringToDate('2025-11-01');
+            this.vars.dataFinal = this.dateUtils.convertIsoStringToDate('2025-11-30');
 
-            this.vars.dataInicial = x.obj.dataInicial;
-            this.vars.dataFinal = x.obj.dataFinal;
+            // this.vars.dataInicial = x.obj.dataInicial;
+            // this.vars.dataFinal = x.obj.dataFinal;
 
             this.vars.cadastro = {
                 id: <number>x.obj.cadastroId,
