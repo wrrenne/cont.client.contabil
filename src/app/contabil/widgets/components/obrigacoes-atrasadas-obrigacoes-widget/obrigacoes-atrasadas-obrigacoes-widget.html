@@ -25,7 +25,9 @@
     </ng-template>
     @if (widget.seeMoreCount > 0) {
     <ng-template #footer>
-        <div>Ver mais {{widget.seeMoreCount| singularPlural : '1 obrigacão' : 'obrigações': ''}}</div>
+        <div class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacoesatrasadasobrigacoes']">
+            Ver mais {{widget.seeMoreCount| singularPlural : '1 obrigacão' : 'obrigações': ''}}
+        </div>
     </ng-template>
     } }
 </widget>

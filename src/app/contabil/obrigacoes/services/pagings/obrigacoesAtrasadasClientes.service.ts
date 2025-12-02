@@ -10,7 +10,7 @@ import { Vars } from '../../../../shared/variables';
 export class ObrigacoesAtrasadasClientesPagingService extends ServicePagingBase<ContabilClientePageItem> {
     constructor(vars: Vars, injector: Injector, apisUtilsService: ApisUtilsService) {
         super(
-            `${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Obrigacoes/ObrigacoesAtrasadasClientesPagingGet/${vars.cadastro?.id}`,
+            `${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ObrigacoesAtrasadasClientesPagingGet/${vars.cadastro?.id}`,
             injector,
         );
     }

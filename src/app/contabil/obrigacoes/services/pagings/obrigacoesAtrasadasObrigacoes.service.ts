@@ -10,7 +10,7 @@ import { ObrigacaoPageItem } from '../../../models/obrigacoes/pagings';
 export class ObrigacoesAtrasadasObrigacoesPagingService extends ServicePagingBase<ObrigacaoPageItem> {
     constructor(vars: Vars, injector: Injector, apisUtilsService: ApisUtilsService) {
         super(
-            `${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Obrigacoes/ObrigacoesAtrasadasObrigacoesPagingGet/${vars.cadastro?.id}`,
+            `${apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/ObrigacoesClientesPeriodos/ObrigacoesAtrasadasObrigacoesPagingGet/${vars.cadastro?.id}`,
             injector,
         );
     }

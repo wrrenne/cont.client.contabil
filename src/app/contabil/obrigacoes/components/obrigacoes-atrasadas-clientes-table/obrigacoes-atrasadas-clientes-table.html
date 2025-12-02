@@ -2,14 +2,13 @@
     <table class="tabela">
         <thead>
             <tr>
-                <th>Obrigação</th>
-                <th>Departamento</th>
-                <th>Vencimento</th>
+                <th>Cliente</th>
+                <th>Obrigações Atrasadas</th>
             </tr>
         </thead>
         <tbody>
             @for (item of datas; track item) {
-            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacao', encryptionService.encrypt(item.id)]">
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/clienteobrigacoes', encryptionService.encrypt(item.id)]">
                 <td class="whitespace-nowrap">{{item.nome}}</td>
                 <td>{{item.obrigacoesStat?.emAtraso}}</td>
             </tr>

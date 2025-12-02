@@ -293,7 +293,7 @@ export class ObrigacaoCardModalComponent extends ModalBaseComponent {
 
         switch (this.obrigacao.status) {
             case TObrigacaoStatus.ConcluidoForadoPrazo:
-                result += ' bg-green-200 dark:bg-green-700';
+                result += ' bg-amber-200 dark:bg-amber-700';
                 break;
             case TObrigacaoStatus.ConcluidoNoPrazo:
                 result += ' bg-green-200 dark:bg-green-700';

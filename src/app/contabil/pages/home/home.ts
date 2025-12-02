@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserWelcomeComponent } from 'src/app/shared/controls/user-welcome/user-welcome';
+import { TSetor } from 'src/app/shared/enums';
 import { DateUtilsService } from '../../../shared/services';
 import { Vars } from '../../../shared/variables';
 import { ArquivosDisponibilizadosWidgetComponent } from '../../widgets/components/arquivos-disponibilizados-widget/arquivos-disponibilizados-widget';
@@ -34,6 +35,8 @@ export class ContabilHomePage {
     datas = [this.dateUtilsService.firstDateOfCurrentMonth(), this.dateUtilsService.lastDateOfCurrentMonth()];
 
     nome: string;
+    TSetor = TSetor;
+
     constructor(
         private router: Router,
         protected route: ActivatedRoute,

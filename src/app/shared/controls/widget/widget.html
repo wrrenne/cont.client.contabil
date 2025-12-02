@@ -35,7 +35,7 @@
                 @if (isString(title)) {
                 <span class="text-black/70 text-[16px] dark:text-white/80">{{title}}</span>
                 @if (subTitle) {
-                <h6 class="text-xs text-black/40 dark:text-white/40">{{subTitle}}</h6>
+                <h6 class="text-[13px] text-black/60 dark:text-white/60">{{subTitle}}</h6>
                 } } @if (!isString(title) && titleTemplate) {
                 <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
                 }

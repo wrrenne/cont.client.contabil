@@ -39,7 +39,7 @@ export class AvatarImageComponent implements OnInit, OnDestroy {
     @Input() badgeSize = 18;
     @Input() badgeCustom?: string;
     @Input() badgeCustomClass?: string;
-    @Input() ring = false;
+    @Input() ring = true;
 
     @HostBinding('style.width') get width() {
         return this.size || 'auto'; // Default to 'auto' if size is not provided

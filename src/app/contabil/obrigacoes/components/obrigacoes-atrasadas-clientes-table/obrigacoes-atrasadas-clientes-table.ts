@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ContabilClientePageItem } from 'src/app/contabil/models/clientes/pageItems';
@@ -86,7 +85,7 @@ export class ObrigacoesAtrasadasClientesTableComponent extends PagingBase<Contab
 
         this.param.queryStrings.set('userId', this.vars.user?.id);
 
-        this.param.queryStrings.set('mes', this.vars.dataInicial);
+        this.param.queryStrings.set('mes', this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!));
 
         if (value.tipo) this.param.queryStrings.set('tipo', value.tipo);
 
@@ -100,7 +99,6 @@ export class ObrigacoesAtrasadasClientesTableComponent extends PagingBase<Contab
     constructor(
         injector: Injector,
         obrigacoesAtrasadasClientesPagingService: ObrigacoesAtrasadasClientesPagingService,
-        private modalService: NzModalService,
         private searchService: SearchService,
         private vars: Vars,
         private router: Router,

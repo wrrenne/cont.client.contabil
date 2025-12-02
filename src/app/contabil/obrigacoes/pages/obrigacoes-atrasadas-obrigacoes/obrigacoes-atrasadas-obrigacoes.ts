@@ -6,14 +6,14 @@ import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-titl
 import { EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 import { ObrigacoesParameter } from '../../../models/obrigacoes/parameters';
-import { ObrigacoesAtrasadasClientesTableComponent } from '../../components/obrigacoes-atrasadas-clientes-table/obrigacoes-atrasadas-clientes-table';
+import { ObrigacoesAtrasadasObrigacoesTableComponent } from '../../components/obrigacoes-atrasadas-obrigacoes-table/obrigacoes-atrasadas-obrigacoes-table';
 
 @Component({
-    selector: 'obrigacoes-atrasadas-clientes',
-    templateUrl: './obrigacoes-atrasadas-clientes.html',
-    imports: [PageTitleComponent, NzTabsModule, ObrigacoesAtrasadasClientesTableComponent],
+    selector: 'obrigacoes-atrasadas-obrigacoes',
+    templateUrl: './obrigacoes-atrasadas-obrigacoes.html',
+    imports: [PageTitleComponent, NzTabsModule, ObrigacoesAtrasadasObrigacoesTableComponent],
 })
-export class ObrigacoesAtrasadasClientesPage {
+export class ObrigacoesAtrasadasObrigacoesPage {
     obrigacoesParameters: ObrigacoesParameter;
 
     subTitle: string;

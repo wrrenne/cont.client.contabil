@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { RadioItem } from '../../../../shared/controls/dropdown-radio/dropdown-radio';
@@ -86,7 +85,7 @@ export class ObrigacoesAtrasadasObrigacoesTableComponent extends PagingBase<Obri
 
         this.param.queryStrings.set('userId', this.vars.user?.id);
 
-        this.param.queryStrings.set('mes', this.vars.dataInicial);
+        this.param.queryStrings.set('mes', this.dateUtilsService.GetDateIsoString(this.vars.dataInicial!));
 
         if (value.tipo) this.param.queryStrings.set('tipo', value.tipo);
 
@@ -100,7 +99,6 @@ export class ObrigacoesAtrasadasObrigacoesTableComponent extends PagingBase<Obri
     constructor(
         injector: Injector,
         obrigacoesAtrasadasObrigacoesPagingService: ObrigacoesAtrasadasObrigacoesPagingService,
-        private modalService: NzModalService,
         private searchService: SearchService,
         private vars: Vars,
         private router: Router,

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ApexChart, ApexNonAxisChartSeries, ApexPlotOptions } from 'ng-apexcharts';
@@ -8,6 +8,7 @@ import { WidgetDepartamento } from 'src/app/contabil/models/widgets';
 import { AvatarCountComponent } from 'src/app/shared/controls/avatar-count/avatar-count';
 import { AvatarImageComponent } from 'src/app/shared/controls/avatar-image/avatar-image';
 import { WidgetComponent } from 'src/app/shared/controls/widget/widget';
+import { TSetor } from 'src/app/shared/enums';
 import { EncryptionService, StringsService } from '../../../../shared/services';
 import { WidgetsService } from '../../services/widgets.service';
 
@@ -21,6 +22,15 @@ export class DepartamentoWidgetComponent {
     private isHidden = false;
     @HostBinding('style.display') get display() {
         return this.isHidden ? 'none' : 'block';
+    }
+
+    private _setor: TSetor;
+    @Input() get setor() {
+        return this._setor;
+    }
+    set setor(value: TSetor) {
+        this._setor = value;
+        this.getData();
     }
 
     title: string;
@@ -48,17 +58,33 @@ export class DepartamentoWidgetComponent {
         //this.initStore();
     }
 
-    ngOnInit(): void {
-        this.getData();
-    }
-
     getData(): void {
-        this.widgetsService.widgetDepartamentoFiscalGet().subscribe((x) => {
-            this.widget = x.obj;
-            this.title = x.obj.title;
-            this.subTitle = x.obj.subTitle;
-            this.isHidden = !this.widget;
-        });
+        switch (this.setor) {
+            case TSetor.Fiscal:
+                this.widgetsService.widgetDepartamentoFiscalGet().subscribe((x) => {
+                    this.widget = x.obj;
+                    this.title = x.obj.title;
+                    this.subTitle = x.obj.subTitle;
+                    this.isHidden = !this.widget;
+                });
+                break;
+            case TSetor.Contabil:
+                this.widgetsService.widgetDepartamentoContabilGet().subscribe((x) => {
+                    this.widget = x.obj;
+                    this.title = x.obj.title;
+                    this.subTitle = x.obj.subTitle;
+                    this.isHidden = !this.widget;
+                });
+                break;
+            case TSetor.Pessoal:
+                this.widgetsService.widgetDepartamentoPessoalGet().subscribe((x) => {
+                    this.widget = x.obj;
+                    this.title = x.obj.title;
+                    this.subTitle = x.obj.subTitle;
+                    this.isHidden = !this.widget;
+                });
+                break;
+        }
     }
 
     async initStore() {

@@ -9,7 +9,7 @@
         </thead>
         <tbody>
             @for (item of datas; track item) {
-            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacao', encryptionService.encrypt(item.id)]">
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/obrigacaoobrigacoes', encryptionService.encrypt(item.id)]">
                 <td class="whitespace-nowrap">{{item.descricao}}</td>
                 <td>{{item.departamentoNome}}</td>
                 <td>{{item.obrigacoesStat.emAtraso}}</td>

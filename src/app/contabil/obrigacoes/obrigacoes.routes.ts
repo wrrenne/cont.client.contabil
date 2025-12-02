@@ -6,6 +6,7 @@ import { ObrigacoesHomePage } from './pages/home/home';
 import { ObrigacaoObrigacoesPage } from './pages/obrigacao-obrigacoes/obrigacao-obrigacoes';
 import { ObrigacaoPage } from './pages/obrigacao/obrigacao';
 import { ObrigacoesAtrasadasClientesPage } from './pages/obrigacoes-atrasadas-clientes/obrigacoes-atrasadas-clientes';
+import { ObrigacoesAtrasadasObrigacoesPage } from './pages/obrigacoes-atrasadas-obrigacoes/obrigacoes-atrasadas-obrigacoes';
 import { ObrigacoesPorClientePage } from './pages/obrigacoes-por-cliente/obrigacoes-por-cliente';
 import { ObrigacoesPorObrigacaoPage } from './pages/obrigacoes-por-obrigacao/obrigacoes-por-obrigacao';
 import { ObrigacoesPorUserPage } from './pages/obrigacoes-por-user/obrigacoes-por-user';
@@ -57,6 +58,10 @@ export const obrigacoesRoutes: Routes = [
             {
                 path: 'obrigacoesatrasadasclientes',
                 component: ObrigacoesAtrasadasClientesPage,
+            },
+            {
+                path: 'obrigacoesatrasadasobrigacoes',
+                component: ObrigacoesAtrasadasObrigacoesPage,
             },
             {
                 path: 'perfil/:id',
