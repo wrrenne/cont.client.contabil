@@ -68,7 +68,11 @@
     @if (widget.moreItemsCount) {
     <ng-template #footer []>
         <div class="flex items-center">
-            <div class="grow cursor-pointer" [routerLink]="['/sistema/apontamento/calculo']" [queryParams]="{tipo: 1}">
+            <div
+                class="grow cursor-pointer"
+                [routerLink]="['/sistema/obrigacoes/departamentousers', getEncryptedId(widget.departamentoId)]"
+                [queryParams]="{tipo: 1}"
+            >
                 <div class="flex items-center gap-2">
                     <avatar-count [count]="widget.moreItemsCount" [bgColor]="'text-bg-yellow-silver'" [size]="'2.2rem'"></avatar-count>
                     <div>

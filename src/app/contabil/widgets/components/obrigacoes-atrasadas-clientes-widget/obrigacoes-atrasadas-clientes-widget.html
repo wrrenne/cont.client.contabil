@@ -1,6 +1,5 @@
 ﻿<widget
-    [title]="'Obrigações Atrasadas'"
-    [subTitle]="'Por cliente'"
+    [title]="'Clientes com Obrigações Atrasadas'"
     [icon]="'matThumbDown'"
     [iconBgColorClass]="'bg-red-100 dark:bg-red-800/70'"
     [iconColorClass]="'text-red-500 dark:text-red-200'"
@@ -12,7 +11,7 @@
             <div
                 class="w-full cursor-pointer pb-3"
                 [ngClass]="{'pt-3': i > 0}"
-                [routerLink]="['/sistema/obrigacoes/clienteobrigacoes', encryptionService.encrypt(cliente.clienteId)]"
+                [routerLink]="['/sistema/obrigacoes/clientesobrigacoesatrasadas', encryptionService.encrypt(cliente.clienteId)]"
             >
                 <div class="flex gap-2 items-center">
                     <div class="text-amber-500">{{i + 1 | padNumber:2 }}.</div>

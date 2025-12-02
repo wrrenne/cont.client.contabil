@@ -1,0 +1,9 @@
+<div class="content-site">
+    <page-title [title]="title" [subTitle]="subTitle"> </page-title>
+
+    <div class="mb-4">
+        <month-buttons [givenMonth]="mesAtual" (onMonthClicked)="monthClicked($event)"></month-buttons>
+    </div>
+
+    <obr-users-table [parameters]="usersParameters"></obr-users-table>
+</div>

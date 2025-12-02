@@ -124,6 +124,5 @@ export class ClienteDadosModalComponent extends ModalBaseComponent {
 
     getEncryptedId(id: number): string {
         return this.encryptionService.encrypt(id);
-        //    return this.encryptionService.set(id)
     }
 }

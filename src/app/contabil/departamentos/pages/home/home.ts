@@ -35,7 +35,6 @@ export class DepartamentosHomePage implements OnInit {
 
     ngOnInit(): void {
         this.departamentosParameters = {};
-        console.log(['a']);
         //    const urlParametrs = combineLatest([this.route.params,
         //    this.route.queryParams], (params, queryParams) => ({
         //        ...params, ...queryParams

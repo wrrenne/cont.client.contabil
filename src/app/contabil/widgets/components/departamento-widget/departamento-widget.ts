@@ -51,7 +51,7 @@ export class DepartamentoWidgetComponent {
 
     constructor(
         public storeData: Store<any>,
-        private stringsService: StringsService,
+        public stringsService: StringsService,
         public encryptionService: EncryptionService,
         private widgetsService: WidgetsService,
     ) {
@@ -177,5 +177,9 @@ export class DepartamentoWidgetComponent {
         } else {
             return 'text-blue-500'; // Blue (from-blue-500)
         }
+    }
+
+    getEncryptedId(id: number): string {
+        return this.encryptionService.encrypt(id);
     }
 }

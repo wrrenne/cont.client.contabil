@@ -1,0 +1,14 @@
+<profile2 [title]="title">
+    <ng-template #subTitle>
+        <div class="flex gap-1 items-center">
+            <ng-icon [name]="'ionCalendarOutline'" class="text-lg text-black/70 dark:text-white/70"></ng-icon>
+            <span class="text-black/50 dark:text-white/50 text-[13px]">{{mesFormat}} </span>
+        </div>
+    </ng-template>
+    <ng-template #buttons>
+        <button-default [text]="'Cadastro'" [bgClass]="'btn-gray-outline'" (click)="cadastroClick()"></button-default>
+    </ng-template>
+    <ng-template #content>
+        <cliente-obrigacoes-table [parameters]="obrigacoesParameters"></cliente-obrigacoes-table>
+    </ng-template>
+</profile2>
