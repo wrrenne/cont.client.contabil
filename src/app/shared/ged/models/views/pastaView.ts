@@ -1,7 +1,9 @@
-import { FolderItem } from "../folderItem";
+import { FolderItem } from '../folderItem';
 
 export interface PastaView {
     id: number;
+    cadastroId?: number;
+    cadastroNome: string;
     nome: string;
     pastaId: number;
     pastaCaminho: string;

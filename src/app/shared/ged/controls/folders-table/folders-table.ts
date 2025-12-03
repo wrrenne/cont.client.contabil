@@ -6,6 +6,7 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { FileServerImageComponent } from 'src/app/shared/controls/file-server-image/file-server-image';
 import { SearchService } from 'src/app/shared/services';
+import { environment } from 'src/environments/environment';
 import { PagingBase } from '../../../models';
 import { FormatBytesPipe } from '../../../pipes/formatBytes.pipe';
 import { FormatSingularPluralPipe } from '../../../pipes/singular-plural.pipe';
@@ -40,16 +41,8 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
 
         this._parameters = value;
 
-        //const userId = this.vars.user?.id!;
         const pastaId = value.pastaId ?? value.rootId!;
         this.param.routeStrings = [];
-
-        //this.cadastroId = value.cadastroId ?? this.vars.cadastro?.id!;
-
-        //this.param.routeStrings.push(this.cadastroId.toString());
-
-        // this.param.routeStrings.push(pastaId.toString());
-        //this.param.routeStrings.push(userId.toString());
 
         this.param.queryStrings.clear();
 
@@ -128,14 +121,7 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
         });
     }
 
-    // private _query: string;
-    // get query() {
-    //     return this._query;
-    // }
-    // set query(value: string) {
-    //     this._query = value;
-    //     var p = this.parameters;
-    //     p!.searchText = value;
-    //     this.parameters = p;
-    // }
+    get isDebug(): boolean {
+        return environment.debug;
+    }
 }

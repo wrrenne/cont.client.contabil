@@ -94,6 +94,8 @@ export enum TPostTipo {
     ContabilPerfil = 102,
     ContabilObrigacao = 103,
     ContabilObrigacaoClientePeriodo = 104,
+
+    Ged = 300,
 }
 export enum TPostIcone {
     Editar = 1,

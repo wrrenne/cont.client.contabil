@@ -38,9 +38,13 @@
                             class="cursor-pointer"
                         ></file-server-image>
                         <div>
-                            <div class="font-semibold">{{item.pasta.nome}}</div>
-                            @if (item.pasta.pastasCount) {
-                            <div class="text-muted text-xs">{{item.pasta.pastasCount | singularPlural : '1 pasta' : 'pastas': ''}}</div>
+                            <div class="font-semibold">
+                                {{item.pasta.nome}} @if (isDebug) {
+                                <span class="debug">#{{item.id}}</span>
+                                }
+                            </div>
+                            @if (item.pasta.arquivosPastasCountFormat) {
+                            <div class="text-muted text-[13px]">{{item.pasta.arquivosPastasCountFormat}}</div>
                             }
                         </div>
                     </div>

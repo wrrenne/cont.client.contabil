@@ -1,0 +1,22 @@
+﻿<modal-base [title]="'Envio de Arquivo'">
+    <ng-template #modalContent>
+        <div class="flex flex-col gap-y-4">
+            @if (firstFormGroup) {
+            <form [formGroup]="firstFormGroup" class="flex flex-col flex-wrap gap-x-2 gap-y-4 md:flex-row">
+                <label-text class="w-full" [label]="'Empresa'" [text]="pasta?.cadastroNome"></label-text>
+                <label-text class="w-full" [label]="'Pasta'" [text]="pasta?.pastaCaminho"></label-text>
+                <!-- <label-text
+                    class="w-full"
+                    [label]="'Competência'"
+                    [text]="obrigacaoClientePeriodo.competenciaAno ?? obrigacaoClientePeriodo.competenciaMesFormat"
+                ></label-text> -->
+
+                <input-file [label]="'Envio de Arquivos'" class="w-full" (onFileSelected)="fileSelected($event)"></input-file>
+                <input-textarea-ex class="w-full" [form]="firstFormGroup" formControlName="comentario" [label]="'Comentário opcional'"></input-textarea-ex>
+
+                <button-default [text]="'Concluir'" [disabled]="!firstFormGroup.valid" (click)="submit()" [bgClass]="'btn-blue'"></button-default>
+            </form>
+            }
+        </div>
+    </ng-template>
+</modal-base>

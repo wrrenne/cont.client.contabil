@@ -7,12 +7,12 @@ import { EnvironmentModel } from '../app/shared/models/environment-model';
 
 export const environment: EnvironmentModel = {
     production: false,
-    debug: false,
+    debug: true,
     useEncryption: false,
     sistemaPrefix: 'cnt',
     rootFolder: 'contabil',
     sistema: SistemaTipo.Contabil,
     simulateDelay: false,
     delayMs: 4000,
-    logPaging: false,
+    logPaging: true,
 };

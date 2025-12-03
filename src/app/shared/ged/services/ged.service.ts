@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ApiResponse, Paging, ServiceBase } from '../../../shared/models';
 import { ApisUtilsService, DateUtilsService, TMicroService } from '../../services';
 import { Vars } from '../../variables';
@@ -149,6 +150,37 @@ export class GedService extends ServiceBase {
         formData.append('commentId', commentId.toString());
         formData.append('userId', (<number>this.vars.user?.id).toString());
         formData.append('fileType', (<number>TFileType.Obrigacao).toString());
+
+        for (const file of files) {
+            formData.append('files', file, file.name);
+        }
+
+        return this.http
+            .post<ApiResponse<number | undefined>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivoFormUpload`, formData)
+            .pipe(catchError(this.handleError));
+    }
+
+    arquivoGenericoUpload(
+        cadastroId: number,
+        competenciaMes: Date | undefined,
+        competenciaAno: number | undefined,
+        pastaId: number,
+        files: File[],
+        comentario: string,
+    ): Observable<ApiResponse<number | undefined>> {
+        const formData = new FormData();
+
+        formData.append('cadastroId', cadastroId.toString());
+
+        if (competenciaMes) formData.append('competenciaMes', this.dateUtilsService.GetDateIsoString(competenciaMes));
+
+        if (competenciaAno) formData.append('competenciaAno', competenciaAno.toString());
+
+        formData.append('comentario', comentario);
+        formData.append('pastaId', pastaId.toString());
+        formData.append('sistemaId', environment.sistema.toString());
+        formData.append('userId', (<number>this.vars.user?.id).toString());
+        formData.append('fileType', (<number>TFileType.ArquivoGenerico).toString());
 
         for (const file of files) {
             formData.append('files', file, file.name);

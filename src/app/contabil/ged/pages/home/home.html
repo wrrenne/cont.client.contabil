@@ -1,10 +1,12 @@
-<page-title [title]="'Gerenciador Eletrônico de Documentos'"></page-title>
+<page-title [title]="'Gerenciador Eletrônico de Documentos'" [subTitle]="subTitle"></page-title>
 @if (pastasParameters) {
-<div class="flex gap-2 items-center mb-5">
-    <folder-cadastro [cadastroId]="pastasParameters.cadastroId!"></folder-cadastro>
-    <ng-icon [name]="'ionSync'" class="text-lg cursor-pointer" (click)="clienteChangeClick()" [ngxTippy]="'Alterar pasta de cliente'"></ng-icon>
+<div class="flex gap-3 mb-5">
+    <div class="flex gap-2 items-center grow">
+        <folder-cadastro [cadastroId]="pastasParameters.cadastroId!"></folder-cadastro>
+        <ng-icon [name]="'ionSync'" class="text-lg cursor-pointer" (click)="clienteChangeClick()" [ngxTippy]="'Alterar pasta de cliente'"></ng-icon>
+    </div>
+    <button-default [text]="'Enviar Arquivo'" (click)="sendFileModal()" [bgClass]="'btn-blue'"></button-default>
 </div>
-<folders-table [parameters]="pastasParameters" (titleOnChange)="titleOnChange($event)" _onPastaClick="pastaClick($event)"></folders-table>
+
+<folders-table [parameters]="pastasParameters" (titleOnChange)="titleOnChange($event)" (onPastaClick)="pastaClick($event)"></folders-table>
 }
-<!-- <ged-plano-contas class="w-[400px]" [parameters]="pastasParameters" (onClick)="planoContasClick($event)"></ged-plano-contas> -->
-<!-- <files-table [parameters]="filesParameters"></files-table> -->

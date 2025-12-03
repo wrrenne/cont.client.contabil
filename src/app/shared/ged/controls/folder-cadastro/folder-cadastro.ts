@@ -33,17 +33,4 @@ export class FolderCadastroComponent {
             }
         });
     }
-
-    // fileClick(item: ArquivoPageItem) {
-    //         if (item.fileType == TFileType.EspelhoPonto || item.fileType == TFileType.VariaveisFolha)
-    //             this.gedService.arquivoDownload(item.id!).subscribe((y) => saveAs(y, item.nome));
-    //     }
-
-    //    getIcon(tipo: TFileType, topFolder = false): string {
-    //        return this.gedUtilsService.getFileTypeIcon(tipo, topFolder)
-    //    }
-
-    //    getColor(tipo: TFileType): string {
-    //        return this.gedUtilsService.getFileTypeColor(tipo)
-    //    }
 }

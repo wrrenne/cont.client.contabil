@@ -5,9 +5,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { combineLatest } from 'rxjs';
 import { VarsApp } from 'src/app/contabil/variables';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { ClienteFolderSelectModalComponent } from 'src/app/shared/ged/controls/cliente-folder-select-modal/cliente-folder-select-modal';
 import { FolderCadastroComponent } from 'src/app/shared/ged/controls/folder-cadastro/folder-cadastro';
 import { FoldersTableComponent } from 'src/app/shared/ged/controls/folders-table/folders-table';
+import { GedUploadModalComponent } from 'src/app/shared/ged/controls/ged-upload-modal/ged-upload-modal';
 import { PastaOuArquivoPageItem } from 'src/app/shared/ged/models/pagings';
 import { PageTitleComponent } from '../../../../shared/controls/page-title/page-title';
 import { PastasParameter } from '../../../../shared/ged/models/parameters';
@@ -19,7 +21,7 @@ import { EncryptionService } from '../../../../shared/services';
     templateUrl: './home.html',
     standalone: true,
     providers: [NzModalService],
-    imports: [PageTitleComponent, FoldersTableComponent, FolderCadastroComponent, NgIconComponent, NgxTippyModule],
+    imports: [PageTitleComponent, FoldersTableComponent, FolderCadastroComponent, NgIconComponent, NgxTippyModule, ButtonDefaultComponent],
 })
 export class GedHomePage {
     // pastaRoot = '1.01.08';
@@ -29,6 +31,8 @@ export class GedHomePage {
 
     pastasParameters: PastasParameter;
     // filesParameters: FilesParameter;
+
+    pastaId: number;
 
     constructor(
         private route: ActivatedRoute,
@@ -133,7 +137,25 @@ export class GedHomePage {
         };
     }
 
-    // pastaClick(e: any) {
-    //     this.filesParameters = { cadastroId: this.filesParameters.cadastroId, pastaId: e };
-    // }
+    sendFileModal() {
+        const modal = this.modalService.create({
+            nzContent: GedUploadModalComponent,
+            nzWidth: 460,
+            nzClosable: false,
+            nzFooter: null,
+            nzData: {
+                pastaId: <number>this.pastaId,
+                cadastroId: this.pastasParameters.cadastroId,
+            },
+        });
+
+        //modal.afterClose.subscribe((r) => (this.horarioNovo = r));
+    }
+
+    pastaClick(e: any) {
+        this.pastaId = e;
+        this.gedService.pastaPropertiesGet(e).subscribe((x) => {
+            this.subTitle = x.obj.pastaCaminhoResumido;
+        });
+    }
 }
