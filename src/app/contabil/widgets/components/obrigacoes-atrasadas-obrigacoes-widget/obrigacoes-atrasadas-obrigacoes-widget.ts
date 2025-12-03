@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TObrigacaoStatus } from 'src/app/contabil/models/enums';
 import { WidgetObrigacoesAtrasadas } from 'src/app/contabil/models/widgets';
 import { WidgetComponent } from 'src/app/shared/controls/widget/widget';
 import { DateUtilsService, EncryptionService } from 'src/app/shared/services';
@@ -21,6 +22,8 @@ export class ObrigacoesAtrasadasObrigacoesWidgetComponent implements OnInit {
     }
 
     subTitle: string;
+
+    TObrigacaoStatus = TObrigacaoStatus;
 
     widget: WidgetObrigacoesAtrasadas;
 

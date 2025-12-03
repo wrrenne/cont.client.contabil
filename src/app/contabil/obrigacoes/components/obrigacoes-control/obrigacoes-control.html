@@ -33,18 +33,8 @@
         </tr>
     </thead>
     <tbody>
-        <!-- @for (obrigacao of obrigacoes; track trackById($index, obrigacao)) { -->
-        @for (obrigacao of obrigacoes; track obrigacao) {
-        <tr
-            class="cursor-pointer"
-            (click)="obrigacaoCardModalOpen(obrigacao.id!)"
-            obrigacao-item
-            [obrigacao]="obrigacao"
-            _onEspelhoUpdate="espelhoUpdate($event)"
-            [tipo]="tipo"
-            _status="status"
-            _focused="focused?.data == espelho.data"
-        ></tr>
+        @for (obrigacao of obrigacoes; track obrigacao; let i = $index) {
+        <tr class="cursor-pointer" (click)="obrigacaoCardModalOpen(obrigacao.id!)" obrigacao-item [index]="i" [obrigacao]="obrigacao" [tipo]="tipo"></tr>
         }
     </tbody>
 </table>

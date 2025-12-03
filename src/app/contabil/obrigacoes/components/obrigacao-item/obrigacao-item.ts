@@ -8,6 +8,7 @@ import { MonthYearPipe } from 'src/app/shared/pipes/monthYear.pipe';
 import { environment } from '../../../../../environments/environment';
 import { BlinkBorderDirective } from '../../../../shared/directives/blinkBorder.directive';
 import { DateFriendlyPipe } from '../../../../shared/pipes/dateFriendly.pipe';
+import { PadNumberPipe } from '../../../../shared/pipes/padNumber.pipe';
 import { EncryptionService } from '../../../../shared/services';
 import { TPostTipo } from '../../../../shared/timeline/enums';
 import { CommentPageItem } from '../../../../shared/timeline/models/pagings';
@@ -21,7 +22,7 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
 @Component({
     selector: '[obrigacao-item]',
     templateUrl: './obrigacao-item.html',
-    imports: [CommonModule, AvatarIconComponent, DateFriendlyPipe, MonthYearPipe, AvatarImageGroupComponent],
+    imports: [CommonModule, AvatarIconComponent, DateFriendlyPipe, MonthYearPipe, AvatarImageGroupComponent, PadNumberPipe],
 })
 export class ObrigacaoItem {
     TEsfera = TEsfera;
@@ -32,7 +33,7 @@ export class ObrigacaoItem {
     @Input() obrigacao: ObrigacaoClientePeriodoPageItem;
     @Input() focused: boolean;
     @Input() tipo: TObrigacaoClientePeriodoPor = TObrigacaoClientePeriodoPor.PorCliente;
-
+    @Input() index?: number;
     @Output() onObrigacaoUpdate = new EventEmitter<ObrigacaoView[]>();
 
     @ViewChild(BlinkBorderDirective) blinkDirective: BlinkBorderDirective;

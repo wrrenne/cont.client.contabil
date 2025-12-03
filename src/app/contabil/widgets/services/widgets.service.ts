@@ -51,7 +51,7 @@ export class WidgetsService extends ServiceBase {
         return this.http
             .get<
                 ApiResponse<WidgetObrigacoesAtrasadas>
-            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes, true)}/Widgets/WidgetObrigacoesAtrasadasClientesGet/${cadastroId}/${userId}?mes=${mes}&max=5`)
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiContabilObrigacoes)}/Widgets/WidgetObrigacoesAtrasadasClientesGet/${cadastroId}/${userId}?mes=${mes}&max=5`)
             .pipe(catchError(this.handleError));
     }
 

@@ -242,7 +242,7 @@ input {
 
     thead td,
     th {
-        @apply px-3 py-6 text-white/90 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#202020] dark:bg-[#505050] border border-table border-b border-r;
+        @apply px-3 py-6 text-black/70 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#d0d0d0] dark:bg-[#505050] border border-table border-b border-r;
     }
 
     tbody {

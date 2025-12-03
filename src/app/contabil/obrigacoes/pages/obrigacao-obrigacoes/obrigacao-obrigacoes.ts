@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest, Subscription } from 'rxjs';
+import { TObrigacaoStatus } from 'src/app/contabil/models/enums';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { MonthButtonsComponent } from 'src/app/shared/controls/month-buttons/month-buttons';
 import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
@@ -32,6 +33,8 @@ export class ObrigacaoObrigacoesPage implements OnInit {
     title: string;
     subTitle: string;
 
+    status?: TObrigacaoStatus;
+
     constructor(
         private route: ActivatedRoute,
         private vars: Vars,
@@ -53,7 +56,7 @@ export class ObrigacaoObrigacoesPage implements OnInit {
 
         urlParametrs.subscribe((r) => {
             this.obrigacaoId = this.encryptionService.decrypt(r['id']);
-
+            this.status = r['status'];
             this.getData();
         });
 
@@ -68,7 +71,12 @@ export class ObrigacaoObrigacoesPage implements OnInit {
 
         this.obrigacoesService.obrigacaoGet(this.obrigacaoId).subscribe((x) => {
             this.title = x.obj.descricao;
-            this.parameters = { obrigacaoId: this.obrigacaoId, mesInicial: this.vars.dataInicial!, mesFinal: this.vars.dataFinal! };
+            this.parameters = {
+                obrigacaoId: this.obrigacaoId,
+                mesInicial: this.vars.dataInicial!,
+                mesFinal: this.vars.dataFinal!,
+                status: this.status,
+            };
         });
     }
 

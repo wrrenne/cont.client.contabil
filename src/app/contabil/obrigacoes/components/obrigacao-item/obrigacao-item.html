@@ -4,7 +4,9 @@
     <div class="flex items-center gap-3">
         <ng-container [ngTemplateOutlet]="statusTemplate"></ng-container>
 
-        {{obrigacao.clienteNomeFormat}}
+        @if (index != undefined) {
+        <span class="text-blue-500 dark:text-amber-500">{{(index + 1) | padNumber:2}}.</span>
+        } {{obrigacao.clienteNomeFormat}}
     </div>
 </td>
 }
@@ -15,6 +17,8 @@
     <div class="flex items-center gap-3">
         @if (tipo != TObrigacaoClientePeriodoPor.PorUser) {
         <ng-container [ngTemplateOutlet]="statusTemplate"></ng-container>
+        } @if (index != undefined) {
+        <span class="text-blue-500 dark:text-amber-500">{{(index + 1) | padNumber:2}}.</span>
         } {{obrigacao.obrigacaoDescricao}}
     </div>
 </td>
