@@ -34,12 +34,6 @@ export class ObrigacoesBase extends PagingBase<ObrigacaoClientePeriodoPageItem> 
 
         this.param.routeStrings = [];
 
-        // if (value.clienteId) this.param.routeStrings.push(value.clienteId.toString());
-
-        // if (value.obrigacaoId) this.param.routeStrings.push(value.obrigacaoId.toString());
-
-        // if (value.tipo) this.param.routeStrings.push(value.tipo.toString());
-
         this.param.queryStrings.clear();
 
         this.param.queryStrings.set('mesInicial', this.dateUtilsService.GetDateIsoString(value.mesInicial!));

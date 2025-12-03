@@ -1,9 +1,4 @@
-<profile2 [title]="title">
-    <ng-template #subTitle>
-        <div class="flex gap-1 items-center">
-            <span class="text-black/50 dark:text-white/50 text-[13px]">{{mesFormat}} </span>
-        </div>
-    </ng-template>
+<profile2 [title]="title" [subTitle]="subTitle">
     <ng-template #buttons>
         <button-default [text]="'Cadastro'" [bgClass]="'btn-gray-outline'" (click)="cadastroClick()"></button-default>
     </ng-template>

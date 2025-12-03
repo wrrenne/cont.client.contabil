@@ -21,7 +21,7 @@
                     <div>
                         <h2 class="text-lg font-semibold text-gray-900">{{ title }}</h2>
                         @if (subTitle || subTitleTemplate) { @if (isString(subTitle)) {
-                        <p class="text-gray-500 text-xs">{{ subTitle }}</p>
+                        <p class="text-gray-500 text-[13px]">{{ subTitle }}</p>
                         } } @if (!isString(subTitle) && subTitleTemplate) {
                         <ng-container *ngTemplateOutlet="subTitleTemplate"></ng-container>
                         }

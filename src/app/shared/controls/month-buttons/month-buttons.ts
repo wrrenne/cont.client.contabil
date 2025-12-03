@@ -25,15 +25,10 @@ export class MonthButtonsComponent {
 
     constructor(private dateUtilsService: DateUtilsService) {}
 
-    // ngOnInit(): void {
-    //     this.generateMonthLabels();
-    // }
-
     getData(): void {
         const currentYear = this.givenMonth.getFullYear();
         const currentMonth = this.givenMonth.getMonth();
 
-        // Generate months from -3 to +3 relative to the given month
         this.months = Array.from({ length: this.span * 2 + 1 }, (_, index) => {
             const offset = index - this.span; // 3 months before to 3 months after
             const date = new Date(currentYear, currentMonth + offset, 1); // First day of the month

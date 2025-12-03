@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgIconComponent } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest, Subscription } from 'rxjs';
 import { ClientesService } from 'src/app/contabil/clientes/services/clientes.service';
-import { TObrigacaoTipo } from 'src/app/contabil/models/enums';
+import { TObrigacaoStatus, TObrigacaoTipo } from 'src/app/contabil/models/enums';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { MonthButtonsComponent } from 'src/app/shared/controls/month-buttons/month-buttons';
 import { Profile2Component } from 'src/app/shared/controls/profile2/profile2';
@@ -18,8 +17,8 @@ import { ClienteObrigacoesTableComponent } from '../../components/cliente-obriga
 @Component({
     selector: 'cliente-obrigacoes-page',
     templateUrl: './cliente-obrigacoes.html',
+    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent, MonthButtonsComponent],
     providers: [NzModalService],
-    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent, NgIconComponent, MonthButtonsComponent],
     standalone: true,
 })
 export class ClienteObrigacoesPage implements OnInit {
@@ -31,7 +30,9 @@ export class ClienteObrigacoesPage implements OnInit {
     mesAtual: Date;
 
     title: string;
-    mesFormat: string;
+    subTitle: string;
+
+    status?: TObrigacaoStatus;
 
     private periodoSubscription: Subscription;
 
@@ -39,7 +40,6 @@ export class ClienteObrigacoesPage implements OnInit {
         private route: ActivatedRoute,
         private vars: Vars,
         private encryptionService: EncryptionService,
-        private modalService: NzModalService,
         private router: Router,
         private dateUtilsService: DateUtilsService,
         private clientesService: ClientesService,
@@ -59,6 +59,7 @@ export class ClienteObrigacoesPage implements OnInit {
 
         urlParametrs.subscribe((r) => {
             this.clienteId = this.encryptionService.decrypt(r['id']);
+            this.status = r['status'];
 
             this.setMesButtons();
             this.getData();
@@ -70,30 +71,30 @@ export class ClienteObrigacoesPage implements OnInit {
     }
 
     getData() {
-        this.mesFormat = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
-
-        //var mes = this.vars.dataInicial;
+        this.subTitle = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
         this.clientesService.clienteGet(this.clienteId).subscribe((x) => {
             this.title = x.obj.nome;
-            //this.subTitle = x.obj.regime;
             this.impostosParameters = {
                 clienteId: this.clienteId,
                 mesInicial: this.vars.dataInicial!,
                 mesFinal: this.vars.dataFinal!,
                 tipo: TObrigacaoTipo.Imposto,
+                status: this.status,
             };
             this.acessoriasParameters = {
                 clienteId: this.clienteId,
                 mesInicial: this.vars.dataInicial!,
                 mesFinal: this.vars.dataFinal!,
                 tipo: TObrigacaoTipo.Acessoria,
+                status: this.status,
             };
             this.relatoriosParameters = {
                 clienteId: this.clienteId,
                 mesInicial: this.vars.dataInicial!,
                 mesFinal: this.vars.dataFinal!,
                 tipo: TObrigacaoTipo.Relatorio,
+                status: this.status,
             };
         });
     }

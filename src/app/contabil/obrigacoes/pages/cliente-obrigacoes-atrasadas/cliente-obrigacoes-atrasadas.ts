@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgIconComponent } from '@ng-icons/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest, Subscription } from 'rxjs';
@@ -18,7 +17,7 @@ import { ClienteObrigacoesTableComponent } from '../../components/cliente-obriga
     selector: 'cliente-obrigacoes-atrasadas-page',
     templateUrl: './cliente-obrigacoes-atrasadas.html',
     providers: [NzModalService],
-    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent, NgIconComponent],
+    imports: [NzTabsModule, ClienteObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent],
     standalone: true,
 })
 export class ClienteObrigacoesAtrasadasPage implements OnInit {
@@ -28,7 +27,7 @@ export class ClienteObrigacoesAtrasadasPage implements OnInit {
     mesAtual: Date;
 
     title: string;
-    mesFormat: string;
+    subTitle: string;
 
     private periodoSubscription: Subscription;
 
@@ -67,7 +66,7 @@ export class ClienteObrigacoesAtrasadasPage implements OnInit {
     }
 
     getData() {
-        this.mesFormat = `Vencimentos de ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
+        this.subTitle = `Obrigações Atrasadas em ${this.dateUtilsService.formattedRelativeMonth(this.vars.dataInicial!)}`;
 
         this.clientesService.clienteGet(this.clienteId).subscribe((x) => {
             this.title = x.obj.nome;
