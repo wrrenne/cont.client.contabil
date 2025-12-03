@@ -9,7 +9,6 @@ import { SearchService } from 'src/app/shared/services';
 import { environment } from 'src/environments/environment';
 import { PagingBase } from '../../../models';
 import { FormatBytesPipe } from '../../../pipes/formatBytes.pipe';
-import { FormatSingularPluralPipe } from '../../../pipes/singular-plural.pipe';
 import { Vars } from '../../../variables';
 import { ArquivoPageItem, PastaOuArquivoPageItem, PastaPageItem } from '../../models/pagings';
 import { PastasParameter } from '../../models/parameters';
@@ -21,7 +20,7 @@ import { GedFileViewerModalComponent } from '../ged-file-viewer-modal/ged-file-v
     standalone: true,
     templateUrl: './folders-table.html',
     providers: [NzModalService],
-    imports: [FormsModule, CommonModule, InfiniteScrollDirective, FileServerImageComponent, FormatSingularPluralPipe, FormatBytesPipe, DatePipe],
+    imports: [FormsModule, CommonModule, InfiniteScrollDirective, FileServerImageComponent, FormatBytesPipe, DatePipe],
 })
 export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
     searchSubscription: Subscription;

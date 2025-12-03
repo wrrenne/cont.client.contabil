@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { ContabilClientePageItem } from 'src/app/contabil/models/clientes/pageItems';
+import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { RadioItem } from '../../../../shared/controls/dropdown-radio/dropdown-radio';
 import { SetorDescription, TSetor } from '../../../../shared/enums';
 import { PagingBase } from '../../../../shared/models';
@@ -16,7 +17,7 @@ import { ObrigacoesAtrasadasClientesPagingService } from '../../services/pagings
 @Component({
     selector: 'obrigacoes-atrasadas-clientes-table',
     templateUrl: './obrigacoes-atrasadas-clientes-table.html',
-    imports: [RouterLink, InfiniteScrollDirective],
+    imports: [RouterLink, InfiniteScrollDirective, PercentageBarComponent],
 })
 export class ObrigacoesAtrasadasClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {
     @Input() link: string;

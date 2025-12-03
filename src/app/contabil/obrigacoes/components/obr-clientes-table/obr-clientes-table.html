@@ -44,7 +44,12 @@
                     ></avatar-image-group>
                 </td>
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasNoPrazo | dashIfEmpty}} }
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
+                    <value-and-percentage
+                        [value]="item.obrigacoesStat.concluidasNoPrazo"
+                        [percentage]="item.obrigacoesStat.concluidoNoPrazoPorcento"
+                    ></value-and-percentage>
+                    }
                 </td>
                 <td class="hidden md:table-cell">
                     @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasForaDoPrazo | dashIfEmpty}} }

@@ -3,14 +3,26 @@
         <thead>
             <tr>
                 <th>Cliente</th>
+                <th>Concluído</th>
                 <th>Obrigações Atrasadas</th>
             </tr>
         </thead>
         <tbody>
             @for (item of datas; track item) {
-            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/clienteobrigacoes', encryptionService.encrypt(item.id)]">
+            <tr class="cursor-pointer" [routerLink]="['/sistema/obrigacoes/clientesobrigacoesatrasadas', encryptionService.encrypt(item.id)]">
                 <td class="whitespace-nowrap">{{item.nome}}</td>
-                <td>{{item.obrigacoesStat?.emAtraso}}</td>
+                <td class="hidden md:table-cell">
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0 && item.obrigacoesStat.concluidas > -1) {
+                    <percentage-bar
+                        class="block w-32 mt-2"
+                        [done]="item.obrigacoesStat.concluidas"
+                        [total]="item.obrigacoesStat.total"
+                        [showPercentage]="false"
+                        [heightClass]="'h-2'"
+                    ></percentage-bar>
+                    }
+                </td>
+                <td><span class="tag tag-red">{{item.obrigacoesStat?.emAtraso}}</span></td>
             </tr>
             }
         </tbody>
