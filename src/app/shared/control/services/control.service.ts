@@ -53,6 +53,8 @@ export class ControlService extends ServiceBase {
         const sistemaId = environment.sistema;
         const cadastroId = this.vars.cadastro?.id;
 
+        console.log(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl)}/Control/SistemaCadastroGet/${cadastroId}/${sistemaId}`);
+
         return this.http
             .get<
                 ApiResponse<SistemaCadastroView>

@@ -17,13 +17,16 @@
             </div>
             <overlay-scrollbars class="relative !h-[calc(100vh-80px)]" [defer]="true" [options]="{ scrollbars: { autoHide: 'scroll' } }">
                 <ul class="relative space-y-0.5 p-4 py-0">
-                    <li class="accordion menu nav-item">
-                        <button type="button" class="nav-link group flex w-full items-center" (click)="toggleAccordion('pessoal')">
-                            <div class="flex items-center">
-                                <h6 class="flex items-center px-1 py-2.5 font-semibold">Pessoal</h6>
+                    <li class="accordion menu">
+                        <button type="button" class="flex w-full items-center gap-1" (click)="toggleAccordion('pessoal')">
+                            <div>
+                                <span class="flex items-center px-1 py-2.5 text-yellow-700">Pessoal</span>
                             </div>
-                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('pessoal') }">
-                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            <div>
+                                <ng-icon
+                                    class="relative top-[3px]"
+                                    [name]="!activeDropdown.includes('pessoal') ? 'ionChevronDownSharp' : 'ionChevronUpSharp'"
+                                ></ng-icon>
                             </div>
                         </button>
                         <div [@slideDownUp]="!activeDropdown.includes('pessoal')" class="accordion-content">
@@ -31,26 +34,42 @@
                                 <li class="nav-item">
                                     <a routerLink="/sistema/clientes/home/" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex items-center p-1">
-                                            <avatar-icon [icon]="'ionAccessibilitySharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Clientes</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'bootstrapBuildingsFill'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Clientes</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a routerLink="/sistema/obrigacoes/home" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex items-center p-1">
-                                            <!--<ng-icon name="iconoirNetworkRight" class="text-lg"></ng-icon>-->
-                                            <avatar-icon [icon]="'iconoirNetworkRight'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Obrigações</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionCalendarNumber'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Obrigações</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a routerLink="/sistema/obrigacoes/perfis" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex items-center p-1">
-                                            <!--<ng-icon name="iconoirNetworkRight" class="text-lg"></ng-icon>-->
-                                            <avatar-icon [icon]="'iconoirNetworkRight'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Perfis</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionPricetagsOutline'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Perfis</span>
                                         </div>
                                     </a>
                                 </li>
@@ -58,22 +77,36 @@
                         </div>
                     </li>
 
-                    <li class="accordion menu nav-item">
-                        <button type="button" class="nav-link group flex w-full items-center" (click)="toggleAccordion('controle_obrigacoes')">
-                            <div class="flex items-center">
-                                <h6 class="flex items-center px-1 py-2.5 font-semibold">Controle de Obrigações</h6>
+                    <li class="accordion menu">
+                        <button type="button" class="flex w-full items-center gap-1" (click)="toggleAccordion('controle_obrigacoes')">
+                            <div>
+                                <span class="flex items-center px-1 py-2.5 text-yellow-700">Controle de Obrigações</span>
                             </div>
-                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('controle_obrigacoes') }">
-                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            <div>
+                                <ng-icon
+                                    class="relative top-[3px]"
+                                    [name]="!activeDropdown.includes('controle_obrigacoes') ? 'ionChevronDownSharp' : 'ionChevronUpSharp'"
+                                ></ng-icon>
                             </div>
                         </button>
                         <div [@slideDownUp]="!activeDropdown.includes('controle_obrigacoes')" class="accordion-content">
                             <ul>
                                 <li class="menu nav-item">
-                                    <a routerLink="/sistema/obrigacoes/clientes" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
+                                    <a
+                                        [routerLink]="'/sistema/obrigacoes/clientes'"
+                                        class="nav-link"
+                                        [routerLinkActive]="'active'"
+                                        (click)="toggleMobileMenu()"
+                                    >
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionTimeSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Obrigações por Cliente</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'bootstrapBuildingsFill'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Obrigações por Cliente</span>
                                         </div>
                                     </a>
                                 </li>
@@ -86,8 +119,14 @@
                                         (click)="toggleMobileMenu()"
                                     >
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionPeopleSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Obrigações por Tipo</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionCalendarNumber'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Obrigações por Tipo</span>
                                         </div>
                                     </a>
                                 </li>
@@ -95,8 +134,14 @@
                                 <li class="menu nav-item">
                                     <a routerLink="/sistema/obrigacoes/users" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionPeopleSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Obrigações por Usuário</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionPeopleSharp'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Obrigações por Usuário</span>
                                         </div>
                                     </a>
                                 </li>
@@ -104,8 +149,8 @@
                                 <!-- <li class="menu nav-item">
                                     <a routerLink="/sistema/obrigacoes/auditoria" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionCalendarOutline'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Auditoria</span>
+                                            <avatar-icon [icon]="'ionCalendarOutline'" [rounded]="false" [circle]="false" [size]="'2rem'"></avatar-icon>
+                                            <span class="pl-2 ">Auditoria</span>
                                         </div>
                                     </a>
                                 </li> -->
@@ -113,22 +158,32 @@
                         </div>
                     </li>
 
-                    <li class="accordion menu nav-item">
-                        <button type="button" class="nav-link group flex w-full items-center" (click)="toggleAccordion('tabelas')">
-                            <div class="flex items-center">
-                                <h6 class="flex items-center px-1 py-2.5 font-semibold">Tabelas</h6>
+                    <li class="accordion menu">
+                        <button type="button" class="flex w-full items-center gap-1" (click)="toggleAccordion('tabelas')">
+                            <div>
+                                <span class="flex items-center px-1 py-2.5 text-yellow-700">Tabelas</span>
                             </div>
-                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('tabelas') }">
-                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            <div>
+                                <ng-icon
+                                    class="relative top-[3px]"
+                                    [name]="!activeDropdown.includes('tabelas') ? 'ionChevronDownSharp' : 'ionChevronUpSharp'"
+                                ></ng-icon>
                             </div>
                         </button>
+
                         <div [@slideDownUp]="!activeDropdown.includes('tabelas')" class="accordion-content">
                             <ul>
                                 <li class="menu nav-item">
                                     <a routerLink="/sistema/departamentos" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionTimeSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Departamentos</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'iconoirNetworkRight'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Departamentos</span>
                                         </div>
                                     </a>
                                 </li>
@@ -136,8 +191,14 @@
                                 <li class="menu nav-item">
                                     <a routerLink="/sistema/users/" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionPeopleSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Usuários</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionPeopleSharp'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Usuários</span>
                                         </div>
                                     </a>
                                 </li>
@@ -145,10 +206,14 @@
                                 <li class="menu nav-item">
                                     <a routerLink="/sistema/calendario" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionCalendarOutline'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark"
-                                                >Calendário {{ getYear() }}</span
-                                            >
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionCalendarOutline'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">Calendário {{ getYear() }}</span>
                                         </div>
                                     </a>
                                 </li>
@@ -156,31 +221,40 @@
                         </div>
                     </li>
 
-                    <li class="accordion menu nav-item">
-                        <button type="button" class="nav-link group flex w-full items-center" (click)="toggleAccordion('documents')">
-                            <div class="flex items-center">
-                                <h6 class="flex items-center px-1 py-2.5 font-semibold">Documentos</h6>
+                    <li class="accordion menu">
+                        <button type="button" class="flex w-full items-center gap-1" (click)="toggleAccordion('documents')">
+                            <div>
+                                <span class="flex items-center px-1 py-2.5 text-yellow-700">Documentos</span>
                             </div>
-                            <div [ngClass]="{ 'rtl:rotate-90 -rotate-90': !activeDropdown.includes('documents') }">
-                                <ng-icon [name]="'ionChevronDownSharp'"></ng-icon>
+                            <div>
+                                <ng-icon
+                                    class="relative top-[3px]"
+                                    [name]="!activeDropdown.includes('documents') ? 'ionChevronDownSharp' : 'ionChevronUpSharp'"
+                                ></ng-icon>
                             </div>
                         </button>
                         <div [@slideDownUp]="!activeDropdown.includes('documents')" class="accordion-content">
                             <ul>
-                                <li class="menu nav-item">
+                                <!-- <li class="menu nav-item">
                                     <a routerLink="/sistema/reports/home" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionFolderSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">Relatórios</span>
+                                            <avatar-icon [bgColor]="'bg-zinc-700'" [icon]="'ionFolderSharp'" [rounded]="false" [circle]="false" [size]="'2rem'"></avatar-icon>
+                                            <span class="pl-2 ">Relatórios</span>
                                         </div>
                                     </a>
-                                </li>
+                                </li> -->
 
                                 <li class="menu nav-item">
                                     <a routerLink="/sistema/ged" class="nav-link group" routerLinkActive="active" (click)="toggleMobileMenu()">
                                         <div class="flex w-full items-center p-1">
-                                            <avatar-icon [icon]="'ionFolderSharp'" [rounded]="false" [size]="'2.2rem'"></avatar-icon>
-                                            <span class="pl-2 text-black dark:text-white-dark dark:group-hover:text-white-dark">GED</span>
+                                            <avatar-icon
+                                                [bgColor]="'bg-zinc-700'"
+                                                [icon]="'ionFolderSharp'"
+                                                [rounded]="false"
+                                                [circle]="false"
+                                                [size]="'2rem'"
+                                            ></avatar-icon>
+                                            <span class="pl-2">GED</span>
                                         </div>
                                     </a>
                                 </li>
@@ -188,7 +262,7 @@
                         </div>
                     </li>
 
-                    <!-- <li class="accordion menu nav-item">
+                    <!-- <li class="accordion menu">
                         <button type="button" class="nav-link group flex w-full items-center" (click)="toggleAccordion('configuracoes_e_utilitarios')">
                             <div class="flex items-center">
                                 <h6 class="flex items-center px-1 py-2.5 font-semibold">Configurações e Utilitários</h6>

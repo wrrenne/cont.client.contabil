@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
 import { WidgetProximosImpostos } from 'src/app/contabil/models/widgets';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
 import { WidgetComponent } from 'src/app/shared/controls/widget/widget';
@@ -12,7 +13,7 @@ import { WidgetsService } from '../../services/widgets.service';
     selector: 'proximos-impostos-widget',
     templateUrl: './proximos-impostos-widget.html',
     host: { class: 'h-[430px]' },
-    imports: [CommonModule, RouterLink, WidgetComponent, PercentageBarComponent, PadNumberPipe],
+    imports: [CommonModule, RouterLink, WidgetComponent, PercentageBarComponent, PadNumberPipe, OverlayscrollbarsModule],
 })
 export class ProximosImpostosWidgetComponent implements OnInit {
     private isHidden = false;

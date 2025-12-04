@@ -1,0 +1,10 @@
+﻿<div
+    [ngxTippy]="tooltip"
+    [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
+    type="button"
+    class="h-5 w-5 rounded-full text-black/50 bg-zinc-700 dark:text-white/50 hover:dark:bg-zinc-800"
+>
+    @if (icon) {
+    <ng-icon [name]="icon" class="text-lg" [ngClass]="offsetClass"></ng-icon>
+    }
+</div>

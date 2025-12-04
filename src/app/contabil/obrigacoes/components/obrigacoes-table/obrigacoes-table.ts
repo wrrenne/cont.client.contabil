@@ -5,7 +5,7 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { Subscription } from 'rxjs';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
-import { DropDownRadioComponent, RadioItem } from '../../../../shared/controls/dropdown-radio/dropdown-radio';
+import { RadioItem } from '../../../../shared/controls/dropdown-radio/dropdown-radio';
 import { SetorDescription, TSetor } from '../../../../shared/enums';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
@@ -21,7 +21,7 @@ import { PerfilObrigacaoAssociarModalComponent } from '../perfil-obrigacao-assoc
 @Component({
     selector: 'obrigacoes-table',
     templateUrl: './obrigacoes-table.html',
-    imports: [RouterLink, InfiniteScrollDirective, DropDownRadioComponent, ButtonDefaultComponent, AvatarTitleComponent],
+    imports: [RouterLink, InfiniteScrollDirective, ButtonDefaultComponent, AvatarTitleComponent],
 })
 export class ObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> implements OnInit {
     @Input() link: string;

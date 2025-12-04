@@ -1,29 +1,28 @@
-<!--<div class="_via-blue-700 text-color-body flex flex-col items-center gap-5 bg-gradient-to-b from-blue-950 to-black px-1 py-10">
+<div class="_via-blue-700 text-color-body flex flex-col items-center gap-5 bg-gradient-to-b from-blue-950 to-black px-1 py-10">
     <div class="relative">
         <avatar-image [userId]="vars.user?.id!" [circle]="true" [size]="'5rem'" [defaultNoIconName]="vars.user?.nome" />
 
+        <!-- Edit icon -->
         <div class="absolute bottom-0 right-0 cursor-pointer rounded-full bg-teal-500 p-1 shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M15.232 5.232l3.536 3.536M9 11l3.536 3.536m0 0L18 9l-3.536-3.536M12.536 14.536L9 18h3.536v-3.464z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536M9 11l3.536 3.536m0 0L18 9l-3.536-3.536M12.536 14.536L9 18h3.536v-3.464z"
+                />
             </svg>
         </div>
     </div>
 
-    <div class="text-base text-white">{{this.vars.user?.nome!}}</div>
+    <div class="text-base text-white">{{vars.user?.nome!}}</div>
 </div>
-
-<div class="text-color-body flex flex-col space-y-2 p-5" *ngIf="cadastro">
-
+<div class="text-color-body flex flex-col space-y-2 p-5">
     <div>
         <div class="font-bold">Empresa</div>
-        <div class="text-black/40 dark:text-white/40">{{this.cadastro.cadastro.nome}}</div>
+        <div class="text-black/40 dark:text-white/40">{{cadastro.cadastro.nome}}</div>
     </div>
-
     <div class="pt-10">
-        <a (click)="signOut()" class="!py-3">
-            Sair do Sistema
-        </a>
+        <a (click)="signOut()" class="!py-3">Sair do Sistema </a>
     </div>
-</div>-->
+</div>

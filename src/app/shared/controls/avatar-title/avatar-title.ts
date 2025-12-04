@@ -38,7 +38,7 @@ export class AvatarTitleComponent {
     @Input() debug?: string | number;
     @Input() iconbgcolor: string = 'bg-avatar';
     @Input() iconClass: string;
-    @Input() avatarSize?: string = '3.5rem';
+    @Input() avatarSize?: string = '2.5rem';
 
     @Input() showInitials = false;
 

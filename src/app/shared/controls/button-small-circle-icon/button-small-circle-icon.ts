@@ -4,14 +4,13 @@ import { NgIcon } from '@ng-icons/core';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 @Component({
-    selector: 'button-circle-icon',
-    templateUrl: './button-circle-icon.html',
+    selector: 'button-small-circle-icon',
+    templateUrl: './button-small-circle-icon.html',
     standalone: true,
     imports: [CommonModule, NgIcon, NgxTippyModule],
 })
-export class ButtonCircleIconComponent {
+export class ButtonSmallCircleIconComponent {
     @Input() icon: string;
-    @Input() showBorder = true;
     @Input() buttonCss = 'bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 text-black/75 dark:text-white/75 dark:hover:bg-neutral-700';
     @Input() iconOffsetX?: number;
     @Input() tooltip?: string;

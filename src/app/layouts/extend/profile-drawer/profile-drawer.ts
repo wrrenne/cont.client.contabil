@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
+import { AvatarImageComponent } from 'src/app/shared/controls/avatar-image/avatar-image';
 import { UserPainel } from '../../../contabil/models/users';
 import { SistemaCadastroView } from '../../../shared/control/models/views';
 import { ControlService } from '../../../shared/control/services/control.service';
@@ -12,6 +13,7 @@ import { Vars } from '../../../shared/variables';
     selector: 'profile-drawer',
     standalone: true,
     templateUrl: './profile-drawer.html',
+    imports: [AvatarImageComponent],
 })
 export class ProfileDrawerComponent implements OnInit {
     cadastro: SistemaCadastroView;
@@ -35,12 +37,6 @@ export class ProfileDrawerComponent implements OnInit {
         this.drawer.close();
     }
 
-    alterarPlanosClick() {
-        this.drawerClose();
-
-        this.router.navigate(['/sistema/planos']);
-    }
-
     signOut() {
         this.drawerClose();
 
@@ -49,15 +45,5 @@ export class ProfileDrawerComponent implements OnInit {
 
     getPeriodo(): string {
         return this.dateUtilsService.getFormattedPeriod(this.vars.dataInicial, this.vars.dataFinal);
-    }
-
-    irParaMesAnterior() {
-        const dataInicial = this.dateUtilsService.addMonths(this.vars.dataInicial!, -1);
-        const dataFinal = this.dateUtilsService.lastDateOfMonth(dataInicial);
-
-        this.vars.periodo = {
-            dataInicial: dataInicial,
-            dataFinal: dataFinal,
-        };
     }
 }

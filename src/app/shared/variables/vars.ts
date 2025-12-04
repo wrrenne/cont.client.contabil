@@ -146,11 +146,11 @@ export class Vars {
     }
 
     get dashBoard(): DashboardConfigModel | null {
-        if (sessionStorage.getItem(this.getVarName('dash')) == null) return null;
-        else return JSON.parse(<string>sessionStorage.getItem(this.getVarName('dash')));
+        if (localStorage.getItem(this.getVarName('dash')) == null) return null;
+        else return JSON.parse(<string>localStorage.getItem(this.getVarName('dash')));
     }
     set dashBoard(value: DashboardConfigModel | null) {
-        if (value == null) sessionStorage.removeItem(this.getVarName('dash'));
-        else sessionStorage.setItem(this.getVarName('dash'), JSON.stringify(value));
+        if (value == null) localStorage.removeItem(this.getVarName('dash'));
+        else localStorage.setItem(this.getVarName('dash'), JSON.stringify(value));
     }
 }

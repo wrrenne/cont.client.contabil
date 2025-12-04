@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIcon } from '@ng-icons/core';
 import { Store } from '@ngrx/store';
 import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
@@ -16,7 +16,16 @@ import { DateUtilsService } from '../shared/services';
     selector: 'sidebar',
     templateUrl: './sidebar.html',
     standalone: true,
-    imports: [CommonModule, RouterLink, OverlayscrollbarsModule, NgIcon, AvatarIconComponent, FileServerSiteLogotipoComponent, AvatarIconComponent],
+    imports: [
+        CommonModule,
+        RouterLink,
+        RouterLinkActive,
+        OverlayscrollbarsModule,
+        NgIcon,
+        AvatarIconComponent,
+        FileServerSiteLogotipoComponent,
+        AvatarIconComponent,
+    ],
     animations: [slideDownUp],
 })
 export class SidebarComponent implements OnInit, OnDestroy {

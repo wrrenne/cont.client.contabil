@@ -472,7 +472,32 @@ input {
 
 .sidebar .nav-item a div:first-child svg:is(.dark *),
 .sidebar .nav-item button div:first-child svg:is(.dark *) {
-    @apply text-yellow-700;
+    @apply text-yellow-600;
+}
+
+.sidebar .nav-item > button:hover:is(.dark *),
+.sidebar .nav-item > a:hover:is(.dark *) {
+    @apply bg-zinc-800/50 text-white;
+}
+
+.sidebar .nav-item > button,
+.sidebar .nav-item > a {
+    @apply text-white/40;
+}
+
+.sidebar .nav-item > button,
+.sidebar .nav-item > a {
+    @apply rounded-sm;
+}
+
+.sidebar .nav-item > button.active:is(.dark *),
+.sidebar .nav-item > a.active:is(.dark *) {
+    @apply bg-zinc-800/50 text-white;
+}
+
+.sidebar .nav-item > button.active > div > span:is(.dark *),
+.sidebar .nav-item > a.active > div > span:is(.dark *) {
+    @apply text-white !important;
 }
 
 .border-table {
@@ -550,11 +575,6 @@ apx-chart {
     }
 }
 
-.sidebar .nav-item > button.active:is(.dark *),
-.sidebar .nav-item > a.active:is(.dark *) {
-    @apply bg-zinc-800;
-}
-
 .text-subtitle {
     @apply text-xs text-black/50 dark:text-white/40;
 }
@@ -611,3 +631,8 @@ apx-chart {
 // .divide-y > :not([hidden]) ~ :not([hidden]) {
 //     @apply border-color;
 // }
+
+ng-icon svg {
+    width: unset !important;
+    height: unset !important;
+}

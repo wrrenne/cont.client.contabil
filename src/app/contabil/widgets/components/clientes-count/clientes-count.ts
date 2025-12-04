@@ -15,7 +15,8 @@ export class ClientesCountWidgetComponent implements OnInit {
 
     ngOnInit(): void {
         this.clientesService.cadastroClientesCountGet().subscribe((x) => {
-            this.count = x.obj;
+            this.count = 250;
+            //this.count = x.obj;
         });
     }
 }

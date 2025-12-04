@@ -1,5 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
+import { TDashboardWidget } from 'src/app/contabil/models/enums';
 import { UserPainel } from '../../contabil/models/users';
 import { VarsApp } from '../../contabil/variables';
 import { ServiceBase } from '../../shared/models';
@@ -28,6 +29,19 @@ export class UserLoginService extends ServiceBase {
 
             // this.vars.dataInicial = x.obj.dataInicial;
             // this.vars.dataFinal = x.obj.dataFinal;
+
+            if (!this.vars.dashBoard) {
+                this.vars.dashBoard = {
+                    widgets: [
+                        TDashboardWidget.ObrigacoesEntregues,
+                        TDashboardWidget.ProximosImpostos,
+                        TDashboardWidget.ClientesObrigacoesAtrasadas,
+                        TDashboardWidget.ObrigacoesAtrasadas,
+                    ],
+                };
+            }
+
+            //this.vars.dashBoard = x.obj.dashboardConfig!;
 
             this.vars.cadastro = {
                 id: <number>x.obj.cadastroId,

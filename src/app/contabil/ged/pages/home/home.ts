@@ -32,7 +32,7 @@ export class GedHomePage {
     pastasParameters: PastasParameter;
     // filesParameters: FilesParameter;
 
-    pastaId: number;
+    pastaId?: number;
 
     constructor(
         private route: ActivatedRoute,

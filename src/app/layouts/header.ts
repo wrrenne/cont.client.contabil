@@ -8,6 +8,7 @@ import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
 import { toggleAnimation } from 'src/app/shared/animations';
 import { environment } from '../../environments/environment';
+import { ControlService } from '../shared/control/services/control.service';
 import { AvatarImageComponent } from '../shared/controls/avatar-image/avatar-image';
 import { FileServerSiteLogotipoComponent } from '../shared/controls/file-server-site-logotipo/file-server-site-logotipo';
 import { MenuService } from '../shared/services';
@@ -50,6 +51,7 @@ export class HeaderComponent {
         private modalService: NzModalService,
         public vars: Vars,
         private drawerService: NzDrawerService,
+        private controlService: ControlService,
     ) {
         this.menuTemplate$ = this.menuService.menuTemplate$;
         this.initStore();
@@ -81,13 +83,16 @@ export class HeaderComponent {
     }
 
     openProfileModal() {
-        this.drawerService.create({
-            nzContent: ProfileDrawerComponent,
-            nzTitle: '',
-            nzPlacement: 'right',
-            nzClosable: false,
-            nzWidth: 340,
-            nzWrapClassName: 'bg-slate-100',
+        this.controlService.sistemaCadastroGet().subscribe((x) => {
+            this.drawerService.create({
+                nzContent: ProfileDrawerComponent,
+                nzTitle: '',
+                nzPlacement: 'right',
+                nzClosable: false,
+                nzWidth: 340,
+                nzWrapClassName: 'bg-slate-100',
+                nzData: { cadastro: x.obj },
+            });
         });
     }
 }

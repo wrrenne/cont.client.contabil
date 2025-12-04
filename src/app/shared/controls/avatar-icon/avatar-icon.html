@@ -6,7 +6,7 @@
     [tippyProps]="tippyProps"
     [ngxTippy]="tooltip"
 >
-    <ng-icon [name]="icon" [class]="iconCss + ' ' + (iconColor ?? '')"></ng-icon>
+    <ng-icon [name]="icon" [class]="iconCss + ' ' + (iconColor ?? '')" [ngStyle]="{ width: null, height: null }">></ng-icon>
 
     <!-- Badge -->
     @if (badge !== 'none') { @switch (badge) { @case ('check') {
