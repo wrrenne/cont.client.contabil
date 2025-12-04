@@ -11,5 +11,6 @@ export enum TUserPrefTipo {
     ContasCorrentes = 30,
     ContasPagar = 31,
     ContasReceber = 32,
-    DashboardWidgets = 50,
+    DashboardPontoWidgets = 50,
+    DashboardContabilWidgets = 51,
 }

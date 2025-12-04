@@ -4,6 +4,7 @@ import { UserWelcomeComponent } from 'src/app/shared/controls/user-welcome/user-
 import { TSetor } from 'src/app/shared/enums';
 import { DateUtilsService } from '../../../shared/services';
 import { Vars } from '../../../shared/variables';
+import { TDashboardWidget } from '../../models/enums';
 import { ArquivosDisponibilizadosWidgetComponent } from '../../widgets/components/arquivos-disponibilizados-widget/arquivos-disponibilizados-widget';
 import { ClientesCountWidgetComponent } from '../../widgets/components/clientes-count/clientes-count';
 import { DepartamentoWidgetComponent } from '../../widgets/components/departamento-widget/departamento-widget';
@@ -36,6 +37,7 @@ export class ContabilHomePage {
 
     nome: string;
     TSetor = TSetor;
+    TDashboardWidget = TDashboardWidget;
 
     constructor(
         private router: Router,
@@ -43,4 +45,8 @@ export class ContabilHomePage {
         public vars: Vars,
         private dateUtilsService: DateUtilsService,
     ) {}
+
+    getDashboardWidget(widget: TDashboardWidget): boolean {
+        return this.vars.dashBoard?.widgets.includes(widget) ?? false;
+    }
 }

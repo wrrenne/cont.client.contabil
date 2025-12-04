@@ -127,3 +127,13 @@ export enum TRegime {
     Autonomo = 5,
     ProfissionalLiberal = 6,
 }
+
+export enum TDashboardWidget {
+    ObrigacoesEntregues = 1,
+    ProximosImpostos = 2,
+    ClientesObrigacoesAtrasadas = 3,
+    ObrigacoesAtrasadas = 4,
+    ObrigacoesNoPrazoFiscal = 5,
+    ObrigacoesNoPrazoContabil = 6,
+    ObrigacoesNoPrazoPessoal = 7,
+}

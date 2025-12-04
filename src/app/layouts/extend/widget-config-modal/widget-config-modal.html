@@ -1,13 +1,34 @@
-<!--<modal-base [title]="'Configuração do Dashboard'">
+<modal-base [title]="'Configuração do Dashboard'">
     <ng-template #modalContent>
         <div class="grid grid-cols-3 gap-x-3 gap-y-6">
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'visao-geral', title: 'Visão Geral', widgetId: TDashboardWidget.VisaoGeral }"></ng-container>
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'ultimas-marcacoes', title: 'Últimas Marcações', widgetId: TDashboardWidget.UltimasMarcacoes }"></ng-container>
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'atrasos-por-funcionario', title: 'Atrasos por Funcionário', widgetId: TDashboardWidget.AtrasosPorFuncionario }"></ng-container>
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'horas-extras-por-funcionario', title: 'Horas Extras por Funcionário', widgetId: TDashboardWidget.ExtrasPorFuncionario }"></ng-container>
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'abonos-por-funcionario', title: 'Abonos por Funcionário', widgetId: TDashboardWidget.AbonosPorFuncionario }"></ng-container>
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'banco-por-funcionario', title: 'Banco por Funcionário', widgetId: TDashboardWidget.BancoPorFuncionario }"></ng-container>
-            <ng-container [ngTemplateOutlet]="widget" [ngTemplateOutletContext]="{ image: 'abonos-por-tipo', title: 'Abonos por Tipo', widgetId: TDashboardWidget.AbonosPorTipo }"></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'clientes-obrigacoes-atrasadas', title: 'Obrigações Entregues', widgetId: TDashboardWidget.ObrigacoesEntregues }"
+            ></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'proximos-impostos', title: 'Próximos Impostos', widgetId: TDashboardWidget.ProximosImpostos }"
+            ></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'clientes-obrigacoes-atrasadas', title: 'Clientes com Obrigações Atrasadas', widgetId: TDashboardWidget.ClientesObrigacoesAtrasadas }"
+            ></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'obrigacoes-atrasadas', title: 'Obrigações Atrasadas', widgetId: TDashboardWidget.ObrigacoesAtrasadas }"
+            ></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'obrigacoes-no-prazo-fiscal', title: 'Obrigações no Prazo - Fiscal', widgetId: TDashboardWidget.ObrigacoesNoPrazoFiscal }"
+            ></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'obrigacoes-no-prazo-contabil', title: 'Obrigações no Prazo - Contábil', widgetId: TDashboardWidget.ObrigacoesNoPrazoContabil }"
+            ></ng-container>
+            <ng-container
+                [ngTemplateOutlet]="widget"
+                [ngTemplateOutletContext]="{ image: 'obrigacoes-no-prazo-pessoal', title: 'Obrigações no Prazo - Pessoal', widgetId: TDashboardWidget.ObrigacoesNoPrazoPessoal }"
+            ></ng-container>
         </div>
     </ng-template>
 </modal-base>
@@ -15,13 +36,14 @@
 <ng-template #widget let-image="image" let-title="title" let-widgetId="widgetId">
     <div class="flex flex-col gap-1">
         <div class="flex h-10 items-center gap-2">
-
-            <div nz-checkbox
-                 [(ngModel)]="selection[widgetId]"
-                 (ngModelChange)="onWidgetToggle($event, widgetId)"></div>
+            <div nz-checkbox [(ngModel)]="selection[widgetId]" (ngModelChange)="onWidgetToggle($event, widgetId)"></div>
 
             <span class="text-xs">{{title}}</span>
         </div>
-        <file-server-image [src]="'/images/widgets/ponto/' + image + '-' + (isDark ? 'dark' : 'light') + '.png'" [width]="180" [imageClass]="'rounded-lg border border-dashed border-gray-400 dark:border-gray-500'"></file-server-image>
+        <file-server-image
+            [src]="'/images/widgets/contabil/' + image + '-' + (isDark ? 'dark' : 'light') + '.png'"
+            [width]="180"
+            [imageClass]="'rounded-lg border border-dashed border-gray-400 dark:border-gray-500'"
+        ></file-server-image>
     </div>
-</ng-template>-->
+</ng-template>

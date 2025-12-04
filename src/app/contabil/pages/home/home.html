@@ -11,16 +11,21 @@
             <arquivos-disponibilizados-widget></arquivos-disponibilizados-widget>
         </div>
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 4xl:grid-cols-6">
+            @if (getDashboardWidget(TDashboardWidget.ObrigacoesEntregues)) {
             <obrigacoes-entregues-geral-widget></obrigacoes-entregues-geral-widget>
+            } @if (getDashboardWidget(TDashboardWidget.ProximosImpostos)) {
             <proximos-impostos-widget></proximos-impostos-widget>
+            } @if (getDashboardWidget(TDashboardWidget.ClientesObrigacoesAtrasadas)) {
             <obrigacoes-atrasadas-clientes-widget></obrigacoes-atrasadas-clientes-widget>
+            } @if (getDashboardWidget(TDashboardWidget.ObrigacoesAtrasadas)) {
             <obrigacoes-atrasadas-obrigacoes-widget></obrigacoes-atrasadas-obrigacoes-widget>
-            <!-- <clientes-obrigacoes-atrasadas-geral-widget></clientes-obrigacoes-atrasadas-geral-widget>
-            <obrigacoes-atrasadas-geral-widget></obrigacoes-atrasadas-geral-widget> -->
+            } @if (getDashboardWidget(TDashboardWidget.ObrigacoesNoPrazoFiscal)) {
             <departamento-widget [setor]="TSetor.Fiscal"></departamento-widget>
+            } @if (getDashboardWidget(TDashboardWidget.ObrigacoesNoPrazoContabil)) {
             <departamento-widget [setor]="TSetor.Contabil"></departamento-widget>
+            } @if (getDashboardWidget(TDashboardWidget.ObrigacoesNoPrazoPessoal)) {
             <departamento-widget [setor]="TSetor.Pessoal"></departamento-widget>
-            <!-- <departamentos-noprazo-widget></departamentos-noprazo-widget> -->
+            }
         </div>
     </div>
 </div>

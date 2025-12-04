@@ -2,7 +2,10 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 //import { TDashboardWidget } from '../../../ponto-shared/models/enums/enums';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TDashboardWidget } from 'src/app/contabil/models/enums';
+import { FileServerImageComponent } from 'src/app/shared/controls/file-server-image/file-server-image';
 import { TUserPrefTipo } from '../../../shared/control/models/enums';
 import { UserPreferencesService } from '../../../shared/control/userPreferences/services/userPreferences.service';
 import { ModalBaseComponent } from '../../../shared/controls/modal-base/modal-base';
@@ -12,13 +15,13 @@ import { Vars } from '../../../shared/variables';
     selector: 'widget-config-modal',
     templateUrl: './widget-config-modal.html',
     standalone: true,
-    imports: [FormsModule, NzCheckboxModule],
+    imports: [CommonModule, FormsModule, NzCheckboxModule, ModalBaseComponent, FileServerImageComponent],
 })
 export class WidgetConfigModalComponent extends ModalBaseComponent implements OnInit {
     store: any;
     isDark: boolean;
 
-    //TDashboardWidget = TDashboardWidget
+    TDashboardWidget = TDashboardWidget;
 
     constructor(
         injector: Injector,
@@ -47,7 +50,7 @@ export class WidgetConfigModalComponent extends ModalBaseComponent implements On
     selection: Record<string, boolean> = {};
 
     onWidgetToggle(checked: any, widgetId: number) {
-        this.userPreferencesService.userPrefSave(TUserPrefTipo.DashboardWidgets, widgetId.toString(), checked, !checked).subscribe((_) => {
+        this.userPreferencesService.userPrefSave(TUserPrefTipo.DashboardContabilWidgets, widgetId.toString(), checked, !checked).subscribe((_) => {
             // normalize existing dashboard or create default
             const current = this.vars.dashBoard ?? { widgets: [] as number[] };
 
