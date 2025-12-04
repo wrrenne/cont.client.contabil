@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
 import { AvatarIconComponent } from '../avatar-icon/avatar-icon';
 import { AvatarImageComponent } from '../avatar-image/avatar-image';
 import { ButtonCircleIconComponent } from '../button-circle-icon/button-circle-icon';
@@ -8,7 +9,7 @@ import { ButtonCircleIconComponent } from '../button-circle-icon/button-circle-i
 @Component({
     selector: 'widget',
     standalone: true,
-    imports: [CommonModule, RouterLink, AvatarImageComponent, AvatarIconComponent, ButtonCircleIconComponent],
+    imports: [CommonModule, RouterLink, AvatarImageComponent, AvatarIconComponent, ButtonCircleIconComponent, OverlayscrollbarsModule],
     templateUrl: './widget.html',
 })
 export class WidgetComponent {

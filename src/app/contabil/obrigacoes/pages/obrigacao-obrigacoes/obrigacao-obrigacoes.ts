@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { combineLatest, Subscription } from 'rxjs';
 import { TObrigacaoStatus } from 'src/app/contabil/models/enums';
@@ -17,6 +18,7 @@ import { ObrigacoesService } from '../../services/obrigacoes.service';
     selector: 'obrigacao-obrigacoes-page',
     templateUrl: './obrigacao-obrigacoes.html',
     imports: [NzTabsModule, ObrigacaoObrigacoesTableComponent, Profile2Component, ButtonDefaultComponent, MonthButtonsComponent],
+    providers: [NzModalService],
     standalone: true,
 })
 export class ObrigacaoObrigacoesPage implements OnInit {

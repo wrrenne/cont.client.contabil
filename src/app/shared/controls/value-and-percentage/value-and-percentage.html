@@ -1,4 +1,6 @@
 <div class="flex gap-2">
-    <span>{{value}}</span>
-    <span>({{percentage}} %)</span>
+    <span>{{value | dashIfEmpty }}</span>
+    @if (percentage > 0) {
+    <span> ({{percentage}} %) </span>
+    }
 </div>

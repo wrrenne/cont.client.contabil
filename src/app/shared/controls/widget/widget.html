@@ -1,4 +1,4 @@
-<div class="ppanel flex h-full flex-col justify-center bg-[#ffffff] dark:bg-[#010101]" [class]="bgClass">
+<div class="ppanel flex h-full flex-col justify-center bg-[#ffffff] dark:bg-[#010101] rounded-lg" [class]="bgClass">
     @if (title) {
     <div class="border-color h-[66px] border-b">
         <div class="flex items-center">
@@ -58,7 +58,9 @@
     }
 
     <div [ngClass]="{'grow': !alignVertical}" class="mt-8">
+        <!-- <overlay-scrollbars class="h-[280px]" [defer]="true" [options]="{ scrollbars: { autoHide: 'scroll' } }"> -->
         <ng-container [ngTemplateOutlet]="content"> </ng-container>
+        <!-- </overlay-scrollbars> -->
     </div>
 
     @if (footer) {

@@ -7,8 +7,8 @@ import { ObrigacoesParameter } from 'src/app/contabil/models/obrigacoes/paramete
 import { ContUserPageItem } from 'src/app/contabil/models/users/pageItems';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
+import { ValueAndPercentageComponent } from 'src/app/shared/controls/value-and-percentage/value-and-percentage';
 import { PagingBase } from 'src/app/shared/models';
-import { DashIfEmptyPipe } from 'src/app/shared/pipes';
 import { SearchService } from 'src/app/shared/services';
 import { environment } from 'src/environments/environment';
 import { Vars } from '../../../../shared/variables';
@@ -18,7 +18,7 @@ import { UsersComObrigacoesPagingService } from '../../services/pagings/usersCom
     selector: 'obr-users-table',
     templateUrl: './obr-users-table.html',
     standalone: true,
-    imports: [CommonModule, RouterLink, DashIfEmptyPipe, AvatarTitleComponent, PercentageBarComponent],
+    imports: [CommonModule, RouterLink, AvatarTitleComponent, PercentageBarComponent, ValueAndPercentageComponent],
 })
 export class ObrUsersTableComponent extends PagingBase<ContUserPageItem> {
     searchSubscription: Subscription;

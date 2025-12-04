@@ -39,7 +39,6 @@ export class ProximosImpostosWidgetComponent implements OnInit {
             x.obj = this.dateUtilsService.convertDates(x.obj);
             this.widget = x.obj;
             this.subTitle = x.obj.periodo;
-            //this.days = x.obj.datas.map((x) => x.data.getDay());
             this.isHidden = !this.widget;
         });
     }

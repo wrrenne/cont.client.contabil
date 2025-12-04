@@ -52,13 +52,22 @@
                     }
                 </td>
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.concluidasForaDoPrazo | dashIfEmpty}} }
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
+                    <value-and-percentage
+                        [value]="item.obrigacoesStat.concluidasForaDoPrazo"
+                        [percentage]="item.obrigacoesStat.concluidasForaDoPrazoPorcento"
+                    ></value-and-percentage>
+                    }
                 </td>
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAtraso | dashIfEmpty}} }
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
+                    <value-and-percentage [value]="item.obrigacoesStat.emAtraso" [percentage]="item.obrigacoesStat.emAtrasoPorcento"></value-and-percentage>
+                    }
                 </td>
                 <td class="hidden md:table-cell">
-                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) { {{item.obrigacoesStat.emAberto | dashIfEmpty}} }
+                    @if (item.obrigacoesStat && item.obrigacoesStat.total > 0) {
+                    <value-and-percentage [value]="item.obrigacoesStat.emAberto" [percentage]="item.obrigacoesStat.emAbertoPorcento"></value-and-percentage>
+                    }
                 </td>
                 <td class="hidden md:table-cell">
                     @if (item.obrigacoesStat && item.obrigacoesStat.total > 0 && item.obrigacoesStat.concluidas > -1) {

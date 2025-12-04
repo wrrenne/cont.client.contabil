@@ -12,7 +12,7 @@ import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-
 import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
-import { DashIfEmptyPipe } from 'src/app/shared/pipes';
+import { ValueAndPercentageComponent } from 'src/app/shared/controls/value-and-percentage/value-and-percentage';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
@@ -32,7 +32,7 @@ import { ContabilClientePageItem } from '../../../models/clientes/pageItems';
         AvatarImageGroupComponent,
         AvatarIconEmptyComponent,
         PerfilTagComponent,
-        DashIfEmptyPipe,
+        ValueAndPercentageComponent,
     ],
 })
 export class ObrClientesTableComponent extends PagingBase<ContabilClientePageItem> implements OnInit {

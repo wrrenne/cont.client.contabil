@@ -33,7 +33,8 @@ export class WidgetsService extends ServiceBase {
 
     widgetProximosImpostosGet(): Observable<ApiResponse<WidgetProximosImpostos>> {
         const cadastroId = this.vars.cadastro?.id;
-        const data = this.dateUtilsService.GetDateIsoString(this.dateUtilsService.getToday());
+        //const data = this.dateUtilsService.GetDateIsoString(this.dateUtilsService.getToday());
+        const data = this.dateUtilsService.GetDateIsoString(new Date('2025-11-25'));
         const userId = this.vars.user?.id;
 
         return this.http

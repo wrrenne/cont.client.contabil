@@ -11,7 +11,7 @@ import { AvatarIconComponent } from 'src/app/shared/controls/avatar-icon/avatar-
 import { AvatarImageGroupComponent } from 'src/app/shared/controls/avatar-image-group/avatar-image-group';
 import { AvatarTitleComponent } from 'src/app/shared/controls/avatar-title/avatar-title';
 import { PercentageBarComponent } from 'src/app/shared/controls/percentage-bar/percentage-bar';
-import { DashIfEmptyPipe } from 'src/app/shared/pipes';
+import { ValueAndPercentageComponent } from 'src/app/shared/controls/value-and-percentage/value-and-percentage';
 import { PagingBase } from '../../../../shared/models';
 import { SearchService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
@@ -23,7 +23,6 @@ import { ObrigacoesComObrigacoesPagingService } from '../../services/pagings/obr
     standalone: true,
     imports: [
         CommonModule,
-        DashIfEmptyPipe,
         InfiniteScrollDirective,
         AvatarTitleComponent,
         RouterLink,
@@ -31,6 +30,7 @@ import { ObrigacoesComObrigacoesPagingService } from '../../services/pagings/obr
         AvatarIconComponent,
         AvatarIconEmptyComponent,
         AvatarImageGroupComponent,
+        ValueAndPercentageComponent,
     ],
 })
 export class ObrObrigacoesTableComponent extends PagingBase<ObrigacaoPageItem> {
