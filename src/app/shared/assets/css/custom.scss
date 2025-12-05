@@ -242,7 +242,7 @@ input {
 
     thead td,
     th {
-        @apply px-3 py-6 text-black/70 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#d0d0d0]/50 dark:bg-[#303030]/70 border border-table border-b border-r;
+        @apply px-3 py-6 text-black/70 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#d0d0d0]/50 dark:bg-[#2a2a2a]/50 border border-table border-b border-r;
     }
 
     tbody {
@@ -482,7 +482,7 @@ input {
 
 .sidebar .nav-item > button,
 .sidebar .nav-item > a {
-    @apply text-white/40;
+    @apply text-white/70;
 }
 
 .sidebar .nav-item > button,
