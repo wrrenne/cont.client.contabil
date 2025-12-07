@@ -17,9 +17,6 @@ export class PdfViewerComponent {
         this.getData();
     }
 
-    // @Input() reportId!: number;
-    // @Input() parameters?: Record<string, any>; // optional extra parameters for the report
-
     pdfUrl?: SafeResourceUrl;
     loading = true;
     error?: string;
@@ -49,43 +46,3 @@ export class PdfViewerComponent {
         console.log('aaa');
     }
 }
-
-// import { Component, Input } from '@angular/core';
-// import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-// import { Subscription } from 'rxjs';
-
-// @Component({
-//     selector: 'pdf-viewer',
-//     templateUrl: './pdf-viewer.html',
-// })
-// export class PdfViewerComponent {
-//     private _url: string;
-//     @Input() get url() {
-//         return this._url;
-//     }
-//     set data(value: string) {
-//         this._url = value;
-//     }
-
-//     private _blob: Blob;
-//     @Input() get blob() {
-//         return this._blob;
-//     }
-//     set blob(value: Blob) {
-//         this._blob = value;
-
-//         if (!value) return;
-
-//         const objectUrl = URL.createObjectURL(value);
-//         this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(objectUrl);
-//         this.loading = false;
-//     }
-
-//     pdfUrl?: SafeResourceUrl;
-//     @Input() loading = false;
-
-//     error?: string;
-//     protected sub?: Subscription;
-
-//     constructor(protected sanitizer: DomSanitizer) {}
-// }

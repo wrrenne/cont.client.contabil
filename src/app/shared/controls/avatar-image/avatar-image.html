@@ -35,19 +35,11 @@
         />
     </div>
     } @else { @if (icon) {
-    <div
-        class="flex h-full w-full items-center justify-center"
-        [class]="bgClass"
-        [ngClass]="{'ring-2 ring-gray-400 dark:ring-gray-700': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
-    >
+    <div class="flex h-full w-full items-center justify-center" [class]="bgClass" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
         <ng-icon [name]="icon" class="text-black/70 dark:text-white/70" [ngClass]="iconClass"></ng-icon>
     </div>
     } @else {
-    <div
-        class="flex h-full w-full items-center justify-center"
-        [class]="bgClass"
-        [ngClass]="{'ring-2 ring-gray-400 dark:ring-gray-700': ring, 'rounded-full' : circle, 'rounded-md': rounded && !circle}"
-    >
+    <div class="flex h-full w-full items-center justify-center" [class]="bgClass" [ngClass]="{'rounded-full' : circle, 'rounded-md': rounded && !circle}">
         @if (defaultNoIconName) {
         <span [class]="iconClass + ' ' + (iconColor ?? '')">{{getDefaultIconNameInitials()}}</span>
         } @if (!defaultNoIconName) {

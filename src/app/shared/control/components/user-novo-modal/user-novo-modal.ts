@@ -1,4 +1,3 @@
-
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,23 +12,22 @@ import { InputExComponent } from '../../../controls/input-ex/input-ex';
 import { ModalBaseComponent } from '../../../controls/modal-base/modal-base';
 
 export interface UserNovoModalData {
-    cadastroId: number
+    cadastroId: number;
 }
 
 @Component({
     selector: 'user-novo-modal',
     standalone: true,
     imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, InputExComponent],
-    templateUrl: './user-novo-modal.html'
+    templateUrl: './user-novo-modal.html',
 })
 export class UserNovoModalComponent {
+    showSecondForm = false;
 
-    showSecondForm = false
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
 
-    firstFormGroup: FormGroup
-    secondFormGroup: FormGroup
-
-    cadastroId?: number
+    cadastroId?: number;
 
     constructor(
         private modal: NzModalRef,
@@ -39,13 +37,13 @@ export class UserNovoModalComponent {
         private usersService: UsersService,
         private encryptionService: EncryptionService,
         private notification: NzNotificationService,
-        @Inject(NZ_MODAL_DATA) data: UserNovoModalData
+        @Inject(NZ_MODAL_DATA) data: UserNovoModalData,
     ) {
-        this.cadastroId = data?.cadastroId
+        this.cadastroId = data?.cadastroId;
     }
 
     ngOnInit(): void {
-        this.createForm()
+        this.createForm();
     }
 
     createForm() {
@@ -60,71 +58,56 @@ export class UserNovoModalComponent {
         });
     }
 
-
     closeModal() {
         this.modal.close();
     }
 
     emailPesquisar() {
-        const email = this.firstFormGroup.get('email')?.value
+        const email = this.firstFormGroup.get('email')?.value;
 
-        this.secondFormGroup.controls['email'].setValue(email)
+        this.secondFormGroup.controls['email'].setValue(email);
 
-        this.usersService.userByEmailGet(email).subscribe(x => {
+        this.usersService.userByEmailGet(email).subscribe((x) => {
             if (x.obj) {
-                this.secondFormGroup.controls['nome'].setValue(x.obj.userNome)
+                this.secondFormGroup.controls['nome'].setValue(x.obj.userNome);
             }
 
-            this.showSecondForm = true
-        })
+            this.showSecondForm = true;
+        });
     }
 
     submit() {
-        var userInput: UserInput =
-        {
+        var userInput: UserInput = {
             nome: this.secondFormGroup.get('nome')?.value,
             email: this.secondFormGroup.get('email')?.value,
             sistemaId: environment.sistema,
             cadastroId: this.cadastroId,
             userId: this.vars.user?.id,
             master: false,
-            supervisor: false
-        }
+            supervisor: false,
+        };
 
-        this.usersService.userCreateOrUpdate(userInput).subscribe(x => {
+        this.usersService.userCreateOrUpdate(userInput).subscribe((x) => {
             if (x.errorMessage != null) {
-                this.createNotificationError(x.errorMessage.text)
+                this.createNotificationError(x.errorMessage.text);
                 return;
             }
 
-            this.createNotificationUserSucesso()
-            this.router.navigate(['/sistema/users/user', this.getEncryptedId(x.obj[0])]);
-            this.closeModal()
-        })
+            this.createNotificationUserSucesso();
+            this.router.navigate(['/sistema/users/user', this.getEncryptedId(x.obj[0].id)]);
+            this.closeModal();
+        });
     }
 
-    //tratamentoGo() {
-    //    this.router.navigate(['/sistema/espelhos/fechamento']);
-    //}
-
     getEncryptedId(id: number): string {
-        return this.encryptionService.encrypt(id)
-        //    return this.encryptionService.set(id)
+        return this.encryptionService.encrypt(id);
     }
 
     createNotificationUserSucesso(): void {
-        this.notification.create(
-            'success',
-            '',
-            'Registro criado com sucesso'
-        );
+        this.notification.create('success', '', 'Registro criado com sucesso');
     }
 
     createNotificationError(erro: string): void {
-        this.notification.create(
-            '',
-            'Usuário',
-            erro
-        );
+        this.notification.create('', 'Usuário', erro);
     }
 }

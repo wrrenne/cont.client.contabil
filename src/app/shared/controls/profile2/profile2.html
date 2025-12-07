@@ -13,7 +13,7 @@
                     @if (funcionarioId) {
                     <avatar-image [funcionarioId]="funcionarioId" [defaultNoIconName]="title" [size]="'80px'"></avatar-image>
                     } @else { @if (userId) {
-                    <avatar-image [userId]="userId"></avatar-image>
+                    <avatar-image [userId]="userId" [defaultNoIconName]="title" [size]="'80px'"></avatar-image>
                     } }
                     <!-- @if (url) {
                 <img [src]="url" class="w-20 h-20 rounded-none border-2 border-white shadow -mt-10 sm:mt-0" />

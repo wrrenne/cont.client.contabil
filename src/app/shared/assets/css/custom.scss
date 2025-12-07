@@ -6,7 +6,7 @@ body.dark {
 }
 
 .border-color {
-    @apply border-[#e0e6ed] dark:border-[#242424];
+    @apply border-[#e0e6ed] dark:border-[#272727];
 }
 
 .border-color-2 {
@@ -242,7 +242,7 @@ input {
 
     thead td,
     th {
-        @apply px-3 py-6 text-black/70 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#d0d0d0]/50 dark:bg-[#2a2a2a]/50 border border-table border-b border-r;
+        @apply px-3 py-6 text-black/70 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#d0d0d0]/50 dark:bg-[#262626]/50 border border-table border-b border-r;
     }
 
     tbody {
@@ -374,6 +374,10 @@ input {
     @apply tag-rounded bg-gray-900 dark:bg-gray-100 tag-text;
 }
 
+.tag-black {
+    @apply tag-rounded bg-zinc-100 dark:bg-zinc-100 text-black;
+}
+
 .tag-blue-outline {
     @apply tag-rounded border border-blue-300 dark:border-blue-900 tag-text;
 }
@@ -477,7 +481,7 @@ input {
 
 .sidebar .nav-item > button:hover:is(.dark *),
 .sidebar .nav-item > a:hover:is(.dark *) {
-    @apply bg-zinc-800/50 text-white;
+    @apply bg-zinc-800/70 text-white rounded-md;
 }
 
 .sidebar .nav-item > button,
@@ -492,7 +496,7 @@ input {
 
 .sidebar .nav-item > button.active:is(.dark *),
 .sidebar .nav-item > a.active:is(.dark *) {
-    @apply bg-zinc-800/50 text-white;
+    @apply bg-yellow-800/50 text-white rounded-md;
 }
 
 .sidebar .nav-item > button.active > div > span:is(.dark *),
