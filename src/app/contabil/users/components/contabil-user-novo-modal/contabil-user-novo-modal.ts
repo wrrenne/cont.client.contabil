@@ -15,12 +15,12 @@ import { EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
 
 @Component({
-    selector: 'user-novo-modal',
+    selector: 'contabil-user-novo-modal',
     standalone: true,
-    templateUrl: './user-novo-modal.html',
+    templateUrl: './contabil-user-novo-modal.html',
     imports: [FormsModule, ReactiveFormsModule, ModalBaseComponent, InputExComponent, ButtonDefaultComponent, NzCheckboxModule, InputTextAreaExComponent],
 })
-export class UserNovoModalComponent {
+export class ContabilUserNovoModalComponent {
     showSecondForm = false;
 
     firstFormGroup: FormGroup;
@@ -51,10 +51,6 @@ export class UserNovoModalComponent {
             sistemaId: [environment.sistema, Validators.required],
             sendInvite: [false],
         });
-        // this.firstFormGroup = this.formBuilder.group({
-        //     nome: [null, Validators.required],
-        //     email: [null, Validators.required],
-        // });
     }
 
     closeModal() {
@@ -99,10 +95,6 @@ export class UserNovoModalComponent {
             this.closeModal();
         });
     }
-
-    //tratamentoGo() {
-    //    this.router.navigate(['/sistema/espelhos/fechamento']);
-    //}
 
     getEncryptedId(id: number): string {
         return this.encryptionService.encrypt(id);

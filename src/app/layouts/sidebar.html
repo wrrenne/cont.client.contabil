@@ -18,18 +18,18 @@
             <overlay-scrollbars class="relative !h-[calc(100vh-80px)]" [defer]="true" [options]="{ scrollbars: { autoHide: 'scroll' } }">
                 <ul class="relative space-y-0.5 p-4 py-0">
                     <li class="accordion menu">
-                        <button type="button" class="flex w-full items-center gap-1" (click)="toggleAccordion('pessoal')">
+                        <button type="button" class="flex w-full items-center gap-1" (click)="toggleAccordion('gestao')">
                             <div>
-                                <span class="flex items-center px-1 py-2.5 text-yellow-700">Pessoal</span>
+                                <span class="flex items-center px-1 py-2.5 text-yellow-700">Gestão</span>
                             </div>
                             <div>
                                 <ng-icon
                                     class="relative top-[3px]"
-                                    [name]="!activeDropdown.includes('pessoal') ? 'ionChevronDownSharp' : 'ionChevronUpSharp'"
+                                    [name]="!activeDropdown.includes('gestao') ? 'ionChevronDownSharp' : 'ionChevronUpSharp'"
                                 ></ng-icon>
                             </div>
                         </button>
-                        <div [@slideDownUp]="!activeDropdown.includes('pessoal')" class="accordion-content">
+                        <div [@slideDownUp]="!activeDropdown.includes('gestao')" class="accordion-content">
                             <ul>
                                 <li class="nav-item">
                                     <a routerLink="/sistema/clientes/home/" class="group" routerLinkActive="active" (click)="toggleMobileMenu()">

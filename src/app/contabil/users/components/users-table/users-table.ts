@@ -13,7 +13,7 @@ import { Vars } from '../../../../shared/variables';
 import { UsersParameter } from '../../../models/users/parameters';
 import { ObrigacoesUtilsService } from '../../../obrigacoes/services/obrigacoesUtils.service';
 import { CadastroUsersService } from '../../services/pagings/cadastroUsersGet.service';
-import { UserNovoModalComponent } from '../user-novo-modal/user-novo-modal';
+import { ContabilUserNovoModalComponent } from '../contabil-user-novo-modal/contabil-user-novo-modal';
 
 @Component({
     selector: 'users-table',
@@ -70,7 +70,7 @@ export class UsersTableComponent extends PagingBase<ContUserPageItem> implements
 
     userNovoModal() {
         const modal = this.modalService.create({
-            nzContent: UserNovoModalComponent,
+            nzContent: ContabilUserNovoModalComponent,
             nzWidth: 570,
             nzClosable: false,
             nzFooter: null,

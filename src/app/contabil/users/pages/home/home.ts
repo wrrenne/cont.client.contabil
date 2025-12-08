@@ -6,7 +6,7 @@ import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/b
 import { PageTitleComponent } from 'src/app/shared/controls/page-title/page-title';
 import { Vars } from '../../../../shared/variables';
 import { UsersParameter } from '../../../models/users/parameters';
-import { UserNovoModalComponent } from '../../components/user-novo-modal/user-novo-modal';
+import { ContabilUserNovoModalComponent } from '../../components/contabil-user-novo-modal/contabil-user-novo-modal';
 import { UsersTableComponent } from '../../components/users-table/users-table';
 
 @Component({
@@ -47,7 +47,7 @@ export class UsersHomePage {
 
     userNovoOpenModal() {
         const modal = this.modalService.create({
-            nzContent: UserNovoModalComponent,
+            nzContent: ContabilUserNovoModalComponent,
             nzWidth: 570,
             nzClosable: false,
             nzFooter: null,

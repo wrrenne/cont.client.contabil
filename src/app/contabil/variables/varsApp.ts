@@ -10,7 +10,7 @@ export class VarsApp extends Vars {
     get sidebarConfig(): string[] {
         const value: string | null = localStorage.getItem(this.getVarName('sidebar'));
 
-        return value != null ? value.split(',') : ['pessoal', 'apontamento'];
+        return value != null ? value.split(',') : ['gestao', 'controle_obrigacoes', 'tabelas'];
     }
     set sidebarConfig(value: string[]) {
         localStorage.setItem(this.getVarName('sidebar'), value.join(','));
