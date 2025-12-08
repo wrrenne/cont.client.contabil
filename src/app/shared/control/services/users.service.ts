@@ -40,7 +40,7 @@ export class UsersService extends ServiceBase {
         return this.http
             .post<
                 ApiResponse<UserOutput[]>
-            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl, true)}/Users/UserCreateOrUpdate`, [user], this.httpService.httpOptions)
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl)}/Users/UserCreateOrUpdate`, [user], this.httpService.httpOptions)
             .pipe(catchError(this.handleError));
     }
 }
