@@ -1,5 +1,5 @@
-﻿<div class="flex w-full flex-wrap gap-5">
-  @for (item of pacotes; track item) {
-    <pacote-card [pacote]="item" class="transform duration-500 hover:-translate-y-2"></pacote-card>
-  }
+﻿<div class="w-full gap-5" [ngClass]="{'flex flex-wrap': !column, 'grid grid-cols-3': column}">
+    @for (item of pacotes; track item) {
+    <pacote-card [pacote]="item" class="transform duration-500 _hover:_-translate-y-2" [ngClass]="{'w-56': !column}"></pacote-card>
+    }
 </div>

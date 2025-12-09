@@ -3,65 +3,75 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Store } from '@ngrx/store';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { environment } from '../../../../../environments/environment';
+import { EmailService } from '../../../control/services/email.service';
+import { SistemaTipo } from '../../../models';
 import { DateUtilsService } from '../../../services';
 import { AppService } from '../../../services/app.service';
 import { LoginDirectPage } from '../logindirect/logindirect';
-import { EmailService } from '../../../control/services/email.service';
-import { SistemaTipo } from '../../../models';
 
+import { CommonModule } from '@angular/common';
+import { combineLatest } from 'rxjs';
 import { FileServerSiteLogotipoComponent } from '../../../controls/file-server-site-logotipo/file-server-site-logotipo';
 
 @Component({
     selector: 'login',
     templateUrl: './login.html',
     standalone: true,
-    imports: [ReactiveFormsModule, FormsModule, FileServerSiteLogotipoComponent]
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, FileServerSiteLogotipoComponent],
 })
 export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
-
     store: any;
     currYear: number = new Date().getFullYear();
 
-    isReset = false
-    resetError = false
-    emailSent = false
-    emailEnviadoPara?: string
+    isReset = false;
+    resetError = false;
+    emailSent = false;
+    emailEnviadoPara?: string;
     logoImage: string;
 
-    firstFormGroup: FormGroup
-    resetPasswordForm: FormGroup
+    firstFormGroup: FormGroup;
+    resetPasswordForm: FormGroup;
 
-    private emailService: EmailService
-    protected dateUtils: DateUtilsService
-    private formBuilder: FormBuilder
+    private emailService: EmailService;
+    protected dateUtils: DateUtilsService;
+    private formBuilder: FormBuilder;
 
-    public storeData: Store<any>
-    private appSetting: AppService
+    public storeData: Store<any>;
+    private appSetting: AppService;
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector)
+    contratando = false;
 
-        this.dateUtils = injector.get(DateUtilsService)
-        this.formBuilder = injector.get(FormBuilder)
+    constructor(injector: Injector) {
+        super(injector);
 
-        this.storeData = injector.get(Store<any>)
-        this.appSetting = injector.get(AppService)
-        this.notification = injector.get(NzNotificationService)
-        this.emailService = injector.get(EmailService)
+        this.dateUtils = injector.get(DateUtilsService);
+        this.formBuilder = injector.get(FormBuilder);
 
-    //    this.isReset = true
-    //    this.emailSent = true
-    //    this.emailEnviadoPara = 'teste@teste.com.br'
+        this.storeData = injector.get(Store<any>);
+        this.appSetting = injector.get(AppService);
+        this.notification = injector.get(NzNotificationService);
+        this.emailService = injector.get(EmailService);
+
+        //    this.isReset = true
+        //    this.emailSent = true
+        //    this.emailEnviadoPara = 'teste@teste.com.br'
     }
 
     override ngOnInit(): void {
-        this.createForm()
+        this.createForm();
 
         this.initStore();
 
-        this.logoImage = this.getLogoUrl()
+        this.logoImage = this.getLogoUrl();
+
+        const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
+            ...params,
+            ...queryParams,
+        }));
+
+        urlParametrs.subscribe((r) => {
+            this.contratando = this.encryptionService.decrypt(r['c']) != undefined;
+        });
     }
 
     async initStore() {
@@ -80,54 +90,58 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
 
         this.resetPasswordForm = this.formBuilder.group({
             email: [null, Validators.required],
-        })
+        });
     }
 
     submit() {
-        this.login(this.firstFormGroup.get('u')?.value, this.firstFormGroup.get('p')?.value)
+        this.login(this.firstFormGroup.get('u')?.value, this.firstFormGroup.get('p')?.value);
     }
 
     resetPasswordSubmit() {
-        this.emailEnviadoPara = this.resetPasswordForm.get('email')?.value
+        this.emailEnviadoPara = this.resetPasswordForm.get('email')?.value;
 
-        this.emailService.passwordResetEmailSend({ email: this.resetPasswordForm.get('email')?.value, sistemaId: this.sistemaTipo }).subscribe(x => {
-            this.emailSent = true
-        })
+        this.emailService.passwordResetEmailSend({ email: this.resetPasswordForm.get('email')?.value, sistemaId: this.sistemaTipo }).subscribe((x) => {
+            this.emailSent = true;
+        });
     }
 
     reset() {
-        this.isReset = !this.isReset
+        this.isReset = !this.isReset;
     }
 
     retornar() {
-        this.resetError = false
-        this.loginError = false
-        this.isReset = false
-        this.emailSent = false
-        this.firstFormGroup.controls['u'].setValue(this.emailEnviadoPara)
-        this.emailEnviadoPara = undefined
+        this.resetError = false;
+        this.loginError = false;
+        this.isReset = false;
+        this.emailSent = false;
+        this.firstFormGroup.controls['u'].setValue(this.emailEnviadoPara);
+        this.emailEnviadoPara = undefined;
     }
 
     get rootFolder() {
-        return environment.rootFolder
+        return environment.rootFolder;
     }
 
     getLogoUrl(): string {
         switch (environment.sistema) {
             case SistemaTipo.Ponto:
-                return 'deskspace-ponto.png'
+                return 'deskspace-ponto.png';
             case SistemaTipo.Contabil:
-                return 'deskspace-contabil.png'
+                return 'deskspace-contabil.png';
             case SistemaTipo.Financeiro:
-                return 'deskspace-financeiro.png'
+                return 'deskspace-financeiro.png';
             case SistemaTipo.Holerite:
-                return 'deskspace-holerite.png'
+                return 'deskspace-holerite.png';
             case SistemaTipo.Funcionario:
-                return 'deskspace.png'
+                return 'deskspace.png';
             case SistemaTipo.Revenda:
-                return 'deskspace.png'
+                return 'deskspace.png';
             default:
-                return ''
+                return '';
         }
+    }
+
+    newAccountGo() {
+        this.router.navigate(['/newaccount/']);
     }
 }

@@ -1,37 +1,38 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { ModalBaseComponent } from 'src/app/shared/controls/modal-base/modal-base';
 import { SistemaCadastroInput } from '../../../../shared/control/models/inputs';
 import { UsersService } from '../../../../shared/control/services/users.service';
 import { DateUtilsService, EncryptionService } from '../../../../shared/services';
 import { Vars } from '../../../../shared/variables';
-import { ControlService } from '../../services/control.service';
 import { SistemaTipo } from '../../../models';
-
+import { ControlService } from '../../services/control.service';
+import { PacotePontoSelectComponent } from '../pacote-ponto-select/pacote-ponto-select';
+import { SistemaSelectComponent } from '../sistema-select/sistema-select';
 
 export interface SistemaCadastroModalData {
-    cadastroId?: number
+    cadastroId?: number;
 }
 
 @Component({
     selector: 'sistema-cadastro-modal',
     standalone: true,
-    imports: [],
-    templateUrl: './sistema-cadastro-modal.html'
+    imports: [ModalBaseComponent, FormsModule, ReactiveFormsModule, SistemaSelectComponent, PacotePontoSelectComponent],
+    templateUrl: './sistema-cadastro-modal.html',
 })
 export class SistemaCadastroModalComponent {
+    showSecondForm = false;
 
-    showSecondForm = false
+    firstFormGroup: FormGroup;
 
-    firstFormGroup: FormGroup
+    cadastroId?: number;
 
-    cadastroId?: number
+    SistemaTipo = SistemaTipo;
 
-    SistemaTipo = SistemaTipo
-
-    isPonto = false
+    isPonto = false;
     constructor(
         private modal: NzModalRef,
         private router: Router,
@@ -42,13 +43,13 @@ export class SistemaCadastroModalComponent {
         private notification: NzNotificationService,
         private dateUtilsService: DateUtilsService,
         private controlService: ControlService,
-        @Inject(NZ_MODAL_DATA) data: SistemaCadastroModalData
+        @Inject(NZ_MODAL_DATA) data: SistemaCadastroModalData,
     ) {
-        this.cadastroId = data?.cadastroId
+        this.cadastroId = data?.cadastroId;
     }
 
     ngOnInit(): void {
-        this.createForm()
+        this.createForm();
     }
 
     createForm() {
@@ -63,35 +64,32 @@ export class SistemaCadastroModalComponent {
     }
 
     closeModal(v?: boolean) {
-        if (v)
-            this.modal.close(v);
-        else
-            this.modal.close()
+        if (v) this.modal.close(v);
+        else this.modal.close();
     }
 
     submit() {
-        var input: SistemaCadastroInput =
-        {
+        var input: SistemaCadastroInput = {
             cadastroId: this.cadastroId!,
             revendaId: this.vars.cadastro?.id!,
             dataInicial: this.dateUtilsService.GetDateIsoString(this.dateUtilsService.getToday()),
             sistemaId: this.firstFormGroup.get('sistemaId')?.value,
             revendaUserId: this.vars.user?.id!,
-        }
+        };
 
         if (input.sistemaId == SistemaTipo.Ponto) {
-            input.pacoteId = this.firstFormGroup.get('pacoteId')?.value
+            input.pacoteId = this.firstFormGroup.get('pacoteId')?.value;
         }
 
-        this.controlService.sistemaCadastroAdd(input).subscribe(x => {
+        this.controlService.sistemaCadastroAdd(input).subscribe((x) => {
             if (x.errorMessage != null) {
-                this.createNotificationError(x.errorMessage.text)
+                this.createNotificationError(x.errorMessage.text);
                 return;
             }
 
-            this.createNotificationSistemaSucesso()
-            this.closeModal(true)
-        })
+            this.createNotificationSistemaSucesso();
+            this.closeModal(true);
+        });
     }
 
     //tratamentoGo() {
@@ -99,23 +97,15 @@ export class SistemaCadastroModalComponent {
     //}
 
     getEncryptedId(id: number): string {
-        return this.encryptionService.encrypt(id)
+        return this.encryptionService.encrypt(id);
         //    return this.encryptionService.set(id)
     }
 
     createNotificationSistemaSucesso(): void {
-        this.notification.create(
-            'success',
-            '',
-            'Produto adicionado com sucesso'
-        );
+        this.notification.create('success', '', 'Produto adicionado com sucesso');
     }
 
     createNotificationError(erro: string): void {
-        this.notification.create(
-            'error',
-            '',
-            erro
-        );
+        this.notification.create('error', '', erro);
     }
 }

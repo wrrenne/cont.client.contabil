@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { InputBasePagingComponent } from '../../../controls/input-base-paging/input-base-paging';
 import { SistemaRevendaPageItem } from '../../models/pagings';
 import { RevendaProdutosPagingService } from '../../services/pagings/revendaProdutos.service';
@@ -8,15 +9,17 @@ import { RevendaProdutosPagingService } from '../../services/pagings/revendaProd
     selector: 'sistema-select',
     templateUrl: './sistema-select.html',
     standalone: true,
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => SistemaSelectComponent),
-        multi: true
-    }]
+    imports: [FormsModule, ReactiveFormsModule, NzSelectModule],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SistemaSelectComponent),
+            multi: true,
+        },
+    ],
 })
 export class SistemaSelectComponent extends InputBasePagingComponent<SistemaRevendaPageItem> implements OnInit, ControlValueAccessor {
-
-    @Output() onClick = new EventEmitter<number>()
+    @Output() onClick = new EventEmitter<number>();
 
     //private _parameters?: SistemaRevendasParameter
     //@Input() get parameters() {
@@ -36,15 +39,9 @@ export class SistemaSelectComponent extends InputBasePagingComponent<SistemaReve
     //    this.refresh()
     //}
 
-    constructor(
-        injector: Injector,
-        revendaProdutosPagingService: RevendaProdutosPagingService
-    ) {
-        super(
-            injector,
-            revendaProdutosPagingService
-        )
+    constructor(injector: Injector, revendaProdutosPagingService: RevendaProdutosPagingService) {
+        super(injector, revendaProdutosPagingService);
 
-        this.autoLoad = true
+        this.autoLoad = true;
     }
 }
