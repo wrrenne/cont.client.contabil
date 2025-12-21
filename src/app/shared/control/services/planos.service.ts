@@ -7,6 +7,7 @@ import { ApiResponse, ServiceBase, SistemaTipo } from '../../../shared/models';
 import { ApisUtilsService, TMicroService } from '../../services';
 import { Vars } from '../../variables';
 import { CadastroPacote } from '../models/planos';
+import { CadastroPacoteInput } from '../models/planos/inputs';
 import { PacoteView } from '../models/planos/views/pacoteView';
 
 @Injectable({
@@ -49,6 +50,18 @@ export class PlanosService extends ServiceBase {
 
         return this.http
             .get<ApiResponse<CadastroPacote>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl)}/Planos/CadastroPacoteFuncionariosGet/${cadastroId}`)
+            .pipe(catchError(this.handleError));
+    }
+
+    cadastroPacoteAlteracao(input: CadastroPacoteInput): Observable<ApiResponse> {
+        const cadastroId = this.vars.cadastro?.id;
+
+        return this.http
+            .post<ApiResponse>(
+                `${this.apisUtilsService.getApiUrl(TMicroService.ApiControl)}/Planos/CadastroPacoteAlteracao/${cadastroId}`,
+                input,
+                this.httpService.httpOptions,
+            )
             .pipe(catchError(this.handleError));
     }
 }

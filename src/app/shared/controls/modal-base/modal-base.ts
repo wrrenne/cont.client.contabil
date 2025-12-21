@@ -15,7 +15,7 @@ export class ModalBaseComponent {
     @Input() subTitle?: string;
     @Input() obj: any;
     @Input() loading = false;
-    @Input() minHeight = '400px';
+    @Input() minHeight = '';
 
     @ContentChild('modalContent') modalContent: TemplateRef<any>;
     @ContentChild('footer') footer: TemplateRef<any>;

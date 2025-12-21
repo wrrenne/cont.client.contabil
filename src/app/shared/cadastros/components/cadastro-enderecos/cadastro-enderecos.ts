@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { ButtonDefaultComponent } from 'src/app/shared/controls/button-default/button-default';
 import { CardComponent } from 'src/app/shared/controls/card/card.component';
 import { EnderecoView } from '../../../../shared/cadastros/models/views';
 import { CadastrosService } from '../../services/cadastros.service';
@@ -11,7 +12,7 @@ import { CadastroEnderecoComponent } from '../cadastro-endereco/cadastro-enderec
     providers: [NzModalService],
     templateUrl: './cadastro-enderecos.html',
     standalone: true,
-    imports: [CardComponent, CadastroEnderecoComponent],
+    imports: [CardComponent, CadastroEnderecoComponent, ButtonDefaultComponent],
 })
 export class CadastroEnderecosComponent {
     @Input() cadastroNome: string;

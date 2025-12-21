@@ -1,5 +1,5 @@
-import { SistemaTipo } from "../../../models";
-import { CadastroPageItem } from "./cadastroPageItem";
+import { SistemaTipo } from '../../../models';
+import { CadastroPageItem } from './cadastroPageItem';
 
 export interface ClientePageItem extends CadastroPageItem {
     dataInicial: string;
@@ -9,4 +9,5 @@ export interface ClientePageItem extends CadastroPageItem {
     sistemaId: SistemaTipo;
     usersCount: number;
     funcionariosCount: number;
+    funcionariosPlanoCount: number;
 }
