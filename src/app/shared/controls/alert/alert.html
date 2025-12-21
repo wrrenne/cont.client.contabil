@@ -1,4 +1,4 @@
-﻿<div class="flex items-center gap-3 pr-10" [ngClass]="getClass()">
+﻿<div class="flex items-center gap-3 pr-10" _ngClass="getClass()">
     <ng-icon [name]="getIcon()" class="flex-none" [class]="iconBig ? 'text-5xl' : 'text-2xl'"></ng-icon>
     <div>
         <div [ngClass]="{'text-xs': textSmall, 'text-base': !textSmall}">{{title}}</div>

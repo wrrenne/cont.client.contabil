@@ -1,15 +1,15 @@
 <div [ngClass]="'pt-1'">
     <div class="relative flex items-center pb-2.5">
         @if (center) { @if (showTextBorder) {
-        <div class="border-color relative top-px flex-grow border-t dark:border-borderBlack"></div>
+        <div class="relative top-px flex-grow border-t" [ngClass]="borderClass"></div>
         }
         <div class="mx-4"><ng-template [ngTemplateOutlet]="textTemplate"></ng-template></div>
         @if (showTextBorder) {
-        <div class="border-color relative top-px flex-grow border-t dark:border-borderBlack"></div>
+        <div class="relative top-px flex-grow border-t" [ngClass]="borderClass"></div>
         } } @else {
         <div class="mr-4"><ng-template [ngTemplateOutlet]="textTemplate"></ng-template></div>
         @if (showTextBorder) {
-        <div class="border-color relative top-px flex-grow border-t dark:border-borderBlack"></div>
+        <div class="relative top-px flex-grow border-t" [ngClass]="borderClass"></div>
         } }
     </div>
 

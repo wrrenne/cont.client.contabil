@@ -20,7 +20,7 @@ export class ButtonDefaultComponent {
     @Input() rounded = false;
     @Input() circle = false;
     @Input() border = true;
-    @Input() size: 'xs' | 'md' | 'lg' = 'md';
+    @Input() size: 'xs' | 'md' | 'lg' | 'full' = 'md';
     @Input() tooltip?: string;
 
     /** NEW INPUT */

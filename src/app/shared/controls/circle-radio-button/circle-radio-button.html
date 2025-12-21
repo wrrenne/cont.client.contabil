@@ -1,13 +1,16 @@
 <div class="flex flex-wrap gap-4">
-  @for (item of items; track item) {
-    <div
-      (click)="selectItem(item.id)"
-      class="group flex cursor-pointer flex-col items-center">
-      <div #circleBtn
-        [ngClass]="getCircleClasses(item.id)"
-        class="flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold transition-colors" tabindex="0">
-        <span [ngClass]="{'text-white': isSelected(item.id)}">{{ (item.text || item.id.toString()) | slice:0:3 }}</span>
-      </div>
+    @for (item of items; track item) {
+    <div (click)="selectItem(item.id)" class="group flex cursor-pointer flex-col items-center">
+        <div
+            #circleBtn
+            [ngClass]="getCircleClasses(item.id)"
+            class="flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold transition-colors"
+            tabindex="0"
+        >
+            <span [ngClass]="{'text-white': isSelected(item.id), 'text-black dark:text-white': !isSelected(item.id)}"
+                >{{ (item.text || item.id.toString()) | slice:0:3 }}</span
+            >
+        </div>
     </div>
-  }
+    }
 </div>

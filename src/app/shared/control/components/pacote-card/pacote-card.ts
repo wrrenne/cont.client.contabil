@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services';
+import { Vars } from 'src/app/shared/variables';
 import { LabelIcon2Component } from '../../../controls/label-icon-2/label-icon-2';
 import { PacoteView } from '../../models/planos/views/pacoteView';
 
@@ -13,13 +14,19 @@ import { PacoteView } from '../../models/planos/views/pacoteView';
 })
 export class PacoteCardComponent {
     @Input() pacote: PacoteView;
+    @Input() showButton = true;
+    @Input() buttonText = 'Quero este';
+    @Output() onSelected = new EventEmitter<number>();
 
     constructor(
         private router: Router,
+        private vars: Vars,
         private encryptionService: EncryptionService,
     ) {}
 
-    chooseThis() {
-        this.router.navigate(['/login/'], { queryParams: { c: this.encryptionService.encrypt('contratando') } });
+    chooseThis(pacoteId: number) {
+        this.onSelected.emit(pacoteId);
+        // this.vars.pacoteId = pacoteId;
+        // this.router.navigate(['/newaccount/']);
     }
 }

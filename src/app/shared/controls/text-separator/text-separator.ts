@@ -12,6 +12,7 @@ export class TextSeparatorComponent {
     @Input() text: string;
     @Input() center = false;
     @Input() colorClass: string = 'text-black dark:text-white';
+    @Input() borderClass: string = 'border-zinc-300 dark:border-zinc-600';
     @Input() uppercase = false;
     @Input() verticalSpace = true;
     @Input() showTextBorder = true;

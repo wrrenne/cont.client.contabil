@@ -25,17 +25,21 @@ export class MunicipioSelectComponent extends InputBasePagingComponent<Municipio
         return this._parameters;
     }
     set parameters(value: MunicipioParameter | undefined) {
-        if (!value || !value.uf) return;
+        if (!value) return;
         this._parameters = value;
 
         this.param.routeStrings = [];
-        this.param.routeStrings.push(value.uf);
 
         this.param.queryStrings.clear();
+
         this.param.q = value.searchText;
 
         if (value.codigo) {
             this.param.queryStrings.set('codigo', value.codigo);
+        } else {
+            if (value.uf) {
+                this.param.queryStrings.set('uf', value.uf);
+            }
         }
 
         this.refresh();
@@ -47,7 +51,6 @@ export class MunicipioSelectComponent extends InputBasePagingComponent<Municipio
 
     override writeValue(value: any): void {
         super.writeValue(value);
-
         this.parameters = { codigo: value };
     }
 

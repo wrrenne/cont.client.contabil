@@ -7,7 +7,7 @@ import { LoginInput } from '../../models/inputs';
 import { LoginOutput } from '../../models/outputs';
 import { ApisUtilsService, TMicroService } from '../../services';
 import { Vars } from '../../variables';
-import { ConviteInput, SistemaCadastroInput } from '../models/inputs';
+import { ConviteInput, NovoAcessoInput, SistemaCadastroInput } from '../models/inputs';
 import { PasswordResetInput } from '../models/inputs/passwordResetInput';
 import { SistemaCadastroView } from '../models/views';
 
@@ -74,6 +74,12 @@ export class ControlService extends ServiceBase {
 
         return this.http
             .get<ApiResponse<number>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl)}/Users/CadastroUsuariosCountGet/${cadastroId}/${sistemaId}`)
+            .pipe(catchError(this.handleError));
+    }
+
+    novoAcesso(input: NovoAcessoInput): Observable<ApiResponse> {
+        return this.http
+            .post<ApiResponse>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl, true)}/Control/NovoAcesso`, input, this.httpService.httpOptions)
             .pipe(catchError(this.handleError));
     }
 }

@@ -21,7 +21,7 @@ export interface CoordinateSelectorModalData {
 })
 export class CoordinateSelectorModalComponent extends ModalBaseComponent {
     googleApiKey = environment.googleMapsApiKey!;
-    loading = false;
+    // loading = false;
     loadingFull = false;
     query = '';
     suggestions: google.maps.places.AutocompletePrediction[] = [];

@@ -62,7 +62,7 @@
 }
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    @apply shadow-none ring-0 outline-none rounded-none;
+    @apply shadow-none ring-0 outline-none rounded-lg;
 }
 
 .ant-select-dropdown:not(.ant-modal-body) {
@@ -78,7 +78,7 @@
 }
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    @apply rounded-none border-input bg-transparent text-gray-900 dark:text-white pt-[3px] pb-[3px] transition-none;
+    @apply rounded-lg border-input background-color-input text-color-input pt-[3px] pb-[3px] transition-none;
 }
 
 .ant-select-clear,
@@ -116,7 +116,7 @@ ant-select-selection-search-input {
 // }
 
 .ant-select-single.ant-select {
-    height: 37.5px !important;
+    height: 45.5px !important;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {

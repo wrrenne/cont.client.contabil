@@ -31,20 +31,20 @@ export class AlertComponent {
         }
     }
 
-    getClass(): string {
-        switch (this.type) {
-            case AlertType.Error:
-                return 'text-red-700 dark:text-red-500';
-            case AlertType.Success:
-                return 'text-green-700 dark:text-green-500';
-            case AlertType.Warning:
-                return 'text-yellow-700 dark:text-yellow-500';
-            case AlertType.Info:
-                return 'text-blue-700 dark:text-blue-500';
-            default:
-                return 'text-green-700 dark:text-green-500';
-        }
-    }
+    //getClass(): string {
+    // switch (this.type) {
+    //     case AlertType.Error:
+    //         return 'text-red-700 dark:text-red-500';
+    //     case AlertType.Success:
+    //         return 'text-green-700 dark:text-green-500';
+    //     case AlertType.Warning:
+    //         return 'text-yellow-700 dark:text-yellow-500';
+    //     case AlertType.Info:
+    //         return 'text-blue-700 dark:text-blue-500';
+    //     default:
+    //         return 'text-green-700 dark:text-green-500';
+    // }
+    //}
 
     getIconClass() {
         switch (this.type) {

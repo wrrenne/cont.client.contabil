@@ -16,14 +16,11 @@
   </div>
 </ng-container>-->
 
-        <ng-container _ngIf="!showLoader">
-            @if (!isReset) { @if (contratando) {
-            <div class="text-center text-3xl font-semibold text-gray-800">Contratação de Serviço</div>
-            <p class="mt-2 text-center text-gray-500">Estamos preparando sua compra. Entre na sua conta ou crie uma nova para finalizar a contratação</p>
-            } @else {
+        <ng-container>
+            @if (!isReset) {
             <div class="text-center text-3xl font-semibold text-gray-800">Bem-vindo</div>
             <p class="mt-2 text-center text-gray-500">Faça login na sua conta</p>
-            }
+            @if (firstFormGroup) {
             <form class="mt-6" [formGroup]="firstFormGroup" (ngSubmit)="submit()">
                 @if (loginError) {
                 <div class="mb-4 rounded-lg bg-red-100 p-2 text-center text-sm text-red-600">Usuário ou senha inválidos. Por favor, tente novamente.</div>
@@ -67,6 +64,7 @@
                     Entrar
                 </button>
             </form>
+            }
             <p class="mt-6 text-center text-sm text-gray-600">
                 Não tem uma conta? <a class="text-blue-600 hover:underline" (click)="newAccountGo()">Crie uma agora</a>
             </p>

@@ -6,6 +6,14 @@ import { Injectable } from '@angular/core';
 export class StringsService {
     constructor() {}
 
+    removeSymbols(value: string | null | undefined): string {
+        if (!value) {
+            return '';
+        }
+
+        return value.replace(/[^\p{L}\p{Nd}]/gu, '');
+    }
+
     getSingularPlural(n: number, messageNone: string | null, messageSingular: string, messagePlural: string | null): string {
         if (n == 0) return messageNone ?? '';
         else if (n == 1) return messageSingular;

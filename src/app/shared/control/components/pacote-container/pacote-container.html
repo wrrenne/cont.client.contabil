@@ -1,5 +1,10 @@
-﻿<div class="w-full gap-5" [ngClass]="{'flex flex-wrap': !column, 'grid grid-cols-3': column}">
+﻿<div class="w-full gap-5" [ngClass]="{'flex flex-wrap': !column, 'grid grid-cols-1 md:grid-cols-3': column}">
     @for (item of pacotes; track item) {
-    <pacote-card [pacote]="item" class="transform duration-500 _hover:_-translate-y-2" [ngClass]="{'w-56': !column}"></pacote-card>
+    <pacote-card
+        [pacote]="item"
+        class="transform duration-500 _hover:_-translate-y-2"
+        [ngClass]="{'w-56': !column}"
+        (onSelected)="pacoteSelected($event)"
+    ></pacote-card>
     }
 </div>

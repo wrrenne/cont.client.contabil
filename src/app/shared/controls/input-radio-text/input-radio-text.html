@@ -1,40 +1,66 @@
 @if (form) {
-  <div [formGroup]="form">
-    @if (label) {
-      <label class="input-label mb-1.5 block">{{ label }}</label>
-    }
-    <div class="flex flex-wrap gap-1.5">
-      @for (item of items; track item) {
-        <div
-          (click)="selectItem(item.id)"
-          class="group flex cursor-pointer flex-col items-center">
-          <div #circleBtn
-            [ngClass]="getCircleClasses(item.id)"
-            class="flex items-center justify-center rounded-full text-sm font-semibold transition-colors"
-            tabindex="0">
-            <span [ngClass]="{'text-white': isSelected(item.id)}">{{ (item.text || item.id.toString()) }}</span>
-          </div>
-        </div>
-      }
-    </div>
-  </div>
+<div [formGroup]="form">
+    <ng-container [ngTemplateOutlet]="control"></ng-container>
+</div>
 } @else {
-  @if (label) {
-    <label class="input-label mb-1.5 block">{{ label }}</label>
-  }
-  <div class="flex flex-wrap gap-1.5">
-    @for (item of items; track item) {
-      <div
-        (click)="selectItem(item.id)"
-        class="group flex cursor-pointer flex-col items-center">
-        <div #circleBtn
-          [ngClass]="getCircleClasses(item.id)"
-          class="flex items-center justify-center rounded-full text-sm font-semibold transition-colors"
-          tabindex="0">
-          <span [ngClass]="{'text-white': isSelected(item.id)}">{{ (item.text || item.id.toString()) }}</span>
-        </div>
-      </div>
-    }
-  </div>
+<ng-container [ngTemplateOutlet]="control"></ng-container>
 }
 
+<ng-template #control>
+    @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+    }
+
+    <div class="flex flex-wrap gap-1.5">
+        @for (item of items; track item) {
+        <div (click)="selectItem(item.id)" class="group flex cursor-pointer flex-col items-center">
+            <div
+                #circleBtn
+                [ngClass]="getCircleClasses(item.id)"
+                class="flex items-center justify-center rounded-full text-sm font-semibold transition-colors"
+                tabindex="0"
+            >
+                <span [ngClass]="{ 'text-white': isSelected(item.id) }"> {{ item.text || item.id }} </span>
+            </div>
+        </div>
+        }
+    </div>
+</ng-template>
+<!-- @if (form) {
+<div [formGroup]="form">
+    @if (label) {
+    <label class="input-label mb-1.5 block">{{ label }}</label>
+    } {{selectedId}}
+    <div class="flex flex-wrap gap-1.5">
+        @for (item of items; track item) { {{item.id}}
+        <div (click)="selectItem(item.id)" class="group flex cursor-pointer flex-col items-center">
+            <div
+                #circleBtn
+                [ngClass]="getCircleClasses(item.id)"
+                class="flex items-center justify-center rounded-full text-sm font-semibold transition-colors"
+                tabindex="0"
+            >
+                <span [ngClass]="{'text-white': isSelected(item.id)}">{{ (item.text || item.id.toString()) }}</span>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+} @else { @if (label) {
+<label class="input-label mb-1.5 block">{{ label }}</label>
+}
+<div class="flex flex-wrap gap-1.5">
+    @for (item of items; track item) {
+    <div (click)="selectItem(item.id)" class="group flex cursor-pointer flex-col items-center">
+        <div
+            #circleBtn
+            [ngClass]="getCircleClasses(item.id)"
+            class="flex items-center justify-center rounded-full text-sm font-semibold transition-colors"
+            tabindex="0"
+        >
+            <span [ngClass]="{'text-white': isSelected(item.id)}">{{ (item.text || item.id.toString()) }}</span>
+        </div>
+    </div>
+    }
+</div>
+} -->

@@ -1,5 +1,6 @@
 ﻿<div class="flex h-[290px] w-full flex-col gap-10 rounded-lg">
     <div class="flex h-full flex-col gap-2">
+        @if (pacote) {
         <div class="mb-2 text-black/75 dark:text-white/75">{{pacote.descricao}}</div>
         <div class="text-black dark:text-white">
             <span class="font-[Impact] text-2xl">R$ {{pacote.valor}}</span><span class="text-gray-600 dark:text-gray-400">,00</span>
@@ -9,10 +10,12 @@
             <div><label-icon-2 [icon]="'ionCheckmarkSharp'" [label]="recurso" [labelCss]="'text-xs'" [iconCss]="'text-green-500'"></label-icon-2></div>
             }
         </div>
+        @if (showButton) {
         <div class="mt-auto">
             <div>
-                <button class="w-full rounded bg-blue-500 px-1 py-2 text-white" (click)="chooseThis()">Quero este</button>
+                <button class="w-full rounded bg-blue-500 px-1 py-2 text-white" (click)="chooseThis(pacote.id!)">{{buttonText}}</button>
             </div>
         </div>
+        } }
     </div>
 </div>

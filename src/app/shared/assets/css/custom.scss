@@ -14,11 +14,11 @@ body.dark {
 }
 
 .text-color-input {
-    @apply text-black/75 dark:text-white/75;
+    @apply text-gray-700/90 dark:text-white/80 text-sm;
 }
 
 .input-label {
-    @apply text-gray-600 dark:text-gray-400 tracking-wide font-semibold;
+    @apply text-gray-700 dark:text-gray-400 text-sm font-medium;
 }
 
 .text-color-body {
@@ -34,7 +34,8 @@ body.dark {
 }
 
 .border-input {
-    @apply border border-neutral-200 dark:border-neutral-700 focus:border-blue-500 focus:dark:border-blue-500;
+    @apply border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent;
+    // @apply border border-neutral-200 dark:border-neutral-700 focus:border-blue-500 focus:dark:border-blue-500;
 }
 
 .background-color-hover {
@@ -58,7 +59,11 @@ body.dark {
 }
 
 .form-input {
-    @apply rounded-none border-input background-color-input text-color-input color-placeholder;
+    @apply rounded-lg border-input background-color-input text-color-input color-placeholder px-4 py-3 font-normal;
+}
+
+.form-input-2 {
+    @apply rounded-none background-color-input text-color-input color-placeholder border border-gray-300 dark:border-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent;
 }
 
 .textarea {
@@ -149,7 +154,7 @@ ul {
 }
 
 .btn {
-    @apply shadow-none py-1.5 rounded-sm;
+    @apply shadow-none py-1.5 rounded-lg;
 }
 
 .btn-xs {
@@ -162,6 +167,10 @@ ul {
 
 .btn-red {
     @apply bg-red-900 border-none text-white;
+}
+
+.btn-green {
+    @apply bg-green-500 border-none text-white;
 }
 
 .btn-border {
@@ -639,4 +648,46 @@ apx-chart {
 ng-icon svg {
     width: unset !important;
     height: unset !important;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+/* Remove hover / focus / active styles */
+a.disabled:hover,
+a.disabled:focus,
+a.disabled:active {
+    color: inherit;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+/* ===============================
+   SweetAlert2 – Tailwind base
+   =============================== */
+
+.swal2-popup {
+    @apply bg-zinc-200 dark:bg-zinc-900 rounded-md shadow-xl;
+}
+
+.swal2-title {
+    @apply text-lg font-semibold;
+}
+
+.swal2-html-container {
+    @apply mt-2 text-sm dark:text-gray-500;
+}
+
+.swal2-confirm {
+    @apply rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white
+         hover:bg-blue-700 focus:outline-none;
+}
+
+.swal2-cancel {
+    @apply ml-2 rounded-lg bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 hover:dark:bg-neutral-700 px-4 py-2 text-sm font-medium text-gray-400
+          focus:outline-none;
 }

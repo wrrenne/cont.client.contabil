@@ -111,7 +111,7 @@ export class Vars {
         if (sessionStorage.getItem(this.getVarName('gedRoot')) == null) return undefined;
         else return +sessionStorage.getItem(this.getVarName('gedRoot'))!;
     }
-    set gedRoot(value: Date | undefined) {
+    set gedRoot(value: number | undefined) {
         if (value == null) sessionStorage.removeItem(this.getVarName('gedRoot'));
         else sessionStorage.setItem(this.getVarName('gedRoot'), value.toString());
     }
@@ -152,5 +152,14 @@ export class Vars {
     set dashBoard(value: DashboardConfigModel | null) {
         if (value == null) localStorage.removeItem(this.getVarName('dash'));
         else localStorage.setItem(this.getVarName('dash'), JSON.stringify(value));
+    }
+
+    get pacoteId(): number | undefined {
+        if (sessionStorage.getItem(this.getVarName('pacoteId')) == null) return undefined;
+        else return +sessionStorage.getItem(this.getVarName('pacoteId'))!;
+    }
+    set pacoteId(value: number | undefined) {
+        if (value == null) sessionStorage.removeItem(this.getVarName('pacoteId'));
+        else sessionStorage.setItem(this.getVarName('pacoteId'), value.toString());
     }
 }

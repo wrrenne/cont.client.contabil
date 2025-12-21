@@ -1,236 +1,167 @@
-<div class="flex min-h-screen flex-col items-center justify-center gap-3 bg-gradient-to-r from-blue-400 to-purple-600 p-4">
+<div class="flex min-h-screen flex-col items-center justify-center gap-3 bg-gradient-to-r from-blue-400 to-purple-600 p-4 text-color-body">
     <file-server-site-logotipo [src]="logoImage" class="block w-[150px]" [isBlack]="false"></file-server-site-logotipo>
 
-    <div class="w-full max-w-3xl rounded-xl bg-white p-6 shadow-lg">
-        <ng-container>
-            <form class="mt-6" [formGroup]="firstFormGroup" (ngSubmit)="submit()">
-                <div class="flex flex-col gap-3">
-                    <!-- @if (loginError) {
-                <div class="mb-4 rounded-lg bg-red-100 p-2 text-center text-sm text-red-600">Ocorreu um erro. Por favor, tente novamente.</div>
-                } -->
-
-                    <text-separator [text]="'Dados da Empresa'" [colorClass]="'text-red-500'"></text-separator>
-                    <div class="grid grid-cols-12 gap-3">
-                        <!-- Razão Social -->
-                        <div class="col-span-8">
-                            <label class="block text-sm font-medium text-gray-700">Razão Social</label>
-                            <input
-                                type="text"
-                                placeholder="Digite a Razão Social"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="razaoSocial"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <!-- CNPJ -->
-                        <div class="col-span-4">
-                            <label class="block text-sm font-medium text-gray-700">CNPJ</label>
-                            <input
-                                type="text"
-                                placeholder="Digite o CNPJ"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="cnpj"
-                                autocomplete="off"
-                                mask="cnpj"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-3">
-                        <!-- Responsável -->
-                        <div class="col-span-6">
-                            <label class="block text-sm font-medium text-gray-700">Responsável</label>
-                            <input
-                                type="text"
-                                placeholder="Nome do responsável"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="responsavel"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <!-- RG -->
-                        <div class="col-span-3">
-                            <label class="block text-sm font-medium text-gray-700">RG</label>
-                            <input
-                                type="text"
-                                placeholder="Digite o RG"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="rg"
-                                autocomplete="off"
-                                mask="rg"
-                            />
-                        </div>
-
-                        <!-- CPF -->
-                        <div class="col-span-3">
-                            <label class="block text-sm font-medium text-gray-700">CPF</label>
-                            <input
-                                type="text"
-                                placeholder="Digite o CPF"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="cpf"
-                                autocomplete="off"
-                                mask="cpf"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-3">
-                        <!-- CEP -->
-                        <div class="col-span-3">
-                            <label class="block text-sm font-medium text-gray-700">CEP</label>
-                            <input
-                                type="text"
-                                placeholder="Digite o CEP"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="cep"
-                                autocomplete="off"
-                                mask="cep"
-                            />
-                        </div>
-
-                        <!-- Logradouro -->
-                        <div class="col-span-7">
-                            <label class="block text-sm font-medium text-gray-700">Logradouro</label>
-                            <input
-                                type="text"
-                                placeholder="Logradouro"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="logradouro"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <!-- Número -->
-                        <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700">Número</label>
-                            <input
-                                type="text"
-                                placeholder="Número"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="numero"
-                                autocomplete="off"
-                            />
-                        </div>
-                    </div>
-
-                    <!-- Complemento -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Complemento</label>
-                        <input
-                            type="text"
-                            placeholder="Complemento (opcional)"
-                            class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                            formControlName="complemento"
-                            autocomplete="off"
-                        />
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-3">
-                        <!-- Bairro -->
-                        <div class="col-span-5">
-                            <label class="block text-sm font-medium text-gray-700">Bairro</label>
-                            <input
-                                type="text"
-                                placeholder="Bairro"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="bairro"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <!-- Cidade -->
-                        <div class="col-span-5">
-                            <label class="block text-sm font-medium text-gray-700">Cidade</label>
-                            <input
-                                type="text"
-                                placeholder="Cidade"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="cidade"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <!-- Estado -->
-                        <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700">Estado</label>
-                            <input
-                                type="text"
-                                placeholder="UF"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                maxlength="2"
-                                required
-                                formControlName="estado"
-                                autocomplete="off"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-12 gap-3">
-                        <!-- Contato DDD -->
-                        <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700">DDD</label>
-                            <input
-                                type="text"
-                                placeholder="000"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="ddd"
-                                autocomplete="off"
-                            />
-                        </div>
-
-                        <!-- Contato Telefone -->
-                        <div class="col-span-5">
-                            <label class="block text-sm font-medium text-gray-700">Telefone</label>
-                            <input
-                                type="text"
-                                placeholder="00000-0000"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="telefone"
-                                autocomplete="off"
-                                mask="telefone"
-                            />
-                        </div>
-
-                        <!-- Contato Celular -->
-                        <div class="col-span-5">
-                            <label class="block text-sm font-medium text-gray-700">Celular</label>
-                            <input
-                                type="text"
-                                placeholder="00000-0000"
-                                class="min-h-[44px] w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required
-                                formControlName="telefone"
-                                autocomplete="off"
-                                mask="telefone"
-                            />
-                        </div>
-                    </div>
-
-                    <!-- Botão -->
-                    <button
-                        type="submit"
-                        [disabled]="!firstFormGroup.valid"
-                        class="mt-6 min-h-[44px] w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700"
-                    >
-                        Salvar
-                    </button>
+    @if (submitted) {
+    <div class="flex min-h-screen justify-center">
+        <div class="mt-5">
+            <div class="w-full max-w-lg rounded-xl bg-white dark:bg-[#1a1a1a] p-8 shadow-lg text-center">
+                <div class="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-blue-50">
+                    <!-- ícone central -->
+                    <ng-icon [name]="'bootstrapEnvelopeFill'" class="w-12 h-12 text-blue-600 text-4xl"></ng-icon>
                 </div>
-            </form>
-        </ng-container>
+
+                <h1 class="mb-2 text-xl font-semibold text-gray-800">Mensagem enviada</h1>
+
+                <p class="mx-auto max-w-prose text-sm text-gray-600 dark:text-gray-500">
+                    Enviamos um email para a sua caixa de entrada com as próximas instruções. Se não localizar a mensagem, verifique sua pasta de spam.
+                </p>
+            </div>
+        </div>
     </div>
+
+    } @else { @if (firstFormGroup) {
+
+    <div class="w-full max-w-3xl rounded-xl bg-white dark:bg-[#1a1a1a] p-6 shadow-lg">
+        <form class="mt-6" [formGroup]="firstFormGroup" (ngSubmit)="submit()">
+            <div class="flex flex-col gap-3">
+                <text-separator
+                    [text]="'Dados da Empresa'"
+                    [colorClass]="'text-black dark:text-white'"
+                    [borderClass]="'border-black/30 dark:border-white/20'"
+                ></text-separator>
+
+                <div class="grid grid-cols-12 gap-3">
+                    <!-- Razão Social -->
+                    <div class="col-span-12 md:col-span-8">
+                        <input-ex
+                            [form]="firstFormGroup"
+                            [formControlName]="'razaoSocial'"
+                            [label]="'Razão Social'"
+                            [placeholderText]="'Digite a Razão Social'"
+                        ></input-ex>
+                    </div>
+
+                    <!-- CNPJ -->
+                    <div class="col-span-12 md:col-span-4">
+                        <input-ex
+                            [form]="firstFormGroup"
+                            [formControlName]="'cnpj'"
+                            [label]="'CNPJ'"
+                            mask="cnpj"
+                            [placeholderText]="'Digite o CNPJ'"
+                        ></input-ex>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-3">
+                    <!-- Responsável -->
+                    <div class="col-span-12 md:col-span-9">
+                        <input-ex
+                            [form]="firstFormGroup"
+                            [formControlName]="'responsavel'"
+                            [label]="'Responsável'"
+                            [placeholderText]="'Nome do responsável'"
+                        ></input-ex>
+                    </div>
+
+                    <!-- CPF -->
+                    <div class="col-span-12 md:col-span-3">
+                        <input-ex [form]="firstFormGroup" [formControlName]="'cpf'" [label]="'CPF'" [placeholderText]="'Digite o CPF'" mask="cpf"></input-ex>
+                    </div>
+                </div>
+
+                <text-separator
+                    [text]="'Endereço'"
+                    [colorClass]="'text-black dark:text-white'"
+                    [borderClass]="'border-black/30 dark:border-white/20'"
+                ></text-separator>
+
+                <endereco formGroupName="endereco"> </endereco>
+
+                <text-separator
+                    [text]="'Telefones'"
+                    [colorClass]="'text-black dark:text-white'"
+                    [borderClass]="'border-black/30 dark:border-white/20'"
+                ></text-separator>
+
+                <div class="grid grid-cols-12 gap-3">
+                    <!-- Contato DDD -->
+                    <div class="col-span-3 md:col-span-2">
+                        <input-ex [form]="firstFormGroup" [formControlName]="'ddd'" [label]="'DDD'" [placeholderText]="'000'"></input-ex>
+                    </div>
+
+                    <!-- Contato Telefone -->
+                    <div class="col-span-9 md:col-span-5">
+                        <input-ex
+                            [form]="firstFormGroup"
+                            [formControlName]="'telefone'"
+                            [label]="'Telefone'"
+                            [placeholderText]="'00000-0000'"
+                            mask="telefone"
+                        ></input-ex>
+                    </div>
+
+                    <!-- Contato Celular -->
+                    <div class="col-span-12 md:col-span-5">
+                        <input-ex
+                            [form]="firstFormGroup"
+                            [formControlName]="'celular'"
+                            [label]="'Celular'"
+                            [placeholderText]="'00000-0000'"
+                            mask="telefone"
+                        ></input-ex>
+                    </div>
+                </div>
+
+                <text-separator
+                    [text]="'Dados de Acesso'"
+                    [colorClass]="'text-black dark:text-white'"
+                    [borderClass]="'border-black/30 dark:border-white/20'"
+                ></text-separator>
+
+                <div class="grid grid-cols-12 gap-3">
+                    <!-- Email -->
+                    <div class="col-span-12 md:col-span-6">
+                        <input-ex [form]="firstFormGroup" [formControlName]="'email'" [label]="'E-mail'" [placeholderText]="'E-mail'"></input-ex>
+                    </div>
+
+                    <!-- Senhas -->
+                    <div class="col-span-6 md:col-span-3">
+                        <input-ex [form]="firstFormGroup" [formControlName]="'p'" [label]="'Senha'" [isPassword]="true"></input-ex>
+                    </div>
+
+                    <!-- Senha Confirmação -->
+                    <div class="col-span-6 md:col-span-3">
+                        <input-ex [form]="firstFormGroup" [formControlName]="'pconfirmacao'" [label]="'Confirmação de Senha'" [isPassword]="true"></input-ex>
+                    </div>
+                </div>
+
+                <text-separator
+                    [text]="'Plano'"
+                    [colorClass]="'text-black dark:text-white'"
+                    [borderClass]="'border-black/30 dark:border-white/20'"
+                ></text-separator>
+
+                <div>
+                    @if (pacote) {
+                    <div class="border border-input background-panel px-4 py-3 rounded-lg">
+                        <div>Qte de funcionários: <span class="activity-destaque">{{pacote.quantidadeDe}} até {{pacote.quantidadeAte}}</span></div>
+                        <div>Mensalidade: <span class="activity-destaque">R$ {{pacote.valor}},00</span></div>
+                    </div>
+                    } @else {
+                    <pacote-ponto-select [form]="firstFormGroup" [formControlName]="'pacoteId'"></pacote-ponto-select>
+                    }
+                </div>
+
+                <!-- Botão -->
+                <button
+                    type="submit"
+                    class="mt-6 min-h-[44px] w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700"
+                >
+                    Criar Conta
+                </button>
+            </div>
+        </form>
+    </div>
+    } }
 </div>

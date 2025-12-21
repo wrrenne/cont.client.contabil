@@ -1,6 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { environment } from '../../../../../environments/environment';
 import { EmailService } from '../../../control/services/email.service';
@@ -11,6 +10,7 @@ import { LoginDirectPage } from '../logindirect/logindirect';
 
 import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
+import { UsersService } from 'src/app/shared/control/services/users.service';
 import { FileServerSiteLogotipoComponent } from '../../../controls/file-server-site-logotipo/file-server-site-logotipo';
 
 @Component({
@@ -20,7 +20,6 @@ import { FileServerSiteLogotipoComponent } from '../../../controls/file-server-s
     imports: [CommonModule, ReactiveFormsModule, FormsModule, FileServerSiteLogotipoComponent],
 })
 export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
-    store: any;
     currYear: number = new Date().getFullYear();
 
     isReset = false;
@@ -35,11 +34,11 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
     private emailService: EmailService;
     protected dateUtils: DateUtilsService;
     private formBuilder: FormBuilder;
-
-    public storeData: Store<any>;
-    private appSetting: AppService;
-
-    contratando = false;
+    private usersService: UsersService;
+    private appService: AppService;
+    cadastroId?: number;
+    userId?: number;
+    email?: string;
 
     constructor(injector: Injector) {
         super(injector);
@@ -47,22 +46,15 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
         this.dateUtils = injector.get(DateUtilsService);
         this.formBuilder = injector.get(FormBuilder);
 
-        this.storeData = injector.get(Store<any>);
-        this.appSetting = injector.get(AppService);
+        this.appService = injector.get(AppService);
         this.notification = injector.get(NzNotificationService);
         this.emailService = injector.get(EmailService);
-
-        //    this.isReset = true
-        //    this.emailSent = true
-        //    this.emailEnviadoPara = 'teste@teste.com.br'
+        this.usersService = injector.get(UsersService);
     }
 
     override ngOnInit(): void {
-        this.createForm();
-
-        this.initStore();
-
-        this.logoImage = this.getLogoUrl();
+        this.appService.initStoreData();
+        this.logoImage = this.getLogoUrl(environment.sistema);
 
         const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
             ...params,
@@ -70,21 +62,29 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
         }));
 
         urlParametrs.subscribe((r) => {
-            this.contratando = this.encryptionService.decrypt(r['c']) != undefined;
-        });
-    }
+            var c = this.encryptionService.decrypt(r['c'], true);
+            var u = this.encryptionService.decrypt(r['u'], true);
 
-    async initStore() {
-        this.storeData
-            .select((d) => d.index)
-            .subscribe((d) => {
-                this.store = d;
-            });
+            this.cadastroId = c ? +c : undefined;
+            this.userId = u ? +u : undefined;
+
+            if (this.userId && this.cadastroId) {
+                this.usersService.userGet(this.userId, this.cadastroId, SistemaTipo.Ponto).subscribe((x) => {
+                    if (x.obj) {
+                        this.email = x.obj.email;
+                    }
+
+                    this.createForm();
+                });
+            } else {
+                this.createForm();
+            }
+        });
     }
 
     createForm() {
         this.firstFormGroup = this.formBuilder.group({
-            u: [null, Validators.required],
+            u: [this.email, Validators.required],
             p: [null, Validators.required],
         });
 
@@ -122,8 +122,8 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
         return environment.rootFolder;
     }
 
-    getLogoUrl(): string {
-        switch (environment.sistema) {
+    getLogoUrl(sistema: SistemaTipo): string {
+        switch (sistema) {
             case SistemaTipo.Ponto:
                 return 'deskspace-ponto.png';
             case SistemaTipo.Contabil:

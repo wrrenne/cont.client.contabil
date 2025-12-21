@@ -1,0 +1,7 @@
+<modal-base [title]="'Alteração de plano'" [loading]="loading">
+    <ng-template #modalContent>
+        <div class="text-center">
+            <pacote-card class="inline-flex" [pacote]="pacote" [buttonText]="'Confirmar Alteração'" (onSelected)="pacoteSelected($event)"></pacote-card>
+        </div>
+    </ng-template>
+</modal-base>

@@ -1,11 +1,22 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
+export const MaskTypes = {
+    cpf: '000.000.000-00',
+    cnpj: '00.000.000/0000-00',
+    cep: '00000-000',
+    telefone: '00000-0000',
+    rg: '00.000.000-0',
+} as const;
+
+export type MaskTypeKey = keyof typeof MaskTypes;
+
 @Directive({
     selector: '[mask]',
 })
 export class MaskDirective {
-    @Input('mask') maskType!: 'cpf' | 'cnpj' | 'cep' | 'telefone' | 'rg';
+    //@Input('mask') maskType?: 'cpf' | 'cnpj' | 'cep' | 'telefone' | 'rg';
+    @Input('mask') maskType?: MaskTypeKey;
 
     constructor(
         private el: ElementRef,
@@ -15,6 +26,10 @@ export class MaskDirective {
     @HostListener('input', ['$event'])
     onInput(event: any) {
         let value = event.target.value;
+
+        if (!this.maskType) {
+            return;
+        }
 
         switch (this.maskType) {
             case 'cpf':

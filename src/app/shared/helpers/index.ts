@@ -1,1 +1,2 @@
-export * from './locale-pt-BR-no-dot'
+export * from './hasChanges';
+export * from './locale-pt-BR-no-dot';

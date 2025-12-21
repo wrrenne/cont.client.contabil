@@ -7,7 +7,7 @@ import { NgIcon } from '@ng-icons/core';
     selector: 'hyperlink-button',
     templateUrl: './hyperlink-button.html',
     standalone: true,
-    imports: [CommonModule, NgIcon]
+    imports: [CommonModule, NgIcon],
 })
 export class HyperlinkButtonComponent {
     @Input() icon: string;
@@ -15,18 +15,21 @@ export class HyperlinkButtonComponent {
     @Input() text: string;
     @Input() link?: string;
     @Input() isButton = true;
-    @Input() showSeparator = false
-    @Input() buttonLeftAlign = true
-    @Input() backgroundIconCss?: string
-    @Output() onButtonClick = new EventEmitter()
+    @Input() showSeparator = false;
+    @Input() buttonLeftAlign = true;
+    @Input() backgroundIconCss?: string;
+    @Input() enabled = true;
+    @Output() onButtonClick = new EventEmitter();
 
-    constructor(private router: Router) { }
+    constructor(private router: Router) {}
 
     buttonClick() {
-        this.onButtonClick.emit();
+        if (this.enabled) {
+            this.onButtonClick.emit();
 
-        if (this.link != undefined) {
-            this.router.navigate([this.link]);
+            if (this.link != undefined) {
+                this.router.navigate([this.link]);
+            }
         }
     }
 }

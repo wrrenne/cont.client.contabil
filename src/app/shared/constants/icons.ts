@@ -56,6 +56,7 @@ import {
     bootstrapClock,
     bootstrapClockHistory,
     bootstrapEnvelope,
+    bootstrapEnvelopeFill,
     bootstrapExclamationCircleFill,
     bootstrapExclamationLg,
     bootstrapFileEarmarkTextFill,
@@ -595,4 +596,5 @@ export const appIcons = {
     matBlock,
     ionPause,
     ionSync,
+    bootstrapEnvelopeFill,
 };
