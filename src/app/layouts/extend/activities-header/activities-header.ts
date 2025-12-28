@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { NgIcon } from '@ng-icons/core';
 import { MenuModule } from 'headlessui-angular';
 import { AvatarImageComponent } from 'src/app/shared/controls/avatar-image/avatar-image';
+import { HyperlinkButtonComponent } from 'src/app/shared/controls/hyperlink-button/hyperlink-button';
 import { toggleAnimation } from '../../../shared/animations';
 import { ActivityPageItem } from '../../../shared/timeline/models/pagings';
 import { ActivitiesNotification } from '../../../shared/timeline/notifications/activities.notification';
@@ -14,7 +15,7 @@ import { TimelinesService } from '../../../shared/timeline/services/timelines.se
     host: { class: 'dropdown shrink-0' },
     animations: [toggleAnimation],
     standalone: true,
-    imports: [RouterLink, NgIcon, MenuModule, AvatarImageComponent],
+    imports: [RouterLink, NgIcon, MenuModule, AvatarImageComponent, HyperlinkButtonComponent],
 })
 export class ActivitiesHeaderComponent implements OnInit {
     activities: ActivityPageItem[];

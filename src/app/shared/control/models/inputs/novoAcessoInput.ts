@@ -6,6 +6,7 @@ export interface NovoAcessoInput {
     cnpj: string;
     responsavel: string;
     cpf: string;
+
     logradouro: string;
     numero: string;
     complemento?: string;
@@ -14,6 +15,7 @@ export interface NovoAcessoInput {
     municipioTexto?: string;
     uf: string;
     cep: string;
+
     ddd: string;
     telefone: string;
     celular: string;

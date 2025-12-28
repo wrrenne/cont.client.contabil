@@ -1,27 +1,27 @@
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DateUtilsService } from '../../services';
-import { FeriadoData } from '../../tabelas/models/feriadoData';
 import { HtmlUtilsService } from '../../services/htmlUtils.service';
-import { CommonModule, DatePipe } from '@angular/common';
+import { FeriadoData } from '../../tabelas/models/feriadoData';
 
 export class MonthCalendarDiaInfo {
-    data: Date
-    infos: string[]
-    cor: string
+    data: Date;
+    infos: string[];
+    cor: string;
 }
 
 export class TDay {
-    day: number
-    currentMonth: boolean
-    date: Date
-    cor?: string
-    infos?: string[]
+    day: number;
+    currentMonth: boolean;
+    date: Date;
+    cor?: string;
+    infos?: string[];
 }
 
 export class MonthCalendarParameters {
-    currentMonth: Date
-    feriados: FeriadoData[]
-    diaInfos?: MonthCalendarDiaInfo[]
+    currentMonth: Date;
+    feriados: FeriadoData[];
+    diaInfos?: MonthCalendarDiaInfo[];
 }
 
 @Component({
@@ -29,36 +29,36 @@ export class MonthCalendarParameters {
     templateUrl: 'month-calendar.html',
     standalone: true,
     imports: [CommonModule, DatePipe],
-    host: {'class': 'pb-5'}
+    host: { class: 'ppanel rounded-xl pb-5' },
 })
 export class MonthCalendarComponent {
-
-    feriados: FeriadoData[]
-    diaInfos?: MonthCalendarDiaInfo[]
+    feriados: FeriadoData[];
+    diaInfos?: MonthCalendarDiaInfo[];
 
     get weekdayNames(): string[] {
-        return this.dateUtilsService.dayNames
+        return this.dateUtilsService.dayNames;
     }
 
-    year: number = 0
-    month: number = 0
-    i: number = 0
+    year: number = 0;
+    month: number = 0;
+    i: number = 0;
 
-    daysArray: TDay[]
+    daysArray: TDay[];
 
-    @Input() 
+    @Input()
     set parameters(value: MonthCalendarParameters) {
-        this.year = value.currentMonth.getUTCFullYear()
-        this.i = value.currentMonth.getUTCMonth()
-        this.month = value.currentMonth.getUTCMonth() + 1
-        this.feriados = value.feriados
-        this.diaInfos = value.diaInfos
-        this.daysArray = this.getDaysArray(this.year, this.i)
+        this.year = value.currentMonth.getUTCFullYear();
+        this.i = value.currentMonth.getUTCMonth();
+        this.month = value.currentMonth.getUTCMonth() + 1;
+        this.feriados = value.feriados;
+        this.diaInfos = value.diaInfos;
+        this.daysArray = this.getDaysArray(this.year, this.i);
     }
 
     constructor(
         private dateUtilsService: DateUtilsService,
-        private htmlUtilsService: HtmlUtilsService) { }
+        private htmlUtilsService: HtmlUtilsService,
+    ) {}
 
     getDaysInMonth(year: number, month: number): number {
         return new Date(year, month + 1, 0).getDate();
@@ -84,28 +84,26 @@ export class MonthCalendarComponent {
 
         // Generate days array
         for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
-
             if (this.diaInfos) {
-                const dayInfo = this.getDayInfo(date)
+                const dayInfo = this.getDayInfo(date);
 
                 days.push({
                     day: date.getDate(),
                     currentMonth: date.getMonth() === month,
                     date: new Date(date), // Store full Date object
                     cor: dayInfo?.cor != undefined ? this.htmlUtilsService.getTextColor(dayInfo?.cor) : undefined,
-                    infos: dayInfo?.infos
+                    infos: dayInfo?.infos,
                 });
-            }
-            else {
+            } else {
                 days.push({
                     day: date.getDate(),
                     currentMonth: date.getMonth() === month,
                     date: new Date(date), // Store full Date object
-                    cor: this.isSunday(date) || this.isHoliday(date) ? 'text-red-500' : '',
-                    infos: ['Folga']
+                    cor: this.isHoliday(date) ? 'tag tag-red' : this.isSunday(date) ? 'text-red-500' : '',
+                    infos: ['Folga'],
                 });
             }
-       }
+        }
 
         return days;
     }
@@ -119,7 +117,7 @@ export class MonthCalendarComponent {
     }
 
     isHoliday(d: Date): boolean {
-        return this.feriados?.findIndex(x => x.data.getDate() === d.getDate() && x.data.getMonth() === d.getMonth()) > -1
+        return this.feriados?.findIndex((x) => x.data.getDate() === d.getDate() && x.data.getMonth() === d.getMonth()) > -1;
     }
 
     //isSunday(year: number, month: number, day: number): boolean {
@@ -131,14 +129,14 @@ export class MonthCalendarComponent {
     //}
 
     getMonthName(): string {
-        return this.dateUtilsService.monthNamesFull[this.month - 1]
+        return this.dateUtilsService.monthNamesFull[this.month - 1];
     }
 
     getDayInfo(date: Date): MonthCalendarDiaInfo | undefined {
-        return this.diaInfos?.find(x => this.dateUtilsService.compareDates(x.data, date))
+        return this.diaInfos?.find((x) => this.dateUtilsService.compareDates(x.data, date));
     }
 
-//    getDayInfos(date: Date): string[] | undefined {
-//        return this.diaInfos?.find(x => this.dateUtilsService.compareDates(x.data, date))?.infos
-//    }
+    //    getDayInfos(date: Date): string[] | undefined {
+    //        return this.diaInfos?.find(x => this.dateUtilsService.compareDates(x.data, date))?.infos
+    //    }
 }

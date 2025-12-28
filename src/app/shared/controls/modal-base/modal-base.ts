@@ -16,6 +16,7 @@ export class ModalBaseComponent {
     @Input() obj: any;
     @Input() loading = false;
     @Input() minHeight = '';
+    @Input() debug?: string | number;
 
     @ContentChild('modalContent') modalContent: TemplateRef<any>;
     @ContentChild('footer') footer: TemplateRef<any>;

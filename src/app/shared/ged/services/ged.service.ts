@@ -74,7 +74,7 @@ export class GedService extends ServiceBase {
     arquivoTipoApontamentoUpload(
         funcionarioId: number,
         apontamentoId: number,
-        apontamentoData: string,
+        apontamentoData: Date,
         commentId: number,
         files: File[],
     ): Observable<ApiResponse<number | undefined>> {
@@ -87,11 +87,12 @@ export class GedService extends ServiceBase {
         formData.append('userId', (<number>this.vars.user?.id).toString());
         formData.append('fileType', (<number>TFileType.Apontamento).toString());
         formData.append('competenciaMes', this.dateUtilsService.GetDateIsoString(this.dateUtilsService.firstDateOfMonth(this.vars.dataInicial!)));
-        formData.append('apontamentoData', apontamentoData);
+        formData.append('apontamentoData', this.dateUtilsService.GetDateIsoString(apontamentoData));
 
         for (const file of files) {
             formData.append('files', file, file.name);
         }
+        console.log(files.length);
 
         return this.http
             .post<ApiResponse<number | undefined>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiGed)}/Arquivo/ArquivoFormUpload`, formData)

@@ -41,13 +41,13 @@ export class WidgetDoneComponent {
     get blockWidth() {
         switch (this.blockWSize) {
             case 1:
-                return 'w-[160px]';
+                return 'w-full md:w-[160px]';
             case 2:
-                return 'w-[332px]';
+                return 'w-full md:w-[332px]';
             case 3:
-                return 'w-[504px]';
+                return 'w-full md:w-[504px]';
             default:
-                return 'w-[688px]';
+                return 'w-full md:w-[688px]';
         }
     }
 

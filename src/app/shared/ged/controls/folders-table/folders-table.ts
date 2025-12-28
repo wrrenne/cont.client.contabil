@@ -75,7 +75,6 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
             p!.pastaId = undefined;
             p!.rootId = undefined;
             this.parameters = p;
-            console.log(['this.parameters', this.param]);
         });
     }
 
@@ -88,19 +87,11 @@ export class FoldersTableComponent extends PagingBase<PastaOuArquivoPageItem> {
     compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1 === o2 : o1 === o2);
 
     pastaClick(pasta: PastaPageItem) {
-        console.log(pasta);
-
         this.onPastaClick.emit(pasta.id);
 
         var par = this.parameters;
 
         par!.pastaId = pasta.id;
-        //par!.cadastroId = pasta.cadastroId;
-
-        // if (pasta.cadastroId) {
-        //     par!.rootId = pasta.id;
-        //     par!.searchText = undefined;
-        // }
 
         this.parameters = par;
     }

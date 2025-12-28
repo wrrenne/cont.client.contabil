@@ -1,23 +1,20 @@
-<div class="justify-items flex items-center gap-x-2">
+<div class="justify-items flex items-center gap-x-1">
     @if (!iconAlignRight) {
-    <ng-icon
-        [name]="icon"
-        [ngClass]="iconCss"
-        [class]="iconColorClass"
-        [ngxTippy]="tooltip"
-        [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
-    ></ng-icon>
+    <ng-container [ngTemplateOutlet]="iconTemplate"></ng-container>
     }
     <div [ngClass]="labelCss" class="relative truncate">{{label}}</div>
     @if (iconAlignRight) {
-    <ng-icon
-        [name]="icon"
-        [ngClass]="iconCss"
-        [class]="iconColorClass"
-        [ngxTippy]="tooltip"
-        [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
-    ></ng-icon>
+    <ng-container [ngTemplateOutlet]="iconTemplate"></ng-container>
     } @if (showArrow) {
     <ng-icon [name]="'ionChevronForwardSharp'" [ngClass]="iconCss" class="relative top-[1px]"></ng-icon>
     }
 </div>
+<ng-template #iconTemplate>
+    <ng-icon
+        [name]="icon"
+        [ngClass]="iconCss"
+        [class]="iconColorClass"
+        [ngxTippy]="tooltip"
+        [tippyProps]="{placement: tooltipPlacement == 'top' ? 'top' : tooltipPlacement == 'right' ? 'right' : tooltipPlacement == 'bottom' ? 'bottom' : tooltipPlacement == 'left' ? 'left' : undefined}"
+    ></ng-icon>
+</ng-template>

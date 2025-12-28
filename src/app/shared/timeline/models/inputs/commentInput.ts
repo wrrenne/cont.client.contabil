@@ -15,12 +15,10 @@ export interface CommentInput extends InputBase {
     funcionarioId?: number;
     isFuncionario?: boolean;
 
-    // postClienteId?: number;
     clienteId?: number;
     isCliente?: boolean;
 
     obrigacaoId?: number;
-    // postObrigacaoId?: number;
 
     sistemaId: SistemaTipo;
 
@@ -30,5 +28,5 @@ export interface CommentInput extends InputBase {
     contabil_Vencimento?: string;
     contabil_Prazo?: string;
 
-    temArquivo: boolean;
+    arquivosCount?: number;
 }

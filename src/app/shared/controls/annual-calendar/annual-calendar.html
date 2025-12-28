@@ -1,7 +1,5 @@
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 3xl:grid-cols-6">
-  @for (i of [].constructor(12); track i; let index = $index) {
-    <month-calendar [parameters]="{currentMonth: getDate(year, index), feriados: getFeriadosMes(index)}" class="panel">
-    </month-calendar>
-  }
+    @for (i of [].constructor(12); track i; let index = $index) {
+    <month-calendar [parameters]="{currentMonth: getDate(year, index), feriados: getFeriadosMes(index)}"> </month-calendar>
+    }
 </div>
-

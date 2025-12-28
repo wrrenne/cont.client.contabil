@@ -1,4 +1,5 @@
-import { PageItemBase } from "../../../models";
+import { PageItemBase } from '../../../models';
+import { TPostTipo } from '../../enums';
 
 export interface ActivityPageItem extends PageItemBase {
     html: string;
@@ -14,4 +15,6 @@ export interface ActivityPageItem extends PageItemBase {
     obrigacaoNome: string;
     postUserId?: number;
     postUserNome: string;
+    origemId?: number;
+    tipo?: TPostTipo;
 }

@@ -1,0 +1,14 @@
+<div
+    [ngxTippy]="tooltip"
+    [tippyProps]="tippyProps"
+    class="flex min-w-16 flex-col items-center justify-center rounded-md px-3 py-1 text-center border"
+    [ngClass]="[bgColorClass, textColorClass, borderColorClass]"
+>
+    @if (label) {
+    <div>{{label}}</div>
+    } @if (content) {
+    <div>
+        <ng-container [ngTemplateOutlet]="content"></ng-container>
+    </div>
+    }
+</div>

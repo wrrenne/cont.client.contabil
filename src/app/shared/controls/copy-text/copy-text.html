@@ -1,0 +1,6 @@
+﻿<div class="flex flex-col items-center justify-center gap-3">
+    <div #content>
+        <ng-content></ng-content>
+    </div>
+    <button-icon [icon]="copied ? 'heroCheck' : 'heroClipboard'" [rounded]="true" (click)="copy()"></button-icon>
+</div>

@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -47,11 +48,19 @@ export class CadastrosService extends ServiceBase {
             .pipe(catchError(this.handleError));
     }
 
-    enderecoGet(id: number): Observable<ApiResponse<EnderecoView>> {
+    enderecoGet(enderecoId?: number): Observable<ApiResponse<EnderecoView[]>> {
         const cadastroId = this.vars.cadastro?.id;
 
+        let params = new HttpParams();
+
+        if (enderecoId) {
+            params = params.set('enderecoId', enderecoId?.toString());
+        }
+
         return this.http
-            .get<ApiResponse<EnderecoView>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiCadastros)}/Cadastros/EnderecoGet/${cadastroId}/${id}`)
+            .get<
+                ApiResponse<EnderecoView[]>
+            >(`${this.apisUtilsService.getApiUrl(TMicroService.ApiCadastros)}/Cadastros/EnderecoGet/${cadastroId}/${enderecoId}`, { params })
             .pipe(catchError(this.handleError));
     }
 

@@ -22,9 +22,10 @@ export class PlanosService extends ServiceBase {
         super(injector);
     }
 
-    pacotesGet(sistemaId: SistemaTipo): Observable<ApiResponse<PacoteView[]>> {
+    pacotesGet(sistemaId: SistemaTipo, cadastroId?: number): Observable<ApiResponse<PacoteView[]>> {
         let params = new HttpParams();
-        params = params.set('cadastroId', this.vars.cadastro?.id!);
+
+        if (cadastroId) params = params.set('cadastroId', cadastroId);
 
         return this.http
             .get<ApiResponse<PacoteView[]>>(`${this.apisUtilsService.getApiUrl(TMicroService.ApiControl)}/Planos/PacotesGet/${sistemaId}`, { params })

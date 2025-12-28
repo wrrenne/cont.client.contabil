@@ -7,6 +7,9 @@
             <div class="modal-subtitle">{{subTitle}}</div>
             }
         </div>
+        @if (debug) {
+        <div class="debug pr-2">#{{debug}}</div>
+        }
         <button-icon [icon]="'ionClose'" (click)="closeModal()"> </button-icon>
     </div>
     } @if (!loading) {

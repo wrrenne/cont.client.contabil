@@ -19,6 +19,7 @@ export class HyperlinkButtonComponent {
     @Input() buttonLeftAlign = true;
     @Input() backgroundIconCss?: string;
     @Input() enabled = true;
+    @Input() showChevron = false;
     @Output() onButtonClick = new EventEmitter();
 
     constructor(private router: Router) {}

@@ -23,7 +23,9 @@ export class CadastroEnderecosComponent {
         private cadastrosService: CadastrosService,
     ) {}
 
-    @Input() enderecos: EnderecoView[];
+    // @Input() enderecos: EnderecoView[];
+
+    enderecos: EnderecoView[];
 
     enderecoNovoModal(id?: number) {
         const modal = this.modalService.create({
@@ -43,13 +45,13 @@ export class CadastroEnderecosComponent {
     }
 
     getData(id: number) {
-        this.cadastrosService.enderecoGet(id).subscribe((x) => {
+        this.cadastrosService.cadastroEnderecoGet(id).subscribe((x) => {
             const i = this.enderecos.findIndex((e) => e.id == id);
 
             if (i > -1) {
-                this.enderecos[i] = x.obj;
+                this.enderecos[i] = x.obj[0];
             } else {
-                this.enderecos.push(x.obj);
+                this.enderecos.push(x.obj[0]);
             }
         });
     }

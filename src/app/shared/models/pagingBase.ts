@@ -107,6 +107,11 @@ export abstract class PagingBase<T extends PageItemBase> implements OnInit {
         this.getAll(true);
     }
 
+    update(debug?: any) {
+        if (debug) console.log(debug);
+        this.getAll(false);
+    }
+
     refreshed(param: QueryParam) {
         this.param = param;
         this.getAll(true);

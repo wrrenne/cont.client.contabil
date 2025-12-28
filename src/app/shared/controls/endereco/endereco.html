@@ -1,18 +1,19 @@
 <div [formGroup]="form" class="space-y-4">
-    <div class="grid grid-cols-12 gap-3">
+    @if (label) {
+    <label class="input-label block">{{ label }}</label>
+    }
+    <div>
         <!-- CEP -->
-        <div class="col-span-12 md:col-span-3">
-            <input-ex [form]="form" [formControlName]="'cep'" [label]="'CEP'" [placeholderText]="'Digite o CEP'" mask="cep"></input-ex>
-            <!-- <button (click)="setUf()">teste</button> -->
-        </div>
-
+        <input-ex [form]="form" [formControlName]="'cep'" [label]="'CEP'" [placeholderText]="'Digite o CEP'" mask="cep"></input-ex>
+    </div>
+    <div class="grid grid-cols-12 gap-3">
         <!-- Logradouro -->
-        <div class="col-span-9 md:col-span-7">
+        <div class="col-span-9 md:col-span-9">
             <input-ex [form]="form" [formControlName]="'logradouro'" [label]="'Logradouro'" [placeholderText]="'Logradouro'"></input-ex>
         </div>
 
         <!-- Número -->
-        <div class="col-span-3 md:col-span-2">
+        <div class="col-span-3 md:col-span-3">
             <input-ex [form]="form" [formControlName]="'numero'" [label]="'Número'"></input-ex>
         </div>
     </div>
@@ -22,14 +23,13 @@
         <input-ex [form]="form" [formControlName]="'complemento'" [label]="'Complemento'" [placeholderText]="'Complemento (opcional)'"></input-ex>
     </div>
 
+    <!-- Bairro -->
+    <div>
+        <input-ex [form]="form" [formControlName]="'bairro'" [label]="'Bairro'" [placeholderText]="'Bairro'"></input-ex>
+    </div>
     <div class="grid grid-cols-12 gap-3">
-        <!-- Bairro -->
-        <div class="col-span-12 md:col-span-5">
-            <input-ex [form]="form" [formControlName]="'bairro'" [label]="'Bairro'" [placeholderText]="'Bairro'"></input-ex>
-        </div>
-
         <!-- Estado -->
-        <div class="col-span-3 md:col-span-2">
+        <div class="col-span-3">
             @if (viaCepAvailable) {
             <input-ex [form]="form" [formControlName]="'uf'" [label]="'Estado'" [placeholderText]="'UF'"></input-ex>
             } @else {
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Cidade -->
-        <div class="col-span-9 md:col-span-5">
+        <div class="col-span-9">
             @if (viaCepAvailable) {
             <input-ex [form]="form" [formControlName]="'municipioTexto'" [label]="'Cidade'" [placeholderText]="'Cidade'"></input-ex>
             <!-- <input-ex [form]="form" [formControlName]="'municipioCodigo'" [label]="'Ibge'" [placeholderText]="'Código do Município'"></input-ex> -->

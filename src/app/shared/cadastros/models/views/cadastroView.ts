@@ -1,6 +1,6 @@
-import { ContatoView, EnderecoView } from ".";
-import { TTipoPessoa } from "../../../enums";
-import { ViewBase } from "../../../models";
+import { ContatoView, EnderecoView } from '.';
+import { TTipoPessoa } from '../../../enums';
+import { ViewBase } from '../../../models';
 
 export interface CadastroView extends ViewBase {
     cadastroId?: number;

@@ -1,8 +1,9 @@
-import { TEnderecoTipo } from "../../../enums";
-import { ViewBase } from "../../../models";
+import { TEnderecoTipo } from '../../../enums';
+import { ViewBase } from '../../../models';
 
 export interface EnderecoView extends ViewBase {
     cadastroId?: number;
+    departamentoId?: number;
     logradouro?: string;
     numero?: string;
     complemento?: string;

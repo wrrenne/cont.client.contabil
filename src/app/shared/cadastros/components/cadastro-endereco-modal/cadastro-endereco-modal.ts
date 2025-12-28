@@ -51,15 +51,13 @@ export class CadastroEnderecoModalComponent extends ModalBaseComponent {
 
     getData(id?: number) {
         if (id) {
-            this.cadastrosService.enderecoGet(id).subscribe((x) => {
-                this.endereco = x.obj;
+            this.cadastrosService.cadastroEnderecoGet(id).subscribe((x) => {
+                this.endereco = x.obj[0];
                 this.subTitle = this.endereco.municipioTexto;
                 this.createForm(this.endereco);
             });
         } else {
             this.endereco = {};
-            //this.endereco = { bairro: 'aaa', cep: '2000', logradouro: 'rua x', numero: '400', uf: 'SP', complemento: 'complemento', municipioCodigo: 3550308 }
-
             this.municipioParameter = {
                 uf: this.endereco.uf!,
                 searchText: '',

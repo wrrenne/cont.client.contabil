@@ -1,8 +1,24 @@
+.bg-color-body-light {
+    @apply bg-[#f6f6f6];
+}
+
+.bg-color-body-dark {
+    @apply bg-[#111111];
+}
+
+.bg-color-body {
+    @apply bg-color-body-light;
+}
+
+.dark .bg-color-body {
+    @apply bg-color-body-dark;
+}
+
 body {
-    @apply text-color-body bg-[#f6f6f6];
+    @apply text-color-body bg-color-body-light;
 }
 body.dark {
-    @apply text-color-body bg-[#0f0f0f];
+    @apply text-color-body bg-color-body-dark;
 }
 
 .border-color {
@@ -18,11 +34,11 @@ body.dark {
 }
 
 .input-label {
-    @apply text-gray-700 dark:text-gray-400 text-sm font-medium;
+    @apply text-gray-800 dark:text-gray-100 text-sm font-medium;
 }
 
 .text-color-body {
-    @apply text-black/70 dark:text-white/70;
+    @apply text-black/50 dark:text-white/60;
 }
 
 .text-color-h {
@@ -95,7 +111,7 @@ body.dark {
 }
 
 .debug {
-    @apply px-3 text-xs text-blue-500;
+    @apply text-xs text-blue-500;
 }
 
 address,
@@ -254,6 +270,14 @@ input {
         @apply px-3 py-6 text-black/70 dark:text-white/90 text-sm last:pr-0 font-semibold bg-[#d0d0d0]/50 dark:bg-[#262626]/50 border border-table border-b border-r;
     }
 
+    tr.focused {
+        @apply border-4 border-blue-500 !important;
+    }
+
+    // tr.focused td {
+    //     @apply border-t border-blue-500 border-b bg-neutral-200 dark:bg-blue-950/30 !important;
+    // }
+
     tbody {
         td.group {
             @apply bg-[#e9e9e9] !important;
@@ -261,15 +285,15 @@ input {
         }
 
         td {
-            @apply p-3 border-table border-b border-r;
+            @apply px-3 py-4 border-table border-b border-r;
         }
 
         tr:not(.group):nth-child(odd) td {
-            @apply bg-white dark:bg-zinc-950;
+            @apply bg-white dark:bg-[#111111];
         }
 
         tr:not(.group):nth-child(even) td {
-            @apply bg-[#f7f7f7] dark:bg-[#101010];
+            @apply bg-[#f7f7f7] dark:bg-[#1a1a1a];
         }
     }
 }
@@ -367,9 +391,9 @@ input {
     @apply text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-xs px-5 py-1 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
 }
 
-.debug-id {
-    @apply text-black/20 dark:text-white/20;
-}
+// .debug-id {
+//     @apply text-black/20 dark:text-white/20;
+// }
 
 .tag-text {
     @apply text-black/60 dark:text-white/60;

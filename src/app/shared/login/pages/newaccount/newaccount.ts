@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute } from '@angular/router';
 import { NgIconComponent } from '@ng-icons/core';
 import { Store } from '@ngrx/store';
+import { combineLatest } from 'rxjs';
 import { FACTORY_REVENDA } from 'src/app/shared/constants/geral';
 import { PacotePontoSelectComponent } from 'src/app/shared/control/components/pacote-ponto-select/pacote-ponto-select';
 import { NovoAcessoInput } from 'src/app/shared/control/models/inputs';
@@ -14,11 +15,11 @@ import { InputExComponent } from 'src/app/shared/controls/input-ex/input-ex';
 import { TextSeparatorComponent } from 'src/app/shared/controls/text-separator/text-separator';
 import { MaskDirective } from 'src/app/shared/directives/mask.directive';
 import { AppService } from 'src/app/shared/services/app.service';
+import { HtmlUtilsService } from 'src/app/shared/services/htmlUtils.service';
 import { cnpjValidator, cpfValidator } from 'src/app/shared/validators';
 import { Vars } from 'src/app/shared/variables';
 import { environment } from '../../../../../environments/environment';
 import { FileServerSiteLogotipoComponent } from '../../../controls/file-server-site-logotipo/file-server-site-logotipo';
-import { SistemaTipo } from '../../../models';
 import { EncryptionService, StringsService } from '../../../services';
 
 @Component({
@@ -46,20 +47,33 @@ export class NewAccountPage implements OnInit {
     submitted = false;
     pacote?: PacoteView;
 
+    revendaId?: number;
+
     constructor(
         private controlService: ControlService,
         public storeData: Store<any>,
         private formBuilder: FormBuilder,
         public stringsService: StringsService,
-        private route: ActivatedRoute,
-        private encryptionService: EncryptionService,
         private vars: Vars,
         private appService: AppService,
         private planosService: PlanosService,
+        private htmlUtils: HtmlUtilsService,
+        private encryptionService: EncryptionService,
+        private route: ActivatedRoute,
     ) {}
 
     ngOnInit(): void {
         this.appService.initStoreData();
+
+        const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
+            ...params,
+            ...queryParams,
+        }));
+
+        urlParametrs.subscribe((r) => {
+            if (r['r']) this.revendaId = this.encryptionService.decrypt(r['r']);
+        });
+
         if (this.vars.pacoteId) {
             this.planosService.pacoteGet(this.vars.pacoteId).subscribe((x) => {
                 this.pacote = x.obj;
@@ -69,7 +83,7 @@ export class NewAccountPage implements OnInit {
             this.createForm();
         }
 
-        this.logoImage = this.getLogoUrl(environment.sistema);
+        this.logoImage = this.htmlUtils.getLogoUrl();
     }
 
     createForm() {
@@ -117,21 +131,16 @@ export class NewAccountPage implements OnInit {
             pconfirmacao: [null, Validators.required],
             pacoteId: [this.pacote?.id, Validators.required],
         });
-
-        // this.firstFormGroup.valueChanges.subscribe((val) => {
-        //     console.log(val);
-        // });
     }
 
     submit() {
-        console.log('submitted');
         if (this.firstFormGroup.invalid) {
             this.firstFormGroup.markAllAsTouched();
             return;
         }
-        console.log('ok');
+
         var input: NovoAcessoInput = {
-            revendaId: FACTORY_REVENDA,
+            revendaId: this.revendaId ?? FACTORY_REVENDA,
             razaoSocial: this.firstFormGroup.get('razaoSocial')?.value,
             cnpj: this.stringsService.removeSymbols(this.firstFormGroup.get('cnpj')?.value),
             responsavel: this.firstFormGroup.get('responsavel')?.value,
@@ -155,29 +164,9 @@ export class NewAccountPage implements OnInit {
             pacoteId: this.firstFormGroup.get('pacoteId')?.value,
         };
 
-        console.log(['input', input]);
         this.controlService.novoAcesso(input).subscribe((x) => {
             this.submitted = true;
         });
-    }
-
-    getLogoUrl(sistema: SistemaTipo): string {
-        switch (sistema) {
-            case SistemaTipo.Ponto:
-                return 'deskspace-ponto.png';
-            case SistemaTipo.Contabil:
-                return 'deskspace-contabil.png';
-            case SistemaTipo.Financeiro:
-                return 'deskspace-financeiro.png';
-            case SistemaTipo.Holerite:
-                return 'deskspace-holerite.png';
-            case SistemaTipo.Funcionario:
-                return 'deskspace.png';
-            case SistemaTipo.Revenda:
-                return 'deskspace.png';
-            default:
-                return '';
-        }
     }
 
     isInvalid(controlName: string): boolean {

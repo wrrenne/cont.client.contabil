@@ -2,6 +2,6 @@ export interface PostInfo {
     postId: number;
     origemId?: number;
     count: number;
-    temArquivo: boolean;
+    arquivosCount?: number;
     temSolicitacao: boolean;
 }

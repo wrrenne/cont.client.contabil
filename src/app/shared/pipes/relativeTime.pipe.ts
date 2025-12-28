@@ -3,14 +3,13 @@ import { StringsService } from '../services';
 
 @Pipe({
     name: 'relativeTime',
-    standalone: true
+    standalone: true,
 })
 export class RelativeTimePipe implements PipeTransform {
+    constructor(private stringsService: StringsService) {}
 
-    constructor(private stringsService: StringsService) { }
-
-    transform(value: Date | string | number): string {
-        if (!value) return 'Data inválida';
+    transform(value: Date | string | number | undefined): string {
+        if (!value) return '';
 
         const now = new Date();
         const inputDate = new Date(value);
@@ -37,10 +36,4 @@ export class RelativeTimePipe implements PipeTransform {
 
         return 'Agora';
     }
-
-//    private getSingularPlural(n: number, messageNone: string | null, messageSingular: string, messagePlural: string | null): string {
-//        if (n === 0) return messageNone ?? '';
-//        if (n === 1) return messageSingular;
-//        return (messagePlural ?? '').replace('{0}', n.toString());
-//    }
 }

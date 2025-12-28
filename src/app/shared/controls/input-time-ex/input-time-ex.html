@@ -2,7 +2,7 @@
     @if (label) {
     <label class="input-label mb-1.5 block">{{ label }}</label>
     }
-    <div class="border-input background-color-input">
-        <nz-time-picker class="top-px" [formControlName]="formControlName" nzFormat="HH:mm" nzBorderless="true" [nzPlaceHolder]="'hh:mm'"></nz-time-picker>
-    </div>
+    <!-- <div class="border-input background-color-input"> -->
+    <nz-time-picker class="top-px" [formControlName]="formControlName" nzFormat="HH:mm" nzBorderless="false" [nzPlaceHolder]="'hh:mm'"></nz-time-picker>
+    <!-- </div> -->
 </div>

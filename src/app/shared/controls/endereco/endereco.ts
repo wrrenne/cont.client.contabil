@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { ViaCepService } from '../../services/viaCep.service';
@@ -15,6 +15,7 @@ import { InputExComponent } from '../input-ex/input-ex';
     templateUrl: './endereco.html',
 })
 export class EnderecoComponent implements OnInit {
+    @Input() label?: string;
     form!: FormGroup;
     viaCepAvailable = true;
 

@@ -1,8 +1,8 @@
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()">
-    <table class="table">
+    <table class="tabela">
         <tbody>
             @for (item of datas; track item; let i = $index) {
-            <tr>
+            <tr [ngClass]="{'cursor-pointer': item.tipo == TPostTipo.Ponto}" (click)="activityClick(item)">
                 <td>
                     <div class="flex items-center gap-3">
                         @if (!funcionarioId) {

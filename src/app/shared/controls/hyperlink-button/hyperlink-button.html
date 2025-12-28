@@ -1,22 +1,26 @@
 @if (isButton) {
-<button class="ant-btn ant-btn-transparent w-full py-1 pl-3 pr-2" (click)="enabled && buttonClick()">
-    <div class="flex items-center justify-between">
-        <div class="flex-1 text-left">{{text}}</div>
+<button class="btn btn-gray-outline rounded-lg py-1 px-3" (click)="enabled && buttonClick()">
+    <div class="flex items-center justify-between gap-3">
+        @if (icon && buttonLeftAlign) {
+        <div>
+            <ng-icon [name]="icon" [ngClass]="iconClass" class="top-[3px] relative align-text-top font-bold"></ng-icon>
+        </div>
+        }
+        <div>{{text}}</div>
         @if (showSeparator) {
         <div class="ml-3 mr-2 flex flex-col justify-center">
             <div class="h-[10px] w-[1px] bg-slate-800 dark:bg-slate-200"></div>
         </div>
-        }
-        <div class="flex-none text-right">
-            @if (icon) {
-            <ng-icon [name]="icon" [ngClass]="iconClass" class="align-text-top font-bold"></ng-icon>
-            }
+        } @if (icon && !buttonLeftAlign) {
+        <div>
+            <ng-icon [name]="icon" [ngClass]="iconClass" class="top-[3px] relative align-text-top font-bold"></ng-icon>
         </div>
+        }
     </div>
 </button>
 } @if (!isButton) {
 <a (click)="enabled && buttonClick()" [class.disabled]="!enabled" aria-disabled="{{ !enabled }}" [attr.tabindex]="!enabled ? -1 : 0">
-    @if (buttonLeftAlign) {
+    @if (buttonLeftAlign && !showChevron) {
     <div class="flex items-center gap-2">
         <div class="flex items-center" [ngClass]="backgroundIconCss ? 'h-8 w-8 justify-center ' + backgroundIconCss : ''">
             @if (icon) {
@@ -25,13 +29,15 @@
         </div>
         <div>{{text}}</div>
     </div>
-    } @if (!buttonLeftAlign) {
-    <div class="flex items-center gap-2">
+    } @if (!buttonLeftAlign || showChevron) {
+    <div class="flex items-center" [ngClass]="{'gap-2': !showChevron, 'gap-1': showChevron}">
         <span>{{text}}</span>
         <div class="flex items-center">
             @if (icon) {
             <ng-icon class="text-right" [name]="icon" [ngClass]="iconClass"></ng-icon>
-            }
+            } @else { @if (showChevron) {
+            <ng-icon [name]="'ionChevronForwardSharp'"></ng-icon>
+            } }
         </div>
     </div>
     }

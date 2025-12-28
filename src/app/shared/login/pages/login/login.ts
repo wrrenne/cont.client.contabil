@@ -11,6 +11,7 @@ import { LoginDirectPage } from '../logindirect/logindirect';
 import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
 import { UsersService } from 'src/app/shared/control/services/users.service';
+import { HtmlUtilsService } from 'src/app/shared/services/htmlUtils.service';
 import { FileServerSiteLogotipoComponent } from '../../../controls/file-server-site-logotipo/file-server-site-logotipo';
 
 @Component({
@@ -36,6 +37,8 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
     private formBuilder: FormBuilder;
     private usersService: UsersService;
     private appService: AppService;
+    private htmlUtils: HtmlUtilsService;
+
     cadastroId?: number;
     userId?: number;
     email?: string;
@@ -50,11 +53,12 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
         this.notification = injector.get(NzNotificationService);
         this.emailService = injector.get(EmailService);
         this.usersService = injector.get(UsersService);
+        this.htmlUtils = injector.get(HtmlUtilsService);
     }
 
     override ngOnInit(): void {
         this.appService.initStoreData();
-        this.logoImage = this.getLogoUrl(environment.sistema);
+        this.logoImage = this.htmlUtils.getLogoUrl();
 
         const urlParametrs = combineLatest([this.route.params, this.route.queryParams], (params, queryParams) => ({
             ...params,
@@ -120,25 +124,6 @@ export class LoginPage<T> extends LoginDirectPage<T> implements OnInit {
 
     get rootFolder() {
         return environment.rootFolder;
-    }
-
-    getLogoUrl(sistema: SistemaTipo): string {
-        switch (sistema) {
-            case SistemaTipo.Ponto:
-                return 'deskspace-ponto.png';
-            case SistemaTipo.Contabil:
-                return 'deskspace-contabil.png';
-            case SistemaTipo.Financeiro:
-                return 'deskspace-financeiro.png';
-            case SistemaTipo.Holerite:
-                return 'deskspace-holerite.png';
-            case SistemaTipo.Funcionario:
-                return 'deskspace.png';
-            case SistemaTipo.Revenda:
-                return 'deskspace.png';
-            default:
-                return '';
-        }
     }
 
     newAccountGo() {

@@ -89,14 +89,17 @@ export enum TPostTipo {
     EscalaFuncionario = 11,
     Escala = 12,
     Permissao = 13,
+    AlteracaoDiaBase = 14,
+    PontoAlteracaoPlano = 15,
     ContabilCliente = 100,
     ContabilConfiguracaoObrigacao = 101,
     ContabilPerfil = 102,
     ContabilObrigacao = 103,
     ContabilObrigacaoClientePeriodo = 104,
-
+    Usuario = 200,
     Ged = 300,
 }
+
 export enum TPostIcone {
     Editar = 1,
 }

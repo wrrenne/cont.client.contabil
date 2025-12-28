@@ -1,5 +1,5 @@
-import { TEnderecoTipo } from "../../../enums";
-import { PageItemBase } from "../../../models";
+import { TEnderecoTipo } from '../../../enums';
+import { PageItemBase } from '../../../models';
 
 export interface EnderecoPageItem extends PageItemBase {
     logradouro: string;
@@ -11,7 +11,7 @@ export interface EnderecoPageItem extends PageItemBase {
     uf: string;
     cep: string;
     cepFormat: string;
-    tipo: TEnderecoTipo;
-    tipoDescricao: string;
+    tipo?: TEnderecoTipo;
+    tipoDescricao?: string;
     enderecoFormat: string[];
 }

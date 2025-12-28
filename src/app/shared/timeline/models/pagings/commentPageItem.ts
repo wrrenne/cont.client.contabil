@@ -1,6 +1,6 @@
-import { ArquivoPageItem } from "../../../ged/models/pagings";
-import { PageItemBase } from "../../../models";
-import { SolicitacaoPageItem } from "./solicitacaoPageItem";
+import { ArquivoPageItem } from '../../../ged/models/pagings';
+import { PageItemBase } from '../../../models';
+import { SolicitacaoPageItem } from './solicitacaoPageItem';
 
 export interface CommentPageItem extends PageItemBase {
     userId: number;
@@ -18,5 +18,4 @@ export interface CommentPageItem extends PageItemBase {
     arquivos: ArquivoPageItem[];
     origemId?: number;
     commentId?: number;
-    temArquivo: boolean;
 }

@@ -1,0 +1,28 @@
+<div class="flex gap-2">
+    @for (item of days; track item.date.getTime()) {
+    <button
+        type="button"
+        [disabled]="!clickable"
+        (click)="onDaySelect(item)"
+        class="flex w-16 flex-col items-center justify-center rounded-md px-2 py-2 text-center transition focus:outline-none focus:ring-2"
+        [class.cursor-pointer]="clickable && !item.isActive"
+        [class.cursor-default]="!clickable || item.isActive"
+        [class.bg-neutral-200]="!item.isActive"
+        [class.text-neutral-700]="!item.isActive"
+        [class.dark:bg-neutral-800]="!item.isActive"
+        [class.dark:text-neutral-300]="!item.isActive"
+        [class.bg-neutral-900]="item.isActive"
+        [class.text-white]="item.isActive"
+        [class.dark:bg-neutral-100]="item.isActive"
+        [class.dark:text-neutral-900]="item.isActive"
+        [class.hover:bg-neutral-300]="clickable && !item.isActive"
+        [class.dark:hover:bg-neutral-700]="clickable && !item.isActive"
+        [class.focus:ring-neutral-400]="clickable"
+        [class.dark:focus:ring-neutral-600]="clickable"
+    >
+        <span class="text-xs font-medium uppercase leading-none opacity-70"> {{ item.label }} </span>
+
+        <span class="mt-1 text-lg leading-none"> {{ item.day }} </span>
+    </button>
+    }
+</div>
